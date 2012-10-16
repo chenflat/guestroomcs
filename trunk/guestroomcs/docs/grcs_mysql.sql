@@ -1,0 +1,557 @@
+/*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2012-10-16 18:07:10                          */
+/*==============================================================*/
+
+
+drop table if exists authorities;
+
+drop table if exists authorities_resources;
+
+drop table if exists build;
+
+drop table if exists dictgroup;
+
+drop table if exists dictitem;
+
+drop table if exists district;
+
+drop table if exists eventlog;
+
+drop table if exists eventlogtype;
+
+drop table if exists floor;
+
+drop table if exists guest;
+
+drop table if exists guestpreference;
+
+drop table if exists hotel;
+
+drop table if exists prefsdefinedfield;
+
+drop table if exists prefstype;
+
+drop table if exists resources;
+
+drop table if exists role;
+
+drop table if exists roles_authorities;
+
+drop table if exists room;
+
+drop table if exists roomassignedgrouies;
+
+drop table if exists roomconfig;
+
+drop table if exists roomgroup;
+
+drop table if exists roomtype;
+
+drop table if exists roomtypeparamters;
+
+drop table if exists system;
+
+drop table if exists systemsetting;
+
+drop table if exists user;
+
+drop table if exists user_role;
+
+/*==============================================================*/
+/* Table: authorities                                           */
+/*==============================================================*/
+create table authorities
+(
+   authority_id         varchar(75) not null,
+   authority_name       varchar(50),
+   authority_desc       varchar(255),
+   enabled              bool,
+   issys                bool,
+   primary key (authority_id)
+);
+
+alter table authorities comment '权限表';
+
+/*==============================================================*/
+/* Table: authorities_resources                                 */
+/*==============================================================*/
+create table authorities_resources
+(
+   ar_id                varchar(75) not null,
+   authority_id         varchar(75),
+   resource_id          varchar(75),
+   primary key (ar_id)
+);
+
+/*==============================================================*/
+/* Table: build                                                 */
+/*==============================================================*/
+create table build
+(
+   build_id             varchar(75) not null,
+   build_name           varchar(60),
+   build_address        varchar(255),
+   hotel_id             varchar(75),
+   build_comment        varchar(255),
+   primary key (build_id)
+);
+
+/*==============================================================*/
+/* Table: dictgroup                                             */
+/*==============================================================*/
+create table dictgroup
+(
+   group_code           varchar(20) not null,
+   group_name           varchar(50),
+   primary key (group_code)
+);
+
+alter table dictgroup comment '房间状态：room_status';
+
+/*==============================================================*/
+/* Table: dictitem                                              */
+/*==============================================================*/
+create table dictitem
+(
+   item_id              varchar(75) not null,
+   group_code           varchar(20) not null,
+   item_code            varchar(20) not null,
+   item_name            varchar(50) not null,
+   item_shortname       varchar(20),
+   item_value           varchar(20),
+   item_color           varchar(10),
+   item_icon            varchar(200),
+   item_remark          varchar(200),
+   item_order           int default 0,
+   primary key (item_id)
+);
+
+/*==============================================================*/
+/* Table: district                                              */
+/*==============================================================*/
+create table district
+(
+   district_id          varchar(10) not null,
+   parent_id            varchar(10),
+   district_name        varchar(50),
+   district_pinyi       varchar(50),
+   district_postcode    varchar(6),
+   district_areacode    varchar(10),
+   district_woeid       varchar(10),
+   district_comment     varchar(200),
+   primary key (district_id)
+);
+
+/*==============================================================*/
+/* Table: eventlog                                              */
+/*==============================================================*/
+create table eventlog
+(
+   log_uuid             varchar(75) not null,
+   user_id              varchar(75),
+   user_name            varchar(50),
+   logtype_key          varchar(75),
+   log_createdate       datetime,
+   log_servername       varchar(50),
+   log_properties       text,
+   log_notificationpending bool,
+   primary key (log_uuid)
+);
+
+/*==============================================================*/
+/* Table: eventlogtype                                          */
+/*==============================================================*/
+create table eventlogtype
+(
+   logtype_key          varchar(75) not null,
+   logtype_friendlyname varchar(50),
+   logtype_description  varchar(255),
+   logtype_owner        varchar(100),
+   logtype_cssclass     varchar(40),
+   primary key (logtype_key)
+);
+
+/*==============================================================*/
+/* Table: floor                                                 */
+/*==============================================================*/
+create table floor
+(
+   floor_id             varchar(75) not null comment 'uuid',
+   floor_no             varchar(10),
+   floor_name           varchar(20),
+   build_id             varchar(75),
+   floor_comment        varchar(255),
+   primary key (floor_id)
+);
+
+/*==============================================================*/
+/* Table: guest                                                 */
+/*==============================================================*/
+create table guest
+(
+   guest_id             varchar(75) not null,
+   profileid            varchar(50),
+   profiletype          varchar(20),
+   lanaguage            varchar(20),
+   currency             varchar(3),
+   createdondate        datetime,
+   firststay            datetime,
+   laststay             datetime,
+   firstname            varchar(20),
+   lastname             varchar(20),
+   salutation           varchar(10),
+   room_no              varchar(10),
+   gender               varchar(10),
+   inactive             bool,
+   company              varchar(100),
+   address              varchar(100),
+   country              varchar(50),
+   state                varchar(50),
+   city                 varchar(50),
+   zip                  varchar(10),
+   phone_home           varchar(20),
+   fax                  varchar(20),
+   phone_mobile         varchar(20),
+   phone_bus            varchar(20),
+   phone_busext         varchar(10),
+   phone_other          varchar(20),
+   email                varchar(50),
+   url                  varchar(50),
+   isprompt             bool,
+   comment              varchar(255),
+   primary key (guest_id)
+);
+
+/*==============================================================*/
+/* Table: guestpreference                                       */
+/*==============================================================*/
+create table guestpreference
+(
+   guest_id             varchar(75) not null,
+   definedfieldid       varchar(75) not null,
+   prefs_value          text,
+   primary key (guest_id, definedfieldid)
+);
+
+alter table guestpreference comment '客人偏好';
+
+/*==============================================================*/
+/* Table: hotel                                                 */
+/*==============================================================*/
+create table hotel
+(
+   hotel_id             varchar(75) not null,
+   hotel_name           varchar(50),
+   hotel_enname         varchar(100),
+   hotel_address        varchar(200),
+   district_id          varchar(200),
+   hotel_phone          varchar(20),
+   hotel_fax            varchar(20),
+   hotel_desc           varchar(1000),
+   hotel_photo          varchar(200),
+   hotel_long           varchar(50),
+   hotel_lat            varchar(50),
+   hotel_comment        varchar(255),
+   primary key (hotel_id)
+);
+
+/*==============================================================*/
+/* Table: prefsdefinedfield                                     */
+/*==============================================================*/
+create table prefsdefinedfield
+(
+   definedfieldid       varchar(75) not null,
+   prefstype_id         varchar(75),
+   fieldtitle           varchar(50),
+   visible              bool,
+   fieldorder           int,
+   fieldtype            varchar(20),
+   required             bool,
+   "default"            varchar(2000),
+   outputsettings       varchar(2000),
+   inputsettings        varchar(2000),
+   validationrule       varchar(512),
+   validationmessage    varchar(512),
+   helptext             varchar(512),
+   searchable           bool,
+   showonedit           bool,
+   privatefield         bool,
+   editstyle            varchar(512),
+   primary key (definedfieldid)
+);
+
+/*==============================================================*/
+/* Table: prefstype                                             */
+/*==============================================================*/
+create table prefstype
+(
+   prefstype_id         varchar(75) not null,
+   prefstype_name       varchar(50),
+   prefstype_comment    varchar(255),
+   primary key (prefstype_id)
+);
+
+/*==============================================================*/
+/* Table: resources                                             */
+/*==============================================================*/
+create table resources
+(
+   resource_id          varchar(75) not null,
+   resource_name        varchar(100),
+   resource_type        varchar(20) comment 'url、method',
+   priority             int,
+   resource_string      varchar(255),
+   resource_desc        varchar(255),
+   enabled              bool,
+   issys                bool,
+   primary key (resource_id)
+);
+
+alter table resources comment '资源表';
+
+/*==============================================================*/
+/* Table: role                                                  */
+/*==============================================================*/
+create table role
+(
+   role_id              varchar(75) not null,
+   role_name            varchar(50),
+   role_desc            varchar(100),
+   enabled              bool,
+   issys                bool,
+   primary key (role_id)
+);
+
+alter table role comment '用户角色信息表';
+
+/*==============================================================*/
+/* Table: roles_authorities                                     */
+/*==============================================================*/
+create table roles_authorities
+(
+   ra_id                varchar(75) not null,
+   role_id              varchar(75),
+   authority_id         varchar(75),
+   primary key (ra_id)
+);
+
+/*==============================================================*/
+/* Table: room                                                  */
+/*==============================================================*/
+create table room
+(
+   room_no              varchar(75) not null,
+   room_name            varchar(40),
+   floor_id             varchar(75),
+   roomtype_id          varchar(75),
+   room_towards         varchar(20),
+   room_phone           varchar(20),
+   room_fax             varchar(20),
+   room_issmoking       bool,
+   room_minguest        int,
+   room_maxguest        int,
+   room_photo           varchar(200),
+   room_comment         varchar(200),
+   primary key (room_no)
+);
+
+alter table room comment '房间信息表，保存酒店的所有房间信息';
+
+/*==============================================================*/
+/* Table: roomassignedgrouies                                   */
+/*==============================================================*/
+create table roomassignedgrouies
+(
+   itemid               varchar(75) not null,
+   room_no              varchar(75),
+   roomgroup_id         varchar(75),
+   primary key (itemid)
+);
+
+alter table roomassignedgrouies comment '房间分配到组关系表';
+
+/*==============================================================*/
+/* Table: roomconfig                                            */
+/*==============================================================*/
+create table roomconfig
+(
+   room_no              varchar(75) not null,
+   room_ip              varchar(20),
+   room_port            int,
+   primary key (room_no)
+);
+
+/*==============================================================*/
+/* Table: roomgroup                                             */
+/*==============================================================*/
+create table roomgroup
+(
+   roomgroup_id         varchar(75) not null,
+   roomgroup_name       varchar(40),
+   roomgroup_desc       varchar(255),
+   primary key (roomgroup_id)
+);
+
+alter table roomgroup comment '定义房间组';
+
+/*==============================================================*/
+/* Table: roomtype                                              */
+/*==============================================================*/
+create table roomtype
+(
+   roomtype_id          varchar(75) not null,
+   roomtype_name        varchar(50),
+   comment              varchar(255),
+   roomtype_template    varchar(200),
+   primary key (roomtype_id)
+);
+
+/*==============================================================*/
+/* Table: roomtypeparamters                                     */
+/*==============================================================*/
+create table roomtypeparamters
+(
+   paramter_id          varchar(75) not null,
+   roomtype_id          varchar(75),
+   paramter_key         varchar(50),
+   paramter_name        varchar(50),
+   paramter_comment     varchar(200),
+   paramter_location    varchar(100),
+   primary key (paramter_id)
+);
+
+/*==============================================================*/
+/* Table: system                                                */
+/*==============================================================*/
+create table system
+(
+   system_id            int not null,
+   system_name          varchar(40),
+   system_fullname      varchar(100),
+   system_enname        varchar(100),
+   expirydate           datetime,
+   currency             varchar(6),
+   administratorid      varchar(75),
+   administratorroleid  varchar(75),
+   registeredroleid     varchar(75),
+   timezoneoffset       int,
+   defaultlanguage      varchar(10),
+   createdbyuserid      varchar(75),
+   createdondate        datetime,
+   lastmodifiedbyuserid varchar(75),
+   lastmodifiedondate   datetime,
+   primary key (system_id)
+);
+
+/*==============================================================*/
+/* Table: systemsetting                                         */
+/*==============================================================*/
+create table systemsetting
+(
+   system_id            int not null,
+   setting_name         varchar(50) not null,
+   setting_value        varchar(2000),
+   culture_code         varchar(10),
+   createdbyuserid      varchar(75),
+   createdondate        datetime,
+   lastmodifiedbyuserid varchar(75),
+   lastmodifiedondate   datetime,
+   primary key (setting_name)
+);
+
+/*==============================================================*/
+/* Table: user                                                  */
+/*==============================================================*/
+create table user
+(
+   user_id              varchar(75) not null,
+   user_name            varchar(50),
+   user_account         varchar(30),
+   user_password        varchar(100),
+   user_desc            varchar(255),
+   enabled              bool comment '0禁用 1正常',
+   issuperuser          bool comment '0非 1是 ',
+   lastipaddress        varchar(50),
+   primary key (user_id)
+);
+
+alter table user comment '系统用户表';
+
+/*==============================================================*/
+/* Table: user_role                                             */
+/*==============================================================*/
+create table user_role
+(
+   ur_id                varchar(75) not null,
+   user_id              varchar(75),
+   role_id              varchar(75),
+   primary key (ur_id)
+);
+
+alter table authorities_resources add constraint FK_authorities_authoritiesresources foreign key (authority_id)
+      references authorities (authority_id) on delete restrict on update restrict;
+
+alter table authorities_resources add constraint FK_resources_authoritiesresources foreign key (resource_id)
+      references resources (resource_id) on delete restrict on update restrict;
+
+alter table build add constraint FK_hotelinfo_buildinfo foreign key (hotel_id)
+      references hotel (hotel_id) on delete restrict on update restrict;
+
+alter table dictitem add constraint FK_dictigroup_dictitem foreign key (group_code)
+      references dictgroup (group_code) on delete restrict on update restrict;
+
+alter table district add constraint FK_district_district foreign key (parent_id)
+      references district (district_id) on delete restrict on update restrict;
+
+alter table eventlog add constraint FK_eventlogtype_eventlog foreign key (logtype_key)
+      references eventlogtype (logtype_key) on delete restrict on update restrict;
+
+alter table floor add constraint FK_buildinfo_floorinfo foreign key (build_id)
+      references build (build_id) on delete restrict on update restrict;
+
+alter table guestpreference add constraint FK_guest_guestpreference foreign key (guest_id)
+      references guest (guest_id) on delete restrict on update restrict;
+
+alter table guestpreference add constraint FK_prefsdefinedfield_guestpreference foreign key (definedfieldid)
+      references prefsdefinedfield (definedfieldid) on delete restrict on update restrict;
+
+alter table hotel add constraint FK_district_hotel foreign key (district_id)
+      references district (district_id) on delete restrict on update restrict;
+
+alter table prefsdefinedfield add constraint FK_prefstype_prefsdefinedfield foreign key (prefstype_id)
+      references prefstype (prefstype_id) on delete restrict on update restrict;
+
+alter table roles_authorities add constraint FK_authorities_rolesauthorities foreign key (authority_id)
+      references authorities (authority_id) on delete restrict on update restrict;
+
+alter table roles_authorities add constraint FK_role_rolesauthorities foreign key (role_id)
+      references role (role_id) on delete restrict on update restrict;
+
+alter table room add constraint FK_floor_room foreign key (floor_id)
+      references floor (floor_id) on delete restrict on update restrict;
+
+alter table room add constraint FK_roomtype_room foreign key (roomtype_id)
+      references roomtype (roomtype_id) on delete restrict on update restrict;
+
+alter table roomassignedgrouies add constraint FK_room_roomassignedgrouies foreign key (room_no)
+      references room (room_no) on delete restrict on update restrict;
+
+alter table roomassignedgrouies add constraint FK_roomgroup_roomassignedgrouies foreign key (roomgroup_id)
+      references roomgroup (roomgroup_id) on delete restrict on update restrict;
+
+alter table roomconfig add constraint FK_room_roomconfig foreign key (room_no)
+      references room (room_no) on delete restrict on update restrict;
+
+alter table roomtypeparamters add constraint FK_roomtype_roomtypeparamters foreign key (roomtype_id)
+      references roomtype (roomtype_id) on delete restrict on update restrict;
+
+alter table systemsetting add constraint FK_system_systemsetting foreign key (system_id)
+      references system (system_id) on delete restrict on update restrict;
+
+alter table user_role add constraint FK_role_userrole foreign key (role_id)
+      references role (role_id) on delete restrict on update restrict;
+
+alter table user_role add constraint FK_user_userrole foreign key (user_id)
+      references user (user_id) on delete restrict on update restrict;
+

@@ -1,0 +1,68 @@
+客户控制系统功能MAP
+
+
+
+guestroomcs/
+├── login/		登陆页
+├── logout/		注销页	
+├── lockscreen/	锁屏页
+├── index/		系统首页
+│   ├──
+
+
+
+
+├── user/	
+│   ├── usermanage/	
+│   	├── /add	新增用户
+│   	├── /edit	编辑用户
+│   	├── /delete	删除用户
+│   ├── groupmanage/	用户组列表
+│   	├── /add	新增用户组
+│   	├── /edit	编辑用户组
+│   	├── /delete	删除用户组
+
+
+
+├── system/		
+│   ├── setting/	系统设置(个性化)
+│   	├── index	系统设置(个性化)
+│   	├── #prompt	提示
+│   	├── #search	搜索
+│   	├── #usual	常用
+│   	├── #usability 易用性
+│   ├── /roommanage	客房管理
+│   	├── state	客房状态
+│   ├── /handover	交接班设置
+│   ├── 
+
+
+
+
+
+├──数据字典：
+│	├──房间状态
+│	│   ├── 出租的
+│	│   ├── 有人活动的
+│	│   ├── 出租
+│	│   ├── 占用
+	
+	
+	
+├──View
+│	├──Guest Request
+│		├── BC (brown) – Butler Call pending.
+│		├── MUR (green) – Make-Up Room pending
+│		├── Valet (red) – Valet / Bellman call pending.
+│		├── FoodT (salmon) – Request to remove a food tray pending
+│		├── DND / Do-Not-Disturb Calls
+│		├── SOS (orange) – Bathroom emergency active.
+│		├── Combined Service Calls
+│	├──Guest Preferences
+│		├── 
+│	├──Room Status
+│		├── 
+│	├──HVAC
+│		├── 	
+	
+	
