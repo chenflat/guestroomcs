@@ -39,7 +39,7 @@
     <!-- sticky messages -->
 	<script src="<c:url value="/lib/sticky/sticky.min.js" />"></script>
     <!-- tooltips -->
-	<script src="<c:url value="lib/qtip2/jquery.qtip.min.js" />"></script>
+	<script src="<c:url value="/lib/qtip2/jquery.qtip.min.js" />"></script>
     <!-- lightbox -->
 	<script src="<c:url value="/lib/colorbox/jquery.colorbox.min.js" />"></script>
     <!-- jBreadcrumbs -->
@@ -50,7 +50,7 @@
 	<script src="<c:url value="/lib/antiscroll/antiscroll.js" />"></script>
 	<script src="<c:url value="/lib/antiscroll/jquery-mousewheel.js" />"></script>
 	<!-- fix for ios orientation change -->
-	<script src="<c:url value="js/ios-orientationchange-fix.js" />"></script>
+	<script src="<c:url value="/js/ios-orientationchange-fix.js" />"></script>
 	<!-- to top -->
 	<script src="<c:url value="/lib/UItoTop/jquery.ui.totop.min.js" />"></script>
 

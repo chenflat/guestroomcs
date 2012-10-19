@@ -4,22 +4,18 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <c:url value="" />
 <!-- Bootstrap framework -->
-<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
-<link href="<c:url value="/css/bootstrap-responsive.css"/>"
-	rel="stylesheet">
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/bootstrap-responsive.css"/>">
 <!-- jQuery UI theme -->
-<link rel="stylesheet"
-	href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
+<link rel="stylesheet" href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
 <!-- theme color-->
 <link href="<c:url value="/css/blue.css"/>" rel="stylesheet">
 <!-- tooltips-->
-<link rel="stylesheet"
-	href="<c:url value="/lib/jBreadcrumbs/css/BreadCrumb.css"/>" />
+<link rel="stylesheet" href="<c:url value="/lib/jBreadcrumbs/css/BreadCrumb.css"/>" />
 <!-- tooltips-->
-<link rel="stylesheet"
-	href="<c:url value="/lib/qtip2/jquery.qtip.min.css"/>" />
+<link rel="stylesheet" href="<c:url value="/lib/qtip2/jquery.qtip.min.css"/>" />
 <!-- colorbox -->
-<link rel="stylesheet" href="<c:url value="lib/colorbox/colorbox.css"/>" />
+<link rel="stylesheet" href="<c:url value="/lib/colorbox/colorbox.css"/>" />
 <!-- code prettify -->
 <link href="<c:url value="/lib/google-code-prettify/prettify.css"/>"
 	rel="stylesheet">
@@ -56,9 +52,9 @@
 <!-- main styles -->
 <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
  <!-- favicon -->
-<link rel="shortcut icon" href="<c:url value="/img/favicon.ico"/>" />
+<link rel="shortcut icon" href="<c:url value="/img/favicon.ico"/>" type="image/x-icon"  />
 <!--[if lte IE 8]>
-            <link rel="stylesheet" href="<c:url value="/css/ie.css"/>" />
+  <link rel="stylesheet" href="<c:url value="/css/ie.css"/>" />
  <![endif]-->
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
