@@ -21,7 +21,7 @@
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/layouts/layouts.xml</value>
-				<value>/WEB-INF/jsp/views.xml</value>
+				<value>/WEB-INF/layouts/views.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -39,6 +39,22 @@
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			<ref bean="localeChangeInterceptor" />
+		</property>
+	</bean>
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
@@ -53,12 +69,9 @@
 		p:dataSource-ref="dataSource">
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:com/managementsystem/website/domain/*.hbm.xml
+				<value>classpath:com/managementsystem/guestroom/domain/*.hbm.xml
 				</value>
 			</list>
-		</property>
-		<property name="configLocation">
-			<value>classpath:hibernate.cfg.xml</value>
 		</property>
 		<property name="configurationClass">
 			<value>org.hibernate.cfg.AnnotationConfiguration</value>
@@ -67,9 +80,10 @@
 			<props>
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
 			</props>
 		</property>
+
 		<!-- <property name="eventListeners"> <map> <entry key="merge"> <bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener" 
 			/> </entry> </map> </property> -->
 	</bean>
@@ -97,15 +111,12 @@
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/images/**" location="/images/" />
-	<mvc:resources mapping="/styles/**" location="/styles/" />
-	<mvc:resources mapping="/scripts/**" location="/scripts/" />
-	<mvc:resources mapping="/ckeditor/**" location="/ckeditor/" />
-	<mvc:resources mapping="/ckfinder/**" location="/ckfinder/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/userfiles/**" location="/userfiles/" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	<import resource="classpath:security-context.xml"/>
+
 </beans>
