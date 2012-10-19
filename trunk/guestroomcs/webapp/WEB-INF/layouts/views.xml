@@ -23,7 +23,9 @@
 	<definition name="system/index" extends="standard-layout">
 		<put-attribute name="title" value="系统设置 " />
 		<put-attribute name="nav" value="/WEB-INF/jsp/nav.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/system/sidebar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/system/index.jsp" />
+		
 	</definition>
 
 </tiles-definitions>
