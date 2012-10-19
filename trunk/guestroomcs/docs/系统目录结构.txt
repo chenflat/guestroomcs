@@ -8,11 +8,27 @@ guestroomcs/
 ├── lockscreen/	锁屏页
 ├── index/		系统首页
 │   ├──
-
-
-
-
-├── user/	
+	
+├──View
+│	├── guestrequest	Guest Request
+│		├── /bc BC (brown) – Butler Call pending.
+│		├── /mur MUR (green) – Make-Up Room pending
+│		├── Valet (red) – Valet / Bellman call pending.
+│		├── FoodT (salmon) – Request to remove a food tray pending
+│		├── DND / Do-Not-Disturb Calls
+│		├── SOS (orange) – Bathroom emergency active.
+│		├── Combined Service Calls
+│	├──Guest Preferences
+│	├──Room Status
+│	├──HVAC
+│		├── 	
+├── control
+│   ├── 
+│   ├── 
+├── report
+│   ├── 
+│   ├── 
+├── user	
 │   ├── usermanage/	
 │   	├── /add	新增用户
 │   	├── /edit	编辑用户
@@ -22,21 +38,39 @@ guestroomcs/
 │   	├── /edit	编辑用户组
 │   	├── /delete	删除用户组
 
-
-
-├── system/		
-│   ├── setting/	系统设置(个性化)
-│   	├── index	系统设置(个性化)
-│   	├── #prompt	提示
-│   	├── #search	搜索
-│   	├── #usual	常用
-│   	├── #usability 易用性
-│   ├── /roommanage	客房管理
-│   	├── state	客房状态
-│   ├── /handover	交接班设置
-│   ├── 
-
-
+├── system		
+│   ├── /configration  系统配置 
+│   	├── #customize(个性化) 
+│   	├── #prompt(提示) 
+│   	├── #usual 
+│   	├── #usability(易用性)
+│	├── /dictionary 数据字典
+│   	├── /add 新增字典
+│   	├── /edit 编辑字典
+│   	├── /delete 删除字典
+│   ├── /faq	帮助管理
+├── hotel 酒店信息
+│   ├── /hotel 酒店信息
+│   ├── /build 酒店建筑
+│   ├── /room  客房管理
+│   ├── /roomtype  客房类型
+│   ├── /roomgroup  客房分组
+│
+├── guest 客人管理
+│
+├── user	用户管理
+│   ├── /userlist 账户管理
+│   ├── /role 用户组管理
+│   ├── /authorities 权限管理
+├── userprofile 我的账户
+│   ├── /view 查看账户信息
+│   ├── /edit 编辑账户信息
+│
+│
+├── /handover	交接班设置
+│
+│
+├── fap 查询帮助	
 
 
 
@@ -48,21 +82,6 @@ guestroomcs/
 │	│   ├── 占用
 	
 	
-	
-├──View
-│	├──Guest Request
-│		├── BC (brown) – Butler Call pending.
-│		├── MUR (green) – Make-Up Room pending
-│		├── Valet (red) – Valet / Bellman call pending.
-│		├── FoodT (salmon) – Request to remove a food tray pending
-│		├── DND / Do-Not-Disturb Calls
-│		├── SOS (orange) – Bathroom emergency active.
-│		├── Combined Service Calls
-│	├──Guest Preferences
-│		├── 
-│	├──Room Status
-│		├── 
-│	├──HVAC
-│		├── 	
+
 	
 	

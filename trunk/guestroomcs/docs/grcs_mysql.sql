@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-10-16 18:07:10                          */
+/* Created on:     2012-10-17 13:04:31                          */
 /*==============================================================*/
 
 
@@ -9,6 +9,8 @@ drop table if exists authorities;
 drop table if exists authorities_resources;
 
 drop table if exists build;
+
+drop table if exists department;
 
 drop table if exists dictgroup;
 
@@ -95,6 +97,25 @@ create table build
    hotel_id             varchar(75),
    build_comment        varchar(255),
    primary key (build_id)
+);
+
+/*==============================================================*/
+/* Table: department                                            */
+/*==============================================================*/
+create table department
+(
+   dept_id              varchar(75) not null,
+   hotel_id             varchar(75),
+   dept_code            varchar(50),
+   dept_shortname       varchar(20),
+   dept_name            varchar(40),
+   parentid             varchar(75),
+   priority             int,
+   dept_manager         varchar(75),
+   dept_photo           varchar(50),
+   dept_fax             varchar(50),
+   dept_comment         varchar(255),
+   primary key (dept_id)
 );
 
 /*==============================================================*/
@@ -253,6 +274,7 @@ create table hotel
    hotel_long           varchar(50),
    hotel_lat            varchar(50),
    hotel_comment        varchar(255),
+   system_id            int,
    primary key (hotel_id)
 );
 
@@ -268,7 +290,7 @@ create table prefsdefinedfield
    fieldorder           int,
    fieldtype            varchar(20),
    required             bool,
-   "default"            varchar(2000),
+   defvalue             varchar(2000),
    outputsettings       varchar(2000),
    inputsettings        varchar(2000),
    validationrule       varchar(512),
@@ -348,9 +370,6 @@ create table room
    room_towards         varchar(20),
    room_phone           varchar(20),
    room_fax             varchar(20),
-   room_issmoking       bool,
-   room_minguest        int,
-   room_maxguest        int,
    room_photo           varchar(200),
    room_comment         varchar(200),
    primary key (room_no)
@@ -401,11 +420,18 @@ alter table roomgroup comment '定义房间组';
 create table roomtype
 (
    roomtype_id          varchar(75) not null,
+   hotel_id             varchar(75),
    roomtype_name        varchar(50),
-   comment              varchar(255),
    roomtype_template    varchar(200),
+   roomtype_minguests   int,
+   roomtype_maxguests   int,
+   roomtype_photo       varchar(200),
+   roomtype_issmoking   bool,
+   roomtype_comment     varchar(255),
    primary key (roomtype_id)
 );
+
+alter table roomtype comment '根据不同的房间类型，显示不同的设置参数和界面，比如标准间或总统套房';
 
 /*==============================================================*/
 /* Table: roomtypeparamters                                     */
@@ -498,6 +524,12 @@ alter table authorities_resources add constraint FK_resources_authoritiesresourc
 alter table build add constraint FK_hotelinfo_buildinfo foreign key (hotel_id)
       references hotel (hotel_id) on delete restrict on update restrict;
 
+alter table department add constraint FK_department_department foreign key (parentid)
+      references department (dept_id) on delete restrict on update restrict;
+
+alter table department add constraint FK_hotel_department foreign key (hotel_id)
+      references hotel (hotel_id) on delete restrict on update restrict;
+
 alter table dictitem add constraint FK_dictigroup_dictitem foreign key (group_code)
       references dictgroup (group_code) on delete restrict on update restrict;
 
@@ -518,6 +550,9 @@ alter table guestpreference add constraint FK_prefsdefinedfield_guestpreference 
 
 alter table hotel add constraint FK_district_hotel foreign key (district_id)
       references district (district_id) on delete restrict on update restrict;
+
+alter table hotel add constraint FK_system_hotel foreign key (system_id)
+      references system (system_id) on delete restrict on update restrict;
 
 alter table prefsdefinedfield add constraint FK_prefstype_prefsdefinedfield foreign key (prefstype_id)
       references prefstype (prefstype_id) on delete restrict on update restrict;
@@ -542,6 +577,9 @@ alter table roomassignedgrouies add constraint FK_roomgroup_roomassignedgrouies 
 
 alter table roomconfig add constraint FK_room_roomconfig foreign key (room_no)
       references room (room_no) on delete restrict on update restrict;
+
+alter table roomtype add constraint FK_hotel_roomtype foreign key (hotel_id)
+      references hotel (hotel_id) on delete restrict on update restrict;
 
 alter table roomtypeparamters add constraint FK_roomtype_roomtypeparamters foreign key (roomtype_id)
       references roomtype (roomtype_id) on delete restrict on update restrict;
