@@ -15,7 +15,7 @@
 <tiles:insertAttribute name="header" />
 </head>
 <body>
-	<div id="loading_layer" style="display:none"><img src="<c:url value="images/ajax_loader.gif" />" alt="" /></div>
+	<div id="loading_layer" style="display:none"><img src="<c:url value="img/ajax_loader.gif" />" alt="" /></div>
 	<div class="style_switcher">
 			<div class="sepH_c">
 				<p>Colors:</p>
@@ -75,7 +75,7 @@
 
 	<div id="maincontainer" class="clearfix">
 	<tiles:insertAttribute name="nav" />
-	</div>
+	
 	<tiles:insertAttribute name="body" />
 	
 	<div id="contentwrapper">
@@ -403,7 +403,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 </div>
 	<tiles:insertAttribute name="footer" />
 </body>

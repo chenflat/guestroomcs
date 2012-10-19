@@ -1,0 +1,1 @@
+insert into dictgroup(group_code,group_name) values ('room_status','房间状态');

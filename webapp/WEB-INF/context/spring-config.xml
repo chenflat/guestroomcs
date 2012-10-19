@@ -110,9 +110,10 @@
 
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/img/**" location="/img/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/lib/**" location="/lib/" />
 	<mvc:resources mapping="/userfiles/**" location="/userfiles/" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
