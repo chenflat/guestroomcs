@@ -12,16 +12,16 @@ import com.managementsystem.guestroom.web.BaseController;
 
 @Controller
 @RequestMapping("/system/*")
-public class SystemIndexController extends BaseController {
+public class SettingController extends BaseController {
 
 	private final Log logger = LogFactory.getLog(getClass());
 
-	@RequestMapping(value = "index", method = RequestMethod.GET)
+	@RequestMapping(value = "settings", method = RequestMethod.GET)
 	public ModelAndView setupSystemindex(Model model) {
-		logger.debug("setupindex");
+		logger.debug("system settings");
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("system/index");
+		mav.setViewName("system/settings");
 		return mav;
 	}
 
