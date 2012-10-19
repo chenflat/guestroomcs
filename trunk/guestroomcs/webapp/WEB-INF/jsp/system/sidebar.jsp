@@ -11,7 +11,6 @@
 	Description:System Manage Sidebar
  -->
 <div class="sidebar_inner">
-
 	<div id="side_accordion" class="accordion">
 		<div class="accordion-group">
 			<div class="accordion-heading">
