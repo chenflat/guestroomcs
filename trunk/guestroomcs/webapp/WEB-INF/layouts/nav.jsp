@@ -36,8 +36,8 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/system/settings" />"><i class="icon-wrench"></i> <spring:message code="nav.system.settings" /></a></li>
-						<li><a href="<c:url value="/hotel" />"><i class="icon-star"></i> 酒店管理</a></li>
-						<li><a href="<c:url value="/guest" />"><i class="icon-map-marker"></i> 客人管理</a></li>
+						<li><a href="<c:url value="/hotel/hotel" />"><i class="icon-star"></i> <spring:message code="nav.hotel" /></a></li>
+						<li><a href="<c:url value="/guest" />"><i class="icon-map-marker"></i> <spring:message code="nav.guest" /></a></li>
 						<li><a href="<c:url value="/user" />"><i class="icon-user"></i> 用户管理</a></li>
 						<li><a href="<c:url value="/handover" />"><i class="icon-thumbs-up"></i> 交接班管理</a></li>
 					</ul></li>

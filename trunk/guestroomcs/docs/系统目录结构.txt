@@ -14,32 +14,38 @@ guestroomcs/
 │		├── /bc BC (brown) – Butler Call pending.
 │		├── /mur MUR (green) – Make-Up Room pending
 │		├── Valet (red) – Valet / Bellman call pending.
-│		├── FoodT (salmon) – Request to remove a food tray pending
+│		├── foodtray (salmon) – Request to remove a food tray pending
 │		├── DND / Do-Not-Disturb Calls
 │		├── SOS (orange) – Bathroom emergency active.
 │		├── Combined Service Calls
 │	├──Guest Preferences
+│		├──/ada	ADA / Hearing Impaired
+│		├──/sabbath Kosher / Sabbath
 │	├──Room Status
 │	├──HVAC
-│		├── 	
+│		├── Measured Room Temperature	
+│		├── Measured Humidity
+│		├── HAVC Equipment Operation
+│		├── Peak Demand / Load Shedding / Fire
+│		├── Open Doors
+│		├── Open Windows
+│		├── ETM:Reference Rooms for Energy Management System
+│		├── VIP / Reduced Energy Management
+│		├── De-Humidification
+│		├── De-Icing
+│		├── HAVC Troble
+│		├── Equipment Type
 ├── control
 │   ├── 
 │   ├── 
 ├── report
 │   ├── 
 │   ├── 
-├── user	
-│   ├── usermanage/	
-│   	├── /add	新增用户
-│   	├── /edit	编辑用户
-│   	├── /delete	删除用户
-│   ├── groupmanage/	用户组列表
-│   	├── /add	新增用户组
-│   	├── /edit	编辑用户组
-│   	├── /delete	删除用户组
 
-├── system		
-│   ├── /configration  系统配置 
+
+
+├── system	系统配置 	
+│   ├── /settings  系统配置 
 │   	├── #customize(个性化) 
 │   	├── #prompt(提示) 
 │   	├── #usual 
@@ -84,4 +90,54 @@ guestroomcs/
 	
 
 	
+	
+	nav.view.guestrequest=客房服务
+nav.view.guestpreferences=
+nav.view.roomstatus=
+nav.view.hvac=
+
+
+
+
+
+nav.view.guestrequest.bc=
+nav.view.guestrequest.mur=
+nav.view.guestrequest.valet=
+nav.view.guestrequest.foodtray=
+nav.view.guestrequest.dnd=
+nav.view.guestrequest.sos=
+nav.view.guestrequest.combined=
+
+
+nav.view.guestpreferences.ada=ADA /听力障碍
+nav.view.guestpreferences.sabbath=犹太人的/安息日
+
+nav.view.hvac.measuredtemperature=Measured Room Temperature	
+nav.view.hvac.measuredhumidity=Measured Humidity
+nav.view.hvac.equipmentoperation=HAVC Equipment Operation
+nav.view.hvac.loadshedding=Peak Demand / Load Shedding / Fire
+nav.view.hvac.opendoors=Open Doors
+nav.view.hvac.openwindows=Open Windows
+nav.view.hvac.etm=ETM:Reference Rooms for Energy Management System
+nav.view.hvac.vip=VIP / Reduced Energy Management
+nav.view.hvac.dehumidification=De-Humidification
+nav.view.hvac.deicing=De-Icing
+nav.view.hvac.havctroble=HAVC Troble
+nav.view.hvac.equipmenttype=Equipment Type
+
+mav.system=System Manage
+nav.system.settings=System Setting
+nav.system.dictionary=Dictionary Definition
+nav.system.faq=Faq Manage
+
+
+nav.hotel=Hotel Manage
+nav.hotel.hotel=Hotel Manage
+nav.hotel.build=Build Manage
+nav.hotel.room=Hotel GuestRoom Manage
+nav.hotel.roomtype=Room Type
+nav.hotel.roomgroup=Room Group
+
+nav.guest=Guest Manage
+
 	
