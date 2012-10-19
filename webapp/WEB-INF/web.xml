@@ -21,7 +21,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<servlet>
-		<servlet-name>i3web</servlet-name>
+		<servlet-name>guestroomcs</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
