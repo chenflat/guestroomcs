@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<!-- Pages -->
+	<definition name="login" extends="standard-layout">
+		<put-attribute name="title" value="登陆 " />
+		<put-attribute name="nav" value="/WEB-INF/jsp/nav.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+	</definition>
+
+	<!-- Pages -->
+	<definition name="index" extends="standard-layout">
+		<put-attribute name="title" value="系统首页 " />
+		<put-attribute name="nav" value="/WEB-INF/jsp/nav.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+	</definition>
+	
+	
+	<!-- System Setting Pages -->
+	<definition name="system/index" extends="standard-layout">
+		<put-attribute name="title" value="系统设置 " />
+		<put-attribute name="nav" value="/WEB-INF/jsp/nav.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/system/index.jsp" />
+	</definition>
+
+</tiles-definitions>
