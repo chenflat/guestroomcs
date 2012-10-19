@@ -239,23 +239,6 @@
 		<div class="antiscroll-inner">
 			<div class="antiscroll-content">
 			<tiles:insertAttribute name="sidebar" />
-				<div class="sidebar_info">
-					<ul class="unstyled">
-						<li>
-							<span class="act act-warning">65</span>
-							<strong>New comments</strong>
-						</li>
-						<li>
-							<span class="act act-success">10</span>
-							<strong>New articles</strong>
-						</li>
-						<li>
-							<span class="act act-danger">85</span>
-							<strong>New registrations</strong>
-						</li>
-					</ul>
-				</div> 
-			
 			</div>
 		</div>
 	</div>
