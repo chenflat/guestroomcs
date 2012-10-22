@@ -36,7 +36,7 @@
 	</definition>
 
 	<!-- System Setting Pages -->
-	<definition name="system/dictionary" extends="standard-layout">
+	<definition name="system/dictionary" extends="system-layout">
 		<put-attribute name="title" value="数据字典管理 " />
 		<put-attribute name="body" value="/WEB-INF/jsp/system/dictionary.jsp" />
 	</definition>
