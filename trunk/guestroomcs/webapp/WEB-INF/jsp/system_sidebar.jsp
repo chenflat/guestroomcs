@@ -54,9 +54,9 @@
 			<div class="accordion-body collapse" id="collapseThree">
 				<div class="accordion-inner">
 					<ul class="nav nav-list">
-						<li><a href="<c:url value="/hotel/hotel" />"><spring:message code="nav.hotel.hotel" /></a></li>
-						<li><a href="<c:url value="/hotel/build" />"><spring:message code="nav.hotel.build" /></a></li>
-						<li><a href="<c:url value="/hotel/room" />"><spring:message code="nav.hotel.room" /></a></li>
+						<li><a href="<c:url value="/hotel/hotelmanage" />"><spring:message code="nav.hotel.hotel" /></a></li>
+						<li><a href="<c:url value="/hotel/buildmanage" />"><spring:message code="nav.hotel.build" /></a></li>
+						<li><a href="<c:url value="/hotel/roommanage" />"><spring:message code="nav.hotel.room" /></a></li>
 						<li><a href="<c:url value="/hotel/roomtype" />"><spring:message code="nav.hotel.roomtype" /></a></li>
 						<li><a href="<c:url value="/hotel/roomgroup" />"><spring:message code="nav.hotel.roomgroup" /></a></li>
 
@@ -88,8 +88,8 @@
 			<div class="accordion-body collapse" id="collapseFive">
 				<div class="accordion-inner">
 					<ul class="nav nav-list">
-						<li><a href="<c:url value="/user/userlist" />"><spring:message code="nav.user.userlist" /></a></li>
-						<li><a href="<c:url value="/user/userlist" />"><spring:message code="nav.user.userlist" /></a></li>
+						<li><a href="<c:url value="/user/usermanage" />"><spring:message code="nav.user.usermanage" /></a></li>
+						<li><a href="<c:url value="/user/rolemanage" />"><spring:message code="nav.user.rolemanage" /></a></li>
 						<li><a href="<c:url value="/user/authorities" />"><spring:message code="nav.user.authorities" /></a></li>
 					</ul>
 				</div>
