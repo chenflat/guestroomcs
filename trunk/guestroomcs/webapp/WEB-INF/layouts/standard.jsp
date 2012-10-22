@@ -93,6 +93,23 @@
 	</div>
 
 	<div id="maincontainer" class="clearfix">
+<<<<<<< .mine
+		<tiles:insertAttribute name="nav" />
+		<div id="contentwrapper">
+			<tiles:insertAttribute name="breadcrumb" />
+			<tiles:insertAttribute name="body" />
+		</div>
+		<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r"
+			title="Hide Sidebar">Sidebar switch</a>
+		<div class="sidebar">
+
+			<div class="antiScroll">
+				<div class="antiscroll-inner">
+					<div class="antiscroll-content">
+						<tiles:insertAttribute name="sidebar" />
+					</div>
+				</div>
+=======
 		<tiles:insertAttribute name="nav" />
 		<div id="contentwrapper">
 			<div class="main_content">
@@ -106,6 +123,7 @@
 					</ul>
 				</div>
 				<tiles:insertAttribute name="body" />
+>>>>>>> .r693
 			</div>
 		</div>
 
