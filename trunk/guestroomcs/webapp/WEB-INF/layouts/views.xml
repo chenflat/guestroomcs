@@ -13,26 +13,36 @@
 	<!-- Pages -->
 	<definition name="index" extends="standard-layout">
 		<put-attribute name="title" value="系统首页 " />
-		<put-attribute name="nav" value="/WEB-INF/layouts/nav.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 	</definition>
 	
 	
 	<!-- System Setting Pages -->
-	<definition name="system/settings" extends="standard-layout">
+	<definition name="system/settings" extends="system-layout">
 		<put-attribute name="title" value="系统设置 " />
-		<put-attribute name="nav" value="/WEB-INF/layouts/nav.jsp" />
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/system/sidebar.jsp" />
-		<put-attribute name="body" value="/WEB-INF/jsp/system/index.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/system/settings.jsp" />
 	</definition>
 	
-	<!-- System Setting Pages -->
-	<definition name="system/faqmanage" extends="standard-layout">
+	<!-- System dictionary Pages -->
+	<definition name="system/dictionary" extends="system-layout">
+		<put-attribute name="title" value="数据字典" />
+		<put-attribute name="body" value="/WEB-INF/jsp/system/dictionary.jsp" />
+	</definition>
+
+	<!-- faqmanage -->
+	<definition name="system/faqmanage" extends="system-layout">
 		<put-attribute name="title" value="FAQ管理 " />
+<<<<<<< .mine
+		<put-attribute name="body" value="/WEB-INF/jsp/system/faqmanage.jsp" />
+=======
 		<put-attribute name="nav" value="/WEB-INF/layouts/nav.jsp" />
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/system/sidebar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/system/faqmanage.jsp" />
+>>>>>>> .r693
 	</definition>
+<<<<<<< .mine
+	
+=======
 	
 	<!-- System Setting Pages -->
 	<definition name="system/dictionary" extends="standard-layout">
@@ -41,5 +51,7 @@
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/system/sidebar.jsp" />
 		<put-attribute name="body" value="/WEB-INF/jsp/system/dictionary.jsp" />
 	</definition>
+>>>>>>> .r693
+
 
 </tiles-definitions>
