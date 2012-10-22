@@ -7,8 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title><tiles:insertAttribute name="title" />
-</title>
+<title><tiles:insertAttribute name="title" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -93,42 +92,22 @@
 	</div>
 
 	<div id="maincontainer" class="clearfix">
-<<<<<<< .mine
 		<tiles:insertAttribute name="nav" />
 		<div id="contentwrapper">
 			<tiles:insertAttribute name="breadcrumb" />
 			<tiles:insertAttribute name="body" />
 		</div>
-		<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r"
-			title="Hide Sidebar">Sidebar switch</a>
-		<div class="sidebar">
-
-			<div class="antiScroll">
-				<div class="antiscroll-inner">
-					<div class="antiscroll-content">
-						<tiles:insertAttribute name="sidebar" />
-					</div>
+	</div>
+	<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r"
+		title="Hide Sidebar">Sidebar switch</a>
+	<div class="sidebar">
+		<div class="antiScroll">
+			<div class="antiscroll-inner">
+				<div class="antiscroll-content">
+					<tiles:insertAttribute name="sidebar" />
 				</div>
-=======
-		<tiles:insertAttribute name="nav" />
-		<div id="contentwrapper">
-			<div class="main_content">
-				<div id="jCrumbs" class="breadCrumb module">
-					<ul>
-						<li><a href="#"><i class="icon-home"></i>
-						</a></li>
-						<li><a href="#">Sports & Toys</a></li>
-						<li><a href="#">Toys & Hobbies</a></li>
-						<li>Telescope 3735SX</li>
-					</ul>
-				</div>
-				<tiles:insertAttribute name="body" />
->>>>>>> .r693
 			</div>
 		</div>
-
-		<tiles:insertAttribute name="sidebar" />
-					
 	</div>
 	<div class="navbar navbar-fixed-bottom">
 		<div class="navbar-inner">footer</div>
