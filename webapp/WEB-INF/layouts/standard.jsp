@@ -94,8 +94,10 @@
 	<div id="maincontainer" class="clearfix">
 		<tiles:insertAttribute name="nav" />
 		<div id="contentwrapper">
-			<tiles:insertAttribute name="breadcrumb" />
-			<tiles:insertAttribute name="body" />
+			<div class="main_content">
+				<tiles:insertAttribute name="breadcrumb" />
+				<tiles:insertAttribute name="body" />
+			</div>
 		</div>
 	</div>
 	<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r"

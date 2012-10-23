@@ -5,6 +5,12 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+	<definition name="login-layout" template="/WEB-INF/layouts/login.jsp">
+		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+	</definition>
+
+
 	<definition name="standard-layout" template="/WEB-INF/layouts/standard.jsp">
 		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/layouts/nav.jsp" />
@@ -15,5 +21,8 @@
 	<definition name="system-layout" extends="standard-layout">
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/system_sidebar.jsp" />
 	</definition>
+	
+	
+	
 
 </tiles-definitions>
