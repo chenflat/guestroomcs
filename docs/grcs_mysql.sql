@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-10-17 13:04:31                          */
+/* Created on:     2012-10-23 14:11:01                          */
 /*==============================================================*/
 
 
@@ -21,6 +21,10 @@ drop table if exists district;
 drop table if exists eventlog;
 
 drop table if exists eventlogtype;
+
+drop table if exists faq;
+
+drop table if exists faqcategory;
 
 drop table if exists floor;
 
@@ -191,6 +195,32 @@ create table eventlogtype
    logtype_owner        varchar(100),
    logtype_cssclass     varchar(40),
    primary key (logtype_key)
+);
+
+/*==============================================================*/
+/* Table: faq                                                   */
+/*==============================================================*/
+create table faq
+(
+   faq_id               varchar(75) not null,
+   cat_id               varchar(75),
+   question             varchar(200),
+   answer               varchar(2000),
+   priority             int comment '数字越大，排列越靠前',
+   comment              varchar(200),
+   primary key (faq_id)
+);
+
+/*==============================================================*/
+/* Table: faqcategory                                           */
+/*==============================================================*/
+create table faqcategory
+(
+   cat_id               varchar(75) not null,
+   cat_name             varchar(50),
+   cat_order            int,
+   cat_desc             varchar(255),
+   primary key (cat_id)
 );
 
 /*==============================================================*/
@@ -538,6 +568,9 @@ alter table district add constraint FK_district_district foreign key (parent_id)
 
 alter table eventlog add constraint FK_eventlogtype_eventlog foreign key (logtype_key)
       references eventlogtype (logtype_key) on delete restrict on update restrict;
+
+alter table faq add constraint FK_faqcategory_faq foreign key (cat_id)
+      references faqcategory (cat_id) on delete restrict on update restrict;
 
 alter table floor add constraint FK_buildinfo_floorinfo foreign key (build_id)
       references build (build_id) on delete restrict on update restrict;
