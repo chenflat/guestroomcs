@@ -1,24 +1,44 @@
 package com.managementsystem.guestroom.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.managementsystem.guestroom.domain.Breadcrumb;
+
 @Controller
 @RequestMapping("/*")
-public class IndexController extends BaseController {
+public class IndexController extends AbstractController implements IController {
 
-	private final Log logger = LogFactory.getLog(getClass());
+	private final Log logger = LogFactory.getLog(IndexController.class);
 
+	public static final String VIEW_NAME = "index";
+	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public ModelAndView setupIndex(Model model) {
+	public ModelAndView doGet(ModelMap model) {
 		logger.debug("setupindex");
 		ModelAndView mav = new ModelAndView();
 
+		mav.setViewName(VIEW_NAME);
 		return mav;
+	}
+
+	@Override
+	protected String getModelViewName() {
+		return VIEW_NAME;
+	}
+
+	@Override
+	protected List<Breadcrumb> getBreadcrumbs() {
+		List<Breadcrumb> result = new ArrayList<Breadcrumb>();
+		result.add(new Breadcrumb("Home", "Home page", ""));
+		return result;
 	}
 }

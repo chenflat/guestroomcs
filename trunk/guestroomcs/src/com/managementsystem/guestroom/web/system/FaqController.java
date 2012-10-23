@@ -1,14 +1,20 @@
 package com.managementsystem.guestroom.web.system;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.managementsystem.guestroom.web.BaseController;
+import com.managementsystem.guestroom.domain.Breadcrumb;
+import com.managementsystem.guestroom.web.AbstractController;
+import com.managementsystem.guestroom.web.IController;
+
+
 
 
 /**
@@ -17,20 +23,34 @@ import com.managementsystem.guestroom.web.BaseController;
  * Date: 2012-10-19
  * */
 @Controller
-@RequestMapping("/system/*")
-public class FaqController extends BaseController {
+@RequestMapping("/system/faqmanage")
+public class FaqController extends AbstractController implements IController {
 	
-	private final Log logger = LogFactory.getLog(getClass());
+	private final Log logger = LogFactory.getLog(FaqController.class);
 
+	public static final String VIEW_NAME = "system/faqmanage";
+	
+	
 	/**
 	 * FAQ LIST
 	 * */
-	@RequestMapping(value = "faqmanage", method = RequestMethod.GET)
-	public ModelAndView setupFaqmanage(Model model) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView doGet(ModelMap model) {
 		logger.debug("system settings");
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("system/faqmanage");
+		mav.setViewName(VIEW_NAME);
 		return mav;
+	}
+
+	@Override
+	protected String getModelViewName() {
+		return VIEW_NAME;
+	}
+
+	@Override
+	protected List<Breadcrumb> getBreadcrumbs() {
+
+		return null;
 	}
 }
