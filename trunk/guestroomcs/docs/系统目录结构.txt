@@ -74,9 +74,7 @@ guestroomcs/
 │
 │
 ├── /handover	交接班设置
-│
-│
-├── fap 查询帮助	
+
 
 
 
@@ -139,5 +137,20 @@ nav.hotel.roomtype=Room Type
 nav.hotel.roomgroup=Room Group
 
 nav.guest=Guest Manage
+nav.guest.perfs=Guest Preference
+
+nav.user=User Manage
+nav.user.userlist=User List
+nav.user.role=User Role
+nav.user.authorities=User Authorities
+
+
+nav.user.account=My Account
+nav.user.account.profile=My Profile
+nav.user.account.changepwd= Change Password
+nav.user.handover=Hand Overs 
+
+
+
 
 	
