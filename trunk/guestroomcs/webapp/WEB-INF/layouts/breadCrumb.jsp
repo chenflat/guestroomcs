@@ -4,13 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!-- 
-	AUTHOR: CHENPING
-	Created Date: 2012-10-22 下午04:57:53
-	LastModified Date:
-	Description:
- -->
-<div class="main_content">
+<!-- BreadCrumb  -->
 	<div id="jCrumbs" class="breadCrumb module">
 		<ul>
 			<li><a href="#"><i class="icon-home"></i>
@@ -18,5 +12,5 @@
 			<li><a href="#"><spring:message code="nav.system.settings" /></a></li>
 		</ul>
 	</div>
-</div>
+
 
