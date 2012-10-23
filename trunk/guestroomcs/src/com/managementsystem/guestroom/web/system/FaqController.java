@@ -36,7 +36,7 @@ public class FaqController extends AbstractController implements IController {
 	 * */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
-		logger.debug("system settings");
+		logger.info("Requesting doGet of "+ FaqController.class);
 		ModelAndView mav = new ModelAndView();
 
 		mav.setViewName(VIEW_NAME);
