@@ -3,13 +3,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-	<!-- <http auto-config="true"> <intercept-url pattern="/system/**" access="ROLE_USER" 
-		/> <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/loginfailed" 
-		/> <logout logout-success-url="/logout" /> </http> -->
-
-	<http realm="Project Realm" auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_ADMIN" />
+	<http auto-config="true">
+		<intercept-url pattern="/**" access="ROLE_USER" />
+		<form-login login-page="/login" default-target-url="/index"
+			authentication-failure-url="/loginfailed" />
+		<logout logout-success-url="/logout" />
 	</http>
+
+	<!-- <http realm="Project Realm" auto-config="true"> <intercept-url pattern="/**" 
+		access="ROLE_ADMIN" /> </http> -->
 
 	<!-- <authentication-manager> <authentication-provider> <jdbc-user-service 
 		data-source-ref="dataSource" users-by-username-query=" select user_name,user_password, 
