@@ -14,14 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.managementsystem.guestroom.domain.Breadcrumb;
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/index")
 public class IndexController extends AbstractController implements IController {
 
 	private final Log logger = LogFactory.getLog(IndexController.class);
 
 	public static final String VIEW_NAME = "index";
 	
-	@RequestMapping(value = "index", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
 		logger.debug("setupindex");
 		ModelAndView mav = new ModelAndView();
@@ -34,7 +34,7 @@ public class IndexController extends AbstractController implements IController {
 	protected String getModelViewName() {
 		return VIEW_NAME;
 	}
-
+	
 	@Override
 	protected List<Breadcrumb> getBreadcrumbs() {
 		List<Breadcrumb> result = new ArrayList<Breadcrumb>();
