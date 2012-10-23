@@ -4,12 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!-- 
-	AUTHOR: CHENPING
-	Created Date: 2012-10-19 下午03:21:42
-	LastModified Date:
-	Description:System Manage Sidebar
- -->
+<!-- System Manage Sidebar -->
 <div class="sidebar_inner">
 	<div id="side_accordion" class="accordion">
 		<div class="accordion-group">

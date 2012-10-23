@@ -10,13 +10,4 @@
 	LastModified Date:
 	Description:
  -->
-<div class="main_content">
-	<div id="jCrumbs" class="breadCrumb module">
-		<ul>
-			<li><a href="#"><i class="icon-home"></i>
-			</a></li>
-			<li><a href="<c:url value="/system/settings" />"><spring:message code="nav.system.settings" /></a></li>
-			<li><a href="#"><spring:message code="nav.system.dictionary" /></a></li>
-		</ul>
-	</div>
-</div>
+
