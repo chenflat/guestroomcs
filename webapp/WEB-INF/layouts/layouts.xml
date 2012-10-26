@@ -5,24 +5,31 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="login-layout" template="/WEB-INF/layouts/login.jsp">
-		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
-	</definition>
-
+	<definition name="login-layout" template="/WEB-INF/layouts/login.jsp"></definition>
 
 	<definition name="standard-layout" template="/WEB-INF/layouts/standard.jsp">
 		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/layouts/nav.jsp" />
-		<put-attribute name="breadcrumb" value="/WEB-INF/layouts/breadCrumb.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
 	</definition>
 
+
+
+	<!-- system layout  -->
 	<definition name="system-layout" extends="standard-layout">
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/system_sidebar.jsp" />
 	</definition>
-	
-	
-	
+
+	<!-- user profile layout  -->
+	<definition name="userprofile-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/userprofile_sidebar.jsp" />
+	</definition>
+
+	<!-- service layout  -->
+	<definition name="service-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/service_sidebar.jsp" />
+	</definition>
+
+
 
 </tiles-definitions>

@@ -4,20 +4,80 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>  
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 
 	AUTHOR: CHENPING
 	Created Date: 2012-10-17 下午03:09:25
 	LastModified Date:
 	Description:
  -->
+<c:set var="requestURL" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request" />
+<c:set var="serviceURL" value="${pageContext.request.contextPath}/service/guestrequest" />
+<c:set var="hvacURL" value="${pageContext.request.contextPath}/service/hvac" />
+<c:set var="prefsURL" value="${pageContext.request.contextPath}/guest/prefs" />
+<c:set var="analyseURL" value="${pageContext.request.contextPath}/analyse/report" />
+<c:set var="profileURL" value="${pageContext.request.contextPath}/user/profile" />
+<c:set var="settingURL" value="${pageContext.request.contextPath}/system/settings" />
 
 <header>
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container-fluid">
-			<a class="brand" href="<c:url value="/index"/>"><i
-				class="icon-home icon-white"></i> GRCS <span class="sml_t">1.0</span>
-			</a>
+			<ul class="nav user_menu brand">
+				<li class="dropdown">
+
+				<a href="#"
+					class="dropdown-toggle nav_condensed" data-toggle="dropdown">
+					<img
+						src="<c:url value="/img/brand.png"/>" alt=""
+						class="user_avatar">
+				<c:choose>
+					<c:when test="${requestURL eq serviceURL}">
+						<spring:message code="nav.service" />
+					</c:when>
+					<c:when test="${requestURL eq hvacURL}">
+						<spring:message code="nav.service.hvac" />
+					</c:when>
+					<c:when test="${requestURL eq prefsURL}">
+						<spring:message code="nav.guest.prefs" />
+					</c:when>
+					<c:when test="${requestURL eq analyseURL}">
+						<spring:message code="nav.analyse" />
+					</c:when>
+					<c:when test="${requestURL eq profileURL}">
+						<spring:message code="nav.user.profile" />
+					</c:when>
+					<c:when test="${requestURL eq settingURL}">
+						<spring:message code="nav.system" />
+					</c:when>
+					<c:otherwise>
+						<spring:message code="nav.home" />
+					</c:otherwise>
+				</c:choose>	
+					 <b class="caret"></b>
+				</a>
+					<ul class="dropdown-menu">
+					<li><a href="<c:url value="/service/guestrequest" />"><spring:message code="nav.service" />
+					</a>
+					</li>
+					<li><a href="<c:url value="/service/havc" />"><spring:message code="nav.service.hvac" /></a>
+					</li>
+					<li><a href="<c:url value="/guest/prefs" />"><spring:message code="nav.guest.prefs" /></a>
+					</li>
+					<li><a href="<c:url value="/analyse/report" />"><spring:message code="nav.analyse" /></a>
+					</li>
+					<li><a href="<c:url value="/user/profile" />"><spring:message code="nav.user.profile" /></a>
+					</li>
+					<li><a href="<c:url value="/system/settings" />"><spring:message code="nav.system" /></a>
+					</li>
+					<li class="divider"></li>
+					<li><a href="<c:url value="/index" />"><spring:message code="nav.home" /></a>
+					</li>
+				</ul>
+				</li>
+			</ul>
+
 			<ul class="nav user_menu pull-right">
 				<li class="hidden-phone hidden-tablet">
 					<div class="nb_boxes clearfix">
@@ -36,7 +96,7 @@
 				</a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/system/settings" />"><i class="icon-wrench"></i> <spring:message code="nav.system.settings" /></a></li>
-						<li><a href="<c:url value="/hotel/hotel" />"><i class="icon-star"></i> <spring:message code="nav.hotel" /></a></li>
+						<li><a href="<c:url value="/hotel/hotelmanage" />"><i class="icon-star"></i> <spring:message code="nav.hotel" /></a></li>
 						<li><a href="<c:url value="/guest/prefs" />"><i class="icon-map-marker"></i> <spring:message code="nav.guest" /></a></li>
 						<li><a href="<c:url value="/user/usermanage" />"><i class="icon-user"></i> <spring:message code="nav.user" /></a></li>
 						<li><a href="<c:url value="/user/handover" />"><i class="icon-thumbs-up"></i> <spring:message code="nav.user.handover" /></a></li>
@@ -56,10 +116,10 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown"><img
 						src="<c:url value="/img/user_avatar.png"/>" alt=""
-						class="user_avatar">Administrator <b class="caret"></b>
+						class="user_avatar"><security:authentication property="name" /> <b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/userprofile" />"><i
+						<li><a href="<c:url value="/user/profile" />"><i
 								class="icon-briefcase"></i> <spring:message code="userprofile" />
 						</a>
 						</li>
@@ -67,147 +127,21 @@
 								我的消息</a>
 						</li>
 						<li class="divider"></li>
-						<li><a href="<c:url value="/logout"/>"><i
+						<li><a href="<c:url value="/j_spring_security_logout" />"><i
 								class="icon-off"></i> <spring:message code="user.logout" />
 						</a>
 						</li>
 					</ul></li>
 			</ul>
-			<a data-target=".nav-collapse" data-toggle="collapse"
-				class="btn_menu"> <span class="icon-align-justify icon-white"></span>
-			</a>
-			<div class="nav-collapse">
-				<nav>
-				<ul class="nav">
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><i
-							class="icon-list-alt icon-white"></i> <spring:message
-								code="nav.view" /> <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu">
-							<li class="dropdown sub-dropdown dropdown-submenu"><a
-								href="#"><spring:message code="nav.view.guestrequest" /> <b class="caret-right"></b>
-							</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#"><spring:message code="nav.view.guestrequest.bc" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.guestrequest.mur" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.guestrequest.valet" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.guestrequest.foodtray" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.guestrequest.dnd" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.guestrequest.sos" /></a></li>
-									<li class="divider"></li>
-									<li><a href="#"><spring:message code="nav.view.guestrequest.combined" /></a></li>
-								</ul></li>
-							<li class="divider"></li>
-							<li class="dropdown sub-dropdown dropdown-submenu"><a
-								href="#"><spring:message code="nav.view.guestpreferences" /><b class="caret-right"></b>
-							</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#"><spring:message code="nav.view.guestpreferences.ada" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.guestpreferences.sabbath" /></a></li>
-								</ul></li>
-							<li class="dropdown sub-dropdown dropdown-submenu"><a
-								href="#"><spring:message code="nav.view.roomstatus" /><b class="caret-right"></b>
-							</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#">Sub menu 1.1</a></li>
-									<li><a href="#">Sub menu 1.2</a></li>
-									<li><a href="#">Sub menu 1.3</a></li>
-								</ul></li>
-							<li class="divider"></li>
-							<li class="dropdown sub-dropdown dropdown-submenu"><a
-								href="#"><spring:message code="nav.view.hvac" /><b class="caret-right"></b>
-							</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#"><spring:message code="nav.view.hvac.measuredtemperature" /> </a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.measuredhumidity" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.equipmentoperation" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.loadshedding" /> </a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.opendoors" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.openwindows" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.etm" /> </a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.vip" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.dehumidification" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.deicing" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.havctroble" /></a></li>
-									<li><a href="#"><spring:message code="nav.view.hvac.equipmenttype" /></a></li>
-								</ul></li>
-
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><i class="icon-th icon-white"></i>
-							<spring:message code="nav.control" /> <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu">
-							<li class="dropdown sub-dropdown dropdown-submenu"><a
-								href="#">Guest Request<b class="caret-right"></b>
-							</a>
-								<ul class="dropdown-menu sub-menu">
-									<li><a href="#">Sub menu 1.1</a>
-									</li>
-									<li><a href="#">Sub menu 1.2</a>
-									</li>
-									<li><a href="#">Sub menu 1.3</a>
-									</li>
-									<li class="sub-dropdown"><a href="#">Sub menu 1.4 <b
-											class="caret-right"></b>
-									</a>
-										<ul class="dropdown-menu sub-menu">
-											<li><a href="#">Sub menu 1.4.1</a>
-											</li>
-											<li><a href="#">Sub menu 1.4.2</a>
-											</li>
-											<li><a href="#">Sub menu 1.4.3</a>
-											</li>
-										</ul></li>
-								</ul></li>
-							<li><a href="index.php?uid=1&amp;page=form_extended">Guest
-									Preferences</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=form_extended">Climate
-									Control</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=form_extended">Test</a>
-							</li>
-						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><i
-							class="icon-wrench icon-white"></i> <spring:message
-								code="nav.report" /> <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a href="index.php?uid=1&amp;page=charts">Charts</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=calendar">Calendar</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=datatable">Datatable</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=file_manager">File
-									Manager</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=floating_header">Floating
-									List Header</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=google_maps">Google
-									Maps</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=gallery">Gallery
-									Grid</a>
-							</li>
-							<li><a href="index.php?uid=1&amp;page=wizard">Wizard</a>
-							</li>
-						</ul></li>
-					<li></li>
-				</ul>
-				</nav>
-			</div>
+			
+			
 		</div>
 	</div>
 </div>
 <div class="modal hide fade" id="myMail">
 	<div class="modal-header">
 		<button class="close" data-dismiss="modal">×</button>
-		<h3>New messages</h3>
+		<h3>新消息</h3>
 	</div>
 	<div class="modal-body">
 		<div class="alert alert-info">In this table jquery plugin turns
@@ -238,22 +172,6 @@
 					<td>24/05/2012</td>
 					<td>15KB</td>
 				</tr>
-				<tr>
-					<td>Koby Auld</td>
-					<td><a href="javascript:void(0)">Lorem ipsum dolor sit
-							amet</a>
-					</td>
-					<td>25/05/2012</td>
-					<td>28KB</td>
-				</tr>
-				<tr>
-					<td>Anthony Pound</td>
-					<td><a href="javascript:void(0)">Lorem ipsum dolor sit
-							amet</a>
-					</td>
-					<td>25/05/2012</td>
-					<td>33KB</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>
@@ -264,7 +182,7 @@
 <div class="modal hide fade" id="myTasks">
 	<div class="modal-header">
 		<button class="close" data-dismiss="modal">×</button>
-		<h3>New Tasks</h3>
+		<h3>新任务</h3>
 	</div>
 	<div class="modal-body">
 		<div class="alert alert-info">In this table jquery plugin turns

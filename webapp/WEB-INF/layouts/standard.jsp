@@ -95,7 +95,6 @@
 		<tiles:insertAttribute name="nav" />
 		<div id="contentwrapper">
 			<div class="main_content">
-				<tiles:insertAttribute name="breadcrumb" />
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
@@ -112,7 +111,7 @@
 		</div>
 	</div>
 	<div class="navbar navbar-fixed-bottom">
-		<div class="navbar-inner">footer</div>
+		<div class="navbar-footer">&copy;2012 Kempinski Hotel</div>
 	</div>
 	<tiles:insertAttribute name="footer" />
 </body>
