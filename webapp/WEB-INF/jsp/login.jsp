@@ -3,48 +3,111 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!-- 
 	AUTHOR: CHENPING
 	Created Date: 2012-10-17 下午01:42:24
 	LastModified Date:
 	Description:
  -->
+<div class="login_box">
 
-<h3>Login with Username and Password (Authentication with Database)</h3>
+	<div class="row-fluid">
+		<div class="span6">
+			<img src="<c:url value='/img/login_brand.png' />" />
+		</div>
+		<div class="span5">
+			<div class="cnt_b">
+				<div class="top_b">登陆</div>
+				<c:if test="${not empty error}">
+					<div class="errorblock">
+						<spring:message code="login.errmsg" />
+						<br /> 
+						${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+					</div>
+				</c:if>
 
-<c:if test="${not empty error}">
-	<div class="errorblock">
-		Your login attempt was not successful, try again.<br /> Caused :
-		${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+				<form name='f' action="<c:url value='j_spring_security_check' />"
+					method='POST' id="login_form">
+					<div class="control-group">
+						<div class="controls">
+							<input type='text' name='j_username' value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"
+								placeholder="<spring:message code="user.username" />"
+								class="login-input user-name">
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input type='password' name='j_password'
+								placeholder="<spring:message code="user.password" />" />
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<label class="checkbox"> <input type="checkbox"
+								name="_spring_security_remember_me"> 记住用户名 </label>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<input name="submit" type="submit" class="btn btn-info btm_b" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
-</c:if>
+	<div class="row-fluid">
+		<div class="footer">
+			&copy;2012 Kempinski Hotel
+			<div class="pull-right">
+				<i class="icon-phone"></i> 20 <i class="icon-th"></i>55
+			</div>
+		</div>
+	</div>
 
-<form name='f' action="<c:url value='j_spring_security_check' />"
-	method='POST'>
+</div>
 
-	<table>
-		<tr>
-			<td>User:</td>
-			<td><input type='text' name='j_username' value=''></td>
-		</tr>
-		<tr>
-			<td>Password:</td>
-			<td><input type='password' name='j_password' /></td>
-		</tr>
-		<tr>
-			<td colspan='2'><input name="submit" type="submit"
-				value="submit" /></td>
-		</tr>
-		<tr>
-			<td colspan='2'><input name="reset" type="reset" /></td>
-		</tr>
-	</table>
+<script src="<c:url value="/js/bootstrap/jquery.js"/>"></script>
+<script src="<c:url value="/js/jquery.actual.min.js" />"></script>
+<script src="<c:url value="/lib/validation/jquery.validate.min.js" />"></script>
+<script src="<c:url value="/js/bootstrap/bootstrap.js" />"></script>
 
-</form>
+<script>
+	$(document).ready(function() {
 
-<script lanuage="javascript">
-	$(function(){
-		
-		
+		/* //* validation
+		$('#login_form').validate({
+			onkeyup : false,
+			errorClass : 'error',
+			validClass : 'valid',
+			rules : {
+				username : {
+					required : true,
+					minlength : 3
+				},
+				password : {
+					required : true,
+					minlength : 3
+				}
+			},
+			highlight : function(element) {
+				$(element).closest('div').addClass("f_error");
+				setTimeout(function() {
+					boxHeight()
+				}, 200)
+			},
+			unhighlight : function(element) {
+				$(element).closest('div').removeClass("f_error");
+				setTimeout(function() {
+					boxHeight()
+				}, 200)
+			},
+			errorPlacement : function(error, element) {
+				$(element).closest('div').append(error);
+			}
+		}); */
 	});
 </script>
+
+
