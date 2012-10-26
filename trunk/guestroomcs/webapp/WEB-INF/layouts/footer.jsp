@@ -62,3 +62,4 @@
     <script src="<c:url value="/lib/stepy/js/jquery.stepy.min.js" />"></script>
     <!-- wizard functions -->
     <script src="<c:url value="/js/gebo_wizard.js" />"></script>
+	<script src="<c:url value="/js/application.js"/>"></script>
