@@ -8,12 +8,10 @@
 	<definition name="login-layout" template="/WEB-INF/layouts/login.jsp"></definition>
 
 	<definition name="standard-layout" template="/WEB-INF/layouts/standard.jsp">
-		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
+		<put-attribute name="commoncss" value="/WEB-INF/layouts/common_css.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/layouts/nav.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+		<put-attribute name="commomjs" value="/WEB-INF/layouts/commom_js.jsp" />
 	</definition>
-
-
 
 	<!-- system layout  -->
 	<definition name="system-layout" extends="standard-layout">
@@ -29,7 +27,15 @@
 	<definition name="service-layout" extends="standard-layout">
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/service_sidebar.jsp" />
 	</definition>
-
-
-
+	
+	<!-- guest prefs layout  -->
+	<definition name="guest-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="" />
+	</definition>
+	
+	<!-- Data analyse layout  -->
+	<definition name="analyse-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="" />
+	</definition>
+	
 </tiles-definitions>

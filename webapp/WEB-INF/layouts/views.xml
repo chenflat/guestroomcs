@@ -22,8 +22,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 		<put-attribute name="sidebar" value="" />
 	</definition>
-	
-	
+
+
 	<!-- System Setting Pages -->
 	<definition name="system/settings" extends="system-layout">
 		<put-attribute name="title" value="系统设置 " />
@@ -45,30 +45,53 @@
 		<put-attribute name="title" value="酒店管理 " />
 		<put-attribute name="body" value="/WEB-INF/jsp/hotel/hotelmanage.jsp" />
 	</definition>
-	
+
 	<definition name="hotel/buildmanage" extends="system-layout">
 		<put-attribute name="title" value="酒店建筑管理 " />
 		<put-attribute name="body" value="/WEB-INF/jsp/hotel/buildmanage.jsp" />
 	</definition>
-	
+
 	<definition name="hotel/roommanage" extends="system-layout">
 		<put-attribute name="title" value="酒店客房管理 " />
 		<put-attribute name="body" value="/WEB-INF/jsp/hotel/roommanage.jsp" />
 	</definition>
 
-	
+
 	<!-- User Pages -->
 	<definition name="user/profile" extends="userprofile-layout">
 		<put-attribute name="title" value="我的资料" />
 		<put-attribute name="body" value="/WEB-INF/jsp/user/profile.jsp" />
 	</definition>
-	
-	
-	
+
 	<!-- Service Pages -->
-	<definition name="service/guestrequest" extends="service-layout">
+	<definition name="service/requests" extends="service-layout">
 		<put-attribute name="title" value="请求服务" />
-		<put-attribute name="body" value="/WEB-INF/jsp/service/guestrequest.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/service/requests.jsp" />
 	</definition>
-	
+
+	<definition name="service/hvac" extends="service-layout">
+		<put-attribute name="title" value="HAVC请求服务" />
+		<put-attribute name="body" value="/WEB-INF/jsp/service/hvac.jsp" />
+	</definition>
+
+	<!-- Guest Prefs Pages -->
+	<definition name="guest/prefs" extends="guest-layout">
+		<put-attribute name="title" value="客人编好" />
+		<put-attribute name="body" value="/WEB-INF/jsp/guest/prefs.jsp" />
+	</definition>
+
+	<!-- Data Analyse Pages -->
+	<definition name="analyse/summary" extends="analyse-layout">
+		<put-attribute name="title" value="数据摘要" />
+		<put-attribute name="body" value="/WEB-INF/jsp/analyse/summary.jsp" />
+	</definition>
+
+	<definition name="analyse/report" extends="analyse-layout">
+		<put-attribute name="title" value="数据分析报表" />
+		<put-attribute name="body" value="/WEB-INF/jsp/analyse/report.jsp" />
+	</definition>
+
+
+
+
 </tiles-definitions>
