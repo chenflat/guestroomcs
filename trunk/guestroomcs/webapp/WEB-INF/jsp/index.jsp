@@ -13,7 +13,7 @@
 
 <div class="tile  bg-color-blue">
 	<div class="tile-content icon">
-		<a href="<c:url value="/service/guestrequest" />"><img src="<c:url value="/img/icons/8.png" />"></a>
+		<a href="<c:url value="/service/requests" />"><img src="<c:url value="/img/icons/8.png" />"></a>
 	</div>
 	<div class="brand">
 		<span class="name"><spring:message code="nav.service" />
@@ -24,7 +24,7 @@
 <div class="tile bg-color-blueLight">
 	<b class="check"></b>
 	<div class="tile-content icon">
-		<a href="<c:url value="/service/havc" />"><img src="<c:url value="/img/icons/3.png" />"></a>
+		<a href="<c:url value="/service/hvac" />"><img src="<c:url value="/img/icons/3.png" />"></a>
 	</div>
 	<div class="brand">
 		<span class="name"><spring:message code="nav.service.hvac" />

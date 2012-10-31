@@ -50,6 +50,9 @@
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/hotel/hotelmanage')}">
 		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
-
 	</c:when>
+	<c:when test="${fn:contains(requestURL,'/user/')}">
+		<script src="<c:url value="/js/application/usermanage.js"/>"></script>
+	</c:when>
+	
 </c:choose> 

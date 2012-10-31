@@ -1,4 +1,4 @@
-/* [ ---- Gebo Admin Panel - common ---- ] */
+/* [ ---- App Admin Panel - common ---- ] */
 
 	//* detect touch devices 
     function is_touch_device() {
@@ -13,8 +13,8 @@
 		});
 		//* make active on accordion change
 		$('#side_accordion').on('hidden shown', function () {
-			gebo_sidebar.make_active();
-            gebo_sidebar.update_scroll();
+			sidebar.make_active();
+            sidebar.update_scroll();
 		});
 		//* resize elements on window resize
 		var lastWindowHeight = $(window).height();
@@ -23,55 +23,54 @@
 			if($(window).height()!=lastWindowHeight || $(window).width()!=lastWindowWidth){
 				lastWindowHeight = $(window).height();
 				lastWindowWidth = $(window).width();
-				gebo_sidebar.update_scroll();
+				sidebar.update_scroll();
 				if(!is_touch_device()){
                     $('.sidebar_switch').qtip('hide');
                 }
 			}
 		});
 		//* tooltips
-		gebo_tips.init();
+		tips.init();
         if(!is_touch_device()){
 		    //* popovers
-            gebo_popOver.init();
+            popOver.init();
         }
 		//* sidebar
-        gebo_sidebar.init();
-		gebo_sidebar.make_active();
-		//* breadcrumbs
-        gebo_crumbs.init();
+        sidebar.init();
+		sidebar.make_active();
+
 		//* pre block prettify
-		prettyPrint();
+		//prettyPrint();
 		//* external links
-		gebo_external_links.init();
+		external_links.init();
 		//* accordion icons
-		gebo_acc_icons.init();
+		acc_icons.init();
 		//* colorbox single
 		if($('.cbox_single').length) {
-			gebo_colorbox_single.init();
+			colorbox_single.init();
 		}
 		//* main menu mouseover
-		gebo_nav_mouseover.init();
+		nav_mouseover.init();
 		//* top submenu
-		gebo_submenu.init();
+		submenu.init();
 		
-		gebo_sidebar.make_scroll();
-		gebo_sidebar.update_scroll();
+		sidebar.make_scroll();
+		sidebar.update_scroll();
 		
 		//* style switcher
-		gebo_style_sw.init();
+		style_sw.init();
 		
 		//* to top
 		$().UItoTop({inDelay:200,outDelay:200,scrollSpeed: 500});
 		
 	});
     
-    gebo_sidebar = {
+    sidebar = {
         init: function() {
 			// sidebar onload state
 			if($(window).width() > 979){
                 if(!$('body').hasClass('sidebar_hidden')) {
-                    if( $.cookie('gebo_sidebar') == "hidden") {
+                    if( $.cookie('sidebar') == "hidden") {
                         $('body').addClass('sidebar_hidden');
                         $('.sidebar_switch').toggleClass('on_switch off_switch').attr('title','Show Sidebar');
                     }
@@ -83,24 +82,24 @@
                 $('.sidebar_switch').removeClass('on_switch').addClass('off_switch');
             }
             
-            gebo_sidebar.info_box();
+            sidebar.info_box();
             
 			//* sidebar visibility switch
             $('.sidebar_switch').click(function(){
                 $('.sidebar_switch').removeClass('on_switch off_switch');
                 if( $('body').hasClass('sidebar_hidden') ) {
-                    $.cookie('gebo_sidebar', null);
+                    $.cookie('sidebar', null);
                     $('body').removeClass('sidebar_hidden');
                     $('.sidebar_switch').addClass('on_switch').show();
                     $('.sidebar_switch').attr( 'title', "Hide Sidebar" );
                 } else {
-                    $.cookie('gebo_sidebar', 'hidden');
+                    $.cookie('sidebar', 'hidden');
                     $('body').addClass('sidebar_hidden');
                     $('.sidebar_switch').addClass('off_switch');
                     $('.sidebar_switch').attr( 'title', "Show Sidebar" );
                 };
-				gebo_sidebar.info_box();
-				gebo_sidebar.update_scroll();
+				sidebar.info_box();
+				sidebar.update_scroll();
 				$(window).resize();
             });
             //* prevent accordion link click
@@ -144,7 +143,7 @@
     };
 
 	//* tooltips
-	gebo_tips = {
+	tips = {
 		init: function() {
 			if(!is_touch_device()){
 				var shared = {
@@ -198,28 +197,15 @@
 	};
     
     //* popovers
-    gebo_popOver = {
+    popOver = {
         init: function() {
             $(".pop_over").popover();
         }
     };
-    
-    //* breadcrumbs
-    gebo_crumbs = {
-        init: function() {
-            $('#jCrumbs').jBreadCrumb({
-                endElementsToLeaveOpen: 0,
-                beginingElementsToLeaveOpen: 0,
-                timeExpansionAnimation: 500,
-                timeCompressionAnimation: 500,
-                timeInitialCollapse: 500,
-                previewWidth: 30
-            });
-        }
-    };
+
 	
 	//* external links
-	gebo_external_links = {
+	external_links = {
 		init: function() {
 			$("a[href^='http']").not('.thumbnail>a,.ext_disabled').each(function() {
 				$(this).attr('target','_blank').addClass('external_link');
@@ -228,7 +214,7 @@
 	};
 	
 	//* accordion icons
-	gebo_acc_icons = {
+	acc_icons = {
 		init: function() {
 			var accordions = $('#accordion1,#accordion2');
 			
@@ -247,7 +233,7 @@
 	};
 	
 	//* main menu mouseover
-	gebo_nav_mouseover = {
+	nav_mouseover = {
 		init: function() {
 			$('header li.dropdown').mouseenter(function() {
 				if($('body').hasClass('menu_hover')) {
@@ -262,7 +248,7 @@
 	};
 	
 	//* single image colorbox
-	gebo_colorbox_single = {
+	colorbox_single = {
 		init: function() {
 			$('.cbox_single').colorbox({
 				maxWidth	: '80%',
@@ -274,7 +260,7 @@
 	};
 	
 	//* submenu
-	gebo_submenu = {
+	submenu = {
 		init: function() {
 			$('.dropdown-menu li').each(function(){
 				var $this = $(this);
@@ -293,8 +279,8 @@
 		}
 	};
 	
-	//* style switcher
-	gebo_style_sw = {
+	//* 转换界面主题风格
+	style_sw = {
 		init: function() {
 			$('body').append('<a class="ssw_trigger" href="javascript:void(0)"><i class="icon-cog icon-white"></i></a>');
 			var defLink = $('#link_theme').clone();
@@ -308,12 +294,19 @@
 				return false;
 			});
 			
+			if ($.cookie('link_theme') != null) {
+				$('#link_theme').attr('href',contextPath+'css/theme/'+$.cookie('link_theme')+'.css');
+			}
+
 			// colors
 			$('.style_switcher .jQclr').click(function() {
                 $(this).closest('div').find('.style_item').removeClass('style_active');
 				$(this).addClass('style_active');
 				var style_selected = $(this).attr('title');
-				$('#link_theme').attr('href','css/'+style_selected+'.css');
+				$('#link_theme').attr('href',contextPath+'css/theme/'+style_selected+'.css');
+                $.cookie('link_theme', style_selected);
+				
+				
             });
 			
 			// backgrounds
@@ -322,11 +315,12 @@
 				$(this).addClass('style_active');
 				var style_selected = $(this).attr('title');
 				if($(this).hasClass('jQptrn')) { $('body').removeClass('ptrn_a ptrn_b ptrn_c ptrn_d ptrn_e').addClass(style_selected); };
+				//alert(style_selected);
 			});
 			//* layout
 			$('input[name=ssw_layout]').click(function(){
 				var layout_selected = $(this).val();
-				$('body').removeClass('gebo-fixed').addClass(layout_selected);
+				$('body').removeClass('app-fixed').addClass(layout_selected);
 			});
 			//* sidebar position
 			$('input[name=ssw_sidebar]').click(function(){
@@ -339,38 +333,7 @@
 				var menu_show = $(this).val();
 				$('body').removeClass('menu_hover').addClass(menu_show);
 			});
+
 			
-			//* reset
-			$('#resetDefault').click(function(){
-				$('body').attr('class', '');
-				$('.style_item').removeClass('style_active').filter(':first-child').addClass('style_active');
-				$('#link_theme').replaceWith(defLink);
-				$('.ssw_trigger').removeClass('active');
-				$(".style_switcher").hide();
-				return false;
-			});
-			
-			$('#showCss').click(function(e){
-				var themeLink = $('#link_theme').attr('href');
-				var bodyClass = $('body').attr('class');
-				var contentStyle = '';
-				contentStyle = '<div style="padding:20px;background:#fff">';
-				console.log(themeLink);
-				if(themeLink != 'css/blue.css') {
-					contentStyle += '<div class="sepH_c"><textarea style="height:20px" class="span5">&lt;link id="link_theme" rel="stylesheet" href="'+themeLink+'"&gt;</textarea><span class="help-block">Find stylesheet with id="link_theme" in document head and replace it with this code.</span></div>';
-				}
-				if(bodyClass != '') {
-					contentStyle += '<textarea style="height:20px" class="span5">&lt;body class="'+$('body').attr('class')+'"&gt;</textarea><span class="help-block">Replace body tag with this code.</span>';
-				} else {
-					contentStyle += '<textarea style="height:20px" class="span5">&lt;body&gt;</textarea>';
-				}
-				contentStyle += '</div>';
-				$.colorbox({
-					opacity				: '0.2',
-					fixed				: true,
-					html				: contentStyle
-				});
-				e.preventDefault();
-			})
 		}
 	};
