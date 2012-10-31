@@ -5709,6 +5709,8 @@
   background-image: url("../img/glyphicons-halflings-white.png");
 }
 
+.icon-adminuser { background: url("../img/user_avatar.png") no-repeat;width:20px;height:20px;}
+
 .icon-glass {
   background-position: 0      0;
 }

@@ -645,3 +645,443 @@
 .tile:hover {
   outline: 3px #3a3a3a solid;
 }
+
+
+
+
+/*
+AppBar/Flyout z-index values:
+    1000 - AppBar/settings click-eating div
+    1001 - AppBar
+    1002 - Flyout click-eating div
+    1003 - Flyout
+*/
+.win-appbarclickeater {
+   z-index: 1000;
+   opacity: 0;
+   background-color: Purple;
+   display: none;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   position: fixed;
+}
+.win-flyoutmenuclickeater {
+   z-index: 1002;
+   opacity: 0;
+   background-color: Lime;
+   display: none;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   position: fixed;
+}
+
+
+
+/*
+Back button.
+*/
+.win-backbutton {
+   position: absolute;
+   left: 10px;
+   top: 8px;
+   display: inline-block;
+   min-width: 0;
+   min-height: 0;
+   background-clip: border-box;
+   box-sizing: border-box;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   border-radius: 50%;
+   border-width: 2px;
+   border-style: solid;
+   padding: 0;
+   text-align: center;
+
+   /* Normal sizing. */
+   width: 38px;
+   height: 38px;
+   font-size: 20px;
+   line-height: 35px; /* line-height must match the content box height. */
+   vertical-align: baseline;
+}
+.win-backbutton::before {
+   font-weight: normal;
+	font-family: 'IcoMoon';
+   content: "\e05d";
+   vertical-align: 24%;
+}
+.win-backbutton:disabled, .win-backbutton:disabled:active {
+   background-clip: padding-box;
+   visibility: hidden;
+}
+
+
+
+/*
+Command buttons.
+*/
+a.win-command {
+   display: inline-block;
+   cursor: pointer;
+   letter-spacing: 0.02em;
+   vertical-align: middle;
+}
+a.win-command,
+button.win-command {
+   background: none;
+   background-clip: border-box;
+   height: auto; /* height is 88px (label) or 68px (no label) */
+   padding: 7px 0; /* bottom dependent on label/img, 2px margin */
+   margin: 0 5px;
+   border: 0;
+   min-width: 42px;
+   text-align: center;
+   font-size: 9pt;
+   font-weight: normal;
+   line-height: 16px;
+}
+
+a.win-hidefocus:focus,
+button.win-hidefocus:focus {
+   outline: none;
+}
+
+/*
+Command button icons.
+*/
+.win-commandicon {
+   display: inline-block;
+   margin: 0 28px; /* padding for command buttons, 2px/side for focus */
+   min-width: 0;
+   min-height: 0;
+   padding: 0;
+
+   /* Normal sizing */
+   width: 40px;
+   height: 40px;
+   box-sizing: border-box;
+   cursor: default;
+}
+.win-commandimage {
+   font-family: "IcoMoon";
+   letter-spacing: 0;
+
+   /* Applications provide their own content, like &#xE0D5;. */
+   vertical-align: middle;
+   font-size: 14pt;
+   margin: -2px;
+   line-height: 40px; /* line-height must match the content box height */
+   background-position: 0 0;
+   /*background-origin: border-box;*/
+   display: inline-block;
+   /* Still 40px */
+   width: 40px;
+   height: 40px;
+   background-size: 160px 80px;
+}
+
+/*
+Command button "ring".
+*/
+.win-commandring,
+a:hover .win-commandring,
+a:active .win-commandring,
+a.win-command:disabled .win-commandring,
+a.win-command:disabled:active .win-commandring,
+button:hover .win-commandring,
+button:active .win-commandring,
+button.win-command:disabled .win-commandring,
+button.win-command:disabled:active .win-commandring {
+   border-width: 2px;
+   border-style: solid;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   border-radius: 50%;
+   background-clip: border-box;
+}
+
+a:hover:active .win-commandring,
+a[aria-checked=true] .win-commandring,
+a[aria-checked=true]:active .win-commandring,
+a[aria-checked=true]:disabled .win-commandring,
+a[aria-checked=true]:disabled:active .win-commandring,
+button:hover:active .win-commandring,
+button[aria-checked=true] .win-commandring,
+button[aria-checked=true]:active .win-commandring,
+button[aria-checked=true]:disabled .win-commandring,
+button[aria-checked=true]:disabled:active .win-commandring {
+   background-clip: border-box;
+}
+
+/*
+Command button labels.
+*/
+a.win-command .win-label,
+button.win-command .win-label {
+   position: relative;
+   line-height: 16px;
+   max-width: 88px; /* 100px button, but allow for 2px margins and 4px padding on each side */
+   padding-left: 4px;  /* 12px between buttons, 6px per side, minus 2px margins */
+   padding-right: 4px;
+   overflow: hidden;
+   word-wrap: break-word;
+   word-break: keep-all;
+   vertical-align:middle;
+   height:40px;
+   
+   
+}
+a.win-command,
+a.win-command:hover {
+   text-decoration: none
+}
+
+/*
+AppBarCommand separator.
+*/
+hr.win-command {
+   display: inline-block;
+   padding: 0;
+   margin: 14px 29px 34px 30px;
+   width: 1px;
+   height: 40px;
+   border: 0;
+   vertical-align: top;
+}
+
+/*
+AppBar Edgy Container
+*/
+.win-appbar {
+   z-index: 1001;
+   border-width: 0;
+   width: 100%;
+   height: auto;
+   left: 0;
+   position: fixed;
+}
+
+/*
+AppBar control.
+*/
+.win-commandlayout {
+   /*text-align: right;*/
+   padding-left: 10px;
+   /*padding-right: calc(((100% + 5px) mod 20px) + 5px);*/
+   /*width: calc(100% - 10px - (((100% + 5px) mod 20px) + 5px));*/
+
+   /* Hide whitespace between buttons. */
+   font-size: 0;
+
+   min-height: 88px;
+}
+.win-commandlayout .win-selection {
+   float: left;
+}
+
+
+/* Narrow buttons and no labels when < 1024px. */
+@media (max-width: 1023px) {
+   a.win-command .win-label,
+   button.win-command .win-label {
+      display: none;
+   }
+   a.win-command .win-commandicon,
+   button.win-command .win-commandicon {
+      margin: 0 8px; /* 2px margin for focus */
+   }
+   .win-commandlayout {
+      min-height: 68px;
+   }
+   hr.win-command {
+      margin-bottom: 14px;
+      margin-top: 14px;
+   }
+}
+
+@media (min-width: 321px) and (max-width: 1023px) {
+   hr.win-command {
+      margin-left: 10px;
+      margin-right: 9px;
+   }
+}
+
+
+
+/*
+Menu control.
+*/
+.win-menu {
+   padding: 5px 0 7px 0;
+   line-height: 33px;
+   text-align: left; /* Set explicitly in case our parent has different alignment, like appbar overflow. */
+   min-height: 38px; /* 54px - padding - border = 38px */
+   /*max-height: calc(100% - 26px); *//* 768px - margin - padding - border = 742px */
+   max-width: none;
+}
+
+/*
+Menu commands.
+*/
+.win-menu button.win-command {
+   display: block;
+   border: none;
+   padding: 0 20px;
+   margin-left: 0;
+   margin-right: 0;
+   float: none;
+   text-align: left;
+   font-size: 11pt;
+   width: 100%;
+   font-weight: 600;
+   line-height: 33px;
+}
+.win-menu button.win-command:focus {
+   outline: none;
+}
+.win-menu hr.win-command {
+   display: block;
+   height: 1px;
+   width: auto;
+   border: 0;
+   padding: 0;
+   margin: 11px 16px 8px 16px;
+}
+
+/*
+Menu toggle buttons.
+*/
+.win-menu-toggle button.win-command::before {
+	font-family: 'IcoMoon';
+	content: "\e20c";
+   visibility: hidden;
+   letter-spacing: 0;
+}
+.win-menu-toggle button[aria-selected=true].win-command::before {
+   /* Display a checkbox if aria-selected is set */
+   visibility: visible;
+}
+
+
+
+/*
+Settings Pane
+*/
+.win-settingsflyout {
+   z-index: 1001;  /* Same as appbar so flyouts can show above it */
+   border-left: 1px solid;
+   position: fixed;
+   top: 0;
+   right: 0;
+   height: 100%;
+   width: 345px; /* 346px - border (1px) */
+   -ms-touch-select: none;
+}
+.win-settingsflyout.win-wide {
+   width: 645px; /* 646px - border (1px) */
+}
+.win-settingsflyout .win-header {
+   padding-left: 40px;
+   padding-right: 40px;
+   padding-top: 32px;
+   height: 48px;
+}
+/* Settings back button is slightly smaller. */
+.win-settingsflyout .win-backbutton {
+   position: absolute;
+   width: 30px;
+   height: 30px;
+   font-size: 8pt;
+   line-height: 26px;
+   margin-top: 3px;
+}
+.win-settingsflyout .win-header .win-label {
+   display: inline-block;
+   padding-left: 40px;
+   font-size: 20pt;
+   line-height: 33px;
+}
+.win-settingsflyout .win-content {
+   overflow: auto;
+   padding-left: 40px;
+   padding-right: 40px;
+   padding-top: 33px;
+   /*height: calc(100% - 112px);*/
+}
+.win-settingsflyout .win-label {
+   font-size: 20pt;
+   font-weight: 200;
+   line-height: normal;
+}
+
+.win-settingsflyout .win-content .win-settings-section {
+   padding-top: 0;
+   padding-bottom: 39px;
+}
+
+.win-settingsflyout .win-content .win-settings-section p {
+   margin: 0;
+   padding-top: 0;
+   padding-bottom: 25px;
+}
+
+.win-settingsflyout .win-content .win-settings-section a {
+   margin: 0;
+   padding-top: 0;
+   padding-bottom: 25px;
+   display:inline-block;
+}
+
+.win-settingsflyout .win-content .win-settings-section .win-toggleswitch  {
+   margin: 0;
+   padding-top: 0;
+   padding-bottom: 20px;
+}
+
+.win-settingsflyout .win-content .win-settings-section label {
+   display:block;
+   padding-bottom: 7px;
+}
+
+.win-settingsflyout .win-content .win-settings-section button,
+.win-settingsflyout .win-content .win-settings-section select,
+.win-settingsflyout .win-content .win-settings-section input[type=button],
+.win-settingsflyout .win-content .win-settings-section input[type=text] {
+   margin-bottom: 25px;
+   margin-left: 0;
+   margin-right:  20px;
+}
+
+.win-settingsflyout .win-content .win-settings-section input[type=radio] {
+   margin-top: 0;
+   margin-bottom: 0;
+   padding-bottom: 15px;
+}
+
+
+[class^="winicon-"],
+[class*=" winicon-"] {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../img/metro_command.png");
+  background-position: 26px 26px;
+  background-repeat: no-repeat;
+}
+
+.winicon-white {
+  background-image: url("../img/metro_command.png");
+}
+
+.winicon-new {
+	  background-position: -1px -1px;
+}
+
+
