@@ -19,8 +19,8 @@
 	value="${pageContext.request.contextPath}/guest/prefs" />
 <c:set var="analyseURL"
 	value="${pageContext.request.contextPath}/analyse/summary" />
-<c:set var="profileURL"
-	value="${pageContext.request.contextPath}/user/profile" />
+<c:set var="userURL"
+	value="${pageContext.request.contextPath}/user/" />
 <c:set var="settingURL"
 	value="${pageContext.request.contextPath}/system/settings" />
 <header>
@@ -43,7 +43,7 @@
 						<c:when test="${requestURL eq analyseURL}">
 							<spring:message code="nav.analyse" />
 						</c:when>
-						<c:when test="${requestURL eq profileURL}">
+						<c:when test="${fn:contains(requestURL,userURL)}">
 							<spring:message code="nav.user.profile" />
 						</c:when>
 						<c:when test="${requestURL eq settingURL}">

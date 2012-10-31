@@ -5,7 +5,7 @@
 <!-- javascript ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="<c:url value="/js/bootstrap/widgets.js"/>"></script>
-<script src="<c:url value="/js/bootstrap/jquery.js"/>"></script>
+<script src="<c:url value="/js/jquery-1.8.0.min.js"/>"></script>
 <script src="<c:url value="/lib/jquery-ui/jquery-ui-1.8.23.custom.min.js" />"></script>
 <!-- touch events for jquery ui-->
 <script src="<c:url value="/js/forms/jquery.ui.touch-punch.min.js"/>"></script>
@@ -19,8 +19,7 @@
 <script src="<c:url value="/js/bootstrap/bootstrap.min.js" />"></script>
 <!-- bootstrap plugins -->
 <script src="<c:url value="/js/bootstrap/bootstrap.plugins.min.js" />"></script>
-
- <!-- sticky messages -->
+<!-- sticky messages -->
 <script src="<c:url value="/lib/sticky/sticky.min.js" />"></script>
 <!-- tooltips -->
 <script src="<c:url value="/lib/qtip2/jquery.qtip.min.js" />"></script>
@@ -44,6 +43,13 @@
 <c:set var="requestURL" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request" />
 <c:choose>
 	<c:when test="${fn:contains(requestURL,'/system/settings')}">
-		<script src="<c:url value="/js/app_validation.js"/>"></script>
+		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/system/dictionary')}">
+		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/hotel/hotelmanage')}">
+		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
+
 	</c:when>
 </c:choose> 
