@@ -19,8 +19,7 @@
 	value="${pageContext.request.contextPath}/guest/prefs" />
 <c:set var="analyseURL"
 	value="${pageContext.request.contextPath}/analyse/summary" />
-<c:set var="userURL"
-	value="${pageContext.request.contextPath}/user/" />
+<c:set var="userURL" value="${pageContext.request.contextPath}/user/" />
 <c:set var="settingURL"
 	value="${pageContext.request.contextPath}/system/settings" />
 <header>
@@ -31,52 +30,44 @@
 				data-toggle="dropdown"> <img
 				src="<c:url value="/img/brand.png"/>" alt="" class="user_avatar">
 				<c:choose>
-						<c:when test="${requestURL eq serviceURL}">
-							<spring:message code="nav.service" />
-						</c:when>
-						<c:when test="${requestURL eq hvacURL}">
-							<spring:message code="nav.service.hvac" />
-						</c:when>
-						<c:when test="${requestURL eq prefsURL}">
-							<spring:message code="nav.guest.prefs" />
-						</c:when>
-						<c:when test="${requestURL eq analyseURL}">
-							<spring:message code="nav.analyse" />
-						</c:when>
-						<c:when test="${fn:contains(requestURL,userURL)}">
-							<spring:message code="nav.user.profile" />
-						</c:when>
-						<c:when test="${requestURL eq settingURL}">
-							<spring:message code="nav.system" />
-						</c:when>
-						<c:otherwise>
-							<spring:message code="nav.home" />
-						</c:otherwise>
-					</c:choose> 
-					<i class="caret"></i> 
-					</a>
+					<c:when test="${requestURL eq serviceURL}">
+						<spring:message code="nav.service" />
+					</c:when>
+					<c:when test="${requestURL eq hvacURL}">
+						<spring:message code="nav.service.hvac" />
+					</c:when>
+					<c:when test="${requestURL eq prefsURL}">
+						<spring:message code="nav.guest.prefs" />
+					</c:when>
+					<c:when test="${requestURL eq analyseURL}">
+						<spring:message code="nav.analyse" />
+					</c:when>
+					<c:when test="${fn:contains(requestURL,userURL)}">
+						<spring:message code="nav.user.profile" />
+					</c:when>
+					<c:when test="${requestURL eq settingURL}">
+						<spring:message code="nav.system" />
+					</c:when>
+					<c:otherwise>
+						<spring:message code="nav.home" />
+					</c:otherwise>
+				</c:choose> <i class="caret"></i> </a>
 			<ul class="dropdown-menu">
 				<li><a href="<c:url value="/service/requests" />"><spring:message
 							code="nav.service" /> </a></li>
 				<li><a href="<c:url value="/service/hvac" />"><spring:message
-							code="nav.service.hvac" />
-				</a></li>
+							code="nav.service.hvac" /> </a></li>
 				<li><a href="<c:url value="/guest/prefs" />"><spring:message
-							code="nav.guest.prefs" />
-				</a></li>
+							code="nav.guest.prefs" /> </a></li>
 				<li><a href="<c:url value="/analyse/summary" />"><spring:message
-							code="nav.analyse" />
-				</a></li>
+							code="nav.analyse" /> </a></li>
 				<li><a href="<c:url value="/user/profile" />"><spring:message
-							code="nav.user.profile" />
-				</a></li>
+							code="nav.user.profile" /> </a></li>
 				<li><a href="<c:url value="/system/settings" />"><spring:message
-							code="nav.system" />
-				</a></li>
+							code="nav.system" /> </a></li>
 				<li class="divider"></li>
 				<li><a href="<c:url value="/index" />"><spring:message
-							code="nav.home" />
-				</a></li>
+							code="nav.home" /> </a></li>
 			</ul>
 
 			<ul class="nav user_menu pull-right">
@@ -97,25 +88,21 @@
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/system/settings" />"><i
 								class="icon-wrench"></i> <spring:message
-									code="nav.system.settings" />
-						</a>
+									code="nav.system.settings" /> </a>
 						</li>
 						<li><a href="<c:url value="/hotel/hotelmanage" />"><i
-								class="icon-star"></i> <spring:message code="nav.hotel" />
-						</a>
+								class="icon-star"></i> <spring:message code="nav.hotel" /> </a>
 						</li>
 						<li><a href="<c:url value="/guest/prefs" />"><i
 								class="icon-map-marker"></i> <spring:message code="nav.guest" />
 						</a>
 						</li>
 						<li><a href="<c:url value="/user/usermanage" />"><i
-								class="icon-user"></i> <spring:message code="nav.user" />
-						</a>
+								class="icon-user"></i> <spring:message code="nav.user" /> </a>
 						</li>
 						<li><a href="<c:url value="/user/handover" />"><i
 								class="icon-thumbs-up"></i> <spring:message
-									code="nav.user.handover" />
-						</a>
+									code="nav.user.handover" /> </a>
 						</li>
 					</ul>
 				</li>
@@ -131,12 +118,9 @@
 				</li>
 				<li class="divider-vertical hidden-phone hidden-tablet"></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle avatar"
-					data-toggle="dropdown">
-						<%-- <img
-						src="<c:url value="/img/user_avatar.png"/>" alt=""
-						class="user_avatar" /> --%> <i class="icon-adminuser"></i> <span
-						class="txt"><security:authentication property="name" />
-					</span> <b class="caret"></b> </a>
+					data-toggle="dropdown"> <i class="icon-adminuser"></i> <span
+						class="txt"><security:authentication property="name" /> </span> <b
+						class="caret"></b> </a>
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/user/profile" />"><i
 								class="icon-briefcase"></i> <spring:message code="userprofile" />
@@ -150,6 +134,34 @@
 				</li>
 			</ul>
 
+			<a data-target=".nav-collapse" data-toggle="collapse"
+				class="btn_menu"> <span class="icon-align-justify icon-white"></span>
+			</a>
+			<div class="nav-collapse">
+				<nav>
+				<ul class="nav">
+					<li><a href="#" id="new" role="menuitem"  class="win-command"> <i class="winicon-new"></i>
+							新建</a>
+							
+					</li>
+
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"><i
+							class="icon-list-alt icon-white"></i> Forms <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="index.php?uid=1&amp;page=form_elements">Form
+									elements</a></li>
+							<li><a href="index.php?uid=1&amp;page=form_extended">Extended
+									form elements</a></li>
+							<li><a href="index.php?uid=1&amp;page=form_validation">Form
+									Validation</a></li>
+						</ul>
+					</li>
+					<li></li>
+				</ul>
+				</nav>
+			</div>
 
 		</div>
 	</div>

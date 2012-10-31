@@ -14,7 +14,7 @@
 		<intercept-url pattern="/**" access="ROLE_USER" />
 		<intercept-url pattern="/system/**" access="ROLE_ADMIN" />
 
-		<form-login login-page="/login" default-target-url="/service/guestrequest"
+		<form-login login-page="/login" default-target-url="/service/requests"
 			authentication-failure-url="/login?error=true" />
 
 		<logout logout-success-url="/login"  /> <!-- delete-cookies="JSESSIONID" -->

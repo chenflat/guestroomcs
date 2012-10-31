@@ -12,7 +12,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
 <!-- theme color-->
-<link href="<c:url value="/css/blue.css"/>" id="link_theme" rel="stylesheet">
+<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet">
 
 <!-- tooltips-->
 <link rel="stylesheet"
