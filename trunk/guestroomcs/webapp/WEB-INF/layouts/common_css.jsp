@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!-- Bootstrap framework -->
-<link rel="stylesheet" href="<c:url value="/css/bootstrap.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value="/css/bootstrap-responsive.css"/>">
+	href="<c:url value="/css/bootstrap-responsive.min.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/metro.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/metro-responsive.css"/>">
 <!-- jQuery UI theme -->

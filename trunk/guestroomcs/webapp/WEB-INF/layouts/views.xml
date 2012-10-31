@@ -62,6 +62,14 @@
 		<put-attribute name="title" value="我的资料" />
 		<put-attribute name="body" value="/WEB-INF/jsp/user/profile.jsp" />
 	</definition>
+	
+	<definition name="user/usermanage" extends="user-layout">
+		<put-attribute name="title" value="用户管理" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/usermanage.jsp" />
+	</definition>
+	
+	
+	
 
 	<!-- Service Pages -->
 	<definition name="service/requests" extends="service-layout">

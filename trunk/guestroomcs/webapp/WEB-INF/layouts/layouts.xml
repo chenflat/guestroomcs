@@ -38,4 +38,9 @@
 		<put-attribute name="sidebar" value="" />
 	</definition>
 	
+	<!-- Data analyse layout  -->
+	<definition name="user-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/users_sidebar.jsp" />
+	</definition>
+	
 </tiles-definitions>
