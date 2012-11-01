@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+  <!--
+	var sql = "insert into room(room_no,room_name,floor_id,roomtype_id,room_towards,room_phone,room_fax,room_photo,room_comment) values('1','0101','1','1','','','','','');";
+	var room_no = "";
+	for(var floorid=1;floorid<=23;floorid++) {
+		for(var roomid=1;roomid<=33;roomid++) {
+			room_no = format_roomno(floorid,roomid);
+			if(roomid!=4 && roomid!=13 && roomid!=14) {
+			document.write("insert into room(room_no,room_name,floor_id,roomtype_id,room_towards,room_phone,room_fax,room_photo,room_comment) values('"+ room_no +"','"+ room_no +"','"+ floorid +"','1','','','','','');<br />");
+
+			}
+		}
+		
+	}
+
+	function format_roomno(floorid,roomid) {
+		var result = "";
+		//if(floorid==4 || floorid==13 || floorid==14)
+		var floor_no = "";
+		var room_no = "";
+			
+
+			if(floorid==4) {
+				floor_no="3A"
+			} else if(floorid==13) {
+				floor_no="12A"
+			} else if(floorid==14) {
+				floor_no="15B"
+			} else {
+
+			if(floorid.toString().length<2)
+				floor_no+="0"+floorid.toString();
+			else
+				floor_no+=floorid.toString();
+			}
+
+			if(roomid.toString().length<2)
+				room_no="0"+roomid;
+			else
+				room_no=roomid.toString();
+		
+		
+
+		result = floor_no + room_no;
+
+		return result;
+	}
+
+
+
+  //-->
+  </script>
+ </body>
+</html>

@@ -2,6 +2,21 @@
 
 
 
+Strat
+├──
+├──
+├──
+├──
+
+
+
+
+
+
+
+
+
+
 guestroomcs/
 ├── login/		登陆页
 ├── logout/		注销页	
@@ -9,7 +24,7 @@ guestroomcs/
 ├── index/		系统首页
 │   ├──
 	
-├──View
+├──RoomService
 │	├── guestrequest	Guest Request
 │		├── /bc BC (brown) – Butler Call pending.
 │		├── /mur MUR (green) – Make-Up Room pending
@@ -38,8 +53,8 @@ guestroomcs/
 ├── control
 │   ├── 
 │   ├── 
-├── report
-│   ├── 
+├── analyse
+│   ├── /report
 │   ├── 
 
 
@@ -63,6 +78,7 @@ guestroomcs/
 │   ├── /roomgroup  客房分组
 │
 ├── guest 客人管理
+│   ├── /prefs 账户管理
 │
 ├── user	用户管理
 │   ├── /userlist 账户管理
@@ -87,43 +103,43 @@ guestroomcs/
 	
 	
 
+nav.index=Home
 	
-	
-	nav.view.guestrequest=客房服务
-nav.view.guestpreferences=
-nav.view.roomstatus=
-nav.view.hvac=
+nav.service.guestrequest=客房服务
+nav.service.guestpreferences=
+nav.service.roomstatus=
+nav.service.hvac=
 
 
 
 
 
-nav.view.guestrequest.bc=
-nav.view.guestrequest.mur=
-nav.view.guestrequest.valet=
-nav.view.guestrequest.foodtray=
-nav.view.guestrequest.dnd=
-nav.view.guestrequest.sos=
-nav.view.guestrequest.combined=
+nav.service.guestrequest.bc=
+nav.service.guestrequest.mur=
+nav.service.guestrequest.valet=
+nav.service.guestrequest.foodtray=
+nav.service.guestrequest.dnd=
+nav.service.guestrequest.sos=
+nav.service.guestrequest.combined=
 
 
-nav.view.guestpreferences.ada=ADA /听力障碍
-nav.view.guestpreferences.sabbath=犹太人的/安息日
+nav.service.guestpreferences.ada=ADA /听力障碍
+nav.service.guestpreferences.sabbath=犹太人的/安息日
 
-nav.view.hvac.measuredtemperature=Measured Room Temperature	
-nav.view.hvac.measuredhumidity=Measured Humidity
-nav.view.hvac.equipmentoperation=HAVC Equipment Operation
-nav.view.hvac.loadshedding=Peak Demand / Load Shedding / Fire
-nav.view.hvac.opendoors=Open Doors
-nav.view.hvac.openwindows=Open Windows
-nav.view.hvac.etm=ETM:Reference Rooms for Energy Management System
-nav.view.hvac.vip=VIP / Reduced Energy Management
-nav.view.hvac.dehumidification=De-Humidification
-nav.view.hvac.deicing=De-Icing
-nav.view.hvac.havctroble=HAVC Troble
-nav.view.hvac.equipmenttype=Equipment Type
+nav.service.hvac.measuredtemperature=Measured Room Temperature	
+nav.service.hvac.measuredhumidity=Measured Humidity
+nav.service.hvac.equipmentoperation=HAVC Equipment Operation
+nav.service.hvac.loadshedding=Peak Demand / Load Shedding / Fire
+nav.service.hvac.opendoors=Open Doors
+nav.service.hvac.openwindows=Open Windows
+nav.service.hvac.etm=ETM:Reference Rooms for Energy Management System
+nav.service.hvac.vip=VIP / Reduced Energy Management
+nav.service.hvac.dehumidification=De-Humidification
+nav.service.hvac.deicing=De-Icing
+nav.service.hvac.havctroble=HAVC Troble
+nav.service.hvac.equipmenttype=Equipment Type
 
-mav.system=System Manage
+nav.system=System Manage
 nav.system.settings=System Setting
 nav.system.dictionary=Dictionary Definition
 nav.system.faq=Faq Manage
@@ -137,7 +153,7 @@ nav.hotel.roomtype=Room Type
 nav.hotel.roomgroup=Room Group
 
 nav.guest=Guest Manage
-nav.guest.perfs=Guest Preference
+nav.guest.prefs=Guest Preference
 
 nav.user=User Manage
 nav.user.userlist=User List

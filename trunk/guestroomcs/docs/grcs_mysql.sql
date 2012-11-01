@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-10-23 14:11:01                          */
+/* Created on:     2012-11-01 11:16:26                          */
 /*==============================================================*/
 
 
@@ -32,7 +32,11 @@ drop table if exists guest;
 
 drop table if exists guestpreference;
 
+drop table if exists handover;
+
 drop table if exists hotel;
+
+drop table if exists lists;
 
 drop table if exists prefsdefinedfield;
 
@@ -77,17 +81,14 @@ create table authorities
    primary key (authority_id)
 );
 
-alter table authorities comment '权限表';
-
 /*==============================================================*/
 /* Table: authorities_resources                                 */
 /*==============================================================*/
 create table authorities_resources
 (
-   ar_id                varchar(75) not null,
-   authority_id         varchar(75),
-   resource_id          varchar(75),
-   primary key (ar_id)
+   authority_id         varchar(75) not null,
+   resource_id          varchar(75) not null,
+   primary key (authority_id, resource_id)
 );
 
 /*==============================================================*/
@@ -100,6 +101,7 @@ create table build
    build_address        varchar(255),
    hotel_id             varchar(75),
    build_comment        varchar(255),
+   status               int,
    primary key (build_id)
 );
 
@@ -131,8 +133,6 @@ create table dictgroup
    group_name           varchar(50),
    primary key (group_code)
 );
-
-alter table dictgroup comment '房间状态：room_status';
 
 /*==============================================================*/
 /* Table: dictitem                                              */
@@ -285,7 +285,18 @@ create table guestpreference
    primary key (guest_id, definedfieldid)
 );
 
-alter table guestpreference comment '客人偏好';
+/*==============================================================*/
+/* Table: handover                                              */
+/*==============================================================*/
+create table handover
+(
+   handover_id          bigint not null,
+   user_id              varchar(75),
+   handover_starttime   datetime,
+   handover_endtime     datetime,
+   createdOnDate        datetime,
+   primary key (handover_id)
+);
 
 /*==============================================================*/
 /* Table: hotel                                                 */
@@ -304,8 +315,29 @@ create table hotel
    hotel_long           varchar(50),
    hotel_lat            varchar(50),
    hotel_comment        varchar(255),
-   system_id            int,
    primary key (hotel_id)
+);
+
+/*==============================================================*/
+/* Table: lists                                                 */
+/*==============================================================*/
+create table lists
+(
+   entryid              varchar(75) not null,
+   listname             varchar(50) not null,
+   text                 varchar(150) not null,
+   value                varchar(100) not null,
+   parentid             varchar(75),
+   level                int,
+   sortorder            int,
+   definitionid         varchar(75),
+   description          varchar(500),
+   systemlist           bool,
+   createdbyuserid      varchar(75),
+   createdondate        datetime,
+   lastmodifiedbyuserId varchar(75),
+   lastmodifiedondate   datetime,
+   primary key (entryid)
 );
 
 /*==============================================================*/
@@ -360,14 +392,12 @@ create table resources
    primary key (resource_id)
 );
 
-alter table resources comment '资源表';
-
 /*==============================================================*/
 /* Table: role                                                  */
 /*==============================================================*/
 create table role
 (
-   role_id              varchar(75) not null,
+   role_id              varchar(75) not null comment '角色代码',
    role_name            varchar(50),
    role_desc            varchar(100),
    enabled              bool,
@@ -375,17 +405,14 @@ create table role
    primary key (role_id)
 );
 
-alter table role comment '用户角色信息表';
-
 /*==============================================================*/
 /* Table: roles_authorities                                     */
 /*==============================================================*/
 create table roles_authorities
 (
-   ra_id                varchar(75) not null,
-   role_id              varchar(75),
-   authority_id         varchar(75),
-   primary key (ra_id)
+   role_id              varchar(75) not null,
+   authority_id         varchar(75) not null,
+   primary key (role_id, authority_id)
 );
 
 /*==============================================================*/
@@ -405,8 +432,6 @@ create table room
    primary key (room_no)
 );
 
-alter table room comment '房间信息表，保存酒店的所有房间信息';
-
 /*==============================================================*/
 /* Table: roomassignedgrouies                                   */
 /*==============================================================*/
@@ -417,8 +442,6 @@ create table roomassignedgrouies
    roomgroup_id         varchar(75),
    primary key (itemid)
 );
-
-alter table roomassignedgrouies comment '房间分配到组关系表';
 
 /*==============================================================*/
 /* Table: roomconfig                                            */
@@ -442,8 +465,6 @@ create table roomgroup
    primary key (roomgroup_id)
 );
 
-alter table roomgroup comment '定义房间组';
-
 /*==============================================================*/
 /* Table: roomtype                                              */
 /*==============================================================*/
@@ -460,8 +481,6 @@ create table roomtype
    roomtype_comment     varchar(255),
    primary key (roomtype_id)
 );
-
-alter table roomtype comment '根据不同的房间类型，显示不同的设置参数和界面，比如标准间或总统套房';
 
 /*==============================================================*/
 /* Table: roomtypeparamters                                     */
@@ -482,22 +501,23 @@ create table roomtypeparamters
 /*==============================================================*/
 create table system
 (
-   system_id            int not null,
+   system_uuid          varchar(75) not null,
    system_name          varchar(40),
-   system_fullname      varchar(100),
    system_enname        varchar(100),
+   system_desc          varchar(200),
+   copyright            varchar(100),
    expirydate           datetime,
-   currency             varchar(6),
    administratorid      varchar(75),
    administratorroleid  varchar(75),
    registeredroleid     varchar(75),
    timezoneoffset       int,
    defaultlanguage      varchar(10),
+   currency             varchar(10),
    createdbyuserid      varchar(75),
    createdondate        datetime,
    lastmodifiedbyuserid varchar(75),
    lastmodifiedondate   datetime,
-   primary key (system_id)
+   primary key (system_uuid)
 );
 
 /*==============================================================*/
@@ -505,8 +525,8 @@ create table system
 /*==============================================================*/
 create table systemsetting
 (
-   system_id            int not null,
    setting_name         varchar(50) not null,
+   system_uuid          varchar(75) not null,
    setting_value        varchar(2000),
    culture_code         varchar(10),
    createdbyuserid      varchar(75),
@@ -523,8 +543,8 @@ create table user
 (
    user_id              varchar(75) not null,
    user_name            varchar(50),
-   user_account         varchar(30),
    user_password        varchar(100),
+   user_realname        varchar(30),
    user_desc            varchar(255),
    enabled              bool comment '0禁用 1正常',
    issuperuser          bool comment '0非 1是 ',
@@ -532,97 +552,97 @@ create table user
    primary key (user_id)
 );
 
-alter table user comment '系统用户表';
-
 /*==============================================================*/
 /* Table: user_role                                             */
 /*==============================================================*/
 create table user_role
 (
-   ur_id                varchar(75) not null,
-   user_id              varchar(75),
-   role_id              varchar(75),
-   primary key (ur_id)
+   user_id              varchar(75) not null,
+   role_id              varchar(75) not null,
+   primary key (user_id, role_id)
 );
 
 alter table authorities_resources add constraint FK_authorities_authoritiesresources foreign key (authority_id)
-      references authorities (authority_id) on delete restrict on update restrict;
+      references authorities (authority_id) on delete cascade;
 
 alter table authorities_resources add constraint FK_resources_authoritiesresources foreign key (resource_id)
-      references resources (resource_id) on delete restrict on update restrict;
+      references resources (resource_id) on delete cascade;
 
 alter table build add constraint FK_hotelinfo_buildinfo foreign key (hotel_id)
-      references hotel (hotel_id) on delete restrict on update restrict;
+      references hotel (hotel_id) on delete cascade;
 
 alter table department add constraint FK_department_department foreign key (parentid)
-      references department (dept_id) on delete restrict on update restrict;
+      references department (dept_id) on delete cascade;
 
 alter table department add constraint FK_hotel_department foreign key (hotel_id)
-      references hotel (hotel_id) on delete restrict on update restrict;
+      references hotel (hotel_id) on delete cascade;
 
 alter table dictitem add constraint FK_dictigroup_dictitem foreign key (group_code)
       references dictgroup (group_code) on delete restrict on update restrict;
 
 alter table district add constraint FK_district_district foreign key (parent_id)
-      references district (district_id) on delete restrict on update restrict;
+      references district (district_id) on delete cascade;
 
 alter table eventlog add constraint FK_eventlogtype_eventlog foreign key (logtype_key)
-      references eventlogtype (logtype_key) on delete restrict on update restrict;
+      references eventlogtype (logtype_key) on delete cascade;
 
 alter table faq add constraint FK_faqcategory_faq foreign key (cat_id)
-      references faqcategory (cat_id) on delete restrict on update restrict;
+      references faqcategory (cat_id) on delete cascade;
 
 alter table floor add constraint FK_buildinfo_floorinfo foreign key (build_id)
-      references build (build_id) on delete restrict on update restrict;
+      references build (build_id) on delete cascade;
 
 alter table guestpreference add constraint FK_guest_guestpreference foreign key (guest_id)
-      references guest (guest_id) on delete restrict on update restrict;
+      references guest (guest_id) on delete cascade;
 
 alter table guestpreference add constraint FK_prefsdefinedfield_guestpreference foreign key (definedfieldid)
-      references prefsdefinedfield (definedfieldid) on delete restrict on update restrict;
+      references prefsdefinedfield (definedfieldid) on delete cascade;
+
+alter table handover add constraint FK_user_handover foreign key (user_id)
+      references user (user_id) on delete cascade;
 
 alter table hotel add constraint FK_district_hotel foreign key (district_id)
-      references district (district_id) on delete restrict on update restrict;
+      references district (district_id);
 
-alter table hotel add constraint FK_system_hotel foreign key (system_id)
-      references system (system_id) on delete restrict on update restrict;
+alter table lists add constraint FK_lists_lists foreign key (parentid)
+      references lists (entryid) on delete cascade;
 
 alter table prefsdefinedfield add constraint FK_prefstype_prefsdefinedfield foreign key (prefstype_id)
-      references prefstype (prefstype_id) on delete restrict on update restrict;
+      references prefstype (prefstype_id) on delete cascade;
 
 alter table roles_authorities add constraint FK_authorities_rolesauthorities foreign key (authority_id)
-      references authorities (authority_id) on delete restrict on update restrict;
+      references authorities (authority_id) on delete cascade;
 
 alter table roles_authorities add constraint FK_role_rolesauthorities foreign key (role_id)
-      references role (role_id) on delete restrict on update restrict;
+      references role (role_id) on delete cascade;
 
 alter table room add constraint FK_floor_room foreign key (floor_id)
-      references floor (floor_id) on delete restrict on update restrict;
+      references floor (floor_id) on delete cascade;
 
 alter table room add constraint FK_roomtype_room foreign key (roomtype_id)
-      references roomtype (roomtype_id) on delete restrict on update restrict;
+      references roomtype (roomtype_id) on delete cascade;
 
 alter table roomassignedgrouies add constraint FK_room_roomassignedgrouies foreign key (room_no)
-      references room (room_no) on delete restrict on update restrict;
+      references room (room_no) on delete cascade;
 
 alter table roomassignedgrouies add constraint FK_roomgroup_roomassignedgrouies foreign key (roomgroup_id)
-      references roomgroup (roomgroup_id) on delete restrict on update restrict;
+      references roomgroup (roomgroup_id) on delete cascade;
 
 alter table roomconfig add constraint FK_room_roomconfig foreign key (room_no)
-      references room (room_no) on delete restrict on update restrict;
+      references room (room_no) on delete cascade;
 
 alter table roomtype add constraint FK_hotel_roomtype foreign key (hotel_id)
       references hotel (hotel_id) on delete restrict on update restrict;
 
 alter table roomtypeparamters add constraint FK_roomtype_roomtypeparamters foreign key (roomtype_id)
-      references roomtype (roomtype_id) on delete restrict on update restrict;
+      references roomtype (roomtype_id) on delete cascade;
 
-alter table systemsetting add constraint FK_system_systemsetting foreign key (system_id)
-      references system (system_id) on delete restrict on update restrict;
+alter table systemsetting add constraint FK_system_systemsetting foreign key (system_uuid)
+      references system (system_uuid) on delete restrict on update restrict;
 
 alter table user_role add constraint FK_role_userrole foreign key (role_id)
-      references role (role_id) on delete restrict on update restrict;
+      references role (role_id) on delete cascade;
 
 alter table user_role add constraint FK_user_userrole foreign key (user_id)
-      references user (user_id) on delete restrict on update restrict;
+      references user (user_id) on delete cascade;
 
