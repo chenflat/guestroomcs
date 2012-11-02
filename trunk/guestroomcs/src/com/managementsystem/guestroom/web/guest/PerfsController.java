@@ -1,4 +1,4 @@
-package com.managementsystem.guestroom.web.user;
+package com.managementsystem.guestroom.web.guest;
 
 import java.util.List;
 
@@ -14,29 +14,18 @@ import com.managementsystem.guestroom.domain.Breadcrumb;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
-
-/**
- * 用户资料控制器
- * 
- * CreatedOnDate: 2012-10-23
- * */
 @Controller
-@RequestMapping("/user/profile")
-public class ProfileController extends AbstractController implements
-		IController {
+public class PerfsController extends AbstractController implements IController {
 
-	private final Log logger = LogFactory.getLog(ProfileController.class);
+	private final Log logger = LogFactory.getLog(PerfsController.class);
 
-	public static final String VIEW_NAME = "user/profile";
+	public static final String VIEW_NAME = "guest/prefs";
 
-	/**
-	 * 显示用户资料
-	 * */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/guest/prefs", method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
-		logger.info("Requesting doGet of " + ProfileController.class);
+		logger.info("@Requesting doGet of " + PerfsController.class);
 		ModelAndView mav = new ModelAndView();
-
+		
 		mav.setViewName(VIEW_NAME);
 		return mav;
 	}
@@ -48,7 +37,6 @@ public class ProfileController extends AbstractController implements
 
 	@Override
 	protected List<Breadcrumb> getBreadcrumbs() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
