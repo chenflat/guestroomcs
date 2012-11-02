@@ -58,10 +58,16 @@
 
 
 	<!-- User Pages -->
-	<definition name="user/profile" extends="userprofile-layout">
+	<definition name="account/profile" extends="userprofile-layout">
 		<put-attribute name="title" value="我的资料" />
-		<put-attribute name="body" value="/WEB-INF/jsp/user/profile.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/profile.jsp" />
 	</definition>
+	
+	<definition name="account/settings" extends="userprofile-layout">
+		<put-attribute name="title" value="我的资料" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/settings.jsp" />
+	</definition>
+	
 	
 	<definition name="user/usermanage" extends="user-layout">
 		<put-attribute name="title" value="用户管理" />

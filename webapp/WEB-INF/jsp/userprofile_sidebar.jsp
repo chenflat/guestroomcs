@@ -23,18 +23,18 @@
 					</form>
 					<div id="side_quickview" class="quickview">
 						<ul class="nav nav-list">
-							<li class="active"><a href="<c:url value="/user/profile" />">用户资料</a>
+							<li class="active"><a href="<c:url value="/account/profile" />">用户资料</a>
 							</li>
-							<li><a href="<c:url value="/user/profile" />">个性化</a>
+							<li><a href="<c:url value="/account/profile?act=personalize" />">个性化</a>
 							</li>
-							<li><a href="<c:url value="/user/profile" />">提示</a>
+							<li><a href="<c:url value="/account/profile?act=notification" />">提示</a>
 							</li>
-							<li><a href="<c:url value="/user/profile" />">搜索</a>
+							<li><a href="<c:url value="/account/profile?act=search" />">搜索</a>
 							</li>
-							<li><a href="<c:url value="/user/profile" />">易用性</a>
+							<li><a href="<c:url value="/account/profile?act=usability" />">易用性</a>
 							</li>
-							<li><a href="<c:url value="/user/handover" />"><spring:message
-										code="nav.user.handover" /> </a>
+							<li><a href="<c:url value="/account/profile?act=shiftwork" />"><spring:message
+										code="nav.account.shiftwork" /> </a>
 							</li>
 						</ul>
 					</div>

@@ -20,16 +20,17 @@
 							<i class="icon-search"></i>
 						</button>
 					</form>
-					<div id="side_quickview" class="quickview">
-						<ul class="nav nav-list" id="userlist">
-							<c:forEach var="row" begin="1" end="30">
-								<li><div class="avatar">
-										<input type="checkbox" name="userId" value="${row}"> <img
-											src="<c:url value="/img/metro_user.png" />" /> <span>高小宁${row}</span> 
-									</div></li>
-							</c:forEach>
-						</ul>
-					</div>
+
+					<ul class="nav nav-list" id="userlist">
+						<c:forEach var="row" begin="1" end="30">
+							<li><a href="#">
+									<input type="checkbox" name="userId" value="${row}"> <img
+										src="<c:url value="/img/metro_user.png" />" /> <span>高小宁${row}</span>
+								</a>
+							</li>
+						</c:forEach>
+					</ul>
+
 				</div>
 
 

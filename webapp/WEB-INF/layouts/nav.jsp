@@ -20,6 +20,8 @@
 <c:set var="analyseURL"
 	value="${pageContext.request.contextPath}/analyse/summary" />
 <c:set var="userURL" value="${pageContext.request.contextPath}/user/" />
+<c:set var="accountURL"
+	value="${pageContext.request.contextPath}/account/" />
 <c:set var="settingURL"
 	value="${pageContext.request.contextPath}/system/settings" />
 <header>
@@ -43,7 +45,10 @@
 						<spring:message code="nav.analyse" />
 					</c:when>
 					<c:when test="${fn:contains(requestURL,userURL)}">
-						<spring:message code="nav.user.profile" />
+						<spring:message code="nav.user.usermanage" />
+					</c:when>
+					<c:when test="${fn:contains(requestURL,accountURL)}">
+						<spring:message code="nav.account.settings" />
 					</c:when>
 					<c:when test="${requestURL eq settingURL}">
 						<spring:message code="nav.system" />
@@ -61,10 +66,13 @@
 							code="nav.guest.prefs" /> </a></li>
 				<li><a href="<c:url value="/analyse/summary" />"><spring:message
 							code="nav.analyse" /> </a></li>
-				<li><a href="<c:url value="/user/profile" />"><spring:message
-							code="nav.user.profile" /> </a></li>
+				<li><a href="<c:url value="/user/usermanage" />"><spring:message
+							code="nav.user.usermanage" /> </a></li>
+				<li><a href="<c:url value="/account/settings" />"><spring:message
+							code="nav.account.settings" /> </a></li>
 				<li><a href="<c:url value="/system/settings" />"><spring:message
 							code="nav.system" /> </a></li>
+
 				<li class="divider"></li>
 				<li><a href="<c:url value="/index" />"><spring:message
 							code="nav.home" /> </a></li>
@@ -100,9 +108,9 @@
 						<li><a href="<c:url value="/user/usermanage" />"><i
 								class="icon-user"></i> <spring:message code="nav.user" /> </a>
 						</li>
-						<li><a href="<c:url value="/user/handover" />"><i
+						<li><a href="<c:url value="/user/shiftwork" />"><i
 								class="icon-thumbs-up"></i> <spring:message
-									code="nav.user.handover" /> </a>
+									code="nav.account.shiftwork" /> </a>
 						</li>
 					</ul>
 				</li>
@@ -122,9 +130,12 @@
 						class="txt"><security:authentication property="name" /> </span> <b
 						class="caret"></b> </a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/user/profile" />"><i
-								class="icon-briefcase"></i> <spring:message code="userprofile" />
-						</a></li>
+						<li><a href="<c:url value="/account/profile" />"><i
+								class="icon-briefcase"></i> <spring:message
+									code="nav.account.profile" /> </a></li>
+						<li><a href="<c:url value="/account/settings" />"><i
+								class="icon-cog"></i> <spring:message
+									code="nav.account.settings" /> </a></li>
 						<li><a href="javascrip:void(0)"><i class="icon-envelope"></i>
 								我的消息</a></li>
 						<li class="divider"></li>
@@ -134,35 +145,42 @@
 				</li>
 			</ul>
 
-			<a data-target=".nav-collapse" data-toggle="collapse"
-				class="btn_menu"> <span class="icon-align-justify icon-white"></span>
-			</a>
-			<div class="nav-collapse">
-				<nav>
-				<ul class="nav">
-					<li><a href="#" id="new" role="menuitem"  class="win-command"> <i class="winicon-new"></i>
-							新建</a>
-							
-					</li>
-
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><i
-							class="icon-list-alt icon-white"></i> Forms <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu">
-							<li><a href="index.php?uid=1&amp;page=form_elements">Form
-									elements</a></li>
-							<li><a href="index.php?uid=1&amp;page=form_extended">Extended
-									form elements</a></li>
-							<li><a href="index.php?uid=1&amp;page=form_validation">Form
-									Validation</a></li>
-						</ul>
-					</li>
-					<li></li>
-				</ul>
-				</nav>
-			</div>
-
+			<c:if test="${fn:contains(requestURL,userURL)}">
+				<a data-target=".nav-collapse" data-toggle="collapse"
+					class="btn_menu"> <span class="icon-align-justify icon-white"></span>
+				</a>
+				<div class="nav-collapse">
+					<nav>
+					<ul class="nav">
+						<li><a href="#" id="new" role="menuitem" class="win-command"
+							style="height: 20px;"> <i class="winicon-new"></i><span
+								class="win-label">新建</span> </a>
+						</li>
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="#"></i> 管理 <b class="caret"></b> </a>
+							<ul class="dropdown-menu">
+								<li><a href="?act=usergroup">管理组</a></li>
+							</ul>
+						</li>
+						<li><a href="?act=edit">编辑</a></li>
+						<li><a href="?act=copy">复制</a></li>
+						<li><a href="?act=delete">删除</a></li>
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="#"></i> 设置状态 <b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a href="?state=active">活动(默认)</a></li>
+								<li><a href="?state=inactive">不活动</a></li>
+								<li><a href="?state=disabled">已禁用</a></li>
+								<li><a href="?state=new">新注册</a></li>
+								<li><a href="?state=">全部</a></li>
+							</ul>
+						</li>
+						<li></li>
+					</ul>
+					</nav>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </div>
