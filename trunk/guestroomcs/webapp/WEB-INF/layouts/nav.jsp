@@ -68,7 +68,7 @@
 							code="nav.analyse" /> </a></li>
 				<li><a href="<c:url value="/user/usermanage" />"><spring:message
 							code="nav.user.usermanage" /> </a></li>
-				<li><a href="<c:url value="/account/settings" />"><spring:message
+				<li><a href="<c:url value="/account/profile" />"><spring:message
 							code="nav.account.settings" /> </a></li>
 				<li><a href="<c:url value="/system/settings" />"><spring:message
 							code="nav.system" /> </a></li>

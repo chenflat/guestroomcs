@@ -57,25 +57,51 @@
 	</definition>
 
 
-	<!-- User Pages -->
+	<!-- User Account Pages -->
 	<definition name="account/profile" extends="userprofile-layout">
 		<put-attribute name="title" value="我的资料" />
 		<put-attribute name="body" value="/WEB-INF/jsp/account/profile.jsp" />
 	</definition>
-	
-	<definition name="account/settings" extends="userprofile-layout">
-		<put-attribute name="title" value="我的资料" />
-		<put-attribute name="body" value="/WEB-INF/jsp/account/settings.jsp" />
+
+	<definition name="account/personalize" extends="userprofile-layout">
+		<put-attribute name="title" value="个性化" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/account/personalize.jsp" />
 	</definition>
-	
-	
+
+	<definition name="account/notification" extends="userprofile-layout">
+		<put-attribute name="title" value="提示" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/account/notification.jsp" />
+	</definition>
+
+	<definition name="account/search" extends="userprofile-layout">
+		<put-attribute name="title" value="搜索" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/account/search.jsp" />
+	</definition>
+
+	<definition name="account/usability" extends="userprofile-layout">
+		<put-attribute name="title" value="易用性" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/account/usability.jsp" />
+	</definition>
+
+	<definition name="account/shiftwork" extends="userprofile-layout">
+		<put-attribute name="title" value="交接班" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/account/shiftwork.jsp" />
+	</definition>
+
+
+	<!-- User Pages -->
 	<definition name="user/usermanage" extends="user-layout">
 		<put-attribute name="title" value="用户管理" />
 		<put-attribute name="body" value="/WEB-INF/jsp/user/usermanage.jsp" />
 	</definition>
-	
-	
-	
+
+
+
 
 	<!-- Service Pages -->
 	<definition name="service/requests" extends="service-layout">

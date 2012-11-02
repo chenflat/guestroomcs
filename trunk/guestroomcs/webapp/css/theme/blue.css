@@ -25,5 +25,14 @@
         background: #6c8135 !important;
         border-color:#6c8135 !important;
     }
+    
+    .nav-list > li > a {color:#333;font-size:14px;}
+    .sidebar .nav-list > .active > a, .nav-list > .active > a:hover {
+		color: #333;
+		text-shadow: none;
+		background-color: #ccc;
+
+	}
+	
 	.table thead th {background-color:#ebf2f6 !important}
 	.dataTables_wrapper th.sorting_asc,.dataTables_wrapper th.sorting_desc {background-color:#d4e3eb !important}
