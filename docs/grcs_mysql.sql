@@ -1,20 +1,12 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-11-01 11:16:26                          */
+/* Created on:     2012-11-02 13:00:13                          */
 /*==============================================================*/
 
-
-drop table if exists authorities;
-
-drop table if exists authorities_resources;
 
 drop table if exists build;
 
 drop table if exists department;
-
-drop table if exists dictgroup;
-
-drop table if exists dictitem;
 
 drop table if exists district;
 
@@ -42,11 +34,11 @@ drop table if exists prefsdefinedfield;
 
 drop table if exists prefstype;
 
-drop table if exists resources;
+drop table if exists resource;
 
 drop table if exists role;
 
-drop table if exists roles_authorities;
+drop table if exists role_resource;
 
 drop table if exists room;
 
@@ -69,29 +61,6 @@ drop table if exists user;
 drop table if exists user_role;
 
 /*==============================================================*/
-/* Table: authorities                                           */
-/*==============================================================*/
-create table authorities
-(
-   authority_id         varchar(75) not null,
-   authority_name       varchar(50),
-   authority_desc       varchar(255),
-   enabled              bool,
-   issys                bool,
-   primary key (authority_id)
-);
-
-/*==============================================================*/
-/* Table: authorities_resources                                 */
-/*==============================================================*/
-create table authorities_resources
-(
-   authority_id         varchar(75) not null,
-   resource_id          varchar(75) not null,
-   primary key (authority_id, resource_id)
-);
-
-/*==============================================================*/
 /* Table: build                                                 */
 /*==============================================================*/
 create table build
@@ -101,7 +70,6 @@ create table build
    build_address        varchar(255),
    hotel_id             varchar(75),
    build_comment        varchar(255),
-   status               int,
    primary key (build_id)
 );
 
@@ -122,34 +90,6 @@ create table department
    dept_fax             varchar(50),
    dept_comment         varchar(255),
    primary key (dept_id)
-);
-
-/*==============================================================*/
-/* Table: dictgroup                                             */
-/*==============================================================*/
-create table dictgroup
-(
-   group_code           varchar(20) not null,
-   group_name           varchar(50),
-   primary key (group_code)
-);
-
-/*==============================================================*/
-/* Table: dictitem                                              */
-/*==============================================================*/
-create table dictitem
-(
-   item_id              varchar(75) not null,
-   group_code           varchar(20) not null,
-   item_code            varchar(20) not null,
-   item_name            varchar(50) not null,
-   item_shortname       varchar(20),
-   item_value           varchar(20),
-   item_color           varchar(10),
-   item_icon            varchar(200),
-   item_remark          varchar(200),
-   item_order           int default 0,
-   primary key (item_id)
 );
 
 /*==============================================================*/
@@ -295,6 +235,7 @@ create table handover
    handover_starttime   datetime,
    handover_endtime     datetime,
    createdOnDate        datetime,
+   comment              varchar(500),
    primary key (handover_id)
 );
 
@@ -377,18 +318,18 @@ create table prefstype
 );
 
 /*==============================================================*/
-/* Table: resources                                             */
+/* Table: resource                                              */
 /*==============================================================*/
-create table resources
+create table resource
 (
    resource_id          varchar(75) not null,
    resource_name        varchar(100),
+   parent_id            varchar(75),
    resource_type        varchar(20) comment 'url、method',
    priority             int,
    resource_string      varchar(255),
    resource_desc        varchar(255),
-   enabled              bool,
-   issys                bool,
+   status               int comment '0禁用 1启用',
    primary key (resource_id)
 );
 
@@ -400,19 +341,19 @@ create table role
    role_id              varchar(75) not null comment '角色代码',
    role_name            varchar(50),
    role_desc            varchar(100),
-   enabled              bool,
+   status               int comment '0禁用 1启用',
    issys                bool,
    primary key (role_id)
 );
 
 /*==============================================================*/
-/* Table: roles_authorities                                     */
+/* Table: role_resource                                         */
 /*==============================================================*/
-create table roles_authorities
+create table role_resource
 (
    role_id              varchar(75) not null,
-   authority_id         varchar(75) not null,
-   primary key (role_id, authority_id)
+   resource_id          varchar(75) not null,
+   primary key (role_id, resource_id)
 );
 
 /*==============================================================*/
@@ -543,11 +484,10 @@ create table user
 (
    user_id              varchar(75) not null,
    user_name            varchar(50),
-   user_password        varchar(100),
-   user_realname        varchar(30),
-   user_desc            varchar(255),
-   enabled              bool comment '0禁用 1正常',
-   issuperuser          bool comment '0非 1是 ',
+   password             varchar(100),
+   realname             varchar(30),
+   description          varchar(255),
+   status               int comment '0禁用 1启用',
    lastipaddress        varchar(50),
    primary key (user_id)
 );
@@ -562,12 +502,6 @@ create table user_role
    primary key (user_id, role_id)
 );
 
-alter table authorities_resources add constraint FK_authorities_authoritiesresources foreign key (authority_id)
-      references authorities (authority_id) on delete cascade;
-
-alter table authorities_resources add constraint FK_resources_authoritiesresources foreign key (resource_id)
-      references resources (resource_id) on delete cascade;
-
 alter table build add constraint FK_hotelinfo_buildinfo foreign key (hotel_id)
       references hotel (hotel_id) on delete cascade;
 
@@ -575,10 +509,7 @@ alter table department add constraint FK_department_department foreign key (pare
       references department (dept_id) on delete cascade;
 
 alter table department add constraint FK_hotel_department foreign key (hotel_id)
-      references hotel (hotel_id) on delete cascade;
-
-alter table dictitem add constraint FK_dictigroup_dictitem foreign key (group_code)
-      references dictgroup (group_code) on delete restrict on update restrict;
+      references hotel (hotel_id) on delete restrict on update restrict;
 
 alter table district add constraint FK_district_district foreign key (parent_id)
       references district (district_id) on delete cascade;
@@ -602,7 +533,7 @@ alter table handover add constraint FK_user_handover foreign key (user_id)
       references user (user_id) on delete cascade;
 
 alter table hotel add constraint FK_district_hotel foreign key (district_id)
-      references district (district_id);
+      references district (district_id) on delete set null;
 
 alter table lists add constraint FK_lists_lists foreign key (parentid)
       references lists (entryid) on delete cascade;
@@ -610,17 +541,20 @@ alter table lists add constraint FK_lists_lists foreign key (parentid)
 alter table prefsdefinedfield add constraint FK_prefstype_prefsdefinedfield foreign key (prefstype_id)
       references prefstype (prefstype_id) on delete cascade;
 
-alter table roles_authorities add constraint FK_authorities_rolesauthorities foreign key (authority_id)
-      references authorities (authority_id) on delete cascade;
+alter table resource add constraint FK_resource_resource foreign key (parent_id)
+      references resource (resource_id) on delete cascade;
 
-alter table roles_authorities add constraint FK_role_rolesauthorities foreign key (role_id)
+alter table role_resource add constraint FK_resource_roles foreign key (resource_id)
+      references resource (resource_id) on delete cascade;
+
+alter table role_resource add constraint FK_role_resources foreign key (role_id)
       references role (role_id) on delete cascade;
 
 alter table room add constraint FK_floor_room foreign key (floor_id)
       references floor (floor_id) on delete cascade;
 
 alter table room add constraint FK_roomtype_room foreign key (roomtype_id)
-      references roomtype (roomtype_id) on delete cascade;
+      references roomtype (roomtype_id) on delete set null;
 
 alter table roomassignedgrouies add constraint FK_room_roomassignedgrouies foreign key (room_no)
       references room (room_no) on delete cascade;
@@ -638,7 +572,7 @@ alter table roomtypeparamters add constraint FK_roomtype_roomtypeparamters forei
       references roomtype (roomtype_id) on delete cascade;
 
 alter table systemsetting add constraint FK_system_systemsetting foreign key (system_uuid)
-      references system (system_uuid) on delete restrict on update restrict;
+      references system (system_uuid) on delete cascade;
 
 alter table user_role add constraint FK_role_userrole foreign key (role_id)
       references role (role_id) on delete cascade;

@@ -17,9 +17,6 @@
 <!-- tooltips-->
 <link rel="stylesheet"
 	href="<c:url value="/lib/qtip2/jquery.qtip.min.css"/>" />
-<!-- colorbox -->
-<link rel="stylesheet"
-	href="<c:url value="/lib/colorbox/colorbox.css"/>" />
 
 <!-- notifications -->
 <link rel="stylesheet" href="<c:url value="/lib/sticky/sticky.css"/>" />
