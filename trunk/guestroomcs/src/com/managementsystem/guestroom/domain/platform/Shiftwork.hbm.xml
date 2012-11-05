@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.platform.Shiftwork" table="shiftwork">
+        <id name="shiftworkId" type="long">
+            <column name="shiftwork_id" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="user" class="com.managementsystem.guestroom.domain.platform.User" fetch="select">
+            <column name="user_id" length="75" />
+        </many-to-one>
+        <property name="workStarttime" type="timestamp">
+            <column name="work_starttime" length="19" />
+        </property>
+        <property name="workEndtime" type="timestamp">
+            <column name="work_endtime" length="19" />
+        </property>
+        <property name="createdOnDate" type="timestamp">
+            <column name="createdOnDate" length="19" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

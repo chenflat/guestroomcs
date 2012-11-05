@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.platform.Eventlogtype" table="eventlogtype">
+        <id name="logtypeKey" type="string">
+            <column name="logtype_key" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="logtypeFriendlyname" type="string">
+            <column name="logtype_friendlyname" length="50" />
+        </property>
+        <property name="logtypeDescription" type="string">
+            <column name="logtype_description" />
+        </property>
+        <property name="logtypeOwner" type="string">
+            <column name="logtype_owner" length="100" />
+        </property>
+        <property name="logtypeCssclass" type="string">
+            <column name="logtype_cssclass" length="40" />
+        </property>
+        <set name="eventlogs" table="eventlog" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="logtype_key" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.platform.Eventlog" />
+        </set>
+    </class>
+</hibernate-mapping>
