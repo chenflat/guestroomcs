@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.platform.Resource" table="resource">
+        <id name="resourceId" type="string">
+            <column name="resource_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="resource" class="com.managementsystem.guestroom.domain.platform.Resource" fetch="select">
+            <column name="parent_id" length="75" />
+        </many-to-one>
+        <property name="resourceName" type="string">
+            <column name="resource_name" length="100" />
+        </property>
+        <property name="resourceType" type="string">
+            <column name="resource_type" length="20">
+                <comment>url&#161;&#162;method</comment>
+            </column>
+        </property>
+        <property name="priority" type="java.lang.Integer">
+            <column name="priority" />
+        </property>
+        <property name="resourceString" type="string">
+            <column name="resource_string" />
+        </property>
+        <property name="resourceDesc" type="string">
+            <column name="resource_desc" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+                <comment>0&#189;&#251;&#211;&#195; 1&#198;&#244;&#211;&#195;</comment>
+            </column>
+        </property>
+        <set name="resources" table="resource" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="parent_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.platform.Resource" />
+        </set>
+        <set name="roles" table="role_resource" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="resource_id" length="75" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.managementsystem.guestroom.domain.platform.Role">
+                <column name="role_id" length="75" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

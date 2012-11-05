@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.platform.Portalsettings" table="portalsettings">
+        <composite-id name="id" class="com.managementsystem.guestroom.domain.platform.PortalsettingsId">
+            <key-property name="portalId" type="string">
+                <column name="portal_id" length="75" />
+            </key-property>
+            <key-property name="settingName" type="string">
+                <column name="setting_name" length="50" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="portal" class="com.managementsystem.guestroom.domain.platform.Portal" update="false" insert="false" fetch="select">
+            <column name="portal_id" length="75" not-null="true" />
+        </many-to-one>
+        <property name="settingValue" type="string">
+            <column name="setting_value" length="2000" />
+        </property>
+        <property name="cultureCode" type="string">
+            <column name="culture_code" length="10" />
+        </property>
+        <property name="createdbyuserid" type="string">
+            <column name="createdbyuserid" length="75" />
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+        <property name="lastmodifiedbyuserid" type="string">
+            <column name="lastmodifiedbyuserid" length="75" />
+        </property>
+        <property name="lastmodifiedondate" type="timestamp">
+            <column name="lastmodifiedondate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.platform.Faqcategory" table="faqcategory">
+        <id name="catId" type="string">
+            <column name="cat_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="catName" type="string">
+            <column name="cat_name" length="50" />
+        </property>
+        <property name="catOrder" type="java.lang.Integer">
+            <column name="cat_order" />
+        </property>
+        <property name="catDesc" type="string">
+            <column name="cat_desc" />
+        </property>
+        <set name="faqs" table="faq" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cat_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.platform.Faq" />
+        </set>
+    </class>
+</hibernate-mapping>
