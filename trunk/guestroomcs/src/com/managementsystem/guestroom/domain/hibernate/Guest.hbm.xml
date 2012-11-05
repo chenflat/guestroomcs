@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Guest" table="guest">
+        <id name="guestId" type="string">
+            <column name="guest_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="profileid" type="string">
+            <column name="profileid" length="50" />
+        </property>
+        <property name="profiletype" type="string">
+            <column name="profiletype" length="20" />
+        </property>
+        <property name="lanaguage" type="string">
+            <column name="lanaguage" length="20" />
+        </property>
+        <property name="currency" type="string">
+            <column name="currency" length="3" />
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+        <property name="firststay" type="timestamp">
+            <column name="firststay" length="19" />
+        </property>
+        <property name="laststay" type="timestamp">
+            <column name="laststay" length="19" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="20" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="20" />
+        </property>
+        <property name="salutation" type="string">
+            <column name="salutation" length="10" />
+        </property>
+        <property name="roomNo" type="string">
+            <column name="room_no" length="10" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="10" />
+        </property>
+        <property name="inactive" type="java.lang.Boolean">
+            <column name="inactive" />
+        </property>
+        <property name="company" type="string">
+            <column name="company" length="100" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="100" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="50" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="50" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="50" />
+        </property>
+        <property name="zip" type="string">
+            <column name="zip" length="10" />
+        </property>
+        <property name="phoneHome" type="string">
+            <column name="phone_home" length="20" />
+        </property>
+        <property name="fax" type="string">
+            <column name="fax" length="20" />
+        </property>
+        <property name="phoneMobile" type="string">
+            <column name="phone_mobile" length="20" />
+        </property>
+        <property name="phoneBus" type="string">
+            <column name="phone_bus" length="20" />
+        </property>
+        <property name="phoneBusext" type="string">
+            <column name="phone_busext" length="10" />
+        </property>
+        <property name="phoneOther" type="string">
+            <column name="phone_other" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="50" />
+        </property>
+        <property name="isprompt" type="java.lang.Boolean">
+            <column name="isprompt" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" />
+        </property>
+        <set name="guestpreferences" table="guestpreference" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="guest_id" length="75" not-null="true" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Guestpreference" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -27,7 +27,9 @@ public class SettingController extends AbstractController implements
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + SettingController.class);
 		ModelAndView mav = new ModelAndView();
+		
 
+		
 		mav.setViewName(VIEW_NAME);
 		return mav;
 	}
