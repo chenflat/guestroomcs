@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Roomgroup" table="roomgroup">
+        <id name="roomgroupId" type="string">
+            <column name="roomgroup_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="roomgroupName" type="string">
+            <column name="roomgroup_name" length="40" />
+        </property>
+        <property name="roomgroupDesc" type="string">
+            <column name="roomgroup_desc" />
+        </property>
+        <set name="roomassignedgrouieses" table="roomassignedgrouies" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="roomgroup_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Roomassignedgrouies" />
+        </set>
+    </class>
+</hibernate-mapping>

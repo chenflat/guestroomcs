@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Build" table="build">
+        <id name="buildId" type="string">
+            <column name="build_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="hotel" class="com.managementsystem.guestroom.domain.hibernate.Hotel" fetch="select">
+            <column name="hotel_id" length="75" />
+        </many-to-one>
+        <property name="buildName" type="string">
+            <column name="build_name" length="60" />
+        </property>
+        <property name="buildAddress" type="string">
+            <column name="build_address" />
+        </property>
+        <property name="buildComment" type="string">
+            <column name="build_comment" />
+        </property>
+        <set name="floors" table="floor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Floor" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Department" table="department">
+        <id name="deptId" type="string">
+            <column name="dept_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="department" class="com.managementsystem.guestroom.domain.hibernate.Department" fetch="select">
+            <column name="parentid" length="75" />
+        </many-to-one>
+        <many-to-one name="hotel" class="com.managementsystem.guestroom.domain.hibernate.Hotel" fetch="select">
+            <column name="hotel_id" length="75" />
+        </many-to-one>
+        <property name="deptCode" type="string">
+            <column name="dept_code" length="50" />
+        </property>
+        <property name="deptShortname" type="string">
+            <column name="dept_shortname" length="20" />
+        </property>
+        <property name="deptName" type="string">
+            <column name="dept_name" length="40" />
+        </property>
+        <property name="priority" type="java.lang.Integer">
+            <column name="priority" />
+        </property>
+        <property name="deptManager" type="string">
+            <column name="dept_manager" length="75" />
+        </property>
+        <property name="deptPhoto" type="string">
+            <column name="dept_photo" length="50" />
+        </property>
+        <property name="deptFax" type="string">
+            <column name="dept_fax" length="50" />
+        </property>
+        <property name="deptComment" type="string">
+            <column name="dept_comment" />
+        </property>
+        <set name="departments" table="department" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="parentid" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Department" />
+        </set>
+    </class>
+</hibernate-mapping>

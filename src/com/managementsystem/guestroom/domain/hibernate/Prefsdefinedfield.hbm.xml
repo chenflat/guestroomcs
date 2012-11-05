@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Prefsdefinedfield" table="prefsdefinedfield">
+        <id name="definedfieldid" type="string">
+            <column name="definedfieldid" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="prefstype" class="com.managementsystem.guestroom.domain.hibernate.Prefstype" fetch="select">
+            <column name="prefstype_id" length="75" />
+        </many-to-one>
+        <property name="fieldtitle" type="string">
+            <column name="fieldtitle" length="50" />
+        </property>
+        <property name="visible" type="java.lang.Boolean">
+            <column name="visible" />
+        </property>
+        <property name="fieldorder" type="java.lang.Integer">
+            <column name="fieldorder" />
+        </property>
+        <property name="fieldtype" type="string">
+            <column name="fieldtype" length="20" />
+        </property>
+        <property name="required" type="java.lang.Boolean">
+            <column name="required" />
+        </property>
+        <property name="defvalue" type="string">
+            <column name="defvalue" length="2000" />
+        </property>
+        <property name="outputsettings" type="string">
+            <column name="outputsettings" length="2000" />
+        </property>
+        <property name="inputsettings" type="string">
+            <column name="inputsettings" length="2000" />
+        </property>
+        <property name="validationrule" type="string">
+            <column name="validationrule" length="512" />
+        </property>
+        <property name="validationmessage" type="string">
+            <column name="validationmessage" length="512" />
+        </property>
+        <property name="helptext" type="string">
+            <column name="helptext" length="512" />
+        </property>
+        <property name="searchable" type="java.lang.Boolean">
+            <column name="searchable" />
+        </property>
+        <property name="showonedit" type="java.lang.Boolean">
+            <column name="showonedit" />
+        </property>
+        <property name="privatefield" type="java.lang.Boolean">
+            <column name="privatefield" />
+        </property>
+        <property name="editstyle" type="string">
+            <column name="editstyle" length="512" />
+        </property>
+        <set name="guestpreferences" table="guestpreference" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="definedfieldid" length="75" not-null="true" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Guestpreference" />
+        </set>
+    </class>
+</hibernate-mapping>

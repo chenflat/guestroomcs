@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Hotel" table="hotel">
+        <id name="hotelId" type="string">
+            <column name="hotel_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="district" class="com.managementsystem.guestroom.domain.platform.District" fetch="select">
+            <column name="district_id" length="10" />
+        </many-to-one>
+        <property name="hotelName" type="string">
+            <column name="hotel_name" length="50" />
+        </property>
+        <property name="hotelEnname" type="string">
+            <column name="hotel_enname" length="100" />
+        </property>
+        <property name="hotelAddress" type="string">
+            <column name="hotel_address" length="200" />
+        </property>
+        <property name="hotelPhone" type="string">
+            <column name="hotel_phone" length="20" />
+        </property>
+        <property name="hotelFax" type="string">
+            <column name="hotel_fax" length="20" />
+        </property>
+        <property name="hotelDesc" type="string">
+            <column name="hotel_desc" length="1000" />
+        </property>
+        <property name="hotelPhoto" type="string">
+            <column name="hotel_photo" length="200" />
+        </property>
+        <property name="hotelLong" type="string">
+            <column name="hotel_long" length="50" />
+        </property>
+        <property name="hotelLat" type="string">
+            <column name="hotel_lat" length="50" />
+        </property>
+        <property name="hotelComment" type="string">
+            <column name="hotel_comment" />
+        </property>
+        <set name="builds" table="build" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hotel_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Build" />
+        </set>
+        <set name="roomtypes" table="roomtype" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hotel_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Roomtype" />
+        </set>
+        <set name="departments" table="department" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hotel_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Department" />
+        </set>
+    </class>
+</hibernate-mapping>
