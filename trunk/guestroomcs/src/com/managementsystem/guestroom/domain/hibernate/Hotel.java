@@ -5,7 +5,6 @@ package com.managementsystem.guestroom.domain.hibernate;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.managementsystem.guestroom.domain.platform.District;
 
 
 /**
@@ -14,7 +13,7 @@ import com.managementsystem.guestroom.domain.platform.District;
 public class Hotel implements java.io.Serializable {
 
 	private String hotelId;
-	private com.managementsystem.guestroom.domain.platform.District district;
+	private District district;
 	private String hotelName;
 	private String hotelEnname;
 	private String hotelAddress;
