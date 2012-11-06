@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Room" table="room" catalog="guestroomcsdb">
+        <id name="roomNo" type="string">
+            <column name="room_no" length="75" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="floor" class="com.managementsystem.guestroom.domain.hibernate.Floor" fetch="select">
+            <column name="floor_id" length="75" />
+        </many-to-one>
+        <many-to-one name="roomtype" class="com.managementsystem.guestroom.domain.hibernate.Roomtype" fetch="select">
+            <column name="roomtype_id" length="75" />
+        </many-to-one>
+        <property name="roomName" type="string">
+            <column name="room_name" length="40" />
+        </property>
+        <property name="roomTowards" type="string">
+            <column name="room_towards" length="20" />
+        </property>
+        <property name="roomPhone" type="string">
+            <column name="room_phone" length="20" />
+        </property>
+        <property name="roomFax" type="string">
+            <column name="room_fax" length="20" />
+        </property>
+        <property name="roomPhoto" type="string">
+            <column name="room_photo" length="200" />
+        </property>
+        <property name="roomComment" type="string">
+            <column name="room_comment" length="200" />
+        </property>
+        <one-to-one name="roomconfig" class="com.managementsystem.guestroom.domain.hibernate.Roomconfig"></one-to-one>
+        <set name="roomassignedgrouieses" table="roomassignedgrouies" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="room_no" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Roomassignedgrouies" />
+        </set>
+    </class>
+</hibernate-mapping>

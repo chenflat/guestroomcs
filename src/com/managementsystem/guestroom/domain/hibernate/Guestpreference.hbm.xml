@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Guestpreference" table="guestpreference" catalog="guestroomcsdb">
+        <composite-id name="id" class="com.managementsystem.guestroom.domain.hibernate.GuestpreferenceId">
+            <key-property name="guestId" type="string">
+                <column name="guest_id" length="75" />
+            </key-property>
+            <key-property name="definedfieldid" type="string">
+                <column name="definedfieldid" length="75" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="guest" class="com.managementsystem.guestroom.domain.hibernate.Guest" update="false" insert="false" fetch="select">
+            <column name="guest_id" length="75" not-null="true" />
+        </many-to-one>
+        <many-to-one name="prefsdefinedfield" class="com.managementsystem.guestroom.domain.hibernate.Prefsdefinedfield" update="false" insert="false" fetch="select">
+            <column name="definedfieldid" length="75" not-null="true" />
+        </many-to-one>
+        <property name="prefsValue" type="string">
+            <column name="prefs_value" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
+import com.managementsystem.guestroom.domain.platform.Portal;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
@@ -28,7 +29,8 @@ public class SettingController extends AbstractController implements
 		logger.info("Requesting doGet of " + SettingController.class);
 		ModelAndView mav = new ModelAndView();
 		
-
+		Portal portalInfo = new Portal();
+		mav.addObject("portal", portalInfo);
 		
 		mav.setViewName(VIEW_NAME);
 		return mav;
