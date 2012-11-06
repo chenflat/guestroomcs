@@ -10,7 +10,7 @@ import com.managementsystem.util.dao.DaoSupport;
 /**
  * 数据字典列表数据操作类
  * */
-public interface ListsDao extends DaoSupport {
+public interface ListinfoDao extends DaoSupport {
 
 	/**
 	 * 获取列表名称字典
