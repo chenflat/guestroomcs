@@ -8,7 +8,7 @@
             <column name="hotel_id" length="75" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="district" class="com.managementsystem.guestroom.domain.platform.District" fetch="select">
+        <many-to-one name="district" class="com.managementsystem.guestroom.domain.hibernate.District" fetch="select">
             <column name="district_id" length="10" />
         </many-to-one>
         <property name="hotelName" type="string">
