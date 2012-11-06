@@ -4,4 +4,6 @@ import com.managementsystem.util.dao.DaoSupport;
 
 public interface EventlogDao extends DaoSupport {
 
+	
+	
 }

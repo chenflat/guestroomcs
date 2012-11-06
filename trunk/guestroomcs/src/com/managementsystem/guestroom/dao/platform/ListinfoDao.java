@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
 
-import com.managementsystem.guestroom.domain.platform.Listinfo;
+import com.managementsystem.guestroom.domain.hibernate.Listinfo;
 import com.managementsystem.util.dao.DaoSupport;
 
 /**
