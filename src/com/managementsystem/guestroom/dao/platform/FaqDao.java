@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
 
-import com.managementsystem.guestroom.domain.platform.Faqcategory;
+import com.managementsystem.guestroom.domain.hibernate.Faqcategory;
 import com.managementsystem.util.dao.DaoSupport;
 import com.managementsystem.util.dao.Page;
 
