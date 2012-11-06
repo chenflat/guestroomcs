@@ -45,7 +45,7 @@ public class FaqDaoImpl extends AbstractDaoSupport implements FaqDao {
 	}
 
 	@Override
-	public Page getFaqItemsByKeywords(int pageIndex, int pageSize,
+	public Page getFaqinfosByKeywords(int pageIndex, int pageSize,
 			Map<String, Object> mapKeywords) throws DataAccessException {
 		return pagedQuery(GETFAQITEMSBYKEYWORDS, pageIndex, pageSize,
 				mapKeywords);

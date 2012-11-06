@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.managementsystem.guestroom.domain.hibernate.Listinfo" table="listinfo" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Listinfo" table="listinfo">
         <id name="entryid" type="string">
             <column name="entryid" length="75" />
             <generator class="assigned" />
