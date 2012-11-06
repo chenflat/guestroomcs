@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.managementsystem.guestroom.domain.hibernate.Hotel;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
@@ -27,7 +28,8 @@ public class HotelmanageController extends AbstractController implements
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + HotelmanageController.class);
 		ModelAndView mav = new ModelAndView();
-
+		Hotel hotel = new Hotel();
+		mav.addObject("hotel", hotel);
 		mav.setViewName(VIEW_NAME);
 		return mav;
 	}

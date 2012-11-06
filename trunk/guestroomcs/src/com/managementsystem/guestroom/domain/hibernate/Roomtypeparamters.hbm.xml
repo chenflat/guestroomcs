@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Roomtypeparamters" table="roomtypeparamters" catalog="guestroomcsdb">
+        <id name="paramterId" type="string">
+            <column name="paramter_id" length="75" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="roomtype" class="com.managementsystem.guestroom.domain.hibernate.Roomtype" fetch="select">
+            <column name="roomtype_id" length="75" />
+        </many-to-one>
+        <property name="paramterKey" type="string">
+            <column name="paramter_key" length="50" />
+        </property>
+        <property name="paramterName" type="string">
+            <column name="paramter_name" length="50" />
+        </property>
+        <property name="paramterComment" type="string">
+            <column name="paramter_comment" length="200" />
+        </property>
+        <property name="paramterLocation" type="string">
+            <column name="paramter_location" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>
