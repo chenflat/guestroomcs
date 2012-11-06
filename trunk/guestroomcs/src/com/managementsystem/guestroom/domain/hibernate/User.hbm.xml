@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.User" table="user" catalog="guestroomcsdb">
+        <id name="userId" type="string">
+            <column name="user_id" length="75" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" length="50" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" />
+        </property>
+        <property name="realname" type="string">
+            <column name="realname" length="30" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+                <comment>0&#189;&#251;&#211;&#195; 1&#198;&#244;&#211;&#195;</comment>
+            </column>
+        </property>
+        <property name="lastipaddress" type="string">
+            <column name="lastipaddress" length="50" />
+        </property>
+        <set name="roles" table="user_role" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="75" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.managementsystem.guestroom.domain.hibernate.Role">
+                <column name="role_id" length="75" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="shiftworks" table="shiftwork" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Shiftwork" />
+        </set>
+    </class>
+</hibernate-mapping>

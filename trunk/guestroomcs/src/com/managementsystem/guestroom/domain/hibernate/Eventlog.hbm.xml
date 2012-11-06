@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Eventlog" table="eventlog" catalog="guestroomcsdb">
+        <id name="logUuid" type="string">
+            <column name="log_uuid" length="75" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="eventlogtype" class="com.managementsystem.guestroom.domain.hibernate.Eventlogtype" fetch="select">
+            <column name="logtype_key" length="75" />
+        </many-to-one>
+        <property name="userId" type="string">
+            <column name="user_id" length="75" />
+        </property>
+        <property name="userName" type="string">
+            <column name="user_name" length="50" />
+        </property>
+        <property name="logCreatedate" type="timestamp">
+            <column name="log_createdate" length="19" />
+        </property>
+        <property name="logServername" type="string">
+            <column name="log_servername" length="50" />
+        </property>
+        <property name="logProperties" type="string">
+            <column name="log_properties" length="65535" />
+        </property>
+        <property name="logNotificationpending" type="java.lang.Boolean">
+            <column name="log_notificationpending" />
+        </property>
+    </class>
+</hibernate-mapping>
