@@ -49,7 +49,7 @@ public interface FaqDao extends DaoSupport {
 	 * 
 	 * @return 查找结果
 	 * */
-	public Page getFaqItemsByKeywords(int pageIndex, int pageSize,
+	public Page getFaqinfosByKeywords(int pageIndex, int pageSize,
 			Map<String, Object> mapKeywords) throws DataAccessException;
 
 }
