@@ -4,44 +4,34 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.managementsystem.guestroom.dao.platform.PortalDao;
 import com.managementsystem.guestroom.domain.hibernate.Portal;
 import com.managementsystem.guestroom.service.platform.PortalService;
+import com.managementsystem.util.service.AbstractServiceSupport;
 
 @Service
-public class PortalServiceImpl implements PortalService {
+public class PortalServiceImpl extends AbstractServiceSupport<Portal, String>
+		implements PortalService {
 
 	private final Log logger = LogFactory.getLog(PortalServiceImpl.class);
-	
+
+	private PortalDao portalDao;
+
+	public PortalDao getPortalDao() {
+		return portalDao;
+	}
+
 	@Autowired
-	private PortalDao protalDao;
-	
-	@Override
-	public void savePortalinfo(Portal portal) {
-		
+	public void setPortalDao(PortalDao portalDao) {
+		this.portalDao = portalDao;
+		setDaoSupport(portalDao);
 	}
 
-	@Override
-	public void updatePortalinfo(Portal portal) {
-
-	}
-
-	@Override
-	public void deletePortalinfo(String portalId) {
-
-	}
-
-	@Override
-	public Portal getPortalinfo(String portalId) {
-
-		return null;
-	}
-
-	@Override
+	@Transactional(readOnly = true)
 	public Portal getDefaultPortalinfo() {
-
-		return null;
+		return portalDao.getDefaultPortalInfo();
 	}
 
 }
