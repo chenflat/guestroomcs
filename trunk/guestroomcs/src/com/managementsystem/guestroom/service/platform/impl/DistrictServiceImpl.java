@@ -14,39 +14,22 @@ import com.managementsystem.guestroom.dao.platform.DistrictDao;
 import com.managementsystem.guestroom.domain.hibernate.District;
 import com.managementsystem.guestroom.service.platform.DistrictService;
 import com.managementsystem.util.dao.Page;
+import com.managementsystem.util.service.AbstractServiceSupport;
 
 @Service
-public class DistrictServiceImpl implements DistrictService {
+public class DistrictServiceImpl extends
+		AbstractServiceSupport<District, String> implements DistrictService {
 
-	@Autowired
 	private DistrictDao districtDao;
 
-	@Transactional
-	public void addDistrict(District District) {
-		if (!StringUtils.hasLength(District.getDistrict().getDistrictId())) {
-			District.setDistrict(null);
-		}
-		districtDao.save(District);
+	public DistrictDao getDistrictDao() {
+		return districtDao;
 	}
 
-	@Transactional
-	public void updateDistrict(District District) {
-		if (!StringUtils.hasLength(District.getDistrict().getDistrictId())) {
-			District.setDistrict(null);
-		}
-		districtDao.update(District);
-	}
-
-	@Transactional
-	public void deleteDistrict(String districtId) {
-		District District = getDistrict(districtId);
-		if (District != null)
-			districtDao.delete(District);
-	}
-
-	@Transactional(readOnly = true)
-	public District getDistrict(String districtId) {
-		return (District) districtDao.get(District.class, districtId);
+	@Autowired
+	public void setDistrictDao(DistrictDao districtDao) {
+		this.districtDao = districtDao;
+		setDaoSupport(districtDao);
 	}
 
 	@Transactional(readOnly = true)
