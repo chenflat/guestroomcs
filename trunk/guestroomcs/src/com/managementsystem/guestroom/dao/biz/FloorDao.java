@@ -18,6 +18,11 @@ public interface FloorDao extends DaoSupport {
 
 	/**
 	 * 获取指定建筑ID的楼层数据
+	 * 
+	 * @param buildId
+	 *            建筑ID
+	 * 
+	 * @return 建筑楼层
 	 * */
 	public List<Floor> getFloorByBuild(String buildId)
 			throws DataAccessException;
