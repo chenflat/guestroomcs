@@ -1,7 +1,5 @@
 package com.managementsystem.guestroom.domain.hibernate;
 
-// Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1
-
 import java.util.Date;
 
 /**
