@@ -10,12 +10,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
 
 import com.managementsystem.guestroom.dao.biz.GuestDao;
 import com.managementsystem.guestroom.domain.hibernate.Guest;
 import com.managementsystem.util.dao.AbstractDaoSupport;
 import com.managementsystem.util.dao.Page;
 
+@Repository
 public class GuestDaoImpl extends AbstractDaoSupport implements GuestDao {
 
 	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(

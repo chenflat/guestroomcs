@@ -12,12 +12,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Repository;
 
 import com.managementsystem.guestroom.dao.biz.FloorDao;
 import com.managementsystem.guestroom.domain.hibernate.Floor;
 import com.managementsystem.util.dao.AbstractDaoSupport;
 import com.managementsystem.util.dao.Page;
 
+@Repository
 public class FloorDaoImpl extends AbstractDaoSupport implements FloorDao {
 
 	private final Set<Class<?>> dataTypes = new HashSet<Class<?>>(
@@ -25,6 +27,7 @@ public class FloorDaoImpl extends AbstractDaoSupport implements FloorDao {
 
 	private final String GETFLOORBYBUILD = "from Floor where build.buildId=? order by floorNo";
 	private final String GETFLOORS="from Floor order by floorNo";
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
