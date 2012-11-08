@@ -2,8 +2,11 @@ package com.managementsystem.guestroom.service.biz.impl;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.managementsystem.guestroom.dao.biz.BuildDao;
 import com.managementsystem.guestroom.domain.hibernate.Build;
 import com.managementsystem.guestroom.service.biz.BuildService;
 import com.managementsystem.util.service.AbstractServiceSupport;
@@ -12,16 +15,26 @@ import com.managementsystem.util.service.AbstractServiceSupport;
 public class BuildServiceImpl extends AbstractServiceSupport<Build, String>
 		implements BuildService {
 
-	@Override
-	public Set<Build> getBuilds() {
-		// TODO Auto-generated method stub
-		return null;
+	private BuildDao buildDao;
+
+	public BuildDao getBuildDao() {
+		return buildDao;
 	}
 
-	@Override
+	@Autowired
+	public void setBuildDao(BuildDao buildDao) {
+		this.buildDao = buildDao;
+		setDaoSupport(buildDao);
+	}
+
+	@Transactional(readOnly = true)
+	public Set<Build> getBuilds() {
+		return buildDao.getBuilds();
+	}
+
+	@Transactional(readOnly = true)
 	public Set<Build> getBuildsByHotelId(String hotelId) {
-		// TODO Auto-generated method stub
-		return null;
+		return buildDao.getBuildsByHotelId(hotelId);
 	}
 
 }
