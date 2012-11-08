@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.managementsystem.guestroom.dao.biz.BuildDao;
 import com.managementsystem.guestroom.domain.hibernate.Build;
@@ -34,6 +35,9 @@ public class BuildServiceImpl extends AbstractServiceSupport<Build, String>
 
 	@Transactional(readOnly = true)
 	public Set<Build> getBuildsByHotelId(String hotelId) {
+		if (!StringUtils.hasLength(hotelId)) {
+			throw new NullPointerException("hotelId is null or empty");
+		}
 		return buildDao.getBuildsByHotelId(hotelId);
 	}
 
