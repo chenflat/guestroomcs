@@ -12,43 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.managementsystem.guestroom.domain.hibernate.Build;
-import com.managementsystem.guestroom.domain.hibernate.Hotel;
+import com.managementsystem.guestroom.domain.hibernate.Roomtype;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
-import com.managementsystem.guestroom.service.biz.BuildService;
-import com.managementsystem.guestroom.service.biz.HotelService;
+import com.managementsystem.guestroom.service.biz.RoomtypeService;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
 @Controller
-@RequestMapping("hotel/buildmanage")
-public class BuildmanageController extends AbstractController implements
+@RequestMapping("/hotel/roomtype")
+public class RoomtypeController extends AbstractController implements
 		IController {
+	private final Log logger = LogFactory.getLog(RoomtypeController.class);
 
-	private final Log logger = LogFactory.getLog(BuildmanageController.class);
-
-	public static final String VIEW_NAME = "hotel/buildmanage";
-
-	@Autowired
-	private BuildService buildService;
+	private final String VIEW_NAME = "hotel/roomtype";
 
 	@Autowired
-	private HotelService hotelService;
+	private RoomtypeService roomtypeService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
-		logger.info("Requesting doGet of " + BuildmanageController.class);
+		logger.info("Requesting doGet of" + RoomtypeController.class);
 		ModelAndView mav = new ModelAndView();
-		Set<Build> builds = null;
-		Hotel hotel = hotelService.getDefaultHotel();
-		String message = null;
-		if (hotel != null) {
-			builds = buildService.getBuildsByHotelId(hotel.getHotelId());
-		} else {
-			message = "error.object.null";
-		}
-		mav.addObject("message", message);
-		mav.addObject("builds", builds);
+		Set<Roomtype> roomtypes = roomtypeService.getRoomtypes();
+		mav.addObject("roomtypes", roomtypes);
 		mav.setViewName(VIEW_NAME);
 		return mav;
 	}
@@ -60,7 +46,6 @@ public class BuildmanageController extends AbstractController implements
 
 	@Override
 	protected List<Breadcrumb> getBreadcrumbs() {
-
 		return null;
 	}
 

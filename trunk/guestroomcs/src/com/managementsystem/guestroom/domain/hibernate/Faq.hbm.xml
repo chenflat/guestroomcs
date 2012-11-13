@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
+
+<hibernate-mapping auto-import="true" default-lazy="false">
     <class name="com.managementsystem.guestroom.domain.hibernate.Faq" table="faq" catalog="guestroomcsdb">
         <id name="faqId" type="string">
             <column name="faq_id" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="faqcategory" class="com.managementsystem.guestroom.domain.hibernate.Faqcategory" fetch="select">
             <column name="cat_id" length="75" />

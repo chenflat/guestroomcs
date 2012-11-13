@@ -22,7 +22,7 @@ public class BuildDaoImpl extends AbstractDaoSupport implements BuildDao {
 			Arrays.asList(new Class<?>[] { Build.class }));
 
 	private final String GETBUILDS = "from Build";
-	private final String GETBUILDSBYHOTELID = "from Build where hotel.hotelId=?";
+	private final String GETBUILDSBYHOTELID = "from Build where hotel.hotelId=? order by buildName";
 
 	@Autowired
 	private SessionFactory sessionFactory;

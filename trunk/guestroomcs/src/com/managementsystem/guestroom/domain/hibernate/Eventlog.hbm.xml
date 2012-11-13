@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
+
+<hibernate-mapping auto-import="true" default-lazy="false">
     <class name="com.managementsystem.guestroom.domain.hibernate.Eventlog" table="eventlog" catalog="guestroomcsdb">
         <id name="logUuid" type="string">
             <column name="log_uuid" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="eventlogtype" class="com.managementsystem.guestroom.domain.hibernate.Eventlogtype" fetch="select">
             <column name="logtype_key" length="75" />

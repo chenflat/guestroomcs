@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
+
+<hibernate-mapping auto-import="true" default-lazy="false">
     <class name="com.managementsystem.guestroom.domain.hibernate.Resource" table="resource" catalog="guestroomcsdb">
         <id name="resourceId" type="string">
             <column name="resource_id" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="resource" class="com.managementsystem.guestroom.domain.hibernate.Resource" fetch="select">
             <column name="parent_id" length="75" />
@@ -33,13 +33,13 @@
                 <comment>0&#189;&#251;&#211;&#195; 1&#198;&#244;&#211;&#195;</comment>
             </column>
         </property>
-        <set name="resources" table="resource" inverse="true" lazy="true" fetch="select">
+        <set name="resources" table="resource" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="parent_id" length="75" />
             </key>
             <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Resource" />
         </set>
-        <set name="roles" table="role_resource" inverse="true" lazy="true" fetch="select">
+        <set name="roles" table="role_resource" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="resource_id" length="75" not-null="true" />
             </key>

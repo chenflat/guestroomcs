@@ -1,22 +1,38 @@
 package com.managementsystem.guestroom.web.hotel;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
+import com.managementsystem.guestroom.service.biz.HotelService;
+import com.managementsystem.guestroom.validation.HotelValidator;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
+import com.managementsystem.util.io.FileSystemObject;
 
 @Controller
-@RequestMapping("hotel/hotelmanage")
+@RequestMapping("/hotel/hotelmanage")
 public class HotelmanageController extends AbstractController implements
 		IController {
 
@@ -24,14 +40,60 @@ public class HotelmanageController extends AbstractController implements
 
 	public static final String VIEW_NAME = "hotel/hotelmanage";
 
+	@Autowired
+	private HotelService hotelService;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + HotelmanageController.class);
 		ModelAndView mav = new ModelAndView();
-		Hotel hotel = new Hotel();
+		Hotel hotel = hotelService.getDefaultHotel();
+		if (hotel == null)
+			hotel = new Hotel();
+
 		mav.addObject("hotel", hotel);
 		mav.setViewName(VIEW_NAME);
 		return mav;
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public void processSubmit(@ModelAttribute("hotel") Hotel hotel,
+			@RequestParam MultipartFile file, Model model,
+			BindingResult result, SessionStatus status,
+			HttpServletRequest request) {
+		new HotelValidator().validate(hotel, result);
+		if (result.hasErrors()) {
+			logger.error(result);
+			model.addAttribute("message", result.toString());
+		} else {
+			String message = "";
+			String photoPath = "";
+			if (file.getSize() > 0) {
+				String realPath = request.getSession().getServletContext()
+						.getRealPath("/");
+				logger.info(realPath);
+				String filePath = "/uploadfiles/hotel/";
+				try {
+					FileSystemObject.SaveFileFromInputStream(
+							file.getInputStream(), realPath + filePath,
+							file.getOriginalFilename());
+					message += "File '" + file.getOriginalFilename()
+							+ "' uploaded successfully";
+					photoPath = filePath + file.getOriginalFilename();
+					hotel.setHotelPhoto(photoPath);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (StringUtils.hasLength(hotel.getHotelId()))
+				hotelService.update(hotel);
+			else
+				hotelService.save(hotel);
+			status.setComplete();
+
+			model.addAttribute("message", message);
+		}
 	}
 
 	@Override

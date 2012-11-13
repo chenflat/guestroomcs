@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
+
+<hibernate-mapping auto-import="true" default-lazy="false">
     <class name="com.managementsystem.guestroom.domain.hibernate.Floor" table="floor" catalog="guestroomcsdb">
         <id name="floorId" type="string">
             <column name="floor_id" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="build" class="com.managementsystem.guestroom.domain.hibernate.Build" fetch="select">
             <column name="build_id" length="75" />
@@ -20,7 +20,7 @@
         <property name="floorComment" type="string">
             <column name="floor_comment" />
         </property>
-        <set name="rooms" table="room" inverse="true" lazy="true" fetch="select">
+        <set name="rooms" table="room" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="floor_id" length="75" />
             </key>

@@ -2,6 +2,7 @@ package com.managementsystem.guestroom.service.biz;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.managementsystem.guestroom.domain.hibernate.Floor;
 import com.managementsystem.util.dao.Page;
@@ -21,7 +22,7 @@ public interface FloorService extends ServiceSupport<Floor, String> {
 	 * 
 	 * @return 建筑楼层
 	 * */
-	public List<Floor> getFloorByBuild(String buildId);
+	public Set<Floor> getFloorByBuild(String buildId);
 
 	/**
 	 * 获取楼层分页数据

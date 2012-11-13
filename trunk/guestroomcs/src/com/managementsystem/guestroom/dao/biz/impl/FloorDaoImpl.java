@@ -1,9 +1,9 @@
 package com.managementsystem.guestroom.dao.biz.impl;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,18 +25,18 @@ public class FloorDaoImpl extends AbstractDaoSupport implements FloorDao {
 	private final Set<Class<?>> dataTypes = new HashSet<Class<?>>(
 			Arrays.asList(new Class<?>[] { Floor.class }));
 
-	private final String GETFLOORBYBUILD = "from Floor where build.buildId=? order by floorNo";
-	private final String GETFLOORS="from Floor order by floorNo";
+	private final String GETFLOORBYBUILD = "from Floor where build.buildId=? order by floorNo*1";
+	private final String GETFLOORS="from Floor order by floorNo*1";
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Floor> getFloorByBuild(String buildId)
+	public Set<Floor> getFloorByBuild(String buildId)
 			throws DataAccessException {
-		Query query = createQuery(GETFLOORBYBUILD);
-		return new ArrayList<Floor>(query.list());
+		Query query = createQuery(GETFLOORBYBUILD,buildId);
+		return new LinkedHashSet<Floor>(query.list());
 	}
 
 	@Override

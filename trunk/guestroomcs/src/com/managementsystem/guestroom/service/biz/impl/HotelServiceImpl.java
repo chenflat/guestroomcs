@@ -32,4 +32,9 @@ public class HotelServiceImpl extends AbstractServiceSupport<Hotel, String>
 		return hotelDao.getHotels();
 	}
 
+	@Transactional(readOnly = true)
+	public Hotel getDefaultHotel() {
+		return hotelDao.getDefaultHotel();
+	}
+
 }
