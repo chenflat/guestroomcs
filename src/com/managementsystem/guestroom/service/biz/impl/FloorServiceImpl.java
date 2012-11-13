@@ -3,6 +3,7 @@ package com.managementsystem.guestroom.service.biz.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class FloorServiceImpl extends AbstractServiceSupport<Floor, String>
 	}
 
 	@Transactional(readOnly = true)
-	public List<Floor> getFloorByBuild(String buildId) {
+	public Set<Floor> getFloorByBuild(String buildId) {
 		return floorDao.getFloorByBuild(buildId);
 	}
 

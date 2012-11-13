@@ -19,5 +19,9 @@ public interface HotelDao extends DaoSupport {
 	 * */
 	public Set<Hotel> getHotels() throws DataAccessException;
 	
+	/**
+	 * 获取默认酒店数据
+	 * */
+	public Hotel getDefaultHotel() throws DataAccessException;
 	
 }

@@ -6,7 +6,7 @@
     <class name="com.managementsystem.guestroom.domain.hibernate.Department" table="department" catalog="guestroomcsdb">
         <id name="deptId" type="string">
             <column name="dept_id" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="department" class="com.managementsystem.guestroom.domain.hibernate.Department" fetch="select">
             <column name="parentid" length="75" />

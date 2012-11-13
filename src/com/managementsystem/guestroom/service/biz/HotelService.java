@@ -15,4 +15,8 @@ public interface HotelService extends ServiceSupport<Hotel, String> {
 	 * */
 	public Set<Hotel> getHotels();
 
+	/**
+	 * 获取默认酒店数据
+	 * */
+	public Hotel getDefaultHotel();
 }

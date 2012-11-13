@@ -35,4 +35,24 @@ public class RoomServiceImpl extends AbstractServiceSupport<Room, String>
 		return roomDao.getRoomsByFloorId(floorId);
 	}
 
+	@Transactional(readOnly = true)
+	public Set<Room> getRoomsByDefHotel() {
+		return roomDao.getRoomsByDefHotel();
+	}
+
+	@Transactional(readOnly = true)
+	public Set<Room> getRoomsByBuildId(String buildId) {
+		return roomDao.getRoomsByBuildId(buildId);
+	}
+
+	@Transactional(readOnly = true)
+	public long getCountRoomsByBuildId(String buildId) {
+		return roomDao.getCountRoomsByBuildId(buildId);
+	}
+
+	@Transactional(readOnly = true)
+	public long getCountRoomsByDefHotel() {
+		return roomDao.getCountRoomsByDefHotel();
+	}
+
 }

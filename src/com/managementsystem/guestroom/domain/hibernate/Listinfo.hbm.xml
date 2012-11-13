@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
+
+<hibernate-mapping auto-import="true" default-lazy="false">
     <class name="com.managementsystem.guestroom.domain.hibernate.Listinfo" table="listinfo">
         <id name="entryid" type="string">
             <column name="entryid" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="listinfo" class="com.managementsystem.guestroom.domain.hibernate.Listinfo" fetch="select">
             <column name="parentid" length="75" />
@@ -47,7 +47,7 @@
         <property name="lastmodifiedondate" type="timestamp">
             <column name="lastmodifiedondate" length="19" />
         </property>
-        <set name="listinfos" table="listinfo" inverse="true" lazy="true" fetch="select">
+        <set name="listinfos" table="listinfo" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="parentid" length="75" />
             </key>

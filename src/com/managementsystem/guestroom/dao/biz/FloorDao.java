@@ -2,6 +2,7 @@ package com.managementsystem.guestroom.dao.biz;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
 
@@ -24,7 +25,7 @@ public interface FloorDao extends DaoSupport {
 	 * 
 	 * @return 建筑楼层
 	 * */
-	public List<Floor> getFloorByBuild(String buildId)
+	public Set<Floor> getFloorByBuild(String buildId)
 			throws DataAccessException;
 
 	/**

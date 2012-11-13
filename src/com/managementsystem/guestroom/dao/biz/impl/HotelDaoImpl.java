@@ -34,6 +34,12 @@ public class HotelDaoImpl extends AbstractDaoSupport implements HotelDao {
 	}
 
 	@Override
+	public Hotel getDefaultHotel() throws DataAccessException {
+		Query query = createQuerySingleResult(GETHOTELS);
+		return (query.list().size()) > 0 ? (Hotel) query.list().get(0) : null;
+	}
+
+	@Override
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
