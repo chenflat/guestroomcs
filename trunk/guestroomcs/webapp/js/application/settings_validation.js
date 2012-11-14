@@ -18,9 +18,9 @@
 					$(element).closest('div').removeClass("f_error");
 				},
                 rules: {
-                	systemName: { required: true, minlength: 3 },
-                	systemEnname: { required: true, minlength: 3 },
-                	copyRight: { required: true, minlength: 3 }
+                	portalName: { required: true, minlength: 3 },
+                	portalEnname: { required: true, minlength: 3 },
+                	copyright: { required: true, minlength: 3 }
 				},
 				invalidHandler: function(form, validator) {
 					$.sticky("There are some errors. Please corect them and submit again.", {autoclose : 5000, position: "top-right", type: "st-error" });

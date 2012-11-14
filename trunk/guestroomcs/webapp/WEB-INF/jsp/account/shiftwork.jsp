@@ -11,3 +11,40 @@
 	Description:
  -->
 
+<div class="row-fluid">
+	<div class="span12">
+		<form id="shiftwork" method="post" class="form-horizontal">
+			<div class="formRow">
+				<h4 class="text-info">服务连通状况</h4>
+
+				<div class="control-group">
+					<label class="control-label switch" for="tb">服务连通情况</label> <label
+						class="controls switch"> <select name="keyNumber"
+						id="keyNumber">
+							<option>自适应</option>
+
+					</select> <span></span> </label>
+				</div>
+				<div class="control-group">
+					<label class="control-label switch" for="tb">最近一次服务关闭维护时间</label> <label
+						class="controls switch"> 2012-11-05<span></span> </label>
+				</div>
+			</div>
+			<div class="formRow">
+				<button class="btn btn-success">交接班</button>
+			</div>
+			<div class="formRow">
+				<table class="table table-bordered">
+					<tr  class="success">
+						<th>楼层</th>
+						<th>交班人</th>
+						<th>接班人</th>
+						<th>时间</th>
+					</tr>
+					<tr></tr>
+				</table>
+
+			</div>
+		</form>
+	</div>
+</div>

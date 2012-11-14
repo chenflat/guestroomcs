@@ -159,6 +159,9 @@
 .border-color-grayDark {
   border-color: #525252 !important;
 }
+.border-color-black {
+  border-color: #000 !important;
+}
 /*
  * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov

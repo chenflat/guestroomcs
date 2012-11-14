@@ -16,10 +16,11 @@
 
 <div class="heading clearfix">
 	<ul class="nav nav-pills pull-right sepH_b">
-		<li class="active"><a href="#">列表</a>
+		<li class="active"><a href="#">列表</a></li>
+		<li><a href="#">缩略图</a>
 		</li>
-		<li><a href="#">缩略图</a></li>
-		<li><a href="#">详细</a></li>
+		<li><a href="#">详细</a>
+		</li>
 	</ul>
 </div>
 
@@ -36,8 +37,7 @@
 						<div class="tile-small">
 							<ul class="tile-smaill-list">
 								<c:forEach var="i" begin="1" end="30">
-									<li><c:out value="${i}"></c:out>
-									</li>
+									<li><c:out value="${i}"></c:out></li>
 								</c:forEach>
 							</ul>
 						</div>

@@ -19,6 +19,7 @@
 	<import resource="spring-security.xml" />
 
 	<!-- Configure Apache Tiles for the view -->
+	<!-- 运行单元测试时请注释掉此Bean,否则会报错  -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
@@ -77,7 +78,7 @@
 		p:dataSource-ref="dataSource">
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:com/managementsystem/guestroom/domain/*.hbm.xml
+				<value>classpath:com/managementsystem/guestroom/domain/hibernate/*.hbm.xml
 				</value>
 			</list>
 		</property>
@@ -116,8 +117,12 @@
 	</bean>
 
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
+	<mvc:resources mapping="/favicon.ico" location="/img/favicon.ico" />
 	<mvc:resources mapping="/img/**" location="/img/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />

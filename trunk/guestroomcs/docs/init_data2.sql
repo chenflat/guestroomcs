@@ -7,7 +7,7 @@ insert into role (role_id,role_name,role_desc,status,issys) values('2','ROLE_NOR
 insert into user_role(user_id,role_id) values ('1','1');
 insert into user_role(user_id,role_id) values ('2','2');
 
-
+INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('0','所有权限',NULL,'url',0,'/**','',1);
 INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('1','客房服务',NULL,'url',0,'/service/requests','',1);
 INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('2','服务请求','1','url',0,'/service/requests','',1);
 INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('3','保洁','2','url',0,'/service/requests?act=housekeeping','',1);
@@ -48,4 +48,6 @@ INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,
 INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('33','建筑管理','31','url',0,'/hotel/buildmanage','',1);
 INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('34','客房管理','31','url',0,'/hotel/roommanage','',1);
 INSERT INTO resource(resource_id,resource_name,parent_id,resource_type,priority,resource_string,resource_desc,status) VALUES ('35','客房类型','31','url',0,'/hotel/roomtype','',1);
+
+insert into role_resource(role_id,resource_id) values (1,0)
 

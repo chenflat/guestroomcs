@@ -4,8 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Common Nav -->
 <c:set var="requestURL"
@@ -24,6 +23,10 @@
 	value="${pageContext.request.contextPath}/account/" />
 <c:set var="settingURL"
 	value="${pageContext.request.contextPath}/system/settings" />
+<c:set var="hotelURL"
+	value="${pageContext.request.contextPath}/hotel/" />
+<c:set var="roomURL"
+	value="${pageContext.request.contextPath}/hotel/roommanage" />
 <header>
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
@@ -50,7 +53,7 @@
 					<c:when test="${fn:contains(requestURL,accountURL)}">
 						<spring:message code="nav.account.settings" />
 					</c:when>
-					<c:when test="${requestURL eq settingURL}">
+					<c:when test="${fn:contains(requestURL,settingURL) or fn:contains(requestURL,hotelURL)}">
 						<spring:message code="nav.system" />
 					</c:when>
 					<c:otherwise>
@@ -82,7 +85,7 @@
 				<li class="hidden-phone hidden-tablet">
 					<div class="nb_boxes clearfix">
 						<a data-toggle="modal" data-backdrop="static" href="#myMail"
-							class="label ttip_b" oldtitle="New messages">25 <i
+							class="label ttip_b" oldtitle="New messages">20 <i
 							class="splashy-mail_light"></i> </a> <a data-toggle="modal"
 							data-backdrop="static" href="#myTasks" class="label ttip_b"
 							oldtitle="New tasks">10 <i class="splashy-calendar_week"></i>
@@ -108,7 +111,7 @@
 						<li><a href="<c:url value="/user/usermanage" />"><i
 								class="icon-user"></i> <spring:message code="nav.user" /> </a>
 						</li>
-						<li><a href="<c:url value="/user/shiftwork" />"><i
+						<li><a href="<c:url value="/account/shiftwork" />"><i
 								class="icon-thumbs-up"></i> <spring:message
 									code="nav.account.shiftwork" /> </a>
 						</li>
@@ -145,7 +148,8 @@
 				</li>
 			</ul>
 
-			<c:if test="${fn:contains(requestURL,userURL)}">
+			<c:choose>
+				<c:when test="${fn:contains(requestURL,userURL)}">
 				<a data-target=".nav-collapse" data-toggle="collapse"
 					class="btn_menu"> <span class="icon-align-justify icon-white"></span>
 				</a>
@@ -180,108 +184,17 @@
 					</ul>
 					</nav>
 				</div>
-			</c:if>
+				</c:when>
+				<c:when test="${fn:contains(requestURL,roomURL)}">
+					<%@ include file="../jsp/hotel/room_nav.jsp" %>
+				</c:when>
+				<c:when test="${fn:contains(requestURL,'/hotel/roomtype')}">
+					<%@ include file="../jsp/hotel/roomtype_nav.jsp" %>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </div>
-<div class="modal hide fade" id="myMail">
-	<div class="modal-header">
-		<button class="close" data-dismiss="modal">×</button>
-		<h3>新消息</h3>
-	</div>
-	<div class="modal-body">
-		<div class="alert alert-info">In this table jquery plugin turns
-			a table row into a clickable link.</div>
-		<table class="table table-condensed table-striped" data-rowlink="a">
-			<thead>
-				<tr>
-					<th>Sender</th>
-					<th>Subject</th>
-					<th>Date</th>
-					<th>Size</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Declan Pamphlett</td>
-					<td><a href="javascript:void(0)">Lorem ipsum dolor sit
-							amet</a></td>
-					<td>23/05/2012</td>
-					<td>25KB</td>
-				</tr>
-				<tr>
-					<td>Erin Church</td>
-					<td><a href="javascript:void(0)">Lorem ipsum dolor sit
-							amet</a></td>
-					<td>24/05/2012</td>
-					<td>15KB</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="modal-footer">
-		<a href="javascript:void(0)" class="btn">Go to mailbox</a>
-	</div>
-</div>
-<div class="modal hide fade" id="myTasks">
-	<div class="modal-header">
-		<button class="close" data-dismiss="modal">×</button>
-		<h3>新任务</h3>
-	</div>
-	<div class="modal-body">
-		<div class="alert alert-info">In this table jquery plugin turns
-			a table row into a clickable link.</div>
-		<table class="table table-condensed table-striped" data-rowlink="a">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>Summary</th>
-					<th>Updated</th>
-					<th>Priority</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>P-23</td>
-					<td><a href="javascript:void(0)">Admin should not break if
-							URL…</a></td>
-					<td>23/05/2012</td>
-					<td class="tac"><span class="label label-important">High</span>
-					</td>
-					<td>Open</td>
-				</tr>
-				<tr>
-					<td>P-18</td>
-					<td><a href="javascript:void(0)">Displaying submenus in
-							custom…</a></td>
-					<td>22/05/2012</td>
-					<td class="tac"><span class="label label-warning">Medium</span>
-					</td>
-					<td>Reopen</td>
-				</tr>
-				<tr>
-					<td>P-25</td>
-					<td><a href="javascript:void(0)">Featured image on post
-							types…</a></td>
-					<td>22/05/2012</td>
-					<td class="tac"><span class="label label-success">Low</span></td>
-					<td>Updated</td>
-				</tr>
-				<tr>
-					<td>P-10</td>
-					<td><a href="javascript:void(0)">Multiple feed fixes and…</a>
-					</td>
-					<td>17/05/2012</td>
-					<td class="tac"><span class="label label-warning">Medium</span>
-					</td>
-					<td>Open</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="modal-footer">
-		<a href="javascript:void(0)" class="btn">Go to task manager</a>
-	</div>
-</div>
+<%@ include file="../jsp/account/mymail.jsp" %>
+<%@ include file="../jsp/account/mytasks.jsp" %>
 </header>
