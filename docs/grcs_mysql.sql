@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-11-02 13:00:13                          */
+/* Created on:     2012-11-06 09:42:09                          */
 /*==============================================================*/
 
 
@@ -24,11 +24,13 @@ drop table if exists guest;
 
 drop table if exists guestpreference;
 
-drop table if exists handover;
-
 drop table if exists hotel;
 
-drop table if exists lists;
+drop table if exists listinfo;
+
+drop table if exists portal;
+
+drop table if exists portalsettings;
 
 drop table if exists prefsdefinedfield;
 
@@ -52,9 +54,7 @@ drop table if exists roomtype;
 
 drop table if exists roomtypeparamters;
 
-drop table if exists system;
-
-drop table if exists systemsetting;
+drop table if exists shiftwork;
 
 drop table if exists user;
 
@@ -226,20 +226,6 @@ create table guestpreference
 );
 
 /*==============================================================*/
-/* Table: handover                                              */
-/*==============================================================*/
-create table handover
-(
-   handover_id          bigint not null,
-   user_id              varchar(75),
-   handover_starttime   datetime,
-   handover_endtime     datetime,
-   createdOnDate        datetime,
-   comment              varchar(500),
-   primary key (handover_id)
-);
-
-/*==============================================================*/
 /* Table: hotel                                                 */
 /*==============================================================*/
 create table hotel
@@ -260,9 +246,9 @@ create table hotel
 );
 
 /*==============================================================*/
-/* Table: lists                                                 */
+/* Table: listinfo                                              */
 /*==============================================================*/
-create table lists
+create table listinfo
 (
    entryid              varchar(75) not null,
    listname             varchar(50) not null,
@@ -279,6 +265,46 @@ create table lists
    lastmodifiedbyuserId varchar(75),
    lastmodifiedondate   datetime,
    primary key (entryid)
+);
+
+/*==============================================================*/
+/* Table: portal                                                */
+/*==============================================================*/
+create table portal
+(
+   portal_id            varchar(75) not null,
+   portal_name          varchar(40),
+   portal_enname        varchar(100),
+   portal_desc          varchar(200),
+   copyright            varchar(100),
+   expirydate           datetime,
+   administratorid      varchar(75),
+   administratorroleid  varchar(75),
+   registeredroleid     varchar(75),
+   timezoneoffset       int,
+   defaultlanguage      varchar(10),
+   currency             varchar(10),
+   createdbyuserid      varchar(75),
+   createdondate        datetime,
+   lastmodifiedbyuserid varchar(75),
+   lastmodifiedondate   datetime,
+   primary key (portal_id)
+);
+
+/*==============================================================*/
+/* Table: portalsettings                                        */
+/*==============================================================*/
+create table portalsettings
+(
+   portal_id            varchar(75) not null,
+   setting_name         varchar(50) not null,
+   setting_value        varchar(2000),
+   culture_code         varchar(10),
+   createdbyuserid      varchar(75),
+   createdondate        datetime,
+   lastmodifiedbyuserid varchar(75),
+   lastmodifiedondate   datetime,
+   primary key (portal_id, setting_name)
 );
 
 /*==============================================================*/
@@ -438,43 +464,17 @@ create table roomtypeparamters
 );
 
 /*==============================================================*/
-/* Table: system                                                */
+/* Table: shiftwork                                             */
 /*==============================================================*/
-create table system
+create table shiftwork
 (
-   system_uuid          varchar(75) not null,
-   system_name          varchar(40),
-   system_enname        varchar(100),
-   system_desc          varchar(200),
-   copyright            varchar(100),
-   expirydate           datetime,
-   administratorid      varchar(75),
-   administratorroleid  varchar(75),
-   registeredroleid     varchar(75),
-   timezoneoffset       int,
-   defaultlanguage      varchar(10),
-   currency             varchar(10),
-   createdbyuserid      varchar(75),
-   createdondate        datetime,
-   lastmodifiedbyuserid varchar(75),
-   lastmodifiedondate   datetime,
-   primary key (system_uuid)
-);
-
-/*==============================================================*/
-/* Table: systemsetting                                         */
-/*==============================================================*/
-create table systemsetting
-(
-   setting_name         varchar(50) not null,
-   system_uuid          varchar(75) not null,
-   setting_value        varchar(2000),
-   culture_code         varchar(10),
-   createdbyuserid      varchar(75),
-   createdondate        datetime,
-   lastmodifiedbyuserid varchar(75),
-   lastmodifiedondate   datetime,
-   primary key (setting_name)
+   shiftwork_id         bigint not null,
+   user_id              varchar(75),
+   work_starttime       datetime,
+   work_endtime         datetime,
+   createdOnDate        datetime,
+   comment              varchar(500),
+   primary key (shiftwork_id)
 );
 
 /*==============================================================*/
@@ -529,14 +529,14 @@ alter table guestpreference add constraint FK_guest_guestpreference foreign key 
 alter table guestpreference add constraint FK_prefsdefinedfield_guestpreference foreign key (definedfieldid)
       references prefsdefinedfield (definedfieldid) on delete cascade;
 
-alter table handover add constraint FK_user_handover foreign key (user_id)
-      references user (user_id) on delete cascade;
-
 alter table hotel add constraint FK_district_hotel foreign key (district_id)
       references district (district_id) on delete set null;
 
-alter table lists add constraint FK_lists_lists foreign key (parentid)
-      references lists (entryid) on delete cascade;
+alter table listinfo add constraint FK_lists_lists foreign key (parentid)
+      references listinfo (entryid) on delete cascade;
+
+alter table portalsettings add constraint FK_portal_portalsettings foreign key (portal_id)
+      references portal (portal_id) on delete cascade;
 
 alter table prefsdefinedfield add constraint FK_prefstype_prefsdefinedfield foreign key (prefstype_id)
       references prefstype (prefstype_id) on delete cascade;
@@ -571,8 +571,8 @@ alter table roomtype add constraint FK_hotel_roomtype foreign key (hotel_id)
 alter table roomtypeparamters add constraint FK_roomtype_roomtypeparamters foreign key (roomtype_id)
       references roomtype (roomtype_id) on delete cascade;
 
-alter table systemsetting add constraint FK_system_systemsetting foreign key (system_uuid)
-      references system (system_uuid) on delete cascade;
+alter table shiftwork add constraint FK_user_shiftwork foreign key (user_id)
+      references user (user_id) on delete cascade;
 
 alter table user_role add constraint FK_role_userrole foreign key (role_id)
       references role (role_id) on delete cascade;

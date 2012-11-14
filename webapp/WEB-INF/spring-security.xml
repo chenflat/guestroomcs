@@ -9,7 +9,7 @@
 	<http pattern="/js/**" security="none" />
 	<http pattern="/lib/**" security="none" />
 	<http pattern="/font/**" security="none" />
-<http pattern="/image/**" security="none" />
+	<http pattern="/image/**" security="none" />
 	<http auto-config="true" access-denied-page="/accessDenied">
 		<intercept-url pattern="/**" access="ROLE_USER" />
 		<intercept-url pattern="/system/**" access="ROLE_ADMIN" />
@@ -17,7 +17,7 @@
 		<form-login login-page="/login" default-target-url="/service/requests"
 			authentication-failure-url="/login?error=true" />
 
-		<logout logout-success-url="/login"  /> <!-- delete-cookies="JSESSIONID" -->
+		<logout logout-success-url="/login" /> <!-- delete-cookies="JSESSIONID" -->
 
 		<session-management>
 			<concurrency-control max-sessions="1"
@@ -29,12 +29,16 @@
 	<!-- <http realm="Project Realm" auto-config="true"> <intercept-url pattern="/**" 
 		access="ROLE_ADMIN" /> </http> -->
 
-	<!-- <authentication-manager> <authentication-provider> <jdbc-user-service 
-		data-source-ref="dataSource" users-by-username-query=" select user_name,user_password, 
-		enabled from user where user_name=?" authorities-by-username-query=" select 
+<!-- 	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query=" select user_name,user_password, 
+		enabled from user where user_name=?"
+				authorities-by-username-query=" select 
 		u.user_name, r.role_name from user u, user_role ur,role_name r where u.user_id 
-		= ur.user_id and ur.role_id=r.role_id and u.username =? " /> </authentication-provider> 
-		</authentication-manager> -->
+		= ur.user_id and ur.role_id=r.role_id and u.username =? " />
+		</authentication-provider>
+	</authentication-manager> -->
 
 	<authentication-manager>
 		<authentication-provider>

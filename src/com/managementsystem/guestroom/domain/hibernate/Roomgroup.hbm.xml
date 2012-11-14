@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping auto-import="true" default-lazy="false">
+<hibernate-mapping>
     <class name="com.managementsystem.guestroom.domain.hibernate.Roomgroup" table="roomgroup" catalog="guestroomcsdb">
         <id name="roomgroupId" type="string">
             <column name="roomgroup_id" length="75" />
@@ -13,6 +13,9 @@
         </property>
         <property name="roomgroupDesc" type="string">
             <column name="roomgroup_desc" />
+        </property>
+         <property name="sortOrder" type="java.lang.Integer">
+            <column name="sort_order" />
         </property>
         <set name="roomassignedgrouieses" table="roomassignedgrouies" inverse="true" lazy="true" fetch="select">
             <key>

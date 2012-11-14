@@ -23,6 +23,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.managementsystem.guestroom.common.Constants;
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.service.biz.HotelService;
@@ -72,7 +73,7 @@ public class HotelmanageController extends AbstractController implements
 				String realPath = request.getSession().getServletContext()
 						.getRealPath("/");
 				logger.info(realPath);
-				String filePath = "/uploadfiles/hotel/";
+				String filePath = Constants.PATH_UPLOADFILE_HOTEL;
 				try {
 					FileSystemObject.SaveFileFromInputStream(
 							file.getInputStream(), realPath + filePath,

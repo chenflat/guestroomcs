@@ -21,8 +21,8 @@
 			<div class="clearfix">
 				<a href="javascript:void(0)"
 					class="style_item jQclr blue_theme style_active" title="blue">blue</a>
-				<a href="javascript:void(0)" class="style_item jQclr dark_theme"
-					title="dark">dark</a> <a href="javascript:void(0)"
+				<a href="javascript:void(0)" class="style_item jQclr purple_theme"
+					title="purple">purple</a> <a href="javascript:void(0)"
 					class="style_item jQclr green_theme" title="green">green</a> <a
 					href="javascript:void(0)" class="style_item jQclr brown_theme"
 					title="brown">brown</a> <a href="javascript:void(0)"

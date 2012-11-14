@@ -13,65 +13,82 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<h3 class="heading">酒店建筑管理</h3>
-		<div class="row">
-			<div class="span6">
-				<div class="btn-group sepH_b">
-					<button data-toggle="dropdown" class="btn dropdown-toggle">
-						操作 <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="javascript:void(0)"><i class="icon-edit"></i>
-								新增</a></li>
-						<li><a href="javascript:void(0)"><i class="icon-edit"></i>
-								编辑</a></li>
-						<li><a href="#" class="delete_rows_simple"
-							data-tableid="smpl_tbl"><i class="icon-trash"></i> 删除</a></li>
-					</ul>
-				</div>
+		<div class="heading clearfix">
+			<div class="pull-left">
+				<span class="lead">酒店建筑管理</span>
 			</div>
-			<div class="span6">
-				<div class="dataTables_filter" id="dt_gal_filter">
-					<label>查找: <input type="text" aria-controls="dt_gal">
-					</label>
-				</div>
-			</div>
-
+			<ul class="nav nav-pills pull-right sepH_b">
+				<li <c:if test="${param.viewmode eq 'list'}"> class="active"</c:if>><a
+					href="?viewmode=list">列表</a>
+				</li>
+				<li
+					<c:if test="${param.viewmode eq 'thumbnails' or param.viewmode eq null}"> class="active"</c:if>><a
+					href="?viewmode=thumbnails">缩略图</a></li>
+				<li><a href="#">详细</a></li>
+			</ul>
 		</div>
-		<table class="table table-bordered table-striped" id="smpl_tbl">
-			<thead>
-				<tr>
-					<th class="table_checkbox"><input type="checkbox"
-						name="select_rows" class="select_rows" data-tableid="smpl_tbl">
-					</th>
-					<th>建筑名称</th>
-					<th>建筑地址</th>
-					<th>状态</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><input type="checkbox" name="row_sel" class="select_row">
-					</td>
-					<td>134</td>
-					<td>Summer Throssell</td>
-					<td>Pending</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="row_sel"></td>
-					<td>133</td>
-					<td>Declan Pamphlett</td>
-					<td>Pending</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="row_sel"></td>
-					<td>132</td>
-					<td>Erin Church</td>
-					<td>Pending</td>
-				</tr>
 
-			</tbody>
-		</table>
+		<c:if test="${!empty message}">
+			<div class="alert alert-error">${message}</div>
+		</c:if>
+
+
+		<c:choose>
+			<c:when test="${param.viewmode eq 'list'}">
+
+				<table class="table table-bordered table-striped" id="smpl_tbl">
+					<thead>
+						<tr>
+							<th class="table_checkbox"><input type="checkbox"
+								name="select_rows" class="select_rows" data-tableid="smpl_tbl">
+							</th>
+							<th>建筑名称</th>
+							<th>建筑地址</th>
+							<th width="50">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${builds}" var="build">
+							<tr>
+								<td><input type="checkbox" name="buildId"
+									class="select_row">
+								</td>
+								<td>${build.buildName}</td>
+								<td>${build.buildAddress}</td>
+								<td><a
+									href="<c:url value="/hotel/editbuildinfo/${build.buildId}" />"
+									class="sepV_a" title="Edit"><i class="icon-pencil"></i> </a> <a
+									href="#" title="Delete"><i class="icon-trash"></i> </a>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:when>
+			<c:otherwise>
+
+				<div class="tiles">
+					<c:forEach items="${builds}" var="build">
+
+						<a href="<c:url value="/hotel/editbuildinfo/${build.buildId}" />">
+							<div class="tile bg-color-pinkDark icon">
+								<b class="check"></b>
+								<div class="tile-content">
+									<img src="<c:url value="/img/icons/build.png" /> ">
+								</div>
+								<div class="brand">
+									<span class="name">${build.buildName}</span>
+								</div>
+							</div> </a>
+					</c:forEach>
+				</div>
+			</c:otherwise>
+		</c:choose>
+
+
+
+
+
 
 	</div>
 </div>

@@ -1,5 +1,6 @@
 package com.managementsystem.guestroom.web.hotel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -8,19 +9,25 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.domain.hibernate.Build;
 import com.managementsystem.guestroom.domain.hibernate.Floor;
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
 import com.managementsystem.guestroom.domain.hibernate.Room;
+import com.managementsystem.guestroom.domain.hibernate.Roomgroup;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.service.biz.BuildService;
 import com.managementsystem.guestroom.service.biz.FloorService;
 import com.managementsystem.guestroom.service.biz.HotelService;
 import com.managementsystem.guestroom.service.biz.RoomService;
+import com.managementsystem.guestroom.service.biz.RoomgroupService;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
@@ -28,7 +35,6 @@ import com.managementsystem.guestroom.web.IController;
  * 客房管理
  * */
 @Controller
-@RequestMapping("hotel/roommanage")
 public class RoommanageController extends AbstractController implements
 		IController {
 
@@ -48,10 +54,13 @@ public class RoommanageController extends AbstractController implements
 	@Autowired
 	private FloorService floorService;
 
+	@Autowired
+	private RoomgroupService roomgroupService;
+
 	/**
 	 * 客房管理
 	 * */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "hotel/roommanage", method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + RoommanageController.class);
 		ModelAndView mav = new ModelAndView();
@@ -77,11 +86,42 @@ public class RoommanageController extends AbstractController implements
 			}
 		}
 
+		List<Roomgroup> roomgroups = new ArrayList<Roomgroup>(
+				roomgroupService.getRoomgroups());
+
 		mav.addObject("hotels", hotels);
 		mav.addObject("totalRooms", totalRooms);
+		mav.addObject("roomgroups", roomgroups);
 
 		mav.setViewName(VIEW_NAME);
 		return mav;
+	}
+
+	/**
+	 * 删除选定的房间
+	 * */
+	@RequestMapping(value = "hotel/roommanage/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public String porcessDelete(WebRequest request) {
+		if (request.getParameter("roomNos") != null) {
+			String roomNos = request.getParameter("roomNos");
+			if (StringUtils.hasLength(roomNos)) {
+				if (roomNos.indexOf(",") > -1) {
+					String[] arrRoomNos = roomNos.split(",");
+					for (String roomno : arrRoomNos) {
+						if (StringUtils.hasLength(roomno)) {
+							roomService.delete(roomno);
+						}
+					}
+				} else {
+					roomService.delete(roomNos);
+				}
+			}
+
+			return "success";
+		} else {
+			return "error";
+		}
 	}
 
 	@Override

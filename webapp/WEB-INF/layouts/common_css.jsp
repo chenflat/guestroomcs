@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="requestURL"
+	value="${requestScope['javax.servlet.forward.request_uri']}"
+	scope="request" />
 <!-- Bootstrap framework -->
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
@@ -11,9 +15,15 @@
 <!-- jQuery UI theme -->
 <link rel="stylesheet"
 	href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
-<!-- theme color-->
-<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet">
-
+<c:choose>
+	<c:when test="${fn:contains(requestURL,'/hotel/')}">
+		<!-- theme color-->
+<link href="<c:url value="/css/theme/purple.css"/>" id="link_theme" rel="stylesheet">
+	</c:when>
+	<c:otherwise>
+	<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet">
+	</c:otherwise>
+</c:choose>
 <!-- tooltips-->
 <link rel="stylesheet"
 	href="<c:url value="/lib/qtip2/jquery.qtip.min.css"/>" />
@@ -24,7 +34,7 @@
 <link rel="stylesheet" href="<c:url value="/img/splashy/splashy.css"/>" />
 <!-- flags -->
 <link href="<c:url value="/css/flags.css"/>" rel="stylesheet">
-<link href="<c:url value="/css/icons.css"/>" rel="stylesheet">
+<%-- <link href="<c:url value="/css/icons.css"/>" rel="stylesheet"> --%>
 <!-- calendar -->
 <link rel="stylesheet"
 	href="<c:url value="/lib/fullcalendar/fullcalendar.css" />" />

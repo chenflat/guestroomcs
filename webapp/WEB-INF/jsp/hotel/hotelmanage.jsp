@@ -13,99 +13,99 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<form id="hotel" class="form-horizontal form_validation_ttip">
+		<form:form commandName="hotel" enctype="multipart/form-data"
+			class="form-horizontal form_validation_ttip" method="post">
+			<c:if test="${not empty message}">
+					<div id="message" class="alert alert-success">${message}</div>	  		
+		  		</c:if>
 			<legend>
 				<spring:message code="nav.hotel.hotel" />
 			</legend>
 			<div class="control-group">
-				<label class="control-label" for="systemName">酒店名称</label>
+				<form:label path="hotelName" class="control-label">酒店名称</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline">*</span>
+					<form:input path="hotelName" />
+					<span class="help-inline">* <form:errors path="hotelName" /> </span>
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">英文名称</label>
+				<form:label path="hotelEnname" class="control-label">英文名称</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
+					<form:input path="hotelEnname" />
 					<span class="help-inline"></span>
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">酒店地址</label>
+				<form:label path="hotelAddress" class="control-label">酒店地址</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline"></span>
+					<form:input path="hotelAddress" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">所属地区</label>
+				<form:label path="district.districtId" class="control-label">所属地区</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline"></span>
+					<form:input path="district.districtId" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">联系电话</label>
+				<form:label path="hotelPhone" class="control-label">联系电话</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline"></span>
+					<form:input path="hotelPhone" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">传真号码</label>
+				<form:label path="hotelFax" class="control-label">传真号码</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline"></span>
+					<form:input path="hotelFax" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">描述信息</label>
+				<form:label path="hotelDesc" class="control-label">描述信息</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline"></span>
+					<form:textarea path="hotelDesc" rows="3" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">酒店照片</label>
+				<form:label path="hotelPhoto" class="control-label">酒店照片</form:label>
 				<div class="controls">
-
-					<div class="uni-selector">
-						<span>Lorem ipsum dolor sit amet amet, lorem ipsum</span><select
-							class="uni_style" style="opacity: 0;">
-							<option>Lorem ipsum dolor sit amet amet, lorem ipsum</option>
-							<option>Lorem ipsum dolor sit amet</option>
-						</select>
+					<form:hidden path="hotelPhoto"/>
+					<div data-fileupload="image" class="fileupload fileupload-new">
+						<div style="width: 80px; height: 80px;"
+							class="fileupload-new thumbnail">
+							<img src="<c:url value="${hotel.hotelPhoto}" />" alt="" />
+						</div>
 					</div>
-					<div class="uni-uploader" id="uniform-uni_file">
-						<input type="file" name="uni_file" id="uni_file" class="uni_style"
-							size="19" style="opacity: 0;"><span class="uni-filename">未选择文件</span><span class="uni-action">上传照片</span>
-					</div>
-
+					<input class="input-file" type="file" name="file" / >
 				</div>
 			</div>
 
 
 			<legend>地理设置</legend>
 			<div class="control-group">
-				<label class="control-label" for="systemName">经度</label>
+				<form:label path="hotelLong" class="control-label">经度</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
-					<span class="help-inline"></span>
+					<form:input path="hotelLong" />
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="systemName">纬度</label>
+				<form:label path="hotelLat" class="control-label">纬度</form:label>
 				<div class="controls">
-					<input type="text" id="systemName" name="systemName" placeholder="">
+					<form:input path="hotelLat" />
 					<span class="help-inline"></span>
 				</div>
 			</div>
 			<div class="form-actions">
-				<button class="btn btn-inverse" type="submit">保存</button>
-				<button class="btn">取消</button>
+				
+				<form:hidden path="hotelId"/>
+			
+				<button class="btn btn-inverse" type="submit">
+					<spring:message code="button.submit" />
+				</button>
+				<button class="btn">
+					<spring:message code="button.cancel" />
+				</button>
 			</div>
-		</form>
+		</form:form>
 	</div>
 </div>
 

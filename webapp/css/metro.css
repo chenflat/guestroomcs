@@ -114,7 +114,9 @@
   padding: 80px;
 }
 .selected {
-  border: 4px #2d89ef solid;
+  border-width:4px;
+  border-color:#2d89ef;
+  border-style:solid;
 }
 .selected:after {
   width: 0;
@@ -290,6 +292,9 @@
 .border-color-grayDark {
   border-color: #525252 !important;
 }
+.border-color-black {
+  border-color: #000 !important;
+}
 
 /*
  * Metro UI CSS v 0.1.4
@@ -317,7 +322,6 @@
   cursor: pointer;
   box-shadow: inset 0px 0px 1px #FFFFCC;
   text-decoration: none;
-  color: #ffffff;
   overflow: hidden;
   position: relative;
   font-family: 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
@@ -395,6 +399,38 @@
 .tile .tile-content p:hover {
   color: #ffffff;
 }
+.tile.icon  > .tile-content {
+  padding: 0;
+}
+.tile.icon  > .tile-content  > img {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+}
+.tile.image  > .tile-content,
+.tile.image-slider  > .tile-content {
+  padding: 0;
+}
+.tile.image  > .tile-content  > img,
+.tile.image-slider  > .tile-content  > img {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  max-width: 100%;
+}
+.tile.image-set  > .tile-content {
+  margin: 0;
+  padding: 0;
+  width: 25% !important;
+  height: 50%;
+  float: left;
+  border: 1px #1e1e1e solid;
+}
+
 .tile .tile-content.icon {
   padding-top: 20px;
   display: table-cell !important;
@@ -435,6 +471,36 @@
   width: 50%;
   min-height: 100%;
 }
+
+/** 中号磁贴 */
+.tiles  label {
+	margin-left:4px;
+}
+
+.tile-medium {
+  padding: 0;
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Segoe UI', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tile-medium-list {
+	list-style: none;
+	margin:0px;padding:0px;
+}
+.tile-medium-list li,.tile-medium-list span {
+	float:left;
+	width:48px;height:48px;
+	display: inline;
+	text-align: center;
+	line-height:29px;
+}
+
+
 /** 小的磁贴 */
 .tile .tile-small {
   padding: 0;

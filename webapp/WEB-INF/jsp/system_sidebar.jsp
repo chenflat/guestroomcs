@@ -52,20 +52,15 @@
 									code="nav.hotel.build" /> </a>
 						</li>
 						<li
-							class='<c:if test="${fn:endsWith(requestURL, '/hotel/roommanage')}">active</c:if>'><a
+							class='<c:if test="${fn:contains(requestURL, '/hotel/') and !fn:endsWith(requestURL, '/hotel/buildmanage') and !fn:endsWith(requestURL, '/hotel/hotelmanage')}">active</c:if>'><a
 							href="<c:url value="/hotel/roommanage" />"><spring:message
 									code="nav.hotel.room" /> </a>
 						</li>
-						<li
-							class='<c:if test="${fn:endsWith(requestURL, '/hotel/roomtype')}">active</c:if>'><a
-							href="<c:url value="/hotel/roomtype" />"><spring:message
-									code="nav.hotel.roomtype" /> </a>
-						</li>
-						<li
+						<%-- <li
 							class='<c:if test="${fn:endsWith(requestURL, '/hotel/roomgroup')}">active</c:if>'><a
 							href="<c:url value="/hotel/roomgroup" />"><spring:message
 									code="nav.hotel.roomgroup" /> </a>
-						</li>
+						</li> --%>
 						<li class="divider"></li>
 						<li><a href="#">Help</a>
 						</li>
