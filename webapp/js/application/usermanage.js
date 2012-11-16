@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 userlist_opt = {
 	init:function() {
+		//页面跳转后重新选择
 		if($.cookie('userlist_selecteditem')!=null) {
 			var selId = $.cookie('userlist_selecteditem');
 			$("#"+selId).addClass("active");
@@ -25,7 +26,7 @@ userlist_opt = {
 			//alert($(this).find('span').text());
 			var username = $(this).find('span').text();
 			var cb = $(this).find(":checkbox")[0];
-			
+			//如果不是在user/users 页上选择用户，记录当前选择的元素ID
 			if(pathname!=usersPath) {
 				$.cookie('userlist_selecteditem',$(this).attr("id"));
 				 window.location.href = usersPath;
