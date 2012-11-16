@@ -25,7 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.common.Constants;
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
+import com.managementsystem.guestroom.domain.platform.Alert;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
+import com.managementsystem.guestroom.domain.platform.Message;
 import com.managementsystem.guestroom.service.biz.HotelService;
 import com.managementsystem.guestroom.validation.HotelValidator;
 import com.managementsystem.guestroom.web.AbstractController;
@@ -33,13 +35,13 @@ import com.managementsystem.guestroom.web.IController;
 import com.managementsystem.util.io.FileSystemObject;
 
 @Controller
-@RequestMapping("/hotel/hotelmanage")
+@RequestMapping("/hotel/hotel")
 public class HotelmanageController extends AbstractController implements
 		IController {
 
 	private final Log logger = LogFactory.getLog(HotelmanageController.class);
 
-	public static final String VIEW_NAME = "hotel/hotelmanage";
+	public static final String VIEW_NAME = "hotel/hotel";
 
 	@Autowired
 	private HotelService hotelService;
@@ -65,9 +67,11 @@ public class HotelmanageController extends AbstractController implements
 		new HotelValidator().validate(hotel, result);
 		if (result.hasErrors()) {
 			logger.error(result);
-			model.addAttribute("message", result.toString());
+			model.addAttribute("message",
+					new Message(Alert.ERROR, result.toString()));
 		} else {
-			String message = "";
+			StringBuilder sb = new StringBuilder();
+			StringBuilder exp = new StringBuilder();
 			String photoPath = "";
 			if (file.getSize() > 0) {
 				String realPath = request.getSession().getServletContext()
@@ -78,21 +82,31 @@ public class HotelmanageController extends AbstractController implements
 					FileSystemObject.SaveFileFromInputStream(
 							file.getInputStream(), realPath + filePath,
 							file.getOriginalFilename());
-					message += "File '" + file.getOriginalFilename()
-							+ "' uploaded successfully";
+					sb.append("File '" + file.getOriginalFilename()
+							+ "' uploaded successfully!");
 					photoPath = filePath + file.getOriginalFilename();
 					hotel.setHotelPhoto(photoPath);
 				} catch (IOException e) {
 					e.printStackTrace();
+					exp.append(e.getMessage());
 				}
 			}
-
-			if (StringUtils.hasLength(hotel.getHotelId()))
-				hotelService.update(hotel);
-			else
-				hotelService.save(hotel);
-			status.setComplete();
-
+			try {
+				if (StringUtils.hasLength(hotel.getHotelId()))
+					hotelService.update(hotel);
+				else
+					hotelService.save(hotel);
+				status.setComplete();
+				sb.append("Save successful");
+			} catch (Exception e) {
+				exp.append(e.getMessage());
+			}
+			Message message = null;
+			if (sb.toString().length() > 0) {
+				message = new Message(Alert.SUCCESS, sb.toString());
+			} else {
+				message = new Message(Alert.WARNING, exp.toString());
+			}
 			model.addAttribute("message", message);
 		}
 	}

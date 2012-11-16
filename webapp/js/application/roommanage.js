@@ -16,8 +16,6 @@ $(document).ready(function() {
 	room.del();
 	room.del_batch();
 	room.add_batch();
-	
-	
 });
 
 init_wizard = {
@@ -99,24 +97,39 @@ init_wizard = {
 			   });
 		}
 	};
-	
+	/**房间操作*/
 	room = {
+		//房间组操作
 		group:function(){
 			$("#linkRoomgroup").click(function(){
 				$("#roomgroupModal").modal('show');
 			});
 			$("#btnSaveroomgroup").click(function(){
-				$("#fromRoomgroups").submit(function() {  
-					alert('');
-					$.post($(this).attr("action"), $(this).serialize(), function(html) {
-						$("#roomgroups").replaceWith(html);
-						
+				$("#roomgroupForm").submit(function() {  	
+					$.post($(this).attr("action"), $(this).serialize(), function(html) {	
+						if(html=='success') {
+						$("#roomgroupModal").modal('hide');
+						}
+					}).success(function(msg){
+						$.sticky("roomgroup save successfule!", {autoclose : 5000, position: "top-right", type: "st-success" });						
 					});
-					$('#roomgroupModal').modal('hide');
 					return false;
 				});
 			});
-		},
+			//房间组表单clone
+			 var sheepItForm = $('#roomgroups').sheepIt({
+			        separator: '',
+			        allowRemoveLast: true,
+			        allowRemoveCurrent: true,
+			        allowRemoveAll: true,
+			        allowAdd: true,
+			        allowAddN: true,
+			        maxFormsCount: 20,
+			        minFormsCount: 0,
+			        iniFormsCount: 2,
+			      	data:roomgroupdata
+			    });
+		},//删除房间
 		del:function() {
 			$("#linkDelete").click(function(){
 				var ss = [];  
@@ -153,12 +166,12 @@ init_wizard = {
 					alert(msg);
 				});
 			});
-		},
+		}, //批量删除
 		del_batch:function() {
 			$("#linkDelete_batch").click(function(){
 				$("#roomBatchdelModal").modal('show');
 			});
-		},
+		}, //批量新增
 		add_batch:function(){
 			$("#linkAdd_batch").click(function(){
 				$('#roomBatchaddModal').modal('show');

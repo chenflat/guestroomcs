@@ -2,18 +2,35 @@
 
 $(document).ready(function() {
 	// setting_validation.ttip();
-
+	userlist_opt.init();
 	userlist_opt.click();
+	user_validation.ttip();
 });
 
 userlist_opt = {
+	init:function() {
+		if($.cookie('userlist_selecteditem')!=null) {
+			var selId = $.cookie('userlist_selecteditem');
+			$("#"+selId).addClass("active");
+			$.cookie('userlist_selecteditem',null);
+		}
+	},
 	click : function() {
+		var pathname = window.location.pathname;
+		var usersPath = contextPath+"user/users";
+		
 		$("#userlist li").click(function() {
 			// 选择多个人员时,内容区显示选择的人员列表
 			// 选择单个人员时,加载人员信息页
 			//alert($(this).find('span').text());
 			var username = $(this).find('span').text();
 			var cb = $(this).find(":checkbox")[0];
+			
+			if(pathname!=usersPath) {
+				$.cookie('userlist_selecteditem',$(this).attr("id"));
+				 window.location.href = usersPath;
+			}
+	
 			if (cb.checked == false) {
 				$(this).parent().find(':checkbox').attr('checked', false);
 				$(this).parent().children().removeClass('active');
@@ -30,7 +47,7 @@ userlist_opt = {
 };
 
 // * validation
-setting_validation = {
+user_validation = {
 	ttip : function() {
 		var ttip_validator = $('.form_validation_ttip')
 				.validate(
@@ -46,22 +63,26 @@ setting_validation = {
 										.removeClass("f_error");
 							},
 							rules : {
-								systemName : {
+								emailAddress : {
+									required : true,
+									email : true
+								},
+								username : {
 									required : true,
 									minlength : 3
 								},
-								systemEnname : {
+								password : {
 									required : true,
-									minlength : 3
+									minlength : 6
 								},
-								copyRight : {
+								confirmpwd: {
 									required : true,
-									minlength : 3
+									equalTo: "#password",
+									minlength : 6
 								}
 							},
 							invalidHandler : function(form, validator) {
-								$
-										.sticky(
+								$.sticky(
 												"There are some errors. Please corect them and submit again.",
 												{
 													autoclose : 5000,

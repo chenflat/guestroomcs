@@ -11,47 +11,44 @@
 	LastModified Date:
 	Description:
  -->
+ 	<script language="javascript">
+					var roomgroupdata = [<c:forEach items="${roomgroupForm.roomgroups}" var="roomgroup" varStatus="status">{
+							'roomgroups[#index#].roomgroupId':'${roomgroup.roomgroupId}',
+							'roomgroups[#index#].roomgroupName':'${roomgroup.roomgroupName}',
+							'roomgroups[#index#].roomgroupDesc':'${roomgroup.roomgroupDesc}'
+						}<c:if test="${status.count>0 and status.index<status.count}">,</c:if></c:forEach>
+					];
+				</script>
+<c:set var="actionUrl" value="${pageContext.request.contextPath}/hotel/roomgroup"></c:set>
+<form:form modelAttribute="roomgroupForm" method="post" action="${actionUrl}">
 	<div class="modal hide fade" id="roomgroupModal">
 		<div class="modal-header">
 			<button class="close" data-dismiss="modal">×</button>
 			<h3>房间组</h3>
 		</div>
 		<div class="modal-body">
-		<form id="fromRoomgroups" action="<c:url value="/hotel/roomgroup" />" method="post">
-			<table class="table table-condensed table-striped" data-rowlink="a">
-				<thead>
-					<tr>
-						<th>name</th>
-						<th>description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${roomgroups}" var="roomgroup" varStatus="status">
-						<tr>
-							<td><input type="text"
-								name="roomgroups[$(status.index)].roomgroupName"
-								value="${roomgroup.roomgroupName}" placeholder="组名称" /> <input
-								type="hidden" name="roomgroups[$(status.index)].roomgroupId"
-								value="${roomgroup.roomgroupId}" />
-							</td>
-							<td><input type="hidden"
-								name="roomgroups[$(status.index)].roomgroupDesc"
-								value="${roomgroup.roomgroupDesc}" placeholder="描述" />
-							</td>
-						</tr>
-					</c:forEach>
-					<tr>
-						<td><input type="text" name="roomgroupName"
-							id="roomgroupName" placeholder="组名称" />
-						</td>
-						<td><input type="text" name="roomgroupDesc"
-							id="roomgroupDesc" placeholder="描述" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			+
-			</form>
+			<div id="roomgroups">
+				<div id="roomgroups_template" class="control-group">
+					<div class="controls">
+						<input type="text" id="roomgroups[#index#].roomgroupName"
+							name="roomgroups[#index#].roomgroupName" placeholder="组名称" /> <input
+							type="hidden" name="roomgroups[#index#].roomgroupDesc"
+							id="roomgroups[#index#].roomgroupDesc" /> <input type="hidden"
+							name="roomgroups[#index#].roomgroupId"
+							id="roomgroups[#index#].roomgroupId" /> <span class="close"
+							id="roomgroups_remove_current">&times;</span>
+					</div>
+
+				</div>
+				<div class="control-group">
+					<span id="iroomgroups_controls"> <span class="btn btn-mini"
+						id="roomgroups_add"><i class="icon-plus"></i>组</span> </span>
+				</div>
+				<div id="roomgroups_noforms_template" class="control-group">
+					<p class="help-block">Add a new input by clicking the (+)
+						button above</p>
+				</div>
+			</div>
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">
@@ -62,3 +59,4 @@
 			</button>
 		</div>
 	</div>
+</form:form>

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,8 +59,6 @@ public class EditRoomtypeController extends AbstractController implements
 	public Set<Hotel> getHotels() {
 		return hotelService.getHotels();
 	}
-	
-	
 	
 	/**
 	 * 新增
@@ -146,6 +146,21 @@ public class EditRoomtypeController extends AbstractController implements
 		return mav;
 	}
 
+	
+	@RequestMapping(value="/hotel/roomtype/delete",method=RequestMethod.POST)
+	@ResponseBody
+	public String processDelete(WebRequest request) {
+		if(request.getParameter("roomtypeId")!=null) {
+			String roomtypeId = request.getParameter("roomtypeId").toString();
+			roomtypeService.delete(roomtypeId);
+			return "success";
+		}
+		return "error";
+		
+	}
+	
+	
+	
 	@Override
 	protected String getModelViewName() {
 		return VIEW_NAME;

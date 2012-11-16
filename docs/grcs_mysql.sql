@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-11-06 09:42:09                          */
+/* Created on:     2012-11-16 15:11:01                          */
 /*==============================================================*/
 
 
@@ -429,6 +429,7 @@ create table roomgroup
    roomgroup_id         varchar(75) not null,
    roomgroup_name       varchar(40),
    roomgroup_desc       varchar(255),
+   sort_order           int,
    primary key (roomgroup_id)
 );
 
@@ -483,12 +484,30 @@ create table shiftwork
 create table user
 (
    user_id              varchar(75) not null,
-   user_name            varchar(50),
+   username             varchar(50),
+   createDate           datetime,
+   modifiedDate         datetime,
    password             varchar(100),
-   realname             varchar(30),
-   description          varchar(255),
+   passwordEncrypted    int,
+   passwordModifiedDate datetime,
+   firstName            varchar(45),
+   middleName           varchar(45),
+   lastName             varchar(45),
+   displayname          varchar(30),
+   digest               varchar(255),
+   emailAddress         varchar(100),
+   reminderQueryQuestion varchar(75),
+   reminderQueryAnswer  varchar(75),
+   timeZone             varchar(75),
+   language             varchar(75),
+   greeting             varchar(255),
+   comments             longtext,
+   jobTitle             varchar(100),
+   loginDate            datetime,
+   loginIP              varchar(75),
+   lastLoginDate        datetime,
+   lastLoginIP          varchar(75),
    status               int comment '0禁用 1启用',
-   lastipaddress        varchar(50),
    primary key (user_id)
 );
 

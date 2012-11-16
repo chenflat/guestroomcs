@@ -21,13 +21,13 @@ import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
 @Controller
-@RequestMapping("hotel/buildmanage")
+@RequestMapping("hotel/build")
 public class BuildmanageController extends AbstractController implements
 		IController {
 
 	private final Log logger = LogFactory.getLog(BuildmanageController.class);
 
-	public static final String VIEW_NAME = "hotel/buildmanage";
+	public static final String VIEW_NAME = "hotel/build";
 
 	@Autowired
 	private BuildService buildService;

@@ -25,8 +25,6 @@
 	value="${pageContext.request.contextPath}/system/settings" />
 <c:set var="hotelURL"
 	value="${pageContext.request.contextPath}/hotel/" />
-<c:set var="roomURL"
-	value="${pageContext.request.contextPath}/hotel/roommanage" />
 <header>
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
@@ -69,7 +67,7 @@
 							code="nav.guest.prefs" /> </a></li>
 				<li><a href="<c:url value="/analyse/summary" />"><spring:message
 							code="nav.analyse" /> </a></li>
-				<li><a href="<c:url value="/user/usermanage" />"><spring:message
+				<li><a href="<c:url value="/user/users" />"><spring:message
 							code="nav.user.usermanage" /> </a></li>
 				<li><a href="<c:url value="/account/profile" />"><spring:message
 							code="nav.account.settings" /> </a></li>
@@ -101,14 +99,14 @@
 								class="icon-wrench"></i> <spring:message
 									code="nav.system.settings" /> </a>
 						</li>
-						<li><a href="<c:url value="/hotel/hotelmanage" />"><i
+						<li><a href="<c:url value="/hotel/hotel" />"><i
 								class="icon-star"></i> <spring:message code="nav.hotel" /> </a>
 						</li>
 						<li><a href="<c:url value="/guest/prefs" />"><i
 								class="icon-map-marker"></i> <spring:message code="nav.guest" />
 						</a>
 						</li>
-						<li><a href="<c:url value="/user/usermanage" />"><i
+						<li><a href="<c:url value="/user/users" />"><i
 								class="icon-user"></i> <spring:message code="nav.user" /> </a>
 						</li>
 						<li><a href="<c:url value="/account/shiftwork" />"><i
@@ -150,43 +148,13 @@
 
 			<c:choose>
 				<c:when test="${fn:contains(requestURL,userURL)}">
-				<a data-target=".nav-collapse" data-toggle="collapse"
-					class="btn_menu"> <span class="icon-align-justify icon-white"></span>
-				</a>
-				<div class="nav-collapse">
-					<nav>
-					<ul class="nav">
-						<li><a href="#" id="new" role="menuitem" class="win-command"
-							style="height: 20px;"> <i class="winicon-new"></i><span
-								class="win-label">新建</span> </a>
-						</li>
-						<li class="dropdown"><a data-toggle="dropdown"
-							class="dropdown-toggle" href="#"></i> 管理 <b class="caret"></b> </a>
-							<ul class="dropdown-menu">
-								<li><a href="?act=usergroup">管理组</a></li>
-							</ul>
-						</li>
-						<li><a href="?act=edit">编辑</a></li>
-						<li><a href="?act=copy">复制</a></li>
-						<li><a href="?act=delete">删除</a></li>
-						<li class="dropdown"><a data-toggle="dropdown"
-							class="dropdown-toggle" href="#"></i> 设置状态 <b class="caret"></b>
-						</a>
-							<ul class="dropdown-menu">
-								<li><a href="?state=active">活动(默认)</a></li>
-								<li><a href="?state=inactive">不活动</a></li>
-								<li><a href="?state=disabled">已禁用</a></li>
-								<li><a href="?state=new">新注册</a></li>
-								<li><a href="?state=">全部</a></li>
-							</ul>
-						</li>
-						<li></li>
-					</ul>
-					</nav>
-				</div>
+				<%@ include file="../jsp/user/users_nav.jsp" %>
 				</c:when>
-				<c:when test="${fn:contains(requestURL,roomURL)}">
+				<c:when test="${fn:endsWith(requestURL,'/hotel/room')}">
 					<%@ include file="../jsp/hotel/room_nav.jsp" %>
+				</c:when>
+				<c:when test="${fn:contains(requestURL,'/hotel/build')}">
+					<%@ include file="../jsp/hotel/build_nav.jsp" %>
 				</c:when>
 				<c:when test="${fn:contains(requestURL,'/hotel/roomtype')}">
 					<%@ include file="../jsp/hotel/roomtype_nav.jsp" %>

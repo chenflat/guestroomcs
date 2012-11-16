@@ -48,19 +48,23 @@
 	<c:when test="${fn:contains(requestURL,'/system/dictionary')}">
 		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
 	</c:when>
-	<c:when test="${fn:contains(requestURL,'/hotel/hotelmanage')}">
+	<c:when test="${fn:contains(requestURL,'/hotel/hotel')}">
 		<script src="<c:url value="/js/application/hotelmanage.js"/>"></script>
 	</c:when>
-	<c:when test="${fn:contains(requestURL,'/hotel/editbuildinfo') or fn:contains(requestURL,'/hotel/newbuildinfo')}">
+	<c:when test="${fn:contains(requestURL,'/hotel/build/edit') or fn:contains(requestURL,'/hotel/build/new')}">
 		<script src="<c:url value="/js/application/buildmanage.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/user/')}">
 		<script src="<c:url value="/js/application/usermanage.js"/>"></script>
 	</c:when>
-	<c:when test="${fn:contains(requestURL,'/hotel/roommanage')}">
+	<c:when test="${fn:contains(requestURL,'/hotel/room')}">
 		<!-- enhanced select (chosen) -->
 		<script src="<c:url value="/lib/chosen/chosen.jquery.min.js"/>"></script>
+		<script src="<c:url value="/lib/sheepit/jquery.sheepIt.min.js"/>"></script>
 		<script src="<c:url value="/js/application/roommanage.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/hotel/roomtype')}">
+		<script src="<c:url value="/js/application/roomtype.js"/>"></script>
 	</c:when>
 </c:choose> 
 

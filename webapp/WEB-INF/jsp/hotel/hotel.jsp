@@ -16,8 +16,8 @@
 		<form:form commandName="hotel" enctype="multipart/form-data"
 			class="form-horizontal form_validation_ttip" method="post">
 			<c:if test="${not empty message}">
-					<div id="message" class="alert alert-success">${message}</div>	  		
-		  		</c:if>
+				<c:out value="${message}" escapeXml="false" />
+			</c:if>
 			<legend>
 				<spring:message code="nav.hotel.hotel" />
 			</legend>
@@ -25,7 +25,8 @@
 				<form:label path="hotelName" class="control-label">酒店名称</form:label>
 				<div class="controls">
 					<form:input path="hotelName" />
-					<span class="help-inline">* <form:errors path="hotelName" /> </span>
+					<span class="help-inline">* <form:errors path="hotelName" />
+					</span>
 				</div>
 			</div>
 			<div class="control-group">
@@ -68,14 +69,14 @@
 			<div class="control-group">
 				<form:label path="hotelPhoto" class="control-label">酒店照片</form:label>
 				<div class="controls">
-					<form:hidden path="hotelPhoto"/>
+					<form:hidden path="hotelPhoto" />
 					<div data-fileupload="image" class="fileupload fileupload-new">
 						<div style="width: 80px; height: 80px;"
 							class="fileupload-new thumbnail">
 							<img src="<c:url value="${hotel.hotelPhoto}" />" alt="" />
 						</div>
 					</div>
-					<input class="input-file" type="file" name="file" / >
+					<input class="input-file" type="file" name="file"/ >
 				</div>
 			</div>
 
@@ -95,9 +96,9 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				
-				<form:hidden path="hotelId"/>
-			
+
+				<form:hidden path="hotelId" />
+
 				<button class="btn btn-inverse" type="submit">
 					<spring:message code="button.submit" />
 				</button>
