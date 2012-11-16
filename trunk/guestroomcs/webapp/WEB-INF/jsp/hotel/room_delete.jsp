@@ -14,7 +14,7 @@
   <div class="modal-body"></div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="button.cancel" /> </button>
-    <a id="btn-delete" href="#" url="<c:url value="/hotel/roommanage/delete" />" class="btn btn-primary"><spring:message code="button.delete" /> </a>
+    <a id="btn-delete" href="#" url="<c:url value="/hotel/room/delete" />" class="btn btn-primary"><spring:message code="button.delete" /> </a>
   </div>
 </div>
 
@@ -40,6 +40,6 @@
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="button.cancel" /> </button>
-    <a id="btn-delete" href="#" url="<c:url value="/hotel/roommanage/batchdelete" />" class="btn btn-primary"><spring:message code="button.batchdelete" /> </a>
+    <a id="btn-delete" href="#" url="<c:url value="/hotel/room/batchdelete" />" class="btn btn-primary"><spring:message code="button.batchdelete" /> </a>
   </div>
 </div>

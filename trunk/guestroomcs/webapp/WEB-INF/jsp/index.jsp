@@ -55,10 +55,10 @@
 <div class="tile bg-color-grayDark">
 	<b class="check"></b>
 	<div class="tile-content icon">
-		<a href="<c:url value="/user/profile" />"><img src="<c:url value="/img/icons/11.png" />"></a>
+		<a href="<c:url value="/account/profile" />"><img src="<c:url value="/img/icons/11.png" />"></a>
 	</div>
 	<div class="brand">
-		<span class="name"><spring:message code="nav.user.profile" />
+		<span class="name"><spring:message code="nav.account.profile" />
 		</span>
 	</div>
 </div>

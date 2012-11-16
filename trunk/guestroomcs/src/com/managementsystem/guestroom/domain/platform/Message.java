@@ -17,6 +17,11 @@ public class Message implements java.io.Serializable {
 		this.text = text;
 	}
 	
+	public Message(Alert alert,String title,String text) {
+		this.title = title;
+		this.alert = alert;
+		this.text = text;
+	}
 	
 	public String getTitle() {
 		return title;

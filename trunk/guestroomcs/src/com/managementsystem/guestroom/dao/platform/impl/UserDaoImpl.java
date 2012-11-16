@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.managementsystem.guestroom.dao.platform.UserDao;
@@ -35,14 +36,14 @@ public class UserDaoImpl extends AbstractDaoSupport implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<User> getUsers() {
+	public Set<User> getUsers() throws DataAccessException {
 		Query query = createQuery(GETUSERS, 0, -1);
 		return new HashSet<User>(query.list());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<User> getUsersByStatus(int status) {
+	public Set<User> getUsersByStatus(int status) throws DataAccessException {
 		Query query = createQuery(GETUSERSBYSTATUS, 0, -1, status);
 		return new HashSet<User>(query.list());
 	}

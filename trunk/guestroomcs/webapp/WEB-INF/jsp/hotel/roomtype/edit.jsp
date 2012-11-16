@@ -88,5 +88,7 @@
 			</div>
 		</form:form>
 
+	<%@include file="delete.jsp" %>
+	
 	</div>
 </div>

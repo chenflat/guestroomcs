@@ -22,6 +22,7 @@ import com.managementsystem.guestroom.domain.hibernate.Floor;
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
 import com.managementsystem.guestroom.domain.hibernate.Room;
 import com.managementsystem.guestroom.domain.hibernate.Roomgroup;
+import com.managementsystem.guestroom.domain.hibernate.RoomgroupForm;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.service.biz.BuildService;
 import com.managementsystem.guestroom.service.biz.FloorService;
@@ -40,7 +41,7 @@ public class RoommanageController extends AbstractController implements
 
 	private final Log logger = LogFactory.getLog(BuildmanageController.class);
 
-	public static final String VIEW_NAME = "hotel/roommanage";
+	public static final String VIEW_NAME = "hotel/room";
 
 	@Autowired
 	private RoomService roomService;
@@ -60,7 +61,7 @@ public class RoommanageController extends AbstractController implements
 	/**
 	 * 客房管理
 	 * */
-	@RequestMapping(value = "hotel/roommanage", method = RequestMethod.GET)
+	@RequestMapping(value = "hotel/room", method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + RoommanageController.class);
 		ModelAndView mav = new ModelAndView();
@@ -86,12 +87,16 @@ public class RoommanageController extends AbstractController implements
 			}
 		}
 
-		List<Roomgroup> roomgroups = new ArrayList<Roomgroup>(
+		List<Roomgroup> roomgrouplist = new ArrayList<Roomgroup>(
 				roomgroupService.getRoomgroups());
+		
+		RoomgroupForm roomgroupForm = new RoomgroupForm();
+		roomgroupForm.setRoomgroups(roomgrouplist);
 
 		mav.addObject("hotels", hotels);
 		mav.addObject("totalRooms", totalRooms);
-		mav.addObject("roomgroups", roomgroups);
+
+		mav.addObject("roomgroupForm", roomgroupForm);
 
 		mav.setViewName(VIEW_NAME);
 		return mav;
@@ -100,7 +105,7 @@ public class RoommanageController extends AbstractController implements
 	/**
 	 * 删除选定的房间
 	 * */
-	@RequestMapping(value = "hotel/roommanage/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "hotel/room/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String porcessDelete(WebRequest request) {
 		if (request.getParameter("roomNos") != null) {

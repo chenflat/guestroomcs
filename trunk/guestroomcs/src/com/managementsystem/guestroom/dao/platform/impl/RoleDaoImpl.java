@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.managementsystem.guestroom.dao.platform.RoleDao;
@@ -28,20 +29,20 @@ public class RoleDaoImpl extends AbstractDaoSupport implements RoleDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<Role> getRoles() {
+	public Set<Role> getRoles() throws DataAccessException {
 		Query query = createQuery(GETROLES, 0, -1);
 		return new HashSet<Role>(query.list());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<Role> getRolesByStatus(int status) {
+	public Set<Role> getRolesByStatus(int status) throws DataAccessException {
 		Query query = createQuery(GETROLESBYSTATUS, 0, -1, status);
 		return new HashSet<Role>(query.list());
 	}
 
 	@Override
-	public Set<Role> getRolesByEndabled() {
+	public Set<Role> getEnabledRoles() throws DataAccessException {
 		return getRolesByStatus(1);
 	}
 

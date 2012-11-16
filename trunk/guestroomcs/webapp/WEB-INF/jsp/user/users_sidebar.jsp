@@ -22,12 +22,11 @@
 					</form>
 
 					<ul class="nav nav-list" id="userlist">
-						<c:forEach var="row" begin="1" end="30">
-							<li><a href="#">
-									<input type="checkbox" name="userId" value="${row}"> <img
-										src="<c:url value="/img/metro_user.png" />" /> <span>高小宁${row}</span>
-								</a>
-							</li>
+						<c:forEach items="${users}" var="user">
+							<li id="li_${user.userId}"><a> <input type="checkbox" name="userId"
+									value="${user.userId}"> <img
+									src="<c:url value="/img/metro_user.png" />" /> <span>${user.username}</span>
+							</a></li>
 						</c:forEach>
 					</ul>
 

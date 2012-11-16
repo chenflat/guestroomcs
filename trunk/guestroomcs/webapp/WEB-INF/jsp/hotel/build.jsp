@@ -56,7 +56,7 @@
 								<td>${build.buildName}</td>
 								<td>${build.buildAddress}</td>
 								<td><a
-									href="<c:url value="/hotel/editbuildinfo/${build.buildId}" />"
+									href="<c:url value="/hotel/build/edit/${build.buildId}" />"
 									class="sepV_a" title="Edit"><i class="icon-pencil"></i> </a> <a
 									href="#" title="Delete"><i class="icon-trash"></i> </a>
 								</td>
@@ -70,7 +70,7 @@
 				<div class="tiles">
 					<c:forEach items="${builds}" var="build">
 
-						<a href="<c:url value="/hotel/editbuildinfo/${build.buildId}" />">
+						<a href="<c:url value="/hotel/build/edit/${build.buildId}" />">
 							<div class="tile bg-color-pinkDark icon">
 								<b class="check"></b>
 								<div class="tile-content">

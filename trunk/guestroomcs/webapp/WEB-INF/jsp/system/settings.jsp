@@ -15,6 +15,9 @@
 	<div class="span12">
 		<form:form commandName="portal"
 			class="form-horizontal form_validation_ttip">
+			<c:if test="${not empty message}">
+				<c:out value="${message}" escapeXml="false" />
+			</c:if>
 			<legend>基本信息</legend>
 			<div class="control-group">
 				<form:label path="portalName" class="control-label">系统名称</form:label>

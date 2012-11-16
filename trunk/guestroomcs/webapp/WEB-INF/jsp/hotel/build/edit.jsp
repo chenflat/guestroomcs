@@ -49,8 +49,10 @@
 				<button class="btn btn-inverse" type="submit">
 					<spring:message code="button.submit" />
 				</button>
-				
-				<a href="<c:url value="/hotel/buildmanage" />" class="btn"><spring:message code="button.cancel" /></a>
+
+				<a href="<c:url value="/hotel/build" />" class="btn"><spring:message
+						code="button.cancel" />
+				</a>
 
 			</div>
 
