@@ -147,8 +147,14 @@
 			</ul>
 
 			<c:choose>
-				<c:when test="${fn:contains(requestURL,userURL)}">
-				<%@ include file="../jsp/user/users_nav.jsp" %>
+				<c:when test="${fn:contains(requestURL,'/user/users')}">
+				<%@ include file="../jsp/user/users/users_nav.jsp" %>
+				</c:when>
+				<c:when test="${fn:contains(requestURL,'/user/roles')}">
+				<%@ include file="../jsp/user/roles/roles_nav.jsp" %>
+				</c:when>
+				<c:when test="${fn:contains(requestURL,'/user/resources')}">
+				<%@ include file="../jsp/user/resources/resources_nav.jsp" %>
 				</c:when>
 				<c:when test="${fn:endsWith(requestURL,'/hotel/room')}">
 					<%@ include file="../jsp/hotel/room_nav.jsp" %>

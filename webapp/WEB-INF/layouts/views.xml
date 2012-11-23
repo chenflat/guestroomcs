@@ -51,6 +51,10 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/hotel/build.jsp" />
 	</definition>
 	
+	<definition name="hotel/build/edit" extends="system-layout">
+		<put-attribute name="title" value="编辑酒店建筑信息 " />
+		<put-attribute name="body" value="/WEB-INF/jsp/hotel/build/edit.jsp" />
+	</definition>
 	<definition name="hotel/build/edit/*" extends="system-layout">
 		<put-attribute name="title" value="编辑酒店建筑信息 " />
 		<put-attribute name="body" value="/WEB-INF/jsp/hotel/build/edit.jsp" />
@@ -116,13 +120,35 @@
 		<put-attribute name="title" value="用户管理" />
 		<put-attribute name="body" value="/WEB-INF/jsp/user/users.jsp" />
 	</definition>
-	<definition name="user/edit" extends="user-layout">
-		<put-attribute name="title" value="用户资料编辑" />
-		<put-attribute name="body" value="/WEB-INF/jsp/user/edit.jsp" />
+
+
+	<!-- User Roles Pages -->
+	<definition name="user/roles" extends="role-layout">
+		<put-attribute name="title" value="用户权限设置管理" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/roles.jsp" />
 	</definition>
-
-
-
+	<definition name="user/roles/add" extends="role-layout">
+		<put-attribute name="title" value="新增用户权限组" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/roles/add.jsp" />
+	</definition>
+	<definition name="user/roles/edit" extends="role-layout">
+		<put-attribute name="title" value="编辑用户权限组" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/roles/edit.jsp" />
+	</definition>
+	
+	<!-- User Resources Pages -->
+	<definition name="user/resources" extends="resource-layout">
+		<put-attribute name="title" value="权限资源管理" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/resources.jsp" />
+	</definition>
+		<definition name="user/resources/add" extends="resource-layout">
+		<put-attribute name="title" value="新增资源" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/resources/add.jsp" />
+	</definition>
+	<definition name="user/resources/edit" extends="resource-layout">
+		<put-attribute name="title" value="编辑资源" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/resources/edit.jsp" />
+	</definition>
 
 	<!-- Service Pages -->
 	<definition name="service/requests" extends="service-layout">

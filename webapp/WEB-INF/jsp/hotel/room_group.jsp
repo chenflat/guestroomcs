@@ -41,7 +41,7 @@
 
 				</div>
 				<div class="control-group">
-					<span id="iroomgroups_controls"> <span class="btn btn-mini"
+					<span id="roomgroups_controls"> <span class="btn btn-mini"
 						id="roomgroups_add"><i class="icon-plus"></i>组</span> </span>
 				</div>
 				<div id="roomgroups_noforms_template" class="control-group">

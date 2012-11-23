@@ -6,7 +6,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="<c:url value="/js/bootstrap/widgets.js"/>"></script>
 <script src="<c:url value="/js/jquery-1.8.0.min.js"/>"></script>
-<script src="<c:url value="/lib/jquery-ui/jquery-ui-1.8.23.custom.min.js" />"></script>
+<script src="<c:url value="/lib/jquery-ui/jquery-ui-1.9.1.custom.min.js" />"></script>
 <!-- touch events for jquery ui-->
 <script src="<c:url value="/js/forms/jquery.ui.touch-punch.min.js"/>"></script>
 <!-- easing plugin -->
@@ -54,8 +54,16 @@
 	<c:when test="${fn:contains(requestURL,'/hotel/build/edit') or fn:contains(requestURL,'/hotel/build/new')}">
 		<script src="<c:url value="/js/application/buildmanage.js"/>"></script>
 	</c:when>
-	<c:when test="${fn:contains(requestURL,'/user/')}">
+	<c:when test="${fn:contains(requestURL,'/user/users')}">
 		<script src="<c:url value="/js/application/usermanage.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/user/roles')}">
+		<script src="<c:url value="/js/application/rolemanage.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/user/resources')}">
+		<script src="<c:url value="/lib/chosen/chosen.jquery.min.js"/>"></script>
+		<script src="<c:url value="/lib/sheepit/jquery.sheepIt.min.js"/>"></script>
+		<script src="<c:url value="/js/application/resourcesmanage.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/hotel/room')}">
 		<!-- enhanced select (chosen) -->
