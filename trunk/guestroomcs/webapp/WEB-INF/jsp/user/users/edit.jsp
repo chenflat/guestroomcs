@@ -21,7 +21,7 @@
 
 		<form:form modelAttribute="user" method="post"
 			class="form_validation_ttip"
-			action="${pageContext.request.contextPath}/user/save">
+			action="${pageContext.request.contextPath}/user/users/save">
 			<c:if test="${not empty message}">
 				<c:out value="${message}" escapeXml="false" />
 			</c:if>
@@ -72,7 +72,9 @@
 						</span>
 					</div>
 				</div>
-				<div class="control-group">
+				<c:choose>
+				<c:when test="${action eq 'add'}">
+				<div class="control-group" id="row-password">
 					<form:label path="password" class="control-label">初始密码 *</form:label>
 					<div class="controls">
 						<form:input path="password" type="password" />
@@ -80,21 +82,52 @@
 						</span>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" id="row-confirmpwd">
 					<label for="confirmpwd" class="control-label">确认密码 *</label>
 					<div class="controls">
 						<input type="password" name="confirmpwd" id="confirmpwd" /> <span
 							class="help-inline"> </span>
 					</div>
 				</div>
+				</c:when>
+				<c:otherwise>
+					<form:hidden path="password" />
+					<form:hidden path="username" />
+				</c:otherwise>
+				</c:choose>
 				<div class="control-group">
 					<div class="controls">
-						<select name="roleId" id="roleId">
+						<select name="rolelist" id="rolelist">
 							<option value="">选择用户组</option>
 							<c:forEach items="${roles}" var="role">
-								<option value="${role.roleId}">${role.roleDesc}</option>
+							<option value="${role.roleId}"
+								<c:forEach items="${user.rolelist}" var="item">
+								<c:if test="${item.roleId eq role.roleId}">selected="selected"</c:if>
+								</c:forEach>
+								>${role.roleDesc}</option>
 							</c:forEach>
-						</select> <span class="help-inline"> </span>
+						</select> 
+					</div>
+				</div>
+			</div>
+			<div class="formRow">
+				<div class="control-group">
+					<h4>其它信息</h4>
+				</div>
+				<div class="control-group">
+					<form:label path="jobTitle" class="control-label">工作头衔 </form:label>
+					<div class="controls">
+						<form:input path="jobTitle" />
+						<span class="help-inline"><form:errors path="jobTitle" />
+						</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<form:label path="comments" class="control-label">备注 </form:label>
+					<div class="controls">
+						<form:textarea path="comments" rows="3"/>
+						<span class="help-inline"><form:errors path="comments" />
+						</span>
 					</div>
 				</div>
 			</div>
@@ -102,7 +135,7 @@
 				<form:hidden path="userId" />
 				<form:hidden path="status" />
 				<form:hidden path="isSuperUser" />
-				<button class="btn input-small btn-danger" type="submit">
+				<button class="btn input-small btn-danger">
 					<spring:message code="button.submit" />
 				</button>
 				<a href="<c:url value="/user/users" />" class="btn input-mini">

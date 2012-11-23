@@ -7,7 +7,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!-- user info -->
 
-<form:form modelAttribute="user">
+<form:form modelAttribute="user" id="userinfo">
 	<div class="span2">
 
 		<img src="<c:url value="/img/metro_user.png" />" width="160px" />
@@ -32,12 +32,18 @@
 		<p>${user.emailAddress}</p>
 		<section id="userinfo3">
 		<h4>用户组</h4>
-		<p>超级管理员</p>
+		<p>
+		<c:forEach items="${user.roles}" var="role">
+			${role.roleDesc} &nbsp;
+		</c:forEach>
+		
+		</p>
 		</section> <section id="userinfo4">
 		<h4>最后登陆</h4>
 		<p>${user.lastLoginDate}</p>
 		</section>
-		
-		<form:input type="hidden" path="userId" />
+		<form:hidden path="status" />
+		<form:hidden path="userId" />
+		<form:hidden path="isSuperUser" />
 	</div>
 </form:form>

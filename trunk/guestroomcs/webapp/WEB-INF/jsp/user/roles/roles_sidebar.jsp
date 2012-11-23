@@ -2,9 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!-- User Sidebar -->
+<c:set var="requestURL"
+	value="${requestScope['javax.servlet.forward.request_uri']}"
+	scope="request" />
+<!-- Roles LIST -->
 <a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r"
 	title="Hide Sidebar">Sidebar switch</a>
 <div class="sidebar">
@@ -12,28 +16,20 @@
 		<div class="antiscroll-inner">
 			<div class="antiscroll-content">
 				<div class="sidebar_inner">
-					<form action="<c:url value="/user/usermanage" />"
-						class="input-append" method="post">
-						<input autocomplete="off" name="query"
-							class="search_query input-medium" size="16" type="text" />
-						<button type="submit" class="btn">
-							<i class="icon-search"></i>
-						</button>
-					</form>
-
-					<ul class="nav nav-list" id="userlist">
-						<c:forEach items="${users}" var="user">
-							<li id="li_${user.userId}"><a> <input type="checkbox" name="userId"
-									value="${user.userId}"> <img
-									src="<c:url value="/img/metro_user.png" />" /> <span>${user.username}</span>
-							</a></li>
+					<form class="input-append" method="post"></form>
+					<ul class="nav nav-list" id="rolelist">
+						<li class="nav-header sepH_a_line">权限组管理</li>
+						<c:forEach items="${roles}" var="role">
+							<li id="roleId_${role.roleId}"
+								class="<c:if test="${fn:endsWith(requestURL , role.roleId)}">active</c:if>"><a
+								href="<c:url value="/user/roles/edit/${role.roleId}"/>">${role.roleDesc}</a>
+							</li>
 						</c:forEach>
 					</ul>
-
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </div>
+
+
