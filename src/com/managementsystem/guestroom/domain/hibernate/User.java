@@ -1,8 +1,12 @@
 package com.managementsystem.guestroom.domain.hibernate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 /**
  * 用户对象
@@ -34,8 +38,13 @@ public class User implements java.io.Serializable, Cloneable {
 	private Date lastLoginDate;
 	private String lastLoginIp;
 	private Integer status;
+	private Boolean isSuperUser;
+	
 	private Set roles = new HashSet(0);
+	@JsonBackReference
 	private Set shiftworks = new HashSet(0);
+	@JsonBackReference
+	private List<Role> rolelist = new ArrayList<Role>();
 
 	public User() {
 	}
@@ -278,6 +287,14 @@ public class User implements java.io.Serializable, Cloneable {
 		return this.status;
 	}
 
+	public Boolean getIsSuperUser() {
+		return isSuperUser;
+	}
+
+	public void setIsSuperUser(Boolean isSuperUser) {
+		this.isSuperUser = isSuperUser;
+	}
+
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
@@ -296,6 +313,16 @@ public class User implements java.io.Serializable, Cloneable {
 
 	public void setShiftworks(Set shiftworks) {
 		this.shiftworks = shiftworks;
+	}
+	
+	
+
+	public List<Role> getRolelist() {
+		return rolelist;
+	}
+
+	public void setRolelist(List<Role> rolelist) {
+		this.rolelist = rolelist;
 	}
 
 	@Override

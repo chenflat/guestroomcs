@@ -1,18 +1,16 @@
-package com.managementsystem.guestroom.dao.platform;
+package com.managementsystem.guestroom.service.platform;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-
 import com.managementsystem.guestroom.domain.hibernate.Resource;
 import com.managementsystem.guestroom.domain.platform.ResourceType;
-import com.managementsystem.util.dao.DaoSupport;
+import com.managementsystem.ui.easyui.Tree;
+import com.managementsystem.util.service.ServiceSupport;
 
 /**
- * 资源数据操作类
+ * 权限资源业务类
  * */
-public interface ResourceDao extends DaoSupport {
-
+public interface ResourceService extends ServiceSupport<Resource, String> {
 	/**
 	 * 获取指定类型的资源数据
 	 * 
@@ -20,22 +18,21 @@ public interface ResourceDao extends DaoSupport {
 	 *            资源类别
 	 * 
 	 * */
-	public List<Resource> getResourceByType(ResourceType type)
-			throws DataAccessException;
+	public List<Resource> getResourceByType(ResourceType type);
 
 	/**
 	 * 获取所有资源URL
 	 * 
 	 * @return URL类型的资源数据
 	 * */
-	public List<Resource> getResourceUrls() throws DataAccessException;
+	public List<Resource> getUrlTypeOfResources();
 
 	/**
 	 * 获取所有权限资源
 	 * 
 	 * @return 所有权限资源
 	 * */
-	public List<Resource> getResources() throws DataAccessException;
+	public List<Resource> getResources();
 
 	/**
 	 * 获取指定资源ID的所有资源数据
@@ -44,8 +41,14 @@ public interface ResourceDao extends DaoSupport {
 	 *            资源ID
 	 * @return 指定资源ID的所有资源数据
 	 * */
-	public List<Resource> getChildrenResource(String resourceId)
-			throws DataAccessException;
+	public List<Resource> getChildrenResource(String resourceId);
+
+	/**
+	 * 获取链接类型的资源树
+	 * 
+	 * @return 资源树列表
+	 * */
+	public List<Tree> getUrlTypeOfResourcesTree();
 
 	/**
 	 * 获取指定资源的方法列表
@@ -54,7 +57,5 @@ public interface ResourceDao extends DaoSupport {
 	 *            资源ID
 	 * @return 指定资源的方法列表
 	 * */
-	public List<Resource> getMethodsOfResource(String resourceId)
-			throws DataAccessException;
-
+	public List<Resource> getMethodsOfResource(String resourceId);
 }

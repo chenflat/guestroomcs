@@ -147,6 +147,9 @@ public class EditRoomtypeController extends AbstractController implements
 	}
 
 	
+	/**
+	 * 删除房间类型
+	 * */
 	@RequestMapping(value="/hotel/roomtype/delete",method=RequestMethod.POST)
 	@ResponseBody
 	public String processDelete(WebRequest request) {

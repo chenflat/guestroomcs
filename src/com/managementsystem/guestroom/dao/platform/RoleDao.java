@@ -30,4 +30,11 @@ public interface RoleDao extends DaoSupport {
 	 * */
 	public Set<Role> getEnabledRoles() throws DataAccessException;
 
+	/**
+	 * 判断是否已经存在角色名称
+	 * 
+	 * @param roleName
+	 *            角色名称
+	 * */
+	public boolean isExistRoleName(String roleName) throws DataAccessException;
 }

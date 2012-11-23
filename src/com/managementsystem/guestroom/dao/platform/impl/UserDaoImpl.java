@@ -3,8 +3,11 @@
  */
 package com.managementsystem.guestroom.dao.platform.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -31,21 +34,31 @@ public class UserDaoImpl extends AbstractDaoSupport implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private final String GETUSERS = "from User";
-	private final String GETUSERSBYSTATUS = "from User where status=?";
+	private final String GETUSERS = "from User order by username asc";
+	private final String GETUSERSBYSTATUS = "from User where status=? order by username asc";
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<User> getUsers() throws DataAccessException {
 		Query query = createQuery(GETUSERS, 0, -1);
-		return new HashSet<User>(query.list());
+		return new LinkedHashSet<User>(query.list());
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<User> getUsersByStatus(int status) throws DataAccessException {
 		Query query = createQuery(GETUSERSBYSTATUS, 0, -1, status);
-		return new HashSet<User>(query.list());
+		return new LinkedHashSet<User>(query.list());
+	}
+	
+
+	@Override
+	public boolean isExistUsername(String username) throws DataAccessException {
+		final String queryString = "from User where username=?";
+		Query query = createQuery(queryString,username);
+		@SuppressWarnings("unchecked")
+		List<User> users = new ArrayList<User>(query.list());
+		return users.size()>0;
 	}
 
 	@Override

@@ -1,7 +1,9 @@
 package com.managementsystem.guestroom.dao.platform.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -21,8 +23,8 @@ public class RoleDaoImpl extends AbstractDaoSupport implements RoleDao {
 	private final Set<Class<?>> dataTypes = new HashSet<Class<?>>(
 			Arrays.asList(new Class<?>[] { Role.class }));
 
-	private final String GETROLES = "from Role";
-	private final String GETROLESBYSTATUS = "from Role where status=?";
+	private final String GETROLES = "from Role order by status asc,roleId asc";
+	private final String GETROLESBYSTATUS = "from Role where status=? order by roleId asc";
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -44,6 +46,15 @@ public class RoleDaoImpl extends AbstractDaoSupport implements RoleDao {
 	@Override
 	public Set<Role> getEnabledRoles() throws DataAccessException {
 		return getRolesByStatus(1);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean isExistRoleName(String roleName) throws DataAccessException {
+		final String querySql = "from Role where status=1 and roleName=?";
+		Query query = createQuery(querySql, roleName);
+		List<Role> roles = new ArrayList<Role>(query.list());
+		return (roles != null && roles.size() > 0) ? true : false;
 	}
 
 	@Override

@@ -8,8 +8,9 @@
 	background: -o-linear-gradient(top, #D24726 0%, #D24726 100%);
 	background: -ms-linear-gradient(top, #D24726 0%, #D24726 100%);
 	background: linear-gradient(top, #D24726 0%, #D24726 100%);
-	filter: progid : DXImageTransform.Microsoft.gradient (   startColorstr =
-		'#D24726', endColorstr = '#D24726', GradientType = 0 );
+	filter: progid :     DXImageTransform.Microsoft.gradient (     
+		 startColorstr =  
+		  '#D24726', endColorstr =     '#D24726', GradientType =     0 );
 }
 
 .navbar .nav>li>a {
@@ -22,6 +23,7 @@
 
 .navbar .nav .active>a,.navbar .nav .active>a:hover {
 	background: #94252e !important;
+	cursor: pointer;
 }
 
 .navbar .divider-vertical {
@@ -42,6 +44,13 @@
 
 .nav-list>li>a {
 	color: #333;
+	font-size: 14px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.nav-list>li:first-child+li>a {
+	padding-top: 0px;
 }
 
 .sidebar .nav-list>.active>a,.nav-list>.active>a:hover {
@@ -49,6 +58,7 @@
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 	background-color: #D24726;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .nav-header {

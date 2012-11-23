@@ -23,5 +23,10 @@ public interface UserDao extends DaoSupport {
 	 * 获取所有活动用户
 	 * */
 	public Set<User> getUsersByStatus(int status) throws DataAccessException;
+	
+	/**
+	 * 是否存在用户名
+	 * */
+	public boolean isExistUsername(String username) throws DataAccessException;
 
 }

@@ -82,7 +82,10 @@
                 <comment>0&#189;&#251;&#211;&#195; 1&#198;&#244;&#211;&#195;</comment>
             </column>
         </property>
-        <set name="roles" table="user_role" inverse="false" lazy="true" fetch="select">
+        <property name="isSuperUser" type="java.lang.Boolean">
+            <column name="isSuperUser" />
+        </property>
+        <set name="roles" table="user_role" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="user_id" length="75" not-null="true" />
             </key>
