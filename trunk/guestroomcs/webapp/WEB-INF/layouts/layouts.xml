@@ -38,9 +38,20 @@
 		<put-attribute name="sidebar" value="" />
 	</definition>
 	
-	<!-- Data analyse layout  -->
+	<!-- users layout  -->
 	<definition name="user-layout" extends="standard-layout">
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/users_sidebar.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/users/users_sidebar.jsp" />
 	</definition>
+	
+	<!-- roles layout  -->
+	<definition name="role-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/roles/roles_sidebar.jsp" />
+	</definition>
+	
+		<!-- roles layout  -->
+	<definition name="resource-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/resources/resources_sidebar.jsp" />
+	</definition>
+	
 	
 </tiles-definitions>

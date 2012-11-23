@@ -47,12 +47,12 @@
 									code="nav.hotel.hotel" /> </a>
 						</li>
 						<li
-							class='<c:if test="${fn:endsWith(requestURL, '/hotel/build')}">active</c:if>'><a
+							class='<c:if test="${fn:contains(requestURL, '/hotel/build')}">active</c:if>'><a
 							href="<c:url value="/hotel/build" />"><spring:message
 									code="nav.hotel.build" /> </a>
 						</li>
 						<li
-							class='<c:if test="${fn:contains(requestURL, '/hotel/') and !fn:endsWith(requestURL, '/hotel/build') and !fn:endsWith(requestURL, '/hotel/hotel')}">active</c:if>'><a
+							class='<c:if test="${fn:contains(requestURL, '/hotel/') and !fn:contains(requestURL, '/hotel/build') and !fn:contains(requestURL, '/hotel/hotel')}">active</c:if>'><a
 							href="<c:url value="/hotel/room" />"><spring:message
 									code="nav.hotel.room" /> </a>
 						</li>
