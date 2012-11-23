@@ -15,17 +15,17 @@
 
 	<!-- system layout  -->
 	<definition name="system-layout" extends="standard-layout">
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/system_sidebar.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/system/system_sidebar.jsp" />
 	</definition>
 
 	<!-- user profile layout  -->
 	<definition name="userprofile-layout" extends="standard-layout">
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/userprofile_sidebar.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/account/account_sidebar.jsp" />
 	</definition>
 
 	<!-- service layout  -->
 	<definition name="service-layout" extends="standard-layout">
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/service_sidebar.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/service/service_sidebar.jsp" />
 	</definition>
 	
 	<!-- guest prefs layout  -->
