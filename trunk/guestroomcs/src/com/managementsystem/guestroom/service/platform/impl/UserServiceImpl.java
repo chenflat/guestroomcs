@@ -60,4 +60,10 @@ public class UserServiceImpl extends AbstractServiceSupport<User, String>
 
 	}
 
+	@Transactional(readOnly = true)
+	public boolean isExistUsername(String username) {
+		return userDao.isExistUsername(username);
+	}
+
+	
 }

@@ -26,4 +26,13 @@ public interface RoleService extends ServiceSupport<Role, String> {
 	 * 获取所有活动的角色
 	 * */
 	public Set<Role> getEnabledRoles();
+	
+
+	/**
+	 * 判断是否已经存在角色名称
+	 * 
+	 * @param roleName
+	 *            角色名称
+	 * */
+	public boolean isExistRoleName(String roleName);
 }

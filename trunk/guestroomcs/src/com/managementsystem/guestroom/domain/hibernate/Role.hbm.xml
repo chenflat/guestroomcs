@@ -22,7 +22,7 @@
         <property name="issys" type="java.lang.Boolean">
             <column name="issys" />
         </property>
-        <set name="resources" table="role_resource" inverse="false" lazy="true" fetch="select">
+        <set name="resources" table="role_resource" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="role_id" length="75" not-null="true" />
             </key>

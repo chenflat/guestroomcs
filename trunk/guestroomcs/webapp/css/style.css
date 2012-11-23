@@ -818,6 +818,9 @@
 			.sidebar_right.sidebar_hidden #maincontainer {background: #fff}
 			.sidebar_right.sidebar_hidden .main_content {margin:0}
 			
+			
+			.infoPaneContainer .sidebar {left:auto;right:-1px};
+			
 			.app-fixed.sidebar_right .sidebar {left:auto;right:50%;margin-left:0;margin-right:-470px}
 			.app-fixed.sidebar_right .sidebar_switch {left:auto;right:50%;margin-left:0;margin-right:-465px}
 			.app-fixed.sidebar_hidden.sidebar_right .sidebar_switch {laeft:auto;margin-left:0;margin-right:-465px;right:50%}
