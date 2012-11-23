@@ -12,28 +12,27 @@
 				<div class="nav-collapse">
 					<nav>
 					<ul class="nav">
-						<li><a href="<c:url value="/user/add" />" id="new" role="menuitem" class="win-command"
+						<li id="user_add"><a href="javascript:void(0);" id="new" role="menuitem" class="win-command"
 							style="height: 20px;"> <i class="winicon-new"></i><span
 								class="win-label">新建</span> </a>
 						</li>
-						<li class="dropdown"><a data-toggle="dropdown"
+						<li id="user_manage" class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"></i> 管理 <b class="caret"></b> </a>
 							<ul class="dropdown-menu">
-								<li><a href="?act=usergroup">管理组</a></li>
+								<li><a href="<c:url value="/user/roles" />" id="linkUsergroup">管理组</a></li>
+								<li><a href="<c:url value="/user/resources" />" id="linkUsergroup">管理权限项</a></li>
 							</ul>
 						</li>
-						<li><a href="?act=edit">编辑</a></li>
-						<li><a href="?act=copy">复制</a></li>
-						<li><a href="?act=delete">删除</a></li>
-						<li class="dropdown"><a data-toggle="dropdown"
+						<li id="user_edit"><a href="javascript:void(0);" id="linkEdit">编辑</a></li>
+						<!-- <li id="user_copy"><a href="javascript:void(0);" id="linkCopy">复制</a></li> -->
+						<li id="user_delete"><a href="javascript:void(0);" id="linkDelete">删除</a></li>
+						<li id="user_setstatus" class="dropdown"><a data-toggle="dropdown"
 							class="dropdown-toggle" href="#"></i> 设置状态 <b class="caret"></b>
 						</a>
-							<ul class="dropdown-menu">
-								<li><a href="?state=active">活动(默认)</a></li>
-								<li><a href="?state=inactive">不活动</a></li>
-								<li><a href="?state=disabled">已禁用</a></li>
-								<li><a href="?state=new">新注册</a></li>
-								<li><a href="?state=">全部</a></li>
+							<ul class="dropdown-menu" id="user_statuslist">
+								<!-- 附加用户状态值 -->
+								<li id="enabled" value="1"><a href="javascript:void(0);">活动(默认)</a></li>
+								<li id="disabled" value="0"><a href="javascript:void(0);">已禁用</a></li>
 							</ul>
 						</li>
 						<li></li>
