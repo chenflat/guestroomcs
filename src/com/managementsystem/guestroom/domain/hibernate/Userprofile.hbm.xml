@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-27 15:33:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Userprofile" table="userprofile" catalog="guestroomcsdb">
+        <id name="profileid" type="string">
+            <column name="profileid" length="75" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
+            <column name="user_id" length="75" />
+        </many-to-one>
+        <many-to-one name="profilepropertydefinition" class="com.managementsystem.guestroom.domain.hibernate.Profilepropertydefinition" fetch="select">
+            <column name="propertydefinitionid" length="75" />
+        </many-to-one>
+        <property name="propertyvalue" type="string">
+            <column name="propertyvalue" length="2000" />
+        </property>
+        <property name="propertytext" type="string">
+            <column name="propertytext" length="2000" />
+        </property>
+        <property name="visibility" type="java.lang.Integer">
+            <column name="visibility" />
+        </property>
+        <property name="lastupdateddate" type="timestamp">
+            <column name="lastupdateddate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
