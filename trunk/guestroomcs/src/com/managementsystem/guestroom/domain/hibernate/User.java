@@ -45,6 +45,8 @@ public class User implements java.io.Serializable, Cloneable {
 	private Set shiftworks = new HashSet(0);
 	@JsonBackReference
 	private List<Role> rolelist = new ArrayList<Role>();
+	
+	private Set userprofiles = new HashSet(0);
 
 	public User() {
 	}
@@ -325,6 +327,15 @@ public class User implements java.io.Serializable, Cloneable {
 		this.rolelist = rolelist;
 	}
 
+	public Set getUserprofiles() {
+		return this.userprofiles;
+	}
+
+	public void setUserprofiles(Set userprofiles) {
+		this.userprofiles = userprofiles;
+	}
+	
+	
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-11-27 15:33:05 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Profilepropertydefinition" table="profilepropertydefinition" catalog="guestroomcsdb">
+        <id name="propertydefinitionid" type="string">
+            <column name="propertydefinitionid" length="75" />
+            <generator class="assigned" />
+        </id>
+        <property name="deleted" type="java.lang.Boolean">
+            <column name="deleted" />
+        </property>
+        <property name="datatype" type="java.lang.Integer">
+            <column name="datatype" />
+        </property>
+        <property name="defaultvalue" type="string">
+            <column name="defaultvalue" length="65535" />
+        </property>
+        <property name="propertycategory" type="string">
+            <column name="propertycategory" length="50" />
+        </property>
+        <property name="propertyname" type="string">
+            <column name="propertyname" length="50" />
+        </property>
+        <property name="length" type="java.lang.Integer">
+            <column name="length" />
+        </property>
+        <property name="required" type="java.lang.Boolean">
+            <column name="required" />
+        </property>
+        <property name="validationexpression" type="string">
+            <column name="validationexpression" length="1000" />
+        </property>
+        <property name="vieworder" type="java.lang.Integer">
+            <column name="vieworder" />
+        </property>
+        <property name="visible" type="java.lang.Boolean">
+            <column name="visible" />
+        </property>
+        <property name="defaultvisibility" type="java.lang.Integer">
+            <column name="defaultvisibility">
+                <comment>0=AllUsers 2=AdminOnly</comment>
+            </column>
+        </property>
+        <property name="createdbyuserid" type="string">
+            <column name="createdbyuserid" length="75" />
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+        <property name="lastmodifiedbyuserid" type="string">
+            <column name="lastmodifiedbyuserid" length="75" />
+        </property>
+        <property name="lastmodifiedondate" type="timestamp">
+            <column name="lastmodifiedondate" length="19" />
+        </property>
+        <set name="userprofiles" table="userprofile" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="propertydefinitionid" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Userprofile" />
+        </set>
+    </class>
+</hibernate-mapping>

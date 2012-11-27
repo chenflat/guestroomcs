@@ -99,5 +99,11 @@
             </key>
             <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Shiftwork" />
         </set>
+         <set name="userprofiles" table="userprofile" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="user_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Userprofile" />
+        </set>
     </class>
 </hibernate-mapping>
