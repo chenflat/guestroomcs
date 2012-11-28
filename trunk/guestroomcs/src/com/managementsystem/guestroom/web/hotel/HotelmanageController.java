@@ -3,7 +3,6 @@ package com.managementsystem.guestroom.web.hotel;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.WebRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -111,6 +110,14 @@ public class HotelmanageController extends AbstractController implements
 		}
 	}
 
+	
+	@RequestMapping(value="/query",method = RequestMethod.POST)
+	public String processQuery(@RequestParam("query")String query) {
+		logger.info("requesting query post of " + HotelmanageController.class);
+		
+		return "redirect:/hotel/hotel";
+	}
+	
 	@Override
 	protected String getModelViewName() {
 		return VIEW_NAME;

@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,10 +37,11 @@ import com.managementsystem.guestroom.web.IController;
  * 客房管理
  * */
 @Controller
+@RequestMapping("/hotel/room")
 public class RoommanageController extends AbstractController implements
 		IController {
 
-	private final Log logger = LogFactory.getLog(BuildmanageController.class);
+	private final Log logger = LogFactory.getLog(RoommanageController.class);
 
 	public static final String VIEW_NAME = "hotel/room";
 
@@ -61,7 +63,7 @@ public class RoommanageController extends AbstractController implements
 	/**
 	 * 客房管理
 	 * */
-	@RequestMapping(value = "hotel/room", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + RoommanageController.class);
 		ModelAndView mav = new ModelAndView();
@@ -105,7 +107,7 @@ public class RoommanageController extends AbstractController implements
 	/**
 	 * 删除选定的房间
 	 * */
-	@RequestMapping(value = "hotel/room/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public String porcessDelete(WebRequest request) {
 		if (request.getParameter("roomNos") != null) {
@@ -129,6 +131,14 @@ public class RoommanageController extends AbstractController implements
 		}
 	}
 
+	@RequestMapping(value="/query",method = RequestMethod.POST)
+	public String processQuery(@RequestParam("query")String query) {
+		logger.info("requesting query post of " + RoommanageController.class);
+		
+		return "redirect:/hotel/room";
+	}
+	
+	
 	@Override
 	protected String getModelViewName() {
 		return VIEW_NAME;

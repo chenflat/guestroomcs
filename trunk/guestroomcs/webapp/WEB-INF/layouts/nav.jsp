@@ -4,8 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Common Nav -->
 <c:set var="requestURL"
 	value="${requestScope['javax.servlet.forward.request_uri']}"
@@ -69,7 +69,7 @@
 							code="nav.analyse" /> </a></li>
 				<li><a href="<c:url value="/user/users" />"><spring:message
 							code="nav.user.usermanage" /> </a></li>
-				<li><a href="<c:url value="/account/profile" />"><spring:message
+				<li><a href="<c:url value="/account/personalize" />"><spring:message
 							code="nav.account.settings" /> </a></li>
 				<li><a href="<c:url value="/system/settings" />"><spring:message
 							code="nav.system" /> </a></li>
@@ -131,10 +131,10 @@
 						class="txt"><security:authentication property="name" /> </span> <b
 						class="caret"></b> </a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/account/profile" />"><i
+						<%-- <li><a href="<c:url value="/account/profile" />"><i
 								class="icon-briefcase"></i> <spring:message
-									code="nav.account.profile" /> </a></li>
-						<li><a href="<c:url value="/account/settings" />"><i
+									code="nav.account.profile" /> </a></li> --%>
+						<li><a href="<c:url value="/account/personalize" />"><i
 								class="icon-cog"></i> <spring:message
 									code="nav.account.settings" /> </a></li>
 						<li><a href="javascrip:void(0)"><i class="icon-envelope"></i>
@@ -164,6 +164,9 @@
 				</c:when>
 				<c:when test="${fn:contains(requestURL,'/hotel/roomtype')}">
 					<%@ include file="../jsp/hotel/roomtype_nav.jsp" %>
+				</c:when>
+				<c:when test="${fn:contains(requestURL,'/guest/')}">
+					<%@ include file="../jsp/guest/guest_nav.jsp" %>
 				</c:when>
 			</c:choose>
 		</div>

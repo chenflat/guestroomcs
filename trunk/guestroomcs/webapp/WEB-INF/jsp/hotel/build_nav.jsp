@@ -15,10 +15,10 @@
 <div class="nav-collapse">
 	<nav>
 	<ul class="nav">
-		<li><a href="<c:url value="/hotel/build/edit" />" id="new" role="menuitem" class="win-command"
+		<li><a href="<c:url value="/hotel/build/add" />" id="new" role="menuitem" class="win-command"
 			style="height: 20px;"> <i class="winicon-new"></i><span
 				class="win-label">新增</span> </a></li>
-		<li><a href="#" id="linkDelete">删除</a>
+		<li id="build_delete"><a href="#" id="linkDelete">删除</a>
 		</li>
 	</ul>
 	</nav>

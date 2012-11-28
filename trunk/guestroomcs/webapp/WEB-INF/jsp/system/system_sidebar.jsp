@@ -16,7 +16,7 @@
 		<div class="antiscroll-inner">
 			<div class="antiscroll-content">
 				<div class="sidebar_inner">
-					<form action="<c:url value="/service/guestrequest/query" />"
+					<form action="${requestURL}/query"
 						class="input-append" method="post">
 						<input autocomplete="off" name="query"
 							class="search_query input-medium" size="16" type="text"

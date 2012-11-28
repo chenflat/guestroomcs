@@ -14,7 +14,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<form:form commandName="build"
+		<form:form commandName="build" action="${pageContext.request.contextPath}/hotel/build/save"
 			class="form-horizontal form_validation_ttip" method="post">
 			<c:if test="${not empty message}">
 				<div id="message" class="alert alert-success">${message}</div>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<form:label path="buildComment" class="control-label">建筑地址</form:label>
+				<form:label path="buildComment" class="control-label">建筑备注</form:label>
 				<div class="controls">
 					<form:textarea path="buildComment" />
 				</div>
@@ -59,3 +59,6 @@
 		</form:form>
 	</div>
 </div>
+
+
+<%@ include file="delete.jsp" %>

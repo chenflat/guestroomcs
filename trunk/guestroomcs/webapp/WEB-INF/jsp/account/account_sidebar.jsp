@@ -22,20 +22,13 @@
 		<div class="antiscroll-inner">
 			<div class="antiscroll-content">
 				<div class="sidebar_inner">
-					<form action="<c:url value="/service/guestrequest/query" />"
-						class="input-append" method="post">
-						<input autocomplete="off" name="query"
-							class="search_query input-medium" size="16" type="text"
-							placeholder="搜索" />
-						<button type="submit" class="btn">
-							<i class="icon-search"></i>
-						</button>
+					<form class="input-append" >
 					</form>
 					
 					<div id="side_quickview" class="quickview">
 						<ul class="nav nav-list">
-							<li <c:if test="${fn:endsWith(requestURL, '/account/profile')}">class="active"</c:if>><a href="<c:url value="/account/profile" />"><spring:message code="nav.account.profile" /></a>
-							</li>
+							<%-- <li <c:if test="${fn:endsWith(requestURL, '/account/profile')}">class="active"</c:if>><a href="<c:url value="/account/profile" />"><spring:message code="nav.account.profile" /></a>
+							</li> --%>
 							<li <c:if test="${fn:endsWith(requestURL, '/account/personalize')}">class="active"</c:if>><a href="<c:url value="/account/personalize" />"><spring:message code="nav.account.personalize" /></a>
 							</li>
 							<li <c:if test="${fn:endsWith(requestURL, '/account/notification')}">class="active"</c:if>><a href="<c:url value="/account/notification" />"><spring:message code="nav.account.notification" /></a>

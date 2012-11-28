@@ -9,8 +9,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.domain.hibernate.Listinfo;
@@ -33,7 +37,15 @@ public class DictionaryController extends AbstractController implements
 
 	@Autowired
 	private ListinfoService listinfoService;
-	
+
+	/**
+	 * 列表字典
+	 * */
+	@ModelAttribute("dictionaries")
+	public Set<Listinfo> getCategories() {
+		return listinfoService.getListinfoDictionary();
+	}
+
 	/**
 	 * 字典表
 	 * */
@@ -43,13 +55,30 @@ public class DictionaryController extends AbstractController implements
 		logger.debug("dictionary settings");
 		ModelAndView mav = new ModelAndView();
 
-		//列表字典
-		Set<Listinfo> dictionaries = listinfoService.getListinfoDictionary();
-		
-		
-		mav.addObject("dictionaries", dictionaries);
 		mav.setViewName(VIEW_NAME);
 		return mav;
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	@ResponseBody
+	public List<Listinfo> getListinfos(@RequestParam("listname") String listname) {
+		logger.info("Requesting getListinfos of " + DictionaryController.class);
+		List<Listinfo> list = null;
+		try {
+			if(StringUtils.hasLength(listname)) {
+				list = new ArrayList<Listinfo>(listinfoService.getListEntryItems(listname));
+			}
+		} catch (Exception e) {
+			
+		}
+		return list;
+	}
+
+	@RequestMapping(value = "/query", method = RequestMethod.POST)
+	public String processQuery(@RequestParam("query") String query) {
+		logger.info("requesting query post of " + DictionaryController.class);
+
+		return "redirect:/system/dictionary";
 	}
 
 	@Override

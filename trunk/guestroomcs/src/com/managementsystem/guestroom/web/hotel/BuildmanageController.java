@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.domain.hibernate.Build;
@@ -21,7 +22,7 @@ import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
 @Controller
-@RequestMapping("hotel/build")
+@RequestMapping("/hotel/build")
 public class BuildmanageController extends AbstractController implements
 		IController {
 
@@ -53,6 +54,13 @@ public class BuildmanageController extends AbstractController implements
 		return mav;
 	}
 
+	@RequestMapping(value="/query",method = RequestMethod.POST)
+	public String processQuery(@RequestParam("query")String query) {
+		logger.info("requesting query post of " + BuildmanageController.class);
+		
+		return "redirect:/hotel/build";
+	}
+	
 	@Override
 	protected String getModelViewName() {
 		return VIEW_NAME;

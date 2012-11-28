@@ -5,17 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!-- user manage nav -->
+<!-- guest manage nav -->
 <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
 	<span class="icon-align-justify icon-white"></span> </a>
 <div class="nav-collapse">
 	<nav>
 	<ul class="nav">
-		<li id="user_add"><a href="javascript:void(0);" id="new"
-			role="menuitem" class="win-command" style="height: 20px;"> <i
-				class="winicon-new"></i><span class="win-label">新建</span> </a></li>
-		<li id="user_manage" class="dropdown"><a data-toggle="dropdown"
-			class="dropdown-toggle" href="#"></i> 管理 <b class="caret"></b> </a>
+		<li id="guest_group" class="dropdown"><a data-toggle="dropdown"
+			class="dropdown-toggle" href="#"></i> 分组方式 <b class="caret"></b> </a>
 			<ul class="dropdown-menu">
 				<li><a href="<c:url value="/user/roles" />" id="linkUsergroup">管理组</a>
 				</li>
@@ -23,14 +20,26 @@
 					id="linkUsergroup">管理权限项</a>
 				</li>
 			</ul></li>
-		<li id="user_edit"><a href="javascript:void(0);" id="linkEdit">编辑</a>
-		</li>
-		<!-- <li id="user_copy"><a href="javascript:void(0);" id="linkCopy">复制</a></li> -->
-		<li id="user_delete"><a href="javascript:void(0);"
-			id="linkDelete">删除</a>
-		</li>
+		<li id="user_manage" class="dropdown"><a data-toggle="dropdown"
+			class="dropdown-toggle" href="#"></i> 租赁状态 <b class="caret"></b> </a>
+			<ul class="dropdown-menu">
+				<li><a href="<c:url value="/user/roles" />" id="linkUsergroup">管理组</a>
+				</li>
+				<li><a href="<c:url value="/user/resources" />"
+					id="linkUsergroup">管理权限项</a>
+				</li>
+			</ul></li>
+		<li id="user_manage" class="dropdown"><a data-toggle="dropdown"
+			class="dropdown-toggle" href="#"></i> 服务请求 <b class="caret"></b> </a>
+			<ul class="dropdown-menu">
+				<li><a href="<c:url value="/user/roles" />" id="linkUsergroup">管理组</a>
+				</li>
+				<li><a href="<c:url value="/user/resources" />"
+					id="linkUsergroup">管理权限项</a>
+				</li>
+			</ul></li>
 		<li id="user_setstatus" class="dropdown"><a
-			data-toggle="dropdown" class="dropdown-toggle" href="#"></i> 设置状态 <b
+			data-toggle="dropdown" class="dropdown-toggle" href="#"></i> 操作 <b
 				class="caret"></b> </a>
 			<ul class="dropdown-menu" id="user_statuslist">
 				<!-- 附加用户状态值 -->
@@ -43,3 +52,4 @@
 	</ul>
 	</nav>
 </div>
+

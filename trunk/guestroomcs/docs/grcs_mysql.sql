@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-11-16 15:11:01                          */
+/* Created on:     2012-11-27 15:10:14                          */
 /*==============================================================*/
 
 
@@ -36,6 +36,8 @@ drop table if exists prefsdefinedfield;
 
 drop table if exists prefstype;
 
+drop table if exists profilepropertydefinition;
+
 drop table if exists resource;
 
 drop table if exists role;
@@ -59,6 +61,8 @@ drop table if exists shiftwork;
 drop table if exists user;
 
 drop table if exists user_role;
+
+drop table if exists userprofile;
 
 /*==============================================================*/
 /* Table: build                                                 */
@@ -344,6 +348,30 @@ create table prefstype
 );
 
 /*==============================================================*/
+/* Table: profilepropertydefinition                             */
+/*==============================================================*/
+create table profilepropertydefinition
+(
+   propertydefinitionid varchar(75) not null,
+   deleted              bool,
+   datatype             int,
+   defaultvalue         text,
+   propertycategory     varchar(50),
+   propertyname         varchar(50),
+   length               int,
+   required             bool,
+   validationexpression varchar(1000),
+   vieworder            int,
+   visible              bool,
+   defaultvisibility    int comment '0=AllUsers 2=AdminOnly',
+   createdbyuserid      varchar(75),
+   createdondate        datetime,
+   lastmodifiedbyuserid varchar(75),
+   lastmodifiedondate   datetime,
+   primary key (propertydefinitionid)
+);
+
+/*==============================================================*/
 /* Table: resource                                              */
 /*==============================================================*/
 create table resource
@@ -508,6 +536,7 @@ create table user
    lastLoginDate        datetime,
    lastLoginIP          varchar(75),
    status               int comment '0禁用 1启用',
+   isSuperUser          bool,
    primary key (user_id)
 );
 
@@ -516,9 +545,25 @@ create table user
 /*==============================================================*/
 create table user_role
 (
+   ur_id                varchar(75) not null,
    user_id              varchar(75) not null,
    role_id              varchar(75) not null,
-   primary key (user_id, role_id)
+   primary key (ur_id)
+);
+
+/*==============================================================*/
+/* Table: userprofile                                           */
+/*==============================================================*/
+create table userprofile
+(
+   profileid            varchar(75) not null,
+   user_id              varchar(75),
+   propertydefinitionid varchar(75),
+   propertyvalue        varchar(2000),
+   propertytext         varchar(2000),
+   visibility           int,
+   lastupdateddate      datetime,
+   primary key (profileid)
 );
 
 alter table build add constraint FK_hotelinfo_buildinfo foreign key (hotel_id)
@@ -597,5 +642,11 @@ alter table user_role add constraint FK_role_userrole foreign key (role_id)
       references role (role_id) on delete cascade;
 
 alter table user_role add constraint FK_user_userrole foreign key (user_id)
+      references user (user_id) on delete cascade;
+
+alter table userprofile add constraint FK_profilepropertydefinition_userprofile foreign key (propertydefinitionid)
+      references profilepropertydefinition (propertydefinitionid) on delete cascade;
+
+alter table userprofile add constraint FK_user_userprofile foreign key (user_id)
       references user (user_id) on delete cascade;
 
