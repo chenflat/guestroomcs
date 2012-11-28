@@ -13,7 +13,7 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<form id="shiftwork" method="post" class="form-horizontal">
+		<form id="shiftwork" method="post">
 			<div class="formRow">
 				<h4 class="text-info">服务连通状况</h4>
 
@@ -33,7 +33,8 @@
 			<div class="formRow">
 				<button class="btn btn-success">交接班</button>
 			</div>
-			<div class="formRow">
+			<div class="row-fluid">
+				<div class="span8">
 				<table class="table table-bordered">
 					<tr  class="success">
 						<th>楼层</th>
@@ -43,7 +44,7 @@
 					</tr>
 					<tr></tr>
 				</table>
-
+			</div>
 			</div>
 		</form>
 	</div>

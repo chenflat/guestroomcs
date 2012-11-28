@@ -46,12 +46,15 @@
 		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/system/dictionary')}">
+		<script src="<c:url value="/js/application/dictionary.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/system/dictionary')}">
 		<script src="<c:url value="/js/application/settings_validation.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/hotel/hotel')}">
 		<script src="<c:url value="/js/application/hotelmanage.js"/>"></script>
 	</c:when>
-	<c:when test="${fn:contains(requestURL,'/hotel/build/edit') or fn:contains(requestURL,'/hotel/build/new')}">
+	<c:when test="${fn:contains(requestURL,'/hotel/build')}">
 		<script src="<c:url value="/js/application/buildmanage.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/user/users')}">
@@ -73,6 +76,9 @@
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/hotel/roomtype')}">
 		<script src="<c:url value="/js/application/roomtype.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/guest/')}">
+		<script src="<c:url value="/js/application/guestmanage.js"/>"></script>
 	</c:when>
 </c:choose> 
 

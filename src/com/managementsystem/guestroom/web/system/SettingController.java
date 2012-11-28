@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -93,6 +94,14 @@ public class SettingController extends AbstractController implements
 		}
 		// return "redirect:/system/settings";
 	}
+	
+	@RequestMapping(value="/query",method = RequestMethod.POST)
+	public String processQuery(@RequestParam("query")String query) {
+		logger.info("requesting query post of " + SettingController.class);
+		
+		return "redirect:/system/settings";
+	}
+	
 
 	@Override
 	protected String getModelViewName() {

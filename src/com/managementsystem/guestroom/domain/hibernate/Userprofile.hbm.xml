@@ -6,7 +6,7 @@
     <class name="com.managementsystem.guestroom.domain.hibernate.Userprofile" table="userprofile" catalog="guestroomcsdb">
         <id name="profileid" type="string">
             <column name="profileid" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <many-to-one name="user" class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
             <column name="user_id" length="75" />

@@ -1,8 +1,63 @@
 /* [ ---- build setting validation ---- ] */
 
 	$(document).ready(function() {
+		
+		build.opt();
+		
 		validation.ttip();
 	});
+	
+	
+	//btn_delete
+	
+	build = {
+		opt:function(){
+			
+			//当前页面路径
+			var pathname = window.location.pathname;
+			//用户管理员路径
+			var addpath = contextPath+"hotel/build/add";
+			var listpath = contextPath+"hotel/build";
+			
+			console.log(pathname);
+			console.log(addpath);
+			console.log("listpath is "+ listpath);
+			/**
+			 * 新增角色时不显示工具栏
+			 * */
+			if(pathname==addpath || pathname==listpath) {
+				$("#build_delete").hide();
+			}
+						
+			//删除建筑确认提示
+			$("#build_delete").click(function(){
+				var buildName = $("#buildName").val();
+				$("#buildDelModal .modal-body .lead").text(buildName);
+				$("#buildDelModal").modal('show');
+			});
+			
+			//执行角色删除
+			$("#btn-delete").click(function(){
+				var url = $(this).attr('url');
+				var buildId = $("#buildId").val();
+				$.post(url,{buildId:buildId},function(result){	
+					if(result.success=='true') {
+						$.sticky("remove build success!", {autoclose : 5000, position: "top-right", type: "st-success" });	
+						window.location.href = listpath ;
+					} else {
+						$(".main_content form:first-child").before("<div class='alert fade in'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+ result.msg +"</div");
+					}
+				}).success(function(msg){	
+							
+				}).error(function(msg){
+					alert(msg);
+				});
+				$("#buildDelModal").modal('hide');
+			});
+			
+		}	
+	};
+	
 	
 	//* validation
 	validation = {

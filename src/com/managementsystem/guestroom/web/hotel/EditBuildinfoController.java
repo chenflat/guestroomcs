@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,6 +28,7 @@ import com.managementsystem.guestroom.service.biz.BuildService;
 import com.managementsystem.guestroom.service.biz.HotelService;
 import com.managementsystem.guestroom.validation.BuildValidator;
 import com.managementsystem.guestroom.web.AbstractController;
+import com.managementsystem.ui.easyui.Resultmsg;
 
 /**
  * 编辑建筑信息
@@ -46,7 +49,7 @@ public class EditBuildinfoController extends AbstractController {
 	/**
 	 * 新增建筑信息
 	 * */
-	@RequestMapping(value = "/hotel/build/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/hotel/build/add", method = RequestMethod.GET)
 	public ModelAndView setup(ModelMap model) {
 		logger.info("Requesting doGet of " + EditBuildinfoController.class);
 		ModelAndView mav = new ModelAndView();
@@ -93,23 +96,60 @@ public class EditBuildinfoController extends AbstractController {
 	/**
 	 * 保存建筑信息
 	 * */
-	@RequestMapping(value = "/hotel/build/edit/*", method = RequestMethod.POST)
-	public void processSubmit(@ModelAttribute("build") Build build,
+	@RequestMapping(value = "/hotel/build/save", method = RequestMethod.POST)
+	public String processSubmit(@ModelAttribute("build") Build build,
 			Model model, BindingResult result, SessionStatus status) {
 		new BuildValidator().validate(build, result);
 		if (result.hasErrors()) {
 			logger.error(result);
-			model.addAttribute("message", new Message(Alert.ERROR,result.toString()));
+			model.addAttribute("message",
+					new Message(Alert.ERROR, result.toString()));
+			if (StringUtils.hasLength(build.getBuildId())) {
+				return "redirect:/hotel/build/edit/" + build.getBuildId();
+			} else {
+				return "redirect:/hotel/build/add";
+			}
 		} else {
 			if (StringUtils.hasLength(build.getBuildId())) {
 				buildService.update(build);
 			} else {
 				buildService.save(build);
 				status.setComplete();
-				model.addAttribute("message", new Message(Alert.SUCCESS,"success"));
+				model.addAttribute("message", new Message(Alert.SUCCESS,
+						"success"));
 			}
-			//return "redirect:/hotel/editbuildinfo/"+build.getBuildId();
+			return "redirect:/hotel/build/edit/" + build.getBuildId();
 		}
+	}
+
+	/**
+	 * 删除酒店建筑
+	 * 
+	 * @param buildId
+	 *            建筑ID
+	 * @return JSON结果
+	 * */
+	@RequestMapping(value = "/hotel/build/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public Resultmsg processDelete(
+			@RequestParam(value = "buildId", required = true) String buildId) {
+		Resultmsg msg = new Resultmsg();
+		msg.setSuccess("true");
+		try {
+			logger.info("Requesting processDelete of "
+					+ EditBuildinfoController.class);
+			if (StringUtils.hasLength(buildId)) {
+				buildService.delete(buildId);
+			} else {
+				msg.setMsg("buildId is null");
+				msg.setSuccess("false");
+			}
+
+		} catch (Exception e) {
+			msg.setMsg(e.getMessage());
+			msg.setSuccess("false");
+		}
+		return msg;
 	}
 
 	@Override

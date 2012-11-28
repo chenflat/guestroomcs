@@ -15,7 +15,7 @@
 		<legend>数据字典</legend>
 		<div class="span3">
 			<div class="well">
-				<ul class="nav nav-list">
+				<ul class="nav nav-list" id="category">
 					<li class="nav-header">字典类别 
 					<c:forEach items="${dictionaries}"
 							var="dict">
@@ -26,7 +26,21 @@
 			</div>
 		</div>
 		<div class="span8">
-			<div class="well"></div>
+			<div class="well">
+			<table class="table table-striped" id="listinfos">
+			<thead>
+                <tr>
+                  <th>#</th>
+                  <th>名称</th>
+                  <th>字典内容</th>
+                  <th>字典值</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+              </tbody>
+			</table>
+			</div>
 		</div>
 	</div>
 </div>

@@ -50,7 +50,7 @@
 }
 
 .nav-list>li:first-child+li>a {
-	padding-top: 0px;
+	
 }
 
 .sidebar .nav-list>.active>a,.nav-list>.active>a:hover {
@@ -59,6 +59,7 @@
 	background-color: #D24726;
 	font-weight: bold;
 	cursor: pointer;
+
 }
 
 .nav-header {

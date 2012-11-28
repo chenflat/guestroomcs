@@ -22,8 +22,7 @@
 				<c:if test="${not empty error}">
 					<div class="errorblock">
 						<spring:message code="login.errmsg" />
-						<br /> 
-						${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+						<br /> ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 					</div>
 				</c:if>
 
@@ -31,7 +30,8 @@
 					method='POST' id="login_form">
 					<div class="control-group">
 						<div class="controls">
-							<input type='text' name='j_username' value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"
+							<input type='text' name='j_username'
+								value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}"
 								placeholder="<spring:message code="user.username" />"
 								class="login-input user-name">
 						</div>
@@ -50,8 +50,12 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<input name="submit" type="submit" class="btn btn-info btm_b" />
+							<input name="submit" type="submit" class="btn btn-info btm_b"
+								value=" 登陆  " />
 						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls"><a href="#">无法访问账户?</a></div>
 					</div>
 				</form>
 			</div>

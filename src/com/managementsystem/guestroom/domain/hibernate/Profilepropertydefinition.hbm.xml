@@ -6,7 +6,7 @@
     <class name="com.managementsystem.guestroom.domain.hibernate.Profilepropertydefinition" table="profilepropertydefinition" catalog="guestroomcsdb">
         <id name="propertydefinitionid" type="string">
             <column name="propertydefinitionid" length="75" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <property name="deleted" type="java.lang.Boolean">
             <column name="deleted" />
