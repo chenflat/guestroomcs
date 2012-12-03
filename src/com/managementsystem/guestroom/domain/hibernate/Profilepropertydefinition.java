@@ -1,12 +1,14 @@
 package com.managementsystem.guestroom.domain.hibernate;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * 用户资料属性定义
+ * */
 public class Profilepropertydefinition implements java.io.Serializable {
+
 	private static final long serialVersionUID = 1882390158145886280L;
 	private String propertydefinitionid;
 	private Boolean deleted;
@@ -24,7 +26,8 @@ public class Profilepropertydefinition implements java.io.Serializable {
 	private Date createdondate;
 	private String lastmodifiedbyuserid;
 	private Date lastmodifiedondate;
-	private Set userprofiles = new HashSet(0);
+
+	private Set<Userprofile> userprofiles = new HashSet<Userprofile>(0);
 
 	public Profilepropertydefinition() {
 	}
@@ -39,7 +42,7 @@ public class Profilepropertydefinition implements java.io.Serializable {
 			Boolean required, String validationexpression, Integer vieworder,
 			Boolean visible, Integer defaultvisibility, String createdbyuserid,
 			Date createdondate, String lastmodifiedbyuserid,
-			Date lastmodifiedondate, Set userprofiles) {
+			Date lastmodifiedondate, Set<Userprofile> userprofiles) {
 		this.propertydefinitionid = propertydefinitionid;
 		this.deleted = deleted;
 		this.datatype = datatype;
@@ -187,12 +190,11 @@ public class Profilepropertydefinition implements java.io.Serializable {
 		this.lastmodifiedondate = lastmodifiedondate;
 	}
 
-	public Set getUserprofiles() {
+	public Set<Userprofile> getUserprofiles() {
 		return this.userprofiles;
 	}
 
-	public void setUserprofiles(Set userprofiles) {
+	public void setUserprofiles(Set<Userprofile> userprofiles) {
 		this.userprofiles = userprofiles;
 	}
-
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2012-11-27 15:33:05 by Hibernate Tools 3.4.0.CR1 -->
+
 <hibernate-mapping>
-    <class name="com.managementsystem.guestroom.domain.hibernate.Profilepropertydefinition" table="profilepropertydefinition" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Profilepropertydefinition" table="profilepropertydefinition">
         <id name="propertydefinitionid" type="string">
             <column name="propertydefinitionid" length="75" />
             <generator class="uuid" />

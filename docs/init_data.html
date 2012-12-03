@@ -13,11 +13,13 @@
   <!--
 	var sql = "insert into room(room_no,room_name,floor_id,roomtype_id,room_towards,room_phone,room_fax,room_photo,room_comment) values('1','0101','1','1','','','','','');";
 	var room_no = "";
+	var index = 0;
 	for(var floorid=1;floorid<=23;floorid++) {
 		for(var roomid=1;roomid<=33;roomid++) {
 			room_no = format_roomno(floorid,roomid);
 			if(roomid!=4 && roomid!=13 && roomid!=14) {
-			document.write("insert into room(room_no,room_name,floor_id,roomtype_id,room_towards,room_phone,room_fax,room_photo,room_comment) values('"+ room_no +"','"+ room_no +"','"+ floorid +"','1','','','','','');<br />");
+			index++;
+			document.write("insert into room(room_id,room_no,room_name,floor_id,roomtype_id,room_towards,room_phone,room_fax,room_photo,room_comment) values("+ index +",'"+ room_no +"','"+ room_no +"','"+ floorid +"','402881ed3b03520b013b035aa5d40002','','','','','');<br />");
 
 			}
 		}

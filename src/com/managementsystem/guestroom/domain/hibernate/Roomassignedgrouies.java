@@ -8,8 +8,8 @@ package com.managementsystem.guestroom.domain.hibernate;
 public class Roomassignedgrouies implements java.io.Serializable {
 
 	private String itemid;
-	private Roomgroup roomgroup;
 	private Room room;
+	private String roomgroupId;
 
 	public Roomassignedgrouies() {
 	}
@@ -18,10 +18,10 @@ public class Roomassignedgrouies implements java.io.Serializable {
 		this.itemid = itemid;
 	}
 
-	public Roomassignedgrouies(String itemid, Roomgroup roomgroup, Room room) {
+	public Roomassignedgrouies(String itemid, Room room, String roomgroupId) {
 		this.itemid = itemid;
-		this.roomgroup = roomgroup;
 		this.room = room;
+		this.roomgroupId = roomgroupId;
 	}
 
 	public String getItemid() {
@@ -32,20 +32,20 @@ public class Roomassignedgrouies implements java.io.Serializable {
 		this.itemid = itemid;
 	}
 
-	public Roomgroup getRoomgroup() {
-		return this.roomgroup;
-	}
-
-	public void setRoomgroup(Roomgroup roomgroup) {
-		this.roomgroup = roomgroup;
-	}
-
 	public Room getRoom() {
 		return this.room;
 	}
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public String getRoomgroupId() {
+		return this.roomgroupId;
+	}
+
+	public void setRoomgroupId(String roomgroupId) {
+		this.roomgroupId = roomgroupId;
 	}
 
 }

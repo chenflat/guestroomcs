@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-11-27 15:10:14                          */
+/* Created on:     2012-11-29 11:15:11                          */
 /*==============================================================*/
 
 
@@ -264,6 +264,7 @@ create table listinfo
    definitionid         varchar(75),
    description          varchar(500),
    systemlist           bool,
+   langcode             varchar(20),
    createdbyuserid      varchar(75),
    createdondate        datetime,
    lastmodifiedbyuserId varchar(75),
@@ -415,6 +416,7 @@ create table role_resource
 /*==============================================================*/
 create table room
 (
+   room_id              int not null,
    room_no              varchar(75) not null,
    room_name            varchar(40),
    floor_id             varchar(75),
@@ -424,7 +426,7 @@ create table room
    room_fax             varchar(20),
    room_photo           varchar(200),
    room_comment         varchar(200),
-   primary key (room_no)
+   primary key (room_id)
 );
 
 /*==============================================================*/
@@ -433,7 +435,7 @@ create table room
 create table roomassignedgrouies
 (
    itemid               varchar(75) not null,
-   room_no              varchar(75),
+   room_id              int,
    roomgroup_id         varchar(75),
    primary key (itemid)
 );
@@ -443,10 +445,10 @@ create table roomassignedgrouies
 /*==============================================================*/
 create table roomconfig
 (
-   room_no              varchar(75) not null,
+   room_id              int not null,
    room_ip              varchar(20),
    room_port            int,
-   primary key (room_no)
+   primary key (room_id)
 );
 
 /*==============================================================*/
@@ -620,14 +622,14 @@ alter table room add constraint FK_floor_room foreign key (floor_id)
 alter table room add constraint FK_roomtype_room foreign key (roomtype_id)
       references roomtype (roomtype_id) on delete set null;
 
-alter table roomassignedgrouies add constraint FK_room_roomassignedgrouies foreign key (room_no)
-      references room (room_no) on delete cascade;
+alter table roomassignedgrouies add constraint FK_room_roomassignedgrouies foreign key (room_id)
+      references room (room_id) on delete cascade;
 
 alter table roomassignedgrouies add constraint FK_roomgroup_roomassignedgrouies foreign key (roomgroup_id)
       references roomgroup (roomgroup_id) on delete cascade;
 
-alter table roomconfig add constraint FK_room_roomconfig foreign key (room_no)
-      references room (room_no) on delete cascade;
+alter table roomconfig add constraint FK_room_roomconfig foreign key (room_id)
+      references room (room_id) on delete cascade;
 
 alter table roomtype add constraint FK_hotel_roomtype foreign key (hotel_id)
       references hotel (hotel_id) on delete restrict on update restrict;

@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Eventlog" table="eventlog" catalog="guestroomcsdb">
+<hibernate-mapping auto-import="true" default-lazy="true">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Eventlog" table="eventlog">
         <id name="logUuid" type="string">
             <column name="log_uuid" length="75" />
             <generator class="uuid" />

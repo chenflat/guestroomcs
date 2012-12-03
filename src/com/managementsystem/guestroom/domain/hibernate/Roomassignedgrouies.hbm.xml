@@ -3,16 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.managementsystem.guestroom.domain.hibernate.Roomassignedgrouies" table="roomassignedgrouies" catalog="guestroomcsdb">
-        <id name="itemid" type="string">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Roomassignedgrouies" table="roomassignedgrouies" >
+       <id name="itemid" type="string">
             <column name="itemid" length="75" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
-        <many-to-one name="roomgroup" class="com.managementsystem.guestroom.domain.hibernate.Roomgroup" fetch="select">
-            <column name="roomgroup_id" length="75" />
-        </many-to-one>
         <many-to-one name="room" class="com.managementsystem.guestroom.domain.hibernate.Room" fetch="select">
-            <column name="room_no" length="75" />
+            <column name="room_id" />
         </many-to-one>
+        <property name="roomgroupId" type="string">
+            <column name="roomgroup_id" length="75" />
+        </property>
     </class>
 </hibernate-mapping>

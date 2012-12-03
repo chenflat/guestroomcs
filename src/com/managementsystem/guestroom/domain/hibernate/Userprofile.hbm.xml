@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-27 15:33:05 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.managementsystem.guestroom.domain.hibernate.Userprofile" table="userprofile" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Userprofile" table="userprofile">
         <id name="profileid" type="string">
             <column name="profileid" length="75" />
             <generator class="uuid" />

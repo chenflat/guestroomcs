@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Prefstype" table="prefstype" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Prefstype" table="prefstype" >
         <id name="prefstypeId" type="string">
             <column name="prefstype_id" length="75" />
             <generator class="uuid" />

@@ -9,9 +9,10 @@ import java.util.Set;
 public class Room implements java.io.Serializable {
 
 	private static final long serialVersionUID = 2525653015084863659L;
-	private String roomNo;
+	private int roomId;
 	private Floor floor;
 	private Roomtype roomtype;
+	private String roomNo;
 	private String roomName;
 	private String roomTowards;
 	private String roomPhone;
@@ -20,21 +21,23 @@ public class Room implements java.io.Serializable {
 	private String roomComment;
 	private Roomconfig roomconfig;
 	private Set roomassignedgrouieses = new HashSet(0);
-
+	
 	public Room() {
 	}
 
-	public Room(String roomNo) {
+	public Room(int roomId, String roomNo) {
+		this.roomId = roomId;
 		this.roomNo = roomNo;
 	}
 
-	public Room(String roomNo, Floor floor, Roomtype roomtype, String roomName,
-			String roomTowards, String roomPhone, String roomFax,
-			String roomPhoto, String roomComment, Roomconfig roomconfig,
-			Set roomassignedgrouieses) {
-		this.roomNo = roomNo;
+	public Room(int roomId, Floor floor, Roomtype roomtype, String roomNo,
+			String roomName, String roomTowards, String roomPhone,
+			String roomFax, String roomPhoto, String roomComment,
+			Roomconfig roomconfig, Set roomassignedgrouieses) {
+		this.roomId = roomId;
 		this.floor = floor;
 		this.roomtype = roomtype;
+		this.roomNo = roomNo;
 		this.roomName = roomName;
 		this.roomTowards = roomTowards;
 		this.roomPhone = roomPhone;
@@ -45,6 +48,15 @@ public class Room implements java.io.Serializable {
 		this.roomassignedgrouieses = roomassignedgrouieses;
 	}
 
+	public int getRoomId() {
+		return this.roomId;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	
 	public String getRoomNo() {
 		return this.roomNo;
 	}

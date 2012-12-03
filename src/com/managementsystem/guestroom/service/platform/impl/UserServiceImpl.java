@@ -65,5 +65,9 @@ public class UserServiceImpl extends AbstractServiceSupport<User, String>
 		return userDao.isExistUsername(username);
 	}
 
-	
+	@Transactional(readOnly = true)
+	public User getUserByName(String username) {
+		return userDao.getUserByName(username);
+	}
+
 }

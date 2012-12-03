@@ -35,6 +35,9 @@
         <property name="systemlist" type="java.lang.Boolean">
             <column name="systemlist" />
         </property>
+        <property name="langcode" type="string">
+            <column name="langcode" />
+        </property>
         <property name="createdbyuserid" type="string">
             <column name="createdbyuserid" length="75" />
         </property>

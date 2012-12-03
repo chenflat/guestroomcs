@@ -70,8 +70,10 @@ public class FaqController extends AbstractController implements IController {
 		logger.info("Requesting doGet of "+ FaqController.class);
 		ModelAndView mav = new ModelAndView();
 		
+		Faqcategory faqcategory = faqcategoryService.get(catId);
 		Page faqPage = faqService.getFaqinfosByCatid(0, 10000, catId);
 		
+		mav.addObject("faqcategory", faqcategory);
 		mav.addObject("faqs", faqPage.getResult());
 		mav.setViewName(VIEW_NAME);
 		return mav;

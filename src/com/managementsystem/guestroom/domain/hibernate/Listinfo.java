@@ -1,6 +1,5 @@
 package com.managementsystem.guestroom.domain.hibernate;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +10,7 @@ import java.util.Set;
 public class Listinfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = -7274532158869347700L;
-	
+
 	private String entryid;
 	private Listinfo listinfo;
 	private String listname;
@@ -22,6 +21,7 @@ public class Listinfo implements java.io.Serializable {
 	private String definitionid;
 	private String description;
 	private Boolean systemlist;
+	private String langcode;
 	private String createdbyuserid;
 	private Date createdondate;
 	private String lastmodifiedbyuserId;
@@ -138,6 +138,14 @@ public class Listinfo implements java.io.Serializable {
 
 	public void setSystemlist(Boolean systemlist) {
 		this.systemlist = systemlist;
+	}
+
+	public String getLangcode() {
+		return langcode;
+	}
+
+	public void setLangcode(String langcode) {
+		this.langcode = langcode;
 	}
 
 	public String getCreatedbyuserid() {

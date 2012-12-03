@@ -3,6 +3,7 @@ package com.managementsystem.guestroom.domain.hibernate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -39,14 +40,18 @@ public class User implements java.io.Serializable, Cloneable {
 	private String lastLoginIp;
 	private Integer status;
 	private Boolean isSuperUser;
-	
+
+	@JsonBackReference
 	private Set roles = new HashSet(0);
 	@JsonBackReference
 	private Set shiftworks = new HashSet(0);
 	@JsonBackReference
 	private List<Role> rolelist = new ArrayList<Role>();
-	
+
+	@JsonBackReference
 	private Set userprofiles = new HashSet(0);
+	@JsonBackReference
+	private List<Userprofile> userprofilelist = new LinkedList<Userprofile>();
 
 	public User() {
 	}
@@ -316,8 +321,6 @@ public class User implements java.io.Serializable, Cloneable {
 	public void setShiftworks(Set shiftworks) {
 		this.shiftworks = shiftworks;
 	}
-	
-	
 
 	public List<Role> getRolelist() {
 		return rolelist;
@@ -334,11 +337,18 @@ public class User implements java.io.Serializable, Cloneable {
 	public void setUserprofiles(Set userprofiles) {
 		this.userprofiles = userprofiles;
 	}
-	
-	
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
+	}
+
+	public List<Userprofile> getUserprofilelist() {
+		return userprofilelist;
+	}
+
+	public void setUserprofilelist(List<Userprofile> userprofilelist) {
+		this.userprofilelist = userprofilelist;
 	}
 
 }

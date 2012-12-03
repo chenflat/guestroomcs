@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+  <!--
+	var room_no = "";
+	var index = 0;
+	var ip = 1;
+	for(var roomid=1;roomid<=690;roomid++) {
+		index++;
+		ip++;
+		if(ip %255==0)
+			ip = 2;
+		document.write("insert into roomconfig(room_id,room_ip,room_port) values("+ index +",'192.168."+ format_ip(index) +"."+ ip +"','7000');<br />");
+	}
+
+	function format_ip(roomid) {
+		var index=1;
+		if(roomid>253)
+			index = 2;
+		if(roomid>506)
+			index = 3;
+		if (roomid>761)
+			index = 4;
+		return index;
+
+	}
+
+	function format_ip2(roomid) {
+		var index=2;
+		if(roomid>254)
+			index = 2;
+		if(roomid>508)
+			index = 2;
+		if (roomid>762)
+			index = 2;
+		
+		return roomid+1;
+
+	}
+
+
+
+
+
+
+
+	function format_roomno(floorid,roomid) {
+		var result = "";
+		//if(floorid==4 || floorid==13 || floorid==14)
+		var floor_no = "";
+		var room_no = "";
+			
+
+			if(floorid==4) {
+				floor_no="3A"
+			} else if(floorid==13) {
+				floor_no="12A"
+			} else if(floorid==14) {
+				floor_no="15B"
+			} else {
+
+			if(floorid.toString().length<2)
+				floor_no+="0"+floorid.toString();
+			else
+				floor_no+=floorid.toString();
+			}
+
+			if(roomid.toString().length<2)
+				room_no="0"+roomid;
+			else
+				room_no=roomid.toString();
+		
+		
+
+		result = floor_no + room_no;
+
+		return result;
+	}
+
+
+
+  //-->
+  </script>
+ </body>
+</html>

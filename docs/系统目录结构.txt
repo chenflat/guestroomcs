@@ -169,4 +169,21 @@ nav.user.handover=Hand Overs
 
 
 
+insert into faqcategory(cat_id,cat_name,cat_order) values(uuid(),'登陆问题',1);
+insert into faqcategory(cat_id,cat_name,cat_order) values(uuid(),'服务请求',2);
+insert into faqcategory(cat_id,cat_name,cat_order) values(uuid(),'账户设置',3);
+insert into faqcategory(cat_id,cat_name,cat_order) values(uuid(),'用户管理',4);
+insert into faqcategory(cat_id,cat_name,cat_order) values(uuid(),'系统管理',5);
+
+
+datatype:  1=text  2=switch 3=language  4=timezone 5=dictionary 6=uploadfile  7=requestlist 8=music 9=KeywordNumber 10=SwitchDevice
+
+
+
+http://ipaddress:port/service/request
+
+{[room],[]}
+
+
+
 	

@@ -50,15 +50,20 @@ public class UserDaoImpl extends AbstractDaoSupport implements UserDao {
 		Query query = createQuery(GETUSERSBYSTATUS, 0, -1, status);
 		return new LinkedHashSet<User>(query.list());
 	}
-	
 
 	@Override
 	public boolean isExistUsername(String username) throws DataAccessException {
 		final String queryString = "from User where username=?";
-		Query query = createQuery(queryString,username);
+		Query query = createQuery(queryString, username);
 		@SuppressWarnings("unchecked")
 		List<User> users = new ArrayList<User>(query.list());
-		return users.size()>0;
+		return users.size() > 0;
+	}
+
+	@Override
+	public User getUserByName(String username) throws DataAccessException {
+		final String queryString = "from User where username=?";
+		return (User) executeQuerySingleResult(queryString, username);
 	}
 
 	@Override

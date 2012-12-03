@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Resource" table="resource" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Resource" table="resource" >
         <id name="resourceId" type="string">
             <column name="resource_id" length="75" />
             <generator class="uuid" />

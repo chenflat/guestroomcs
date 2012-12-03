@@ -37,4 +37,13 @@ public interface UserService extends ServiceSupport<User, String> {
 	 * @return true or false
 	 * */
 	public boolean isExistUsername(String username);
+	
+	/**
+	 * 获取用户信息
+	 * 
+	 * @param username
+	 *            用户名
+	 * @return 用户信息
+	 * */
+	public User getUserByName(String username);
 }
