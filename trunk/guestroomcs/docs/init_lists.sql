@@ -261,3 +261,67 @@ INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,Defin
 INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Site Log Reports','11','User Registrations By Country',NULL,0,0,-1,NULL);
 INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Site Log Reports','12','Affiliate Referrals',NULL,0,0,-1,NULL);
 
+/*-- language --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Language','zh_CN','简体,中文,zh-cn(默认)',NULL,0,1,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Language','us_EN','United States,English,us-en',NULL,0,2,-1,NULL);
+/*-- timeZone --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-720','(UTC -12:00) 国际日期变更线西',NULL,0,1,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-660','(UTC -11:00) 协调世界时-11',NULL,0,2,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-600','(UTC -10:00) Hawaii',NULL,0,3,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-540','(UTC -09:00) Alaska',NULL,0,4,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-480','(UTC -08:00) Pacific Time (US Canada); Tijuana',NULL,0,5,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-420','(UTC -07:00) Mountain Time (US Canada)',NULL,0,6,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-360','(UTC -06:00) Central Time (US Canada)',NULL,0,7,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-300','(UTC -05:00) Eastern Time (US Canada)',NULL,0,8,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-240','(UTC -04:00) Atlantic Time (Canada)',NULL,0,9,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-210','(UTC -03:30) NewfoundLand Time(Canada)',NULL,0,10,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-180','(UTC -03:00) Buenos Aires,Georgetown',NULL,0,11,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-120','(UTC -02:00) Mid-Atlantic',NULL,0,12,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','-60','(UTC -01:00) Cape Verde Is.',NULL,0,13,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','0','(UTC 00:00) Dublin, Edinburgh, Lisbon,London',NULL,0,14,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','60','(UTC +01:00) Amsterdam, Berlin, Bern,Rome, Paris, Stockholm, Vienna',NULL,0,15,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','120','(UTC +02:00) Athens, Bucharest,Istanbul, Minsk',NULL,0,16,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','180','(UTC +03:00) Moscow, St. Petersburg,Volgograd',NULL,0,17,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','210','(UTC +03:30) Tehran',NULL,0,18,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','240','(UTC +04:00) Abu Dhabi, Muscat',NULL,0,19,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','270','(UTC +04:30) Kabul',NULL,0,20,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','300','(UTC +05:00) Islamabad, Karachi,Tashkent',NULL,0,0,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','330','(UTC +05:30) Calcutta, Chennai,Mumbai,New Delhi',NULL,0,21,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','345','(UTC +05:45) Kathmandu',NULL,0,22,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','360','(UTC +06:00) Astana,Almaty, Dhaka,Novosibirsk',NULL,0,23,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','390','(UTC +06:30) Rangoon (Yangon, Burma)',NULL,0,24,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','420','(UTC +07:00) Bangkok, Hanoi, Jakarta',NULL,0,25,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','480','(UTC +08:00) 北京, 重庆, 香港特别行政区, 乌鲁木齐',NULL,0,26,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','540','(UTC +09:00) Osaka, Sapporo, Tokyo',NULL,0,27,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','570','(UTC +09:30) Adelaide, Darwin',NULL,0,28,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','600','(UTC +10:00) Canberra, Melbourne,Sydney, Vladvostok',NULL,0,29,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','660','(UTC +11:00) Magadan, Solomon Is.,New Caledonia',NULL,0,30,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','720','(UTC +12:00) Auckland, Fiji,Kamchatka, Marshall Is.',NULL,0,31,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'TimeZone','780','(UTC +13:00) Nuku alofa',NULL,0,32,-1,NULL);
+
+/*-- season --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Season','winter','冬季',NULL,0,1,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Season','summer','夏季',NULL,0,2,-1,NULL);
+
+/*-- Service Request --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Service Request','sos','SOS紧急事件',NULL,0,1,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Service Request','dooralarm','门磁报警',NULL,0,2,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Service Request','windowalarm','窗磁报警',NULL,0,3,-1,NULL);
+
+/*-- Local Data Synchronize Cycle --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Local Data Synchronize Cycle','10','10-15s',NULL,0,1,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Local Data Synchronize Cycle','15','15-20s',NULL,0,2,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Local Data Synchronize Cycle','20','20-30s',NULL,0,3,-1,NULL);
+
+/*-- Show Keyword Number --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Show Keyword Number','4','4',NULL,0,1,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Show Keyword Number','5','5',NULL,0,2,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Show Keyword Number','6','6',NULL,0,3,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Show Keyword Number','7','7',NULL,0,4,-1,NULL);
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Show Keyword Number','8','8',NULL,0,5,-1,NULL);
+
+
+/*-- Music --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Music','beep','beep(Default)',NULL,0,1,-1,NULL);
+
+

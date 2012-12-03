@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Faq" table="faq" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Faq" table="faq" >
         <id name="faqId" type="string">
             <column name="faq_id" length="75" />
             <generator class="uuid" />

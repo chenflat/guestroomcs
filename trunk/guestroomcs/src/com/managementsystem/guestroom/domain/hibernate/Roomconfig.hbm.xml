@@ -3,19 +3,22 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Roomconfig" table="roomconfig" catalog="guestroomcsdb">
-        <id name="roomNo" type="string">
-            <column name="room_no" length="75" />
-            <generator class="foreign">
-                <param name="property">room</param>
-            </generator>
-        </id>
-        <one-to-one name="room" class="com.managementsystem.guestroom.domain.hibernate.Room" constrained="true"></one-to-one>
-        <property name="roomIp" type="string">
-            <column name="room_ip" length="20" />
-        </property>
-        <property name="roomPort" type="java.lang.Integer">
-            <column name="room_port" />
-        </property>
-    </class>
+	<class name="com.managementsystem.guestroom.domain.hibernate.Roomconfig"
+		table="roomconfig">
+		<id name="roomId" type="int">
+			<column name="room_id" />
+			<generator class="foreign">
+				<param name="property">room</param>
+			</generator>
+		</id>
+		<one-to-one name="room"
+			class="com.managementsystem.guestroom.domain.hibernate.Room"
+			constrained="true"></one-to-one>
+		<property name="roomIp" type="string">
+			<column name="room_ip" length="20" />
+		</property>
+		<property name="roomPort" type="java.lang.Integer">
+			<column name="room_port" />
+		</property>
+	</class>
 </hibernate-mapping>

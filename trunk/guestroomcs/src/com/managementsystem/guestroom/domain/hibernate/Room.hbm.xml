@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Room" table="room" catalog="guestroomcsdb">
-        <id name="roomNo" type="string">
-            <column name="room_no" length="75" />
-            <generator class="uuid" />
+    <class name="com.managementsystem.guestroom.domain.hibernate.Room" table="room" >
+       <id name="roomId" type="int">
+            <column name="room_id" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="floor" class="com.managementsystem.guestroom.domain.hibernate.Floor" fetch="select">
             <column name="floor_id" length="75" />
@@ -14,6 +14,9 @@
         <many-to-one name="roomtype" class="com.managementsystem.guestroom.domain.hibernate.Roomtype" fetch="select">
             <column name="roomtype_id" length="75" />
         </many-to-one>
+        <property name="roomNo" type="string">
+            <column name="room_no" length="75" not-null="true" />
+        </property>
         <property name="roomName" type="string">
             <column name="room_name" length="40" />
         </property>
@@ -33,9 +36,9 @@
             <column name="room_comment" length="200" />
         </property>
         <one-to-one name="roomconfig" class="com.managementsystem.guestroom.domain.hibernate.Roomconfig"></one-to-one>
-        <set name="roomassignedgrouieses" table="roomassignedgrouies" inverse="true" lazy="false" fetch="select">
+        <set name="roomassignedgrouieses" table="roomassignedgrouies" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="room_no" length="75" />
+                <column name="room_id" />
             </key>
             <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Roomassignedgrouies" />
         </set>

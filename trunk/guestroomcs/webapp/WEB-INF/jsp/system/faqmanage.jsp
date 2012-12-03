@@ -29,13 +29,13 @@
 				<button type="submit" class="btn">Search</button>
 			</div>
 		</form>
-		<legend>常规问题</legend>
+		<legend>${faqcategory.catName}</legend>
 
-		<div class="accordion" id="accordion2">
-			<div class="accordion-group">
+		<div class="accordion" id="accordion">
+			<!-- <div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse"
-						data-parent="#accordion2" href="#collapseOne"> Collapsible
+						data-parent="#accordion" href="#collapseOne"> Collapsible
 						Group Item #1 </a>
 				</div>
 				<div id="collapseOne" class="accordion-body collapse in">
@@ -45,13 +45,28 @@
 			<div class="accordion-group">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse"
-						data-parent="#accordion2" href="#collapseTwo"> Collapsible
+						data-parent="#accordion" href="#collapseTwo"> Collapsible
 						Group Item #2 </a>
 				</div>
 				<div id="collapseTwo" class="accordion-body collapse">
 					<div class="accordion-inner">Anim pariatur cliche...</div>
 				</div>
+			</div> -->
+			
+			<c:forEach items="${faqs}" var="faq" varStatus="status">
+				<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse"
+						data-parent="#accordion" href="#collapse_${faq.faqId}"> ${faq.question} </a>
+				</div>
+				<div id="collapse_${faq.faqId}" class="accordion-body collapse <c:if test="${status.index eq 0}">in</c:if>">
+					<div class="accordion-inner">${faq.answer}</div>
+				</div>
 			</div>
+			
+			</c:forEach>
+			
+			
 		</div>
 
 

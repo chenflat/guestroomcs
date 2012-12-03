@@ -80,6 +80,20 @@
 	<c:when test="${fn:contains(requestURL,'/guest/')}">
 		<script src="<c:url value="/js/application/guestmanage.js"/>"></script>
 	</c:when>
+	<c:when test="${fn:contains(requestURL,'/service/')}">
+		<script src="<c:url value="/js/application/services.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/account/shiftwork')}">
+		<script src="<c:url value="/plugins/datatables/jquery.dataTables.min.js"/>"></script>
+		<script src="<c:url value="/plugins/datatables/TableTools.min.js"/>"></script>
+		<script src="<c:url value="/plugins/datatables/jquery.dataTables.columnFilter.js"/>"></script>
+		<script src="<c:url value="/plugins/datatables/dataTables.bootstrap.js"/>"></script>
+		<script src="<c:url value="/js/application/accountsettings.js"/>"></script>
+	</c:when>
+	<c:when test="${fn:contains(requestURL,'/account/')}">
+		<script src="<c:url value="/js/application/accountsettings.js"/>"></script>
+	</c:when>
+	
 </c:choose> 
 
 <script>

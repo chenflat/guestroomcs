@@ -23,10 +23,19 @@ public interface UserDao extends DaoSupport {
 	 * 获取所有活动用户
 	 * */
 	public Set<User> getUsersByStatus(int status) throws DataAccessException;
-	
+
 	/**
 	 * 是否存在用户名
 	 * */
 	public boolean isExistUsername(String username) throws DataAccessException;
+
+	/**
+	 * 获取用户信息
+	 * 
+	 * @param username
+	 *            用户名
+	 * @return 用户信息
+	 * */
+	public User getUserByName(String username) throws DataAccessException;
 
 }

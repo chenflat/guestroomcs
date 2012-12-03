@@ -2,10 +2,13 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Shiftwork" table="shiftwork" catalog="guestroomcsdb">
-        <id name="shiftworkId" type="long">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Shiftwork" table="shiftwork">
+       <id name="shiftworkId" type="long">
             <column name="shiftwork_id" />
-            <generator class="uuid" />
+            <generator class="org.hibernate.id.TableHiLoGenerator">
+				<param name="table">counter</param>  
+				<param name="column">currentid</param>  
+            </generator>
         </id>
         <many-to-one name="user" class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
             <column name="user_id" length="75" />
@@ -15,6 +18,19 @@
         </property>
         <property name="workEndtime" type="timestamp">
             <column name="work_endtime" length="19" />
+        </property>
+        <property name="shiftworker" type="string">
+            <column name="shiftworker" length="75">
+                <comment>&#189;&#211;&#176;&#224;&#200;&#203;ID</comment>
+            </column>
+        </property>
+        <property name="shiftworkerName" type="string">
+            <column name="shiftworker_name" length="45">
+                <comment>&#189;&#211;&#176;&#224;&#200;&#203;&#208;&#213;&#195;&#251;</comment>
+            </column>
+        </property>
+        <property name="floorNo" type="string">
+            <column name="floor_no" length="10" />
         </property>
         <property name="createdOnDate" type="timestamp">
             <column name="createdOnDate" length="19" />

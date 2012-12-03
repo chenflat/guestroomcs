@@ -2,6 +2,7 @@ package com.managementsystem.guestroom.dao.platform.impl;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,8 +24,8 @@ public class ListinfoDaoImpl extends AbstractDaoSupport implements ListinfoDao {
 	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(
 			Arrays.asList(new Class<?>[] { Listinfo.class }));
 
-	private final String GETLISTINFODICTIONARY = "select distinct listname from Listinfo";
-	private final String GETLISTENTRYITEMS="from Listinfo where listname=?";
+	private final String GETLISTINFODICTIONARY = "select distinct listname from Listinfo order by sortorder asc,listname asc";
+	private final String GETLISTENTRYITEMS="from Listinfo where listname=? order by sortorder asc,listname asc";
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -33,7 +34,7 @@ public class ListinfoDaoImpl extends AbstractDaoSupport implements ListinfoDao {
 	@Override
 	public Set<Listinfo> getListinfoDictionary() throws DataAccessException {
 		Query query = createQuery(GETLISTINFODICTIONARY);
-		return new HashSet<Listinfo>(query.list());
+		return new LinkedHashSet<Listinfo>(query.list());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,14 +42,16 @@ public class ListinfoDaoImpl extends AbstractDaoSupport implements ListinfoDao {
 	public Set<Listinfo> getListEntryItems(String listName)
 			throws DataAccessException {
 		Query query = createQuery(GETLISTENTRYITEMS,listName);
-		return new HashSet<Listinfo>(query.list());
+		return new LinkedHashSet<Listinfo>(query.list());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Listinfo> getListEntryItems(String listName, String parentKey)
 			throws DataAccessException {
-		
-		return null;
+		final String querySql = "from Listinfo where listname=? and listinfo.listname=? order by sortorder asc,listname asc";
+		Query query = createQuery(querySql,listName,parentKey);
+		return new LinkedHashSet<Listinfo>(query.list());
 	}
 
 	@Override

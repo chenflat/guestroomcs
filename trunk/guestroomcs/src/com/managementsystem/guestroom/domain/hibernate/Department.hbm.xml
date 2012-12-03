@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.managementsystem.guestroom.domain.hibernate.Department" table="department" catalog="guestroomcsdb">
+    <class name="com.managementsystem.guestroom.domain.hibernate.Department" table="department">
         <id name="deptId" type="string">
             <column name="dept_id" length="75" />
             <generator class="uuid" />
