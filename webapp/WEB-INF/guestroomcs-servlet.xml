@@ -20,7 +20,7 @@
 
 	<!-- Configure Apache Tiles for the view -->
 	<!-- 运行单元测试时请注释掉此Bean,否则会报错  -->
-	<bean id="tilesConfigurer"
+	<!-- <bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
 			<list>
@@ -28,7 +28,7 @@
 				<value>/WEB-INF/layouts/views.xml</value>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">

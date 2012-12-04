@@ -9,8 +9,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.http.HttpEntity;
@@ -28,17 +30,131 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.managementsystem.guestroom.domain.platform.Histroylog;
+import com.managementsystem.guestroom.domain.platform.Roomcounter;
 import com.managementsystem.guestroom.domain.platform.Roomview;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+		DirtiesContextTestExecutionListener.class,
+		TransactionalTestExecutionListener.class })
+@Transactional
+@ContextConfiguration(locations = { "file:./webapp/WEB-INF/guestroomcs-servlet.xml" })
 public class RequestServiceTest {
 
-	public static void main(String[] args) {
-		RequestServiceTest test = new RequestServiceTest();
-		for (int i = 0; i < 10; i++) {
-			new Thread(test.new TestGet2(i + "")).start();
+	@Autowired
+	private RequestService requestService;
+
+	@Test
+	public void getRoomcounter() {
+		Roomcounter rc;
+		try {
+			rc = requestService.getRoomcounter();
+			System.out.println(rc.toString());
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
 		}
 
+	}
+
+	@Test
+	public void getRoomviews() {
+		List<Roomview> list;
+		try {
+			list = requestService.getRoomviews(12);
+			for (Roomview rv : list) {
+				System.out.println(rv.toString());
+			}
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void clearService() {
+		List<Map<String, String>> list = null;
+		try {
+			list = requestService.clearService("3A15", 65535);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void query() {
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("roomNo", "0112");
+		parameters.put("p", "1");
+		parameters.put("tfrom", "2011-5-6T00:00:00");
+		parameters.put("tto", "2011-5-7T0:00:00");
+		parameters.put("tspan", "3600");
+		List<Histroylog> list;
+		try {
+			list = requestService.query(parameters);
+			for (Histroylog log : list) {
+				System.out.println(log.toString());
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void queryHistory() {
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("roomNo", "0112");
+		parameters.put("p", "1");
+		parameters.put("tfrom", "2011-5-6T00:00:00");
+		parameters.put("tcount", "100");
+		List<Histroylog> list;
+		try {
+			list = requestService.queryHistory(parameters);
+			for (Histroylog log : list) {
+				System.out.println(log.toString());
+			}
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		/*
+		 * RequestServiceTest test = new RequestServiceTest(); for (int i = 0; i
+		 * < 10; i++) { new Thread(test.new TestGet2(i + "")).start(); }
+		 */
 	}
 
 	public void get() {
