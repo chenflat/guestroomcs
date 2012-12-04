@@ -10,15 +10,18 @@ package com.managementsystem.guestroom.domain.platform;
  * @version 1.0
  * */
 public class Roomview implements java.io.Serializable {
+
+	private static final long serialVersionUID = -8885527759767322443L;
+	
 	public String roomNo;
 	public String rentState;
-	public String tempSet;
-	public String temp;
-	public String fanSpeed;
-	public String val;
-	public String fanAuto;
-	public String season;
-	public String fanPower;
+	public String tempSet0;
+	public String temp0;
+	public String fanSpeed0;
+	public String val0;
+	public String fanAuto0;
+	public String season0;
+	public String fanPower0;
 
 	public String getRoomNo() {
 		return roomNo;
@@ -36,71 +39,72 @@ public class Roomview implements java.io.Serializable {
 		this.rentState = rentState;
 	}
 
-	public String getTempSet() {
-		return tempSet;
+	
+	public String getTempSet0() {
+		return tempSet0;
 	}
 
-	public void setTempSet(String tempSet) {
-		this.tempSet = tempSet;
+	public void setTempSet0(String tempSet0) {
+		this.tempSet0 = tempSet0;
 	}
 
-	public String getTemp() {
-		return temp;
+	public String getTemp0() {
+		return temp0;
 	}
 
-	public void setTemp(String temp) {
-		this.temp = temp;
+	public void setTemp0(String temp0) {
+		this.temp0 = temp0;
 	}
 
-	public String getFanSpeed() {
-		return fanSpeed;
+	public String getFanSpeed0() {
+		return fanSpeed0;
 	}
 
-	public void setFanSpeed(String fanSpeed) {
-		this.fanSpeed = fanSpeed;
+	public void setFanSpeed0(String fanSpeed0) {
+		this.fanSpeed0 = fanSpeed0;
 	}
 
-	public String getVal() {
-		return val;
+	public String getVal0() {
+		return val0;
 	}
 
-	public void setVal(String val) {
-		this.val = val;
+	public void setVal0(String val0) {
+		this.val0 = val0;
 	}
 
-	public String getFanAuto() {
-		return fanAuto;
+	public String getFanAuto0() {
+		return fanAuto0;
 	}
 
-	public void setFanAuto(String fanAuto) {
-		this.fanAuto = fanAuto;
+	public void setFanAuto0(String fanAuto0) {
+		this.fanAuto0 = fanAuto0;
 	}
 
-	public String getSeason() {
-		return season;
+	public String getSeason0() {
+		return season0;
 	}
 
-	public void setSeason(String season) {
-		this.season = season;
+	public void setSeason0(String season0) {
+		this.season0 = season0;
 	}
 
-	public String getFanPower() {
-		return fanPower;
+	public String getFanPower0() {
+		return fanPower0;
 	}
 
-	public void setFanPower(String fanPower) {
-		this.fanPower = fanPower;
+	public void setFanPower0(String fanPower0) {
+		this.fanPower0 = fanPower0;
 	}
 
 	@Override
 	public String toString() {
 
 		return "{\"roomNo\":\"" + this.roomNo + "\",\"rentState\":\""
-				+ this.rentState + "\",\"tempSet\":\"" + this.tempSet
-				+ "\",\"temp\":\"" + this.temp + "\",\"fanSpeed\":\""
-				+ this.fanSpeed + "\",\"val\":\"" + this.val
-				+ "\",\"fanAuto\":\"" + this.fanAuto + "\",\"season\":\""
-				+ this.season + "\",\"fanPower\":\"" + this.fanPower + "\"}";
+				+ this.rentState + "\",\"tempSet\":\"" + this.tempSet0
+				+ "\",\"temp\":\"" + this.temp0 + "\",\"fanSpeed\":\""
+				+ this.fanSpeed0 + "\",\"val\":\"" + this.val0
+				+ "\",\"fanAuto\":\"" + this.fanAuto0 + "\",\"season\":\""
+				+ this.season0 + "\",\"fanPower\":\"" + this.fanPower0 + "\"}";
 	}
 
 }
