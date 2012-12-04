@@ -74,12 +74,12 @@ public class RequestServiceTest {
 
 	@Test
 	public void getRoomviews() {
-		List<Roomview> list;
+		List<Map<String, String>> list;
 		try {
 			list = requestService.getRoomviews(12);
-			for (Roomview rv : list) {
+			/*for (Roomview rv : list) {
 				System.out.println(rv.toString());
-			}
+			}*/
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();
