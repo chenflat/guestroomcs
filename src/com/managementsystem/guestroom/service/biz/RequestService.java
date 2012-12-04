@@ -1,8 +1,11 @@
 package com.managementsystem.guestroom.service.biz;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
+import com.managementsystem.guestroom.domain.platform.Histroylog;
 import com.managementsystem.guestroom.domain.platform.Roomcounter;
 import com.managementsystem.guestroom.domain.platform.Roomview;
 
@@ -13,6 +16,8 @@ import com.managementsystem.guestroom.domain.platform.Roomview;
  * */
 public interface RequestService {
 
+	public static final String PROPERTYFILE = "requestservice.properties";
+	public static final String HOSTURL = "hosturl";
 	public static final String ROOMCOUNTER = "roomcounter";
 	public static final String ROOMVIEW = "roomview";
 	public static final String CLEARSERVICE = "clearservice";
@@ -23,7 +28,7 @@ public interface RequestService {
 	/**
 	 * 获取服务请求总数
 	 * */
-	public Roomcounter getRoomcounter();
+	public Roomcounter getRoomcounter() throws MalformedURLException,IOException;
 
 	/**
 	 * 获取客房视图
@@ -34,7 +39,7 @@ public interface RequestService {
 	 * @param type
 	 *            服务类型
 	 * */
-	public List<Roomview> getRoomviews(int type);
+	public List<Roomview> getRoomviews(int type) throws MalformedURLException,IOException;
 
 	/**
 	 * 清除服务请求
@@ -49,7 +54,7 @@ public interface RequestService {
 	 * @param type
 	 *            服务类型
 	 * */
-	public List<Map<String, String>> clearService(String roomNo, int type);
+	public List<Map<String, String>> clearService(String roomNo, int type) throws MalformedURLException,IOException;
 
 	/**
 	 * 修改客房的设定参数
@@ -64,7 +69,7 @@ public interface RequestService {
 	 *            设置值
 	 * 
 	 * */
-	public void setValue(String roomNo, String value);
+	public void setValue(String roomNo, String value) throws MalformedURLException,IOException;
 
 	/**
 	 * 查询过程曲线数据
@@ -78,7 +83,7 @@ public interface RequestService {
 	 * @param parameters
 	 *            查询参数
 	 * */
-	public void query(Object... parameters);
+	public List<Histroylog> query(Map<String,String> parameters) throws MalformedURLException,IOException;
 
 	/**
 	 * 查询记录数据
@@ -91,6 +96,6 @@ public interface RequestService {
 	 * @param parameters
 	 *            查询参数
 	 * */
-	public void queryHistory(Object... parameters);
+	public List<Histroylog> queryHistory(Map<String,String> parameters) throws MalformedURLException,IOException;
 
 }
