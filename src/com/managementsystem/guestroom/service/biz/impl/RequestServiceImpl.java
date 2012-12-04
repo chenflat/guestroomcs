@@ -16,7 +16,6 @@ import org.springframework.util.Assert;
 
 import com.managementsystem.guestroom.domain.platform.Histroylog;
 import com.managementsystem.guestroom.domain.platform.Roomcounter;
-import com.managementsystem.guestroom.domain.platform.Roomview;
 import com.managementsystem.guestroom.service.biz.RequestService;
 import com.managementsystem.util.OrderedProperties;
 import com.managementsystem.util.net.RequestServiceProcess;
@@ -33,6 +32,7 @@ public class RequestServiceImpl implements RequestService {
 	private String setvalueUrl;
 	private String queryprocessUrl;
 	private String queryrecordsetUrl;
+	private String synctimeUrl;
 
 	public RequestServiceImpl() {
 		try {
@@ -54,6 +54,7 @@ public class RequestServiceImpl implements RequestService {
 					+ props.getProperty(RequestService.QUERYPROCESS);
 			queryrecordsetUrl = hostUrl
 					+ props.getProperty(RequestService.QUERYRECORDSET);
+			synctimeUrl = hostUrl + props.getProperty(RequestService.SYNCTIME);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,12 +77,14 @@ public class RequestServiceImpl implements RequestService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Roomview> getRoomviews(int type) throws MalformedURLException,
-			IOException {
+	public List<Map<String, String>> getRoomviews(int type)
+			throws MalformedURLException, IOException {
 		Assert.notNull(type, "'type' must not be null");
-		RequestServiceProcess<Roomview> process = new RequestServiceProcess<Roomview>(
-				new Roomview());
-		List<Roomview> list = null;
+		Map<String, String> map = new HashMap<String, String>();
+
+		RequestServiceProcess<Map<String, String>> process = new RequestServiceProcess<Map<String, String>>(
+				map);
+		List<Map<String, String>> list = null;
 		String serviceUrl = String.format(roomviewUrl + "?type=%s", type);
 		list = process.getRequestResult(serviceUrl);
 		return list;
@@ -168,6 +171,19 @@ public class RequestServiceImpl implements RequestService {
 				+ sb.toString());
 		list = process.getRequestResult(serviceUrl);
 
+		return list;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Map<String, String>> synctime() throws MalformedURLException,
+			IOException {
+		// synctimeUrl
+		Map<String, String> map = new HashMap<String, String>();
+		RequestServiceProcess<Map<String, String>> process = new RequestServiceProcess<Map<String, String>>(
+				map);
+		List<Map<String, String>> list = null;
+		list = process.getRequestResult(synctimeUrl);
 		return list;
 	}
 

@@ -1,7 +1,5 @@
 package com.managementsystem.guestroom.service.biz.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +8,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.managementsystem.guestroom.dao.biz.RoomgroupDao;
 import com.managementsystem.guestroom.domain.hibernate.Roomgroup;

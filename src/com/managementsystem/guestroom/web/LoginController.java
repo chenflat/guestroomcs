@@ -2,6 +2,7 @@ package com.managementsystem.guestroom.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -32,4 +33,5 @@ public class LoginController {
 		mav.setViewName(VIEW_NAME);
 		return mav;
 	}
+
 }
