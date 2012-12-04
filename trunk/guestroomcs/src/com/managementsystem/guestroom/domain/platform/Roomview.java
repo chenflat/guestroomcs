@@ -12,8 +12,9 @@ package com.managementsystem.guestroom.domain.platform;
 public class Roomview implements java.io.Serializable {
 
 	private static final long serialVersionUID = -8885527759767322443L;
-	
+
 	public String roomNo;
+	public Integer reqServ;
 	public String rentState;
 	public String tempSet0;
 	public String temp0;
@@ -31,6 +32,14 @@ public class Roomview implements java.io.Serializable {
 		this.roomNo = roomNo;
 	}
 
+	public Integer getReqServ() {
+		return reqServ;
+	}
+
+	public void setReqServ(Integer reqServ) {
+		this.reqServ = reqServ;
+	}
+
 	public String getRentState() {
 		return rentState;
 	}
@@ -39,7 +48,6 @@ public class Roomview implements java.io.Serializable {
 		this.rentState = rentState;
 	}
 
-	
 	public String getTempSet0() {
 		return tempSet0;
 	}
@@ -100,11 +108,11 @@ public class Roomview implements java.io.Serializable {
 	public String toString() {
 
 		return "{\"roomNo\":\"" + this.roomNo + "\",\"rentState\":\""
-				+ this.rentState + "\",\"tempSet\":\"" + this.tempSet0
-				+ "\",\"temp\":\"" + this.temp0 + "\",\"fanSpeed\":\""
-				+ this.fanSpeed0 + "\",\"val\":\"" + this.val0
-				+ "\",\"fanAuto\":\"" + this.fanAuto0 + "\",\"season\":\""
-				+ this.season0 + "\",\"fanPower\":\"" + this.fanPower0 + "\"}";
+				+ this.rentState + "\",\"tempSet0\":\"" + this.tempSet0
+				+ "\",\"temp0\":\"" + this.temp0 + "\",\"fanSpeed0\":\""
+				+ this.fanSpeed0 + "\",\"val0\":\"" + this.val0
+				+ "\",\"fanAuto0\":\"" + this.fanAuto0 + "\",\"season0\":\""
+				+ this.season0 + "\",\"fanPower0\":\"" + this.fanPower0 + "\"}";
 	}
 
 }

@@ -24,6 +24,7 @@ public interface RequestService {
 	public static final String SETVALUE = "setvalue";
 	public static final String QUERYPROCESS = "queryprocess";
 	public static final String QUERYRECORDSET = "queryrecordset";
+	public static final String SYNCTIME = "synctime";
 
 	/**
 	 * 获取服务请求总数
@@ -39,7 +40,7 @@ public interface RequestService {
 	 * @param type
 	 *            服务类型
 	 * */
-	public List<Roomview> getRoomviews(int type) throws MalformedURLException,IOException;
+	public List<Map<String, String>> getRoomviews(int type) throws MalformedURLException,IOException;
 
 	/**
 	 * 清除服务请求
@@ -98,4 +99,9 @@ public interface RequestService {
 	 * */
 	public List<Histroylog> queryHistory(Map<String,String> parameters) throws MalformedURLException,IOException;
 
+	/**
+	 * 同步服务器时间
+	 * */
+	public  List<Map<String, String>> synctime() throws MalformedURLException,IOException;
+	
 }
