@@ -18,7 +18,14 @@
 			<c:if test="${not empty message}">
 				<c:out value="${message}" escapeXml="false" />
 			</c:if>
-			<legend>基本信息</legend>
+			<legend>
+				管理选项 <small>> 基本信息</small>
+			</legend>
+			<p>设置当前WEB平台基础信息</p>
+			<hr class="separator" />
+				<legend>
+				平台基本信息
+			</legend>
 			<div class="control-group">
 				<form:label path="portalName" class="control-label">系统名称</form:label>
 				<div class="controls">
@@ -42,7 +49,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<form:label path="copyright" class="control-label">版权</form:label>
+				<form:label path="copyright" class="control-label">版权信息</form:label>
 				<div class="controls">
 					<form:input path="copyright" placeholder="必填项" />
 					<span class="help-inline">* <form:errors path="copyright" />
@@ -137,8 +144,12 @@
 			</div>
 			<div class="form-actions">
 				<form:hidden path="portalId" />
-				<button class="btn btn-primary" type="submit"><spring:message code="button.submit" /></button>
-				<button class="btn"><spring:message code="button.cancel" /></button>
+				<button class="btn btn-primary" type="submit">
+					<spring:message code="button.submit" />
+				</button>
+				<button class="btn">
+					<spring:message code="button.cancel" />
+				</button>
 			</div>
 		</form:form>
 

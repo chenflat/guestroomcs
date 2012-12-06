@@ -46,7 +46,7 @@
 	href="<c:url value="/lib/tag_handler/css/jquery.taghandler.css" />" />
 <!-- uniform -->
 <link rel="stylesheet"
-	href="<c:url value="/lib/uniform/Aristo/uniform.aristo.css" />" />
+	href="<c:url value="/lib/uniform/uniform.default.css" />" />
 <!-- multiselect -->
 <link rel="stylesheet"
 	href="<c:url value="/lib/multiselect/css/multi-select.css" />" />

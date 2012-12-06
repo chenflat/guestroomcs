@@ -37,11 +37,11 @@ import com.managementsystem.ui.easyui.Tree;
  * @author CHENPING
  * */
 @Controller
-public class AddRoleController {
+public class AddGroupController {
 
-	private final Log logger = LogFactory.getLog(AddRoleController.class);
+	private final Log logger = LogFactory.getLog(AddGroupController.class);
 
-	private final String VIEW_NAME = "user/roles/add";
+	private final String VIEW_NAME = "user/groups/add";
 
 	@Autowired
 	private RoleService roleService;
@@ -63,9 +63,9 @@ public class AddRoleController {
 	/**
 	 * 新增角色信息
 	 * */
-	@RequestMapping(value = "/user/roles/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/groups/add", method = RequestMethod.GET)
 	public ModelAndView doGet() {
-		logger.info("Requesting doGet of " + AddRoleController.class);
+		logger.info("Requesting doGet of " + AddGroupController.class);
 		ModelAndView mav = new ModelAndView();
 		Role role = new Role();
 		role.setStatus(1);
@@ -79,7 +79,7 @@ public class AddRoleController {
 	/**
 	 * 保存角色信息
 	 * */
-	@RequestMapping(value = "/user/roles/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/groups/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Resultmsg processSubmit(@ModelAttribute("role") Role role,
 			BindingResult result, SessionStatus status, Model model) {
@@ -118,7 +118,7 @@ public class AddRoleController {
 	 * @param request
 	 *            请求对象
 	 * */
-	@RequestMapping(value = "/user/roles/validroleinfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/groups/validgroupinfo", method = RequestMethod.POST)
 	@ResponseBody
 	public Resultmsg validRolename(WebRequest request) {
 		Resultmsg msg = new Resultmsg();

@@ -282,10 +282,9 @@
 	//* 转换界面主题风格
 	style_sw = {
 		init: function() {
-			$('body').append('<a class="ssw_trigger" href="javascript:void(0)"><i class="icon-cog icon-white"></i></a>');
+			//$('body').append('<a class="ssw_trigger" href="javascript:void(0)"><i class="icon-cog icon-white"></i></a>');
 			var defLink = $('#link_theme').clone();
-			
-			
+
 			$('input[name=ssw_sidebar]:first,input[name=ssw_layout]:first,input[name=ssw_menu]:first').attr('checked', true);
 			
 			$(".ssw_trigger").click(function(){

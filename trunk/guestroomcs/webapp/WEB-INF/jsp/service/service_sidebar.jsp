@@ -45,27 +45,24 @@
 
 
 					<div id="side_quickview" class="quickview">
-						<ul class="nav nav-list">
-
+						<ul class="nav nav-list" id="reqtype">
 							<c:choose>
 								<c:when test="${fn:contains(requestURL, serviceURL)}">
-									<li><a href="<c:url value="/service/requests" />">服务请求</a>
+									<li type="1" class="active"><a href="javascript:void(0);">服务请求</a>
 									</li>
-									<li class="active"><ahref="<c:url value="/service/requests?act=housekeeping" />">保洁</a>
+									<li type="12"><a href="javascript:void(0);">保洁</a>
 									</li>
-									<li><a href="<c:url value="/service/requests?act=sos" />">SOS紧急事件</a>
+									<li type="2"><a href="javascript:void(0);">SOS紧急事件</a>
 									</li>
-									<li><a
-										href="<c:url value="/service/requests?act=dooralarm" />">门磁报警</a>
+									<li type="64"><a href="javascript:void(0);">门磁报警</a>
 									</li>
-									<li><a
-										href="<c:url value="/service/requests?act=windowalarm" />">窗磁报警</a>
+									<li type="128"><a href="javascript:void(0);">窗磁报警</a>
 									</li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="<c:url value="/service/hvac" />">空调</a></li>
-									<li><a href="<c:url value="/service/hvac" />">浴室地板加热</a></li>
-									<li><a href="<c:url value="/service/hvac" />">ETM参考房间</a>
+									<li type="8"><a href="javascript:void(0);">空调</a></li>
+									<li type="12"><a href="javascript:void(0);">浴室地板加热</a></li>
+									<li type="12"><a href="javascript:void(0);">ETM参考房间</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -77,14 +74,7 @@
 
 				<div class="sidebar_info">
 					<div class="header"></div>
-					<ul class="unstyled">
-						<li><span class="act act-warning">65</span> <strong>DND</strong>
-						</li>
-						<li><span class="act act-success">10</span> <strong>MUR</strong>
-						</li>
-						<li><span class="act act-danger">85</span> <strong>BC</strong>
-						</li>
-					</ul>
+					<a href="#" class="" rel="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." title="help"><i class="icon-warning-sign"></i> Help</a>
 				</div>
 
 			</div>

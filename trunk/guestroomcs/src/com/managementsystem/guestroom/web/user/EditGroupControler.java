@@ -27,11 +27,11 @@ import com.managementsystem.ui.easyui.Resultmsg;
  * 编辑用户角色控制器
  * */
 @Controller
-public class EditRoleControler {
+public class EditGroupControler {
 
-	private final Log logger = LogFactory.getLog(EditRoleControler.class);
+	private final Log logger = LogFactory.getLog(EditGroupControler.class);
 
-	private final String VIEW_NAME = "user/roles/edit";
+	private final String VIEW_NAME = "user/groups/edit";
 
 	@Autowired
 	private RoleService roleService;
@@ -47,9 +47,9 @@ public class EditRoleControler {
 	/**
 	 * 编辑角色
 	 * */
-	@RequestMapping(value = "/user/roles/edit/{roleId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/groups/edit/{roleId}", method = RequestMethod.GET)
 	public ModelAndView doGet(@PathVariable("roleId") String roleId) {
-		logger.info("Requesting doGet of "+ EditRoleControler.class);
+		logger.info("Requesting doGet of "+ EditGroupControler.class);
 		ModelAndView mav = new ModelAndView();
 		Role role = roleService.get(roleId);
 		mav.addObject("role", role);
@@ -60,7 +60,7 @@ public class EditRoleControler {
 	/**
 	 * 删除数据
 	 * */
-	@RequestMapping(value = "/user/roles/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/groups/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public Resultmsg processDelete(WebRequest request) {
 		String roleId = null;
@@ -83,7 +83,7 @@ public class EditRoleControler {
 		return msg;
 	}
 	
-	@RequestMapping(value = "/user/roles/methodsofresource", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/groups/methodsofresource", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Resource> getMethodsOfResource(@RequestParam("resourceId")String resourceId) {
 		return resourceService.getMethodsOfResource(resourceId);

@@ -55,7 +55,9 @@
 						</div>
 					</div>
 					<div class="control-group">
-						<div class="controls"><a href="#">无法访问账户?</a></div>
+						<div class="controls">
+							<a href="#" class="linkform">无法访问账户?</a>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -65,7 +67,7 @@
 		<div class="footer">
 			&copy;2012 Kempinski Hotel
 			<div class="pull-right">
-				<i class="icon-phone"></i> 20 <i class="icon-th"></i>55
+				<i class="icon-phone"></i> <span id="online"></span> <i class="icon-th"></i>55
 			</div>
 		</div>
 	</div>
@@ -76,11 +78,11 @@
 <script src="<c:url value="/js/jquery.actual.min.js" />"></script>
 <script src="<c:url value="/lib/validation/jquery.validate.min.js" />"></script>
 <script src="<c:url value="/js/bootstrap/bootstrap.js" />"></script>
+<script src="<c:url value="/lib/uniform/jquery.uniform.min.js" />"></script>
 
 <script>
 	$(document).ready(function() {
 
-		/* //* validation
 		$('#login_form').validate({
 			onkeyup : false,
 			errorClass : 'error',
@@ -97,20 +99,24 @@
 			},
 			highlight : function(element) {
 				$(element).closest('div').addClass("f_error");
-				setTimeout(function() {
-					boxHeight()
-				}, 200)
 			},
 			unhighlight : function(element) {
 				$(element).closest('div').removeClass("f_error");
-				setTimeout(function() {
-					boxHeight()
-				}, 200)
 			},
 			errorPlacement : function(error, element) {
 				$(element).closest('div').append(error);
 			}
-		}); */
+		});
+		
+		$("input[type='checkbox']").uniform();
+
+		$.get('<c:url value="/service/statistics" />', function(result) {
+			//console.log(result);
+		}).success(function(counter) {
+			$("#online").text(counter.online);
+			console.log(counter);
+		});
+
 	});
 </script>
 

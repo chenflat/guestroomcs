@@ -2,23 +2,41 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping auto-import="true" default-lazy="false">
+<hibernate-mapping auto-import="true">
     <class name="com.managementsystem.guestroom.domain.hibernate.Hotel" table="hotel" >
         <id name="hotelId" type="string">
             <column name="hotel_id" length="75" />
             <generator class="uuid" />
         </id>
-        <many-to-one name="district" class="com.managementsystem.guestroom.domain.hibernate.District" fetch="select">
-            <column name="district_id" length="10" />
-        </many-to-one>
         <property name="hotelName" type="string">
             <column name="hotel_name" length="50" />
         </property>
         <property name="hotelEnname" type="string">
             <column name="hotel_enname" length="100" />
         </property>
+        <property name="hotelDesc" type="string">
+            <column name="hotel_desc" length="1000" />
+        </property>
+        <property name="currency" type="string">
+            <column name="currency" length="10" />
+        </property>
         <property name="hotelAddress" type="string">
             <column name="hotel_address" length="200" />
+        </property>
+        <property name="hotelDistrict" type="string">
+            <column name="hotel_district" length="10" />
+        </property>
+        <property name="hotelCity" type="string">
+            <column name="hotel_city" length="50" />
+        </property>
+        <property name="hotelState" type="string">
+            <column name="hotel_state" length="50" />
+        </property>
+        <property name="hotelCountry" type="string">
+            <column name="hotel_country" length="50" />
+        </property>
+        <property name="hotelZip" type="string">
+            <column name="hotel_zip" length="50" />
         </property>
         <property name="hotelPhone" type="string">
             <column name="hotel_phone" length="20" />
@@ -26,8 +44,8 @@
         <property name="hotelFax" type="string">
             <column name="hotel_fax" length="20" />
         </property>
-        <property name="hotelDesc" type="string">
-            <column name="hotel_desc" length="1000" />
+        <property name="hotelEmail" type="string">
+            <column name="hotel_email" length="50" />
         </property>
         <property name="hotelPhoto" type="string">
             <column name="hotel_photo" length="200" />
@@ -47,7 +65,7 @@
             </key>
             <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Build" />
         </set>
-        <set name="roomtypes" table="roomtype" inverse="true" lazy="true" fetch="select">
+        <set name="roomtypes" table="roomtype" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="hotel_id" length="75" />
             </key>

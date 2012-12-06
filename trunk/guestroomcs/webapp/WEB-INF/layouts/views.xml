@@ -25,6 +25,11 @@
 
 
 	<!-- System Setting Pages -->
+	<definition name="system/navigation" extends="system-layout">
+		<put-attribute name="title" value="系统设置首页 " />
+		<put-attribute name="body" value="/WEB-INF/jsp/system/navigation.jsp" />
+	</definition>
+	
 	<definition name="system/settings" extends="system-layout">
 		<put-attribute name="title" value="系统设置 " />
 		<put-attribute name="body" value="/WEB-INF/jsp/system/settings.jsp" />
@@ -123,17 +128,17 @@
 
 
 	<!-- User Roles Pages -->
-	<definition name="user/roles" extends="role-layout">
+	<definition name="user/groups" extends="group-layout">
 		<put-attribute name="title" value="用户权限设置管理" />
-		<put-attribute name="body" value="/WEB-INF/jsp/user/roles.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/groups.jsp" />
 	</definition>
-	<definition name="user/roles/add" extends="role-layout">
+	<definition name="user/groups/add" extends="group-layout">
 		<put-attribute name="title" value="新增用户权限组" />
-		<put-attribute name="body" value="/WEB-INF/jsp/user/roles/add.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/groups/add.jsp" />
 	</definition>
-	<definition name="user/roles/edit" extends="role-layout">
+	<definition name="user/groups/edit" extends="group-layout">
 		<put-attribute name="title" value="编辑用户权限组" />
-		<put-attribute name="body" value="/WEB-INF/jsp/user/roles/edit.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/user/groups/edit.jsp" />
 	</definition>
 	
 	<!-- User Resources Pages -->

@@ -2,20 +2,20 @@
 
 $(document).ready(function() {
 
-	rolelist_opt.operate();
+	grouplist_opt.operate();
 	resource.methods();
-	role_validation.ttip();
+	group_validation.ttip();
 });
 
 //用户列表操作
-rolelist_opt = {
+grouplist_opt = {
 	//用户操作
 	operate : function() {
 		
 		//当前页面路径
 		var pathname = window.location.pathname;
 		//用户管理员路径
-		var addpath = contextPath+"user/roles/add";
+		var addpath = contextPath+"user/groups/add";
 		
 		console.log(pathname);
 		console.log(addpath);
@@ -24,14 +24,16 @@ rolelist_opt = {
 		 * 新增角色时不显示工具栏
 		 * */
 		if(pathname==addpath) {
-			$("#role-nav").hide();
+			$("#group-nav").hide();
+		} else {
+			$("#group-nav").show();
 		}
 			
 		//删除角色确认提示
-		$("#role_delete").click(function(){
-			var roleDesc = $("#roleDesc").val();
-			$("#roleDelModal .modal-body .lead").text(roleDesc);
-			$("#roleDelModal").modal('show');
+		$("#group_delete").click(function(){
+			var groupDesc = $("#groupDesc").val();
+			$("#groupDelModal .modal-body .lead").text(groupDesc);
+			$("#groupDelModal").modal('show');
 		});
 		
 		//执行角色删除
@@ -40,11 +42,11 @@ rolelist_opt = {
 			var roleId = $("#roleId").val();
 			$.post(url,{roleId:roleId},function(result){	
 				if(result.success=='true') {
-					$("#rolelist li.active").remove();
-					$.sticky("remove role success!", {autoclose : 5000, position: "top-right", type: "st-success" });	
-					var secondUrl = $("#rolelist li:eq(1) a").attr('href');
+					$("#grouplist li.active").remove();
+					$.sticky("remove group success!", {autoclose : 5000, position: "top-right", type: "st-success" });	
+					var secondUrl = $("#grouplist li:eq(1) a").attr('href');
 					window.location.href = secondUrl;
-					console.log($("#rolelist li:eq(1) a").attr('href'));
+					console.log($("#grouplist li:eq(1) a").attr('href'));
 				} else {
 					$(".main_content form:first-child").before("<div class='alert fade in'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+ result.msg +"</div");
 				}
@@ -53,7 +55,7 @@ rolelist_opt = {
 			}).error(function(msg){
 				alert(msg);
 			});
-			$("#roleDelModal").modal('hide');
+			$("#groupDelModal").modal('hide');
 		});
 		
 	
@@ -61,8 +63,8 @@ rolelist_opt = {
 		 * 验证用户是否存在
 		 * */
 		$("#roleName").bind('change',function(){
-			console.log('roleName change');
-			var url = contextPath + "user/roles/validroleinfo";
+			console.log('groupName change');
+			var url = contextPath + "user/groups/validgroupinfo";
 			$.post(url,{roleName:$("#roleName").val()},function(result){
 				if(result.success=='false') {
 					console.log('roleName is exists');
@@ -98,7 +100,7 @@ resource = {
 		$("#resource-list li").click(function(){
 			//console.log($(this).attr("id"));
 			var resId = $(this).attr("id").replace('res_','');
-			var remoteUrl = contextPath + "/user/roles/methodsofresource";
+			var remoteUrl = contextPath + "/user/groups/methodsofresource";
 			console.log(resId);
 			$.get(remoteUrl,{resourceId:resId},function(html){
 				
@@ -121,7 +123,7 @@ resource = {
 };
 
 // * validation
-role_validation = {
+group_validation = {
 	ttip : function() {
 		var ttip_validator = $('.form_validation_ttip')
 				.validate(
@@ -155,9 +157,9 @@ role_validation = {
 										//当前页面路径
 										var pathname = window.location.pathname;
 										//新增资源路径
-										var addpath = contextPath+"user/roles/add";
+										var addpath = contextPath+"user/groups/add";
 										if(pathname==addpath) {
-											window.location.href = contextPath + "user/roles/edit/"+result.msg;
+											window.location.href = contextPath + "user/groups/edit/"+result.msg;
 										} 
 										$(".main_content form:first-child").before("<div class='alert fade in '><button type='button' class='close' data-dismiss='alert'>&times;</button>success!</div");
 									} else {

@@ -10,6 +10,7 @@
 	<http pattern="/lib/**" security="none" />
 	<http pattern="/font/**" security="none" />
 	<http pattern="/image/**" security="none" />
+	<http pattern="/service/statistics" security="none" />
 	<http auto-config="true" access-denied-page="/accessDenied">
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		<intercept-url pattern="/system/**" access="ROLE_ADMIN" />

@@ -7,6 +7,8 @@ public class Shiftwork implements java.io.Serializable {
 	private static final long serialVersionUID = 275671596830418991L;
 	private long shiftworkId;
 	private User user;
+	private String backlog;
+	private String shiftitems;
 	private Date workStarttime;
 	private Date workEndtime;
 	private String shiftworker;
@@ -22,11 +24,14 @@ public class Shiftwork implements java.io.Serializable {
 		this.shiftworkId = shiftworkId;
 	}
 
-	public Shiftwork(long shiftworkId, User user, Date workStarttime,
-			Date workEndtime, String shiftworker, String shiftworkerName,
-			String floorNo, Date createdOnDate, String comment) {
+	public Shiftwork(long shiftworkId, User user, String backlog,
+			String shiftitems, Date workStarttime, Date workEndtime,
+			String shiftworker, String shiftworkerName, String floorNo,
+			Date createdOnDate, String comment) {
 		this.shiftworkId = shiftworkId;
 		this.user = user;
+		this.backlog = backlog;
+		this.shiftitems = shiftitems;
 		this.workStarttime = workStarttime;
 		this.workEndtime = workEndtime;
 		this.shiftworker = shiftworker;
@@ -50,6 +55,22 @@ public class Shiftwork implements java.io.Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getBacklog() {
+		return backlog;
+	}
+
+	public void setBacklog(String backlog) {
+		this.backlog = backlog;
+	}
+
+	public String getShiftitems() {
+		return shiftitems;
+	}
+
+	public void setShiftitems(String shiftitems) {
+		this.shiftitems = shiftitems;
 	}
 
 	public Date getWorkStarttime() {
