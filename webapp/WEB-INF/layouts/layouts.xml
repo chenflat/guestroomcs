@@ -44,8 +44,8 @@
 	</definition>
 	
 	<!-- roles layout  -->
-	<definition name="role-layout" extends="standard-layout">
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/roles/roles_sidebar.jsp" />
+	<definition name="group-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/groups/groups_sidebar.jsp" />
 	</definition>
 	
 		<!-- roles layout  -->

@@ -67,3 +67,42 @@
 .dataTables_wrapper th.sorting_asc,.dataTables_wrapper th.sorting_desc {
 	background-color: #ead8da !important
 }
+
+
+.btn-submit,.btn-cancel {
+ -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+}
+
+.btn-submit {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #8C0095;
+  *background-color: #8C0095;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#8C0095), to(#8C0095));
+  background-image: -webkit-linear-gradient(top, #8C0095, #8C0095);
+  background-image: -o-linear-gradient(top, #8C0095, #8C0095);
+  background-image: linear-gradient(to bottom, #8C0095, #8C0095);
+  background-image: -moz-linear-gradient(top, #8C0095, #8C0095);
+  background-repeat: repeat-x;
+  border-color: #8C0095 #8C0095 #8C0095;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#8C0095', endColorstr='#8C0095', GradientType=0);
+  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn-submit:hover,
+.btn-submit:active,
+.btn-submit.active,
+.btn-submit.disabled,
+.btn-submit[disabled] {
+  color: #ffffff;
+  background-color: #8C0095;
+  *background-color: #8C0095;
+}
+
+.btn-submit:active,
+.btn-submit.active {
+  background-color: #8C0095 \9;
+}

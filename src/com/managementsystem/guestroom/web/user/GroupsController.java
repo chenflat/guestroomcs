@@ -17,11 +17,11 @@ import com.managementsystem.guestroom.service.platform.RoleService;
  * 角色控制器
  * */
 @Controller
-public class RolesController {
+public class GroupsController {
 
-	private final Log logger = LogFactory.getLog(RolesController.class);
+	private final Log logger = LogFactory.getLog(GroupsController.class);
 
-	private final String VIEW_NAME = "user/roles";
+	private final String VIEW_NAME = "user/groups";
 
 	@Autowired
 	private RoleService roleService;
@@ -29,9 +29,9 @@ public class RolesController {
 	/**
 	 * 显示角色列表
 	 * */
-	@RequestMapping(value = "/user/roles", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/groups", method = RequestMethod.GET)
 	public ModelAndView doGet() {
-		logger.info("Requesting doGet of " + RolesController.class);
+		logger.info("Requesting doGet of " + GroupsController.class);
 		ModelAndView mav = new ModelAndView();
 		Set<Role> roles = roleService.getEnabledRoles();
 		mav.addObject("roles", roles);

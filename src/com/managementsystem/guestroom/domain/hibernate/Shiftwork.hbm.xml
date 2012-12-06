@@ -13,6 +13,12 @@
         <many-to-one name="user" class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
             <column name="user_id" length="75" />
         </many-to-one>
+       <property name="backlog" type="string">
+            <column name="backlog" length="1000" />
+        </property>
+           <property name="shiftitems" type="string">
+            <column name="shiftitems" length="1000" />
+        </property>
         <property name="workStarttime" type="timestamp">
             <column name="work_starttime" length="19" />
         </property>

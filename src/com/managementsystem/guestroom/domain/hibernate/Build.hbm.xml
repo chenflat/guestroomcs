@@ -20,7 +20,7 @@
         <property name="buildComment" type="string">
             <column name="build_comment" />
         </property>
-        <set name="floors" table="floor" inverse="true" lazy="false" fetch="select">
+        <set name="floors" table="floor" inverse="true" lazy="false" order-by="floorNo" fetch="select">
             <key>
                 <column name="build_id" length="75" />
             </key>

@@ -332,7 +332,7 @@
   margin: 0 10px 10px 0;
 }
 .tile * {
-  color: #ffffff;
+  /*color: #ffffff;*/
 }
 .tile .tile-content {
   width: 150px;
@@ -477,7 +477,7 @@
 	margin-left:4px;
 }
 
-.tile-medium {
+.tile-medium,.tile-large {
   padding: 0;
   vertical-align: top;
   overflow: hidden;
@@ -498,6 +498,15 @@
 	display: inline;
 	text-align: center;
 	line-height:29px;
+}
+
+.tile-large-list li,.tile-large-list span {
+	float:left;
+	width:100px;height:100px;
+	display: inline;
+	text-align: center;
+	line-height:100px;
+	color:#333333;
 }
 
 

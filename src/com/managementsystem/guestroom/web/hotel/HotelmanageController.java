@@ -2,6 +2,7 @@ package com.managementsystem.guestroom.web.hotel;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,10 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.common.Constants;
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
+import com.managementsystem.guestroom.domain.hibernate.Listinfo;
 import com.managementsystem.guestroom.domain.platform.Alert;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.domain.platform.Message;
 import com.managementsystem.guestroom.service.biz.HotelService;
+import com.managementsystem.guestroom.service.platform.ListinfoService;
 import com.managementsystem.guestroom.validation.HotelValidator;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
@@ -44,6 +47,15 @@ public class HotelmanageController extends AbstractController implements
 
 	@Autowired
 	private HotelService hotelService;
+	
+	@Autowired
+	private ListinfoService listinfoService;
+	
+	@ModelAttribute("currencies")
+	public Set<Listinfo> getCurrencies() {
+		return listinfoService.getListEntryItems("Currency");
+	}
+	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model) {
@@ -52,7 +64,6 @@ public class HotelmanageController extends AbstractController implements
 		Hotel hotel = hotelService.getDefaultHotel();
 		if (hotel == null)
 			hotel = new Hotel();
-
 		mav.addObject("hotel", hotel);
 		mav.setViewName(VIEW_NAME);
 		return mav;

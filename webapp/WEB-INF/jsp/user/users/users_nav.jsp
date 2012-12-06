@@ -17,7 +17,7 @@
 		<li id="user_manage" class="dropdown"><a data-toggle="dropdown"
 			class="dropdown-toggle" href="#"></i> 管理 <b class="caret"></b> </a>
 			<ul class="dropdown-menu">
-				<li><a href="<c:url value="/user/roles" />" id="linkUsergroup">管理组</a>
+				<li><a href="<c:url value="/user/groups" />" id="linkUsergroup">管理组</a>
 				</li>
 				<li><a href="<c:url value="/user/resources" />"
 					id="linkUsergroup">管理权限项</a>

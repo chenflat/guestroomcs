@@ -17,12 +17,12 @@
 			<div class="antiscroll-content">
 				<div class="sidebar_inner">
 					<form class="input-append" method="post"></form>
-					<ul class="nav nav-list" id="rolelist">
+					<ul class="nav nav-list" id="grouplist">
 						<li class="nav-header sepH_a_line">权限组管理</li>
 						<c:forEach items="${roles}" var="role">
 							<li id="roleId_${role.roleId}"
 								class="<c:if test="${fn:endsWith(requestURL , role.roleId)}">active</c:if>"><a
-								href="<c:url value="/user/roles/edit/${role.roleId}"/>">${role.roleDesc}</a>
+								href="<c:url value="/user/groups/edit/${role.roleId}"/>">${role.roleDesc}</a>
 							</li>
 						</c:forEach>
 					</ul>

@@ -25,7 +25,7 @@ public class FloorDaoImpl extends AbstractDaoSupport implements FloorDao {
 	private final Set<Class<?>> dataTypes = new HashSet<Class<?>>(
 			Arrays.asList(new Class<?>[] { Floor.class }));
 
-	private final String GETFLOORBYBUILD = "from Floor where build.buildId=? order by floorNo*1";
+	private final String GETFLOORBYBUILD = "from Floor where build.buildId=? order by floorNo*1 asc";
 	private final String GETFLOORS="from Floor order by floorNo*1";
 	
 	@Autowired

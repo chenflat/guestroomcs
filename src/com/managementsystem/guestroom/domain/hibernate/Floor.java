@@ -3,6 +3,7 @@ package com.managementsystem.guestroom.domain.hibernate;
 // Generated 2012-11-6 13:37:38 by Hibernate Tools 3.4.0.CR1
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -15,7 +16,7 @@ public class Floor implements java.io.Serializable {
 	private String floorNo;
 	private String floorName;
 	private String floorComment;
-	private Set rooms = new HashSet(0);
+	private Set rooms = new LinkedHashSet(0);
 
 	public Floor() {
 	}

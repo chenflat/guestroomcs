@@ -32,6 +32,8 @@
 <script src="<c:url value="/lib/antiscroll/jquery-mousewheel.js" />"></script>
 <!-- fix for ios orientation change -->
 <script src="<c:url value="/js/ios-orientationchange-fix.js" />"></script>
+<!-- uniform -->
+<script src="<c:url value="/lib/uniform/jquery.uniform.min.js" />"></script>
 <!-- to top -->
 <script src="<c:url value="/lib/UItoTop/jquery.ui.totop.min.js" />"></script>
 <!-- validation -->
@@ -60,8 +62,8 @@
 	<c:when test="${fn:contains(requestURL,'/user/users')}">
 		<script src="<c:url value="/js/application/usermanage.js"/>"></script>
 	</c:when>
-	<c:when test="${fn:contains(requestURL,'/user/roles')}">
-		<script src="<c:url value="/js/application/rolemanage.js"/>"></script>
+	<c:when test="${fn:contains(requestURL,'/user/groups')}">
+		<script src="<c:url value="/js/application/groupmanage.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/user/resources')}">
 		<script src="<c:url value="/lib/chosen/chosen.jquery.min.js"/>"></script>
