@@ -19,9 +19,12 @@ public class Room implements java.io.Serializable {
 	private String roomFax;
 	private String roomPhoto;
 	private String roomComment;
+	private Boolean handicappedroom;
+	private Boolean koshersabbath;
+	private Integer status;
 	private Roomconfig roomconfig;
 	private Set roomassignedgrouieses = new HashSet(0);
-	
+
 	public Room() {
 	}
 
@@ -33,6 +36,7 @@ public class Room implements java.io.Serializable {
 	public Room(int roomId, Floor floor, Roomtype roomtype, String roomNo,
 			String roomName, String roomTowards, String roomPhone,
 			String roomFax, String roomPhoto, String roomComment,
+			Boolean handicappedroom, Boolean koshersabbath, Integer status,
 			Roomconfig roomconfig, Set roomassignedgrouieses) {
 		this.roomId = roomId;
 		this.floor = floor;
@@ -44,6 +48,9 @@ public class Room implements java.io.Serializable {
 		this.roomFax = roomFax;
 		this.roomPhoto = roomPhoto;
 		this.roomComment = roomComment;
+		this.handicappedroom = handicappedroom;
+		this.koshersabbath = koshersabbath;
+		this.status = status;
 		this.roomconfig = roomconfig;
 		this.roomassignedgrouieses = roomassignedgrouieses;
 	}
@@ -54,15 +61,6 @@ public class Room implements java.io.Serializable {
 
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
-	}
-
-	
-	public String getRoomNo() {
-		return this.roomNo;
-	}
-
-	public void setRoomNo(String roomNo) {
-		this.roomNo = roomNo;
 	}
 
 	public Floor getFloor() {
@@ -79,6 +77,14 @@ public class Room implements java.io.Serializable {
 
 	public void setRoomtype(Roomtype roomtype) {
 		this.roomtype = roomtype;
+	}
+
+	public String getRoomNo() {
+		return this.roomNo;
+	}
+
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
 	}
 
 	public String getRoomName() {
@@ -127,6 +133,30 @@ public class Room implements java.io.Serializable {
 
 	public void setRoomComment(String roomComment) {
 		this.roomComment = roomComment;
+	}
+
+	public Boolean getHandicappedroom() {
+		return this.handicappedroom;
+	}
+
+	public void setHandicappedroom(Boolean handicappedroom) {
+		this.handicappedroom = handicappedroom;
+	}
+
+	public Boolean getKoshersabbath() {
+		return this.koshersabbath;
+	}
+
+	public void setKoshersabbath(Boolean koshersabbath) {
+		this.koshersabbath = koshersabbath;
+	}
+
+	public Integer getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Roomconfig getRoomconfig() {

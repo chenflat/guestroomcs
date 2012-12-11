@@ -3,8 +3,8 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping auto-import="true" default-lazy="false">
-    <class name="com.managementsystem.guestroom.domain.hibernate.Room" table="room" >
-       <id name="roomId" type="int">
+     <class name="com.managementsystem.guestroom.domain.hibernate.Room" table="room">
+        <id name="roomId" type="int">
             <column name="room_id" />
             <generator class="assigned" />
         </id>
@@ -34,6 +34,18 @@
         </property>
         <property name="roomComment" type="string">
             <column name="room_comment" length="200" />
+        </property>
+        <property name="handicappedroom" type="java.lang.Boolean">
+            <column name="handicappedroom" />
+        </property>
+        <property name="koshersabbath" type="java.lang.Boolean">
+            <column name="koshersabbath" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+                <comment>0=&#206;&#180;&#198;&#244;&#211;&#195; 1=&#191;&#213;&#207;&#208; 2=checkin 21=&#210;&#209;&#179;&#246;&#215;&#226;/&#179;&#246;&#202;&#219;
+                22=&#213;&#188;&#211;&#195;&#181;&#196; 23=&#210;&#209;&#179;&#246;&#215;&#226;/&#210;&#209;&#213;&#188;&#211;&#195; 3=checkout</comment>
+            </column>
         </property>
         <one-to-one name="roomconfig" class="com.managementsystem.guestroom.domain.hibernate.Roomconfig"></one-to-one>
         <set name="roomassignedgrouieses" table="roomassignedgrouies" inverse="true" lazy="true" fetch="select">

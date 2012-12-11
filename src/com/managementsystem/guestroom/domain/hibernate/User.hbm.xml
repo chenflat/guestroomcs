@@ -59,8 +59,20 @@
         <property name="greeting" type="string">
             <column name="greeting" />
         </property>
+       <property name="website" type="string">
+            <column name="website" length="75" />
+        </property>
         <property name="comments" type="string">
             <column name="comments" />
+        </property>
+        <property name="significantOther" type="string">
+            <column name="significantOther" length="100" />
+        </property>
+        <property name="birthday" type="string">
+            <column name="birthday" length="100" />
+        </property>
+        <property name="anniversary" type="string">
+            <column name="anniversary" length="100" />
         </property>
         <property name="jobTitle" type="string">
             <column name="jobTitle" length="100" />
@@ -93,11 +105,29 @@
                 <column name="role_id" length="75" not-null="true" />
             </many-to-many>
         </set>
+        <set name="emailaddresses" table="emailaddress" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Emailaddress" />
+        </set>
+        <set name="addresses" table="address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Address" />
+        </set>
         <set name="shiftworks" table="shiftwork" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="user_id" length="75" />
             </key>
             <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Shiftwork" />
+        </set>
+          <set name="phones" table="phone" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.guestroom.domain.hibernate.Phone" />
         </set>
          <set name="userprofiles" table="userprofile" inverse="true" lazy="true" fetch="select">
             <key>

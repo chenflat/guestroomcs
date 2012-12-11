@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-12-11 9:53:40 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.guestroom.domain.hibernate.Emailaddress" table="emailaddress" catalog="guestroomcsdb">
+        <id name="emailAddressId" type="string">
+            <column name="emailAddressId" length="75" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
+            <column name="user_id" length="75" />
+        </many-to-one>
+        <property name="createdOnDate" type="timestamp">
+            <column name="createdOnDate" length="19" />
+        </property>
+        <property name="lastModifiedOnDate" type="timestamp">
+            <column name="lastModifiedOnDate" length="19" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="75" />
+        </property>
+        <property name="primary" type="java.lang.Boolean">
+            <column name="primary_" />
+        </property>
+        <property name="entryid" type="string">
+            <column name="entryid" length="75" />
+        </property>
+    </class>
+</hibernate-mapping>
