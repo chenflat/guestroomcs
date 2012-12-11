@@ -32,7 +32,11 @@ public class User implements java.io.Serializable, Cloneable {
 	private String timeZone;
 	private String language;
 	private String greeting;
+	private String website;
 	private String comments;
+	private String significantOther;
+	private String birthday;
+	private String anniversary;
 	private String jobTitle;
 	private Date loginDate;
 	private String loginIp;
@@ -52,6 +56,10 @@ public class User implements java.io.Serializable, Cloneable {
 	private Set userprofiles = new HashSet(0);
 	@JsonBackReference
 	private List<Userprofile> userprofilelist = new LinkedList<Userprofile>();
+
+	private Set emailaddresses = new HashSet(0);
+	private Set addresses = new HashSet(0);
+	private Set phones = new HashSet(0);
 
 	public User() {
 	}
@@ -250,6 +258,38 @@ public class User implements java.io.Serializable, Cloneable {
 		this.comments = comments;
 	}
 
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getSignificantOther() {
+		return significantOther;
+	}
+
+	public void setSignificantOther(String significantOther) {
+		this.significantOther = significantOther;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getAnniversary() {
+		return anniversary;
+	}
+
+	public void setAnniversary(String anniversary) {
+		this.anniversary = anniversary;
+	}
+
 	public String getJobTitle() {
 		return this.jobTitle;
 	}
@@ -349,6 +389,30 @@ public class User implements java.io.Serializable, Cloneable {
 
 	public void setUserprofilelist(List<Userprofile> userprofilelist) {
 		this.userprofilelist = userprofilelist;
+	}
+
+	public Set getEmailaddresses() {
+		return emailaddresses;
+	}
+
+	public void setEmailaddresses(Set emailaddresses) {
+		this.emailaddresses = emailaddresses;
+	}
+
+	public Set getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set addresses) {
+		this.addresses = addresses;
+	}
+
+	public Set getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Set phones) {
+		this.phones = phones;
 	}
 
 }
