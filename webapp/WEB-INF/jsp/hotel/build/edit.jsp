@@ -46,11 +46,11 @@
 
 				<form:hidden path="buildId" />
 				<form:hidden path="hotel.hotelId" />
-				<button class="btn btn-inverse" type="submit">
+				<button class="btn btn-submit input-small" type="submit">
 					<spring:message code="button.submit" />
 				</button>
 
-				<a href="<c:url value="/hotel/build" />" class="btn"><spring:message
+				<a href="<c:url value="/hotel/build" />" class="btn btn-cancel"><spring:message
 						code="button.cancel" />
 				</a>
 
