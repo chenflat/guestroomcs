@@ -79,10 +79,10 @@
 
 			<div class="form-actions">
 				<form:hidden path="roomtypeId" />
-				<button class="btn btn-inverse" type="submit">
+				<button class="btn btn-submit input-small" type="submit">
 					<spring:message code="button.submit" />
 				</button>
-				<a href="<c:url value="/hotel/roomtype" />" class="btn"><spring:message
+				<a href="<c:url value="/hotel/roomtype" />" class="btn btn-cancel input-small"><spring:message
 						code="button.cancel" /> </a>
 
 			</div>

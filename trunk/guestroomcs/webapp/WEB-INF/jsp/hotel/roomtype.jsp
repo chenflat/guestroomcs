@@ -15,10 +15,10 @@
 	<div class="span12">
 		<c:forEach items="${roomtypes}" var="roomtype">
 			<a href="<c:url value="/hotel/roomtype/edit/${roomtype.roomtypeId}" />">
-				<div class="tile bg-color-pinkDark icon">
+				<div class="tile bg-color-pinkDark">
 					<b class="check"></b>
 					<div class="tile-content">
-						<img src="<c:url value="/img/icons/Windows 8.png" /> ">
+						<img src="<c:url value="/img/icons/build.png" /> ">
 					</div>
 					<div class="brand">
 						<span class="name">${roomtype.roomtypeName}</span>

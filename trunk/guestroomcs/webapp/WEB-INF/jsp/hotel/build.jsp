@@ -15,7 +15,7 @@
 	<div class="span12">
 		<div class="heading clearfix">
 			<div class="pull-left">
-				<span class="lead">酒店建筑管理</span>
+				<span class="lead"><a href="<c:url value="/system/navigation" />">管理选项</a> <small> > 建筑管理</small></span>
 			</div>
 			<ul class="nav nav-pills pull-right sepH_b">
 				<li <c:if test="${param.viewmode eq 'list'}"> class="active"</c:if>><a
@@ -71,7 +71,7 @@
 					<c:forEach items="${builds}" var="build">
 
 						<a href="<c:url value="/hotel/build/edit/${build.buildId}" />">
-							<div class="tile bg-color-pinkDark icon">
+							<div class="tile bg-color-pinkDark">
 								<b class="check"></b>
 								<div class="tile-content">
 									<img src="<c:url value="/img/icons/build.png" /> ">

@@ -18,7 +18,7 @@
 				<c:out value="${message}" escapeXml="false" />
 			</c:if>
 			<legend>
-				管理选项 <small> > 机构设置</small>
+				<a href="<c:url value="/system/navigation" />">管理选项</a> <small> > 机构设置</small>
 			</legend>
 			<p>设置机构相关信息</p>
 		<hr class="separator" />
@@ -54,7 +54,7 @@
 			</div>
 			<legend class="text-info">地址</legend>
 			<div class="control-group">
-				<form:label path="hotelAddress" class="control-label">酒店地址</form:label>
+				<form:label path="hotelAddress" class="control-label">地址</form:label>
 				<div class="controls">
 					<form:input path="hotelAddress" />
 				</div>
