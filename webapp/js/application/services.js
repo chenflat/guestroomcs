@@ -2,67 +2,171 @@
 
 $(document).ready(function() {
 	
+	services.forward();
 	services.requests();
+	
+	hvac.forward();
+
 	uniform.init();
+	
+	 $(window).unload(function() {
+		 console.log('page unload');
+	 });
 });
 
+
+hvac = {
+	forward:function() {
+		//当前页面路径
+		var pathname = window.location.pathname;
+		//用户管理员路径
+		var hvacPath = contextPath+"service/hvac";
+		
+		if(pathname==hvacPath) {
+			var activeli = $("#reqtype .active");		
+
+			console.log(activeli.length);
+			console.log($.cookie('reqtype_selecteditem'));
+			console.log($.cookie('reqtype_urlpath'));
+			
+			var cookieReqType = $.cookie('reqtype_selecteditem');
+			var cookieUrlPath = $.cookie('reqtype_urlpath');
+			if(cookieUrlPath!=null && cookieUrlPath==hvacPath) {
+				if(cookieReqType!=null) {
+					$("#"+ cookieReqType).addClass('active');
+					$("#"+ cookieReqType).click();
+				} else {
+					$("#reqtype li:first").addClass('active');
+					$("#reqtype li:first").click();
+				}
+			}else {
+				$("#reqtype li:first").addClass('active');
+				$("#reqtype li:first").click();
+				$.cookie('reqtype_urlpath',hvacPath);
+				$.cookie('reqtype_selecteditem',$("#reqtype li:first").attr("id"));
+			}
+			
+		}
+	}
+
+};
+
 services = {
+	forward:function() {
+			//当前页面路径
+			var pathname = window.location.pathname;
+			//用户管理员路径
+			var urlpath = contextPath+"service/requests";
+			
+			if(pathname==urlpath) {
+				var activeli = $("#reqtype .active");		
+				
+				console.log(activeli.length);
+				console.log($.cookie('reqtype_selecteditem'));
+				console.log($.cookie('reqtype_urlpath'));
+				
+				var cookieReqtypeItem = $.cookie('reqtype_selecteditem');
+				var cookieUrlPath = $.cookie('reqtype_urlpath');
+				
+				$("#reqtype li:first").addClass('active');
+				$("#reqtype li:first").click();
+				
+				if(cookieUrlPath!=null && cookieUrlPath==urlpath) {
+					/*if(cookieReqtypeItem!=null) {
+						var itemid = $("#"+ cookieReqtypeItem);
+						$(itemid).addClass('active');
+						$("#"+ cookieReqtypeItem).click();
+					} else {*/
+						$("#reqtype li:first").addClass('active');
+						$("#reqtype li:first").click();
+					//} 
+				}else {
+					$("#reqtype li:first").addClass('active');
+					$("#reqtype li:first").click();
+					console.log($("#reqtype li:first"));
+					$.cookie('reqtype_urlpath',urlpath);
+					$.cookie('reqtype_selecteditem',$("#reqtype li:first").attr("id"));
+				}
+			}
+	},
 	requests:function(){
 		
-		if($("#reqlist_nav").length>0) {
-			$("#reqlist_nav").hide();
-		}
-	
-		var $roomcontainer = $("#roomcontainer");
+		var m_roomWrap = $("#tileWrap");
+		var m_viewMode = $("#viewmode li");
+		var m_tempRoomWrap = m_roomWrap.html();
+		var m_curFloorNo = "";
 		
-		var cacheContainer = $roomcontainer.html();
-		
-		var $headtitle = $(".service-title h4");
+		//服务标题记录
+		var m_headTitle = $(".service-title h4");
 		
 		//颜色名称
-		var colors = ["green","greenLight","greenDark","red","yellow","orange","orangeDark","pink","pinkDark","purple","darken","grayDark","blue","blueLight","blueDark","green","greenLight","greenDark","","pink","pinkDark","purple","darken","grayDark","yellow","orange","orangeDark","pink"];
-		var items = [];  //客房请求数据
-		var floors = []; //所有楼层 
+		var m_colorArray = ["green","greenLight","greenDark","red","yellow","orange","orangeDark","pink","pinkDark","purple","darken","grayDark","blue","blueLight","blueDark","green","greenLight","greenDark","","pink","pinkDark","purple","darken","grayDark","yellow","orange","orangeDark","pink"];
+
+		
+		/**
+		 * 客房请求数据
+		 * */
+		var m_itemArray = [];  
+		/**
+		 * 所有楼层 
+		 * */
+		var m_floorArray = [];
+		
+		m_viewMode.click(function(e){
+			console.log($(this));
+		});
+		
 		
 		//根据请求类型异步获取服务请求数据
 		$("ul#reqtype > li").click(function(){
 			//获取请求类型
-			var reqtype = $(this).attr("type");
-			console.log("service request type : " + reqtype);
-			//set active class name
-			$(this).parent().children().removeClass('active');
+			var m_reqtype = $(this).attr("type");
+			console.log("current service request type : " + m_reqtype);
+			
+			$.cookie('reqtype_selecteditem',$(this).attr("id"));
+			$.cookie('reqtype_urlpath',window.location.pathname);
+			
+			//set the active style class name
+			$(this).parent().children().removeClass('active'); 
 			$(this).addClass("active");
 			
-			//没有类型,则返回
-			if(typeof(reqtype)=='undefined' || reqtype=="") {
+			//没有类型,则返回提示信息
+			if(typeof(m_reqtype)=='undefined' || m_reqtype=="") {
 				$.sticky("service type attribute not undefined!", {autoclose : 5000, position: "top-right", type: "st-error" });
 				return;
 			}
 			
-			//获取指定类型的客房请求数据
-			$.getJSON(contextPath+"service/roomviews",{type:reqtype},function(data){
-				items.length = 0;
-				floors.length = 0;
+			/*
+			 * 通过REST服务获取指定类型的客房请求数据
+			 * @param type 请求数据类型
+			 */
+			$.getJSON(contextPath+"service/roomviews",{type:m_reqtype},function(data){
+				m_itemArray.length = 0;
+				m_floorArray.length = 0;
+				
 				$.each(data, function(key, val) {
-				    items.push(val);
+				    m_itemArray.push(val);
+				    //取房间编前前两位作为楼层编号
 					var floorNo = val.roomNo.substring(0,2).toString();
-					floors.push(floorNo);
+					m_floorArray.push(floorNo);
 				  });
-				$.unique(floors);
-				$.unique(floors); //去除重复的楼层
-				floors.sort(); //楼层排序
-				console.log("Floor list : "+ floors.join(","));
+				$.unique(m_floorArray);
+				$.unique(m_floorArray); //去除重复的楼层
+				m_floorArray.sort(); //楼层排序
+				console.log("Floor list : "+ m_floorArray.join(","));
+				m_headTitle.text("待处理请求服务总数："+ data.length +"");
 				
-				/*if(floors.length==0) {
-					$roomcontainer.empty();
-					return;
-				}*/
-				
-				if(reqtype==1) {
+				if(m_reqtype==1) { //服务请求
 					services();
-				} else if (reqtype==2) {
+				} else if (m_reqtype==2) {   //SOS紧急事件
 					sos();
-				} else {
+				}else if(m_reqtype==8) {  //HVAC
+					hvac();
+				}  else if(m_reqtype==64) {  //门磁
+					doorAlarm();
+				} else if(m_reqtype==128){ //窗磁
+					windowAlarm();
+				}else {//
 					all();
 				}
 			});
@@ -70,46 +174,64 @@ services = {
 		});
 		
 		
-		
+		//请求服务
 		var services = function() {
-			$roomcontainer.empty();
-			$roomcontainer.html(cacheContainer);
-			
+			console.log("reqtype name services");
+			m_roomWrap.empty();
+			m_roomWrap.html(m_tempRoomWrap);
 			var serviceTotals = 0;
+			
+			$("#thumbnail").parent().children().removeClass("active");
+			$("#thumbnail").addClass("active");
+			
+
+			//服务请求选择列表
+			$("#lease_nav").show();
+			$("#reqlist_nav").show();
+			
 			
 			//定义显示
 			var html = "";
-			$.each(floors,function(index,floorNo){
-				//服务请求选择列表
-				$("#reqlist_nav").show();
-				//显示客房
-				$.each(items,function(key,val){
+			$.each(m_floorArray,function(index,floorNo){
+
+				//显示请求客房服务
+				var roomservs = [];
+				//定义楼层服务
+				var floorservs = [];
+				//设置每个房间属性
+				$.each(m_itemArray,function(key,val){
 					console.log(val);
-					var floor = val.roomNo.substring(0,2).toString();
-					if(floorNo==floor){
+					var currFloorNo = val.roomNo.substring(0,2).toString();
+					if(floorNo==currFloorNo){
 						//请求类型数组
-						var roomservs = [];
-						roomservs = getRoomservs(val.reqServ);
+						roomservs = getRoomservs(val.reqServ);  //服务请求类型
 						var roomElement = $("li#"+ val.roomNo);
-						$roomcontainer.find(roomElement).attr('title','request totals '+ roomservs.length).html(roomservs.length);
+						m_roomWrap.find(roomElement).attr('title','request totals '+ roomservs.length).html(roomservs.length);
 						console.log("roomNo:"+ val.roomNo);
 						serviceTotals += roomservs.length;
+						
+						floorservs.push({"roomNo":val.roomNo,"services":roomservs});
 					}
 				});
-				$headtitle.text("待处理请求服务总数："+ serviceTotals +"");
-				selectFloor();
+				m_headTitle.text("待处理请求服务总数："+ serviceTotals +"");
+				selectFloor(floorservs);
+				console.log("楼层'"+floorNo + "'请求服务对象:"+ roomservs);
 			});
 		};
 		
 		//sos紧急事件
 		var sos = function() {
 			console.log("reqtype name sos");
+			
+			$("#lease_nav").show();
+			$("#reqlist_nav").hide();
+			
 			var html = "";
-			$.each(floors,function(index,floorNo){
+			$.each(m_floorArray,function(index,floorNo){
 				
 			});
 			
-			$headtitle.text("SOS总数：2");
+			m_headTitle.text("SOS总数：2");
 			
 			html += "<div class='span2'>";
 			html += "<div class='pull-left'>";
@@ -124,26 +246,140 @@ services = {
 			html += "</div>";
 			html += "</div>";
 			
-			$roomcontainer.html(html);
+			m_roomWrap.html(html);
 		};
 		
-		//选择客户
-		var selectFloor = function() {
-			$roomcontainer.find(".tile-small").click(function(){
+		//选择楼层
+		var selectFloor = function(floorservs) {
+			
+			//点击缩略图磁贴，加载并设置对应楼层的房间状态
+			m_roomWrap.find(".tile-small").click(function(){
 				$(this).addClass('selected');
+				//获取当前楼层ID
+				var curFloorId = $(this).attr("id");
+				var curFloorNo = $(this).attr("floorno");
+				console.log("Line161 当前操作楼层ID:"+ curFloorId + " NO:"+ curFloorNo);
+				//
+				$("#viewmode li").removeClass("active");
+				$("#details").addClass("active");
+				
+				 //楼层间切换
+				 $("a[rel=popover]").click(function(e){
+					 var id = $(this).text();
+					 $(this).parent().parent().children().removeClass("active");
+					 $(this).parent().addClass("active");
+					 console.log($(this));
+					 var cont = $(this).parent().find("#cont_"+ id).html();
+					 $("#floors-nav").html(cont);
+				 });
+				 
+				 floorDetails(curFloorId,curFloorNo,floorservs);
 			});
 		};
+		/**
+		 * 设置楼层明细
+		 * @param floorId 楼层ID
+		 * @param floorNo 楼层编号
+		 * */
+		var floorDetails = function(floorId,floorNo,floorservs) {		
+			//转到请求明细页
+			m_roomWrap.load(contextPath+'service/requests/details/'+floorId,function(response, status, xhr) {
+				if (status == "error") {
+					
+				 } else if (status="success") {
+					 $.each(floorservs,function(index,obj){
+
+						 $.each(obj.services,function(index,serv){
+							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
+							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
+							 
+						 });
+					 });
+					 m_curFloorNo = floorNo;
+					 floorNavigation();
+					 
+				 }
+			});
+		};
+		
+		//设置楼层导航条
+		var floorNavigation = function(curFloorId) {
+			//所有楼层
+			var lis = $("#floors-nav div li");
+			
+			$.each(lis,function(index,li){
+				var txt = $(li).find('a').text();
+				$(li).removeClass("active");
+				//设置当前楼层No对应的样式
+				if(txt==m_curFloorNo) {
+					$(li).addClass("active");
+
+					var parentDiv = $(li).parent().parent();
+					$(parentDiv).parent().children().hide();
+					$(parentDiv).show();
+					
+					var floorSectionId = parentDiv.attr("id").replace("cont_","");
+					console.log("floor Section Id is "+ floorSectionId);
+					$("#"+floorSectionId).parent().children().removeClass("active");
+					$("#"+floorSectionId).addClass("active");
+					
+					console.log(parentDiv.attr("id"));
+				}
+				
+			});
+			
+			
+			$("#floorSections li").click(function(e){
+				console.log($(this));
+				$(this).parent().children().removeClass("active");
+				$(this).addClass("active");
+				
+				$("#floors-nav div").hide();
+				$("#cont_"+ $(this).attr("id")).show();
+				
+			});
+			
+		};
+		
+		//HVAC
+		var hvac = function() {
+			$("#temp_nav").show();
+			$("#hvac_nav").show();
+			
+			
+		};
+		
+		//门磁报警
+		var doorAlarm = function() {
+			$("#lease_nav").show();
+			$("#reqlist_nav").hide();
+			
+			$(m_roomWrap).empty();
+			
+			
+		};
+		//窗磁报警
+		var windowAlarm = function() {
+			$("#lease_nav").show();
+			$("#reqlist_nav").hide();
+			$(m_roomWrap).empty();
+			
+		};
+		
+		
+		
+		
 		//所有请求
 		var all = function() {
 			var html = "";
-			$.each(floors,function(index,floorNo){
-				var i = colors.length>index?index:colors.length-index;
+			$.each(m_floorArray,function(index,floorNo){
+				var i = m_colorArray.length>index?index:m_colorArray.length-index;
 				html += "<div class='span2'>";
 				html += "<div class='pull-left'>";
 				html += "<label><h4>F"+ floorNo +"</h4> </label>";
-				html += "<div class='tile bg-color-"+colors[i] +"'>";
+				html += "<div class='tile bg-color-"+m_colorArray[i] +"'>";
 				html += "<div class='tile-small'><ul class='tile-smaill-list'>";
-				$.each(items,function(key,val){
+				$.each(m_itemArray,function(key,val){
 					var floor = val.roomNo.substring(0,2).toString();
 					if(floorNo==floor){
 						html += "<li id='"+ val +"'>"+ val.roomNo.substring(2).toString() +"</li>";
@@ -156,7 +392,7 @@ services = {
 				html += "</div>";
 				html += "</div>";
 			});
-			$roomcontainer.html(html);
+			m_roomWrap.html(html);
 		};
 
 		//服务请求类型有
