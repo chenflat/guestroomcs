@@ -30,6 +30,13 @@ public class FloorServiceImpl extends AbstractServiceSupport<Floor, String>
 		this.floorDao = floorDao;
 		setDaoSupport(floorDao);
 	}
+	
+
+	@Override
+	public Floor getFloorByNo(String floorNo) {
+		
+		return null;
+	}
 
 	@Transactional(readOnly = true)
 	public Set<Floor> getFloorByBuild(String buildId) {

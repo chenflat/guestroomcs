@@ -1,14 +1,20 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-11-29 11:15:11                          */
+/* Created on:     2012-12-11 09:46:17                          */
 /*==============================================================*/
 
 
+drop table if exists address;
+
 drop table if exists build;
+
+drop table if exists counter;
 
 drop table if exists department;
 
 drop table if exists district;
+
+drop table if exists emailAddress;
 
 drop table if exists eventlog;
 
@@ -27,6 +33,8 @@ drop table if exists guestpreference;
 drop table if exists hotel;
 
 drop table if exists listinfo;
+
+drop table if exists phone;
 
 drop table if exists portal;
 
@@ -65,6 +73,25 @@ drop table if exists user_role;
 drop table if exists userprofile;
 
 /*==============================================================*/
+/* Table: address                                               */
+/*==============================================================*/
+create table address
+(
+   addressId            varchar(75) not null,
+   user_id              varchar(75),
+   createdOnDate        datetime,
+   lastModifiedOnDate   datetime,
+   state                varchar(75),
+   city                 varchar(75),
+   street               varchar(75),
+   zipcode              varchar(75),
+   country              varchar(75),
+   primary_             bool,
+   entryid              varchar(75),
+   primary key (addressId)
+);
+
+/*==============================================================*/
 /* Table: build                                                 */
 /*==============================================================*/
 create table build
@@ -75,6 +102,14 @@ create table build
    hotel_id             varchar(75),
    build_comment        varchar(255),
    primary key (build_id)
+);
+
+/*==============================================================*/
+/* Table: counter                                               */
+/*==============================================================*/
+create table counter
+(
+   currentid            bigint default 0
 );
 
 /*==============================================================*/
@@ -110,6 +145,21 @@ create table district
    district_woeid       varchar(10),
    district_comment     varchar(200),
    primary key (district_id)
+);
+
+/*==============================================================*/
+/* Table: emailAddress                                          */
+/*==============================================================*/
+create table emailAddress
+(
+   emailAddressId       varchar(75) not null,
+   user_id              varchar(75),
+   createdOnDate        datetime,
+   lastModifiedOnDate   datetime,
+   address              varchar(75),
+   primary_             bool,
+   entryid              varchar(75),
+   primary key (emailAddressId)
 );
 
 /*==============================================================*/
@@ -237,15 +287,21 @@ create table hotel
    hotel_id             varchar(75) not null,
    hotel_name           varchar(50),
    hotel_enname         varchar(100),
+   hotel_desc           varchar(1000),
+   currency             varchar(10),
    hotel_address        varchar(200),
-   district_id          varchar(200),
+   hotel_district       varchar(50),
+   hotel_city           varchar(50),
+   hotel_state          varchar(50),
+   hotel_country        varchar(50),
+   hotel_zip            varchar(10),
    hotel_phone          varchar(20),
    hotel_fax            varchar(20),
-   hotel_desc           varchar(1000),
+   hotel_email          varchar(50),
    hotel_photo          varchar(200),
+   hotel_comment        varchar(255),
    hotel_long           varchar(50),
    hotel_lat            varchar(50),
-   hotel_comment        varchar(255),
    primary key (hotel_id)
 );
 
@@ -273,6 +329,22 @@ create table listinfo
 );
 
 /*==============================================================*/
+/* Table: phone                                                 */
+/*==============================================================*/
+create table phone
+(
+   phoneId              varchar(75) not null,
+   user_id              varchar(75),
+   createdOnDate        datetime,
+   lastModifiedOnDate   datetime,
+   number               varchar(75),
+   extension            varchar(75),
+   primary_             bool,
+   entryid              varchar(75),
+   primary key (phoneId)
+);
+
+/*==============================================================*/
 /* Table: portal                                                */
 /*==============================================================*/
 create table portal
@@ -289,6 +361,7 @@ create table portal
    timezoneoffset       int,
    defaultlanguage      varchar(10),
    currency             varchar(10),
+   hosturl              varchar(100),
    createdbyuserid      varchar(75),
    createdondate        datetime,
    lastmodifiedbyuserid varchar(75),
@@ -355,7 +428,7 @@ create table profilepropertydefinition
 (
    propertydefinitionid varchar(75) not null,
    deleted              bool,
-   datatype             int,
+   datatype             int comment 'datatype:  1=text  2=switch 3=language  4=timezone 5=dictionary 6=uploadfile  7=requestlist 8=music 9=KeywordNumber 10=SwitchDevice',
    defaultvalue         text,
    propertycategory     varchar(50),
    propertyname         varchar(50),
@@ -426,6 +499,9 @@ create table room
    room_fax             varchar(20),
    room_photo           varchar(200),
    room_comment         varchar(200),
+   handicappedroom      bool,
+   koshersabbath        bool,
+   status               int comment '0=未启用 1=空闲 2=checkin 21=已出租/出售 22=占用的 23=已出租/已占用  3=checkout',
    primary key (room_id)
 );
 
@@ -501,10 +577,15 @@ create table shiftwork
 (
    shiftwork_id         bigint not null,
    user_id              varchar(75),
+   backlog              varchar(1000),
+   shiftitems           varchar(1000),
    work_starttime       datetime,
    work_endtime         datetime,
-   createdOnDate        datetime,
+   shiftworker          varchar(75),
+   shiftworker_name     varchar(50),
+   floor_no             varchar(10),
    comment              varchar(500),
+   createdOnDate        datetime,
    primary key (shiftwork_id)
 );
 
@@ -531,7 +612,11 @@ create table user
    timeZone             varchar(75),
    language             varchar(75),
    greeting             varchar(255),
+   website              varchar(75),
    comments             longtext,
+   significantOther     varchar(100),
+   birthday             date,
+   anniversary          date,
    jobTitle             varchar(100),
    loginDate            datetime,
    loginIP              varchar(75),
@@ -568,6 +653,9 @@ create table userprofile
    primary key (profileid)
 );
 
+alter table address add constraint FK_user_address foreign key (user_id)
+      references user (user_id) on delete cascade;
+
 alter table build add constraint FK_hotelinfo_buildinfo foreign key (hotel_id)
       references hotel (hotel_id) on delete cascade;
 
@@ -579,6 +667,9 @@ alter table department add constraint FK_hotel_department foreign key (hotel_id)
 
 alter table district add constraint FK_district_district foreign key (parent_id)
       references district (district_id) on delete cascade;
+
+alter table emailAddress add constraint FK_user_emailAddress foreign key (user_id)
+      references user (user_id) on delete cascade;
 
 alter table eventlog add constraint FK_eventlogtype_eventlog foreign key (logtype_key)
       references eventlogtype (logtype_key) on delete cascade;
@@ -595,11 +686,11 @@ alter table guestpreference add constraint FK_guest_guestpreference foreign key 
 alter table guestpreference add constraint FK_prefsdefinedfield_guestpreference foreign key (definedfieldid)
       references prefsdefinedfield (definedfieldid) on delete cascade;
 
-alter table hotel add constraint FK_district_hotel foreign key (district_id)
-      references district (district_id) on delete set null;
-
 alter table listinfo add constraint FK_lists_lists foreign key (parentid)
       references listinfo (entryid) on delete cascade;
+
+alter table phone add constraint FK_user_phone foreign key (user_id)
+      references user (user_id) on delete cascade;
 
 alter table portalsettings add constraint FK_portal_portalsettings foreign key (portal_id)
       references portal (portal_id) on delete cascade;

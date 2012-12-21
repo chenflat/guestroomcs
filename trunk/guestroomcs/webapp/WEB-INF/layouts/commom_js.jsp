@@ -6,7 +6,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="<c:url value="/js/bootstrap/widgets.js"/>"></script>
 <script src="<c:url value="/js/jquery-1.8.0.min.js"/>"></script>
-<script src="<c:url value="/lib/jquery-ui/jquery-ui-1.9.1.custom.min.js" />"></script>
+<%-- <script src="<c:url value="/lib/jquery-ui/jquery-ui-1.9.1.custom.min.js" />"></script> --%>
 <!-- touch events for jquery ui-->
 <script src="<c:url value="/js/forms/jquery.ui.touch-punch.min.js"/>"></script>
 <!-- easing plugin -->
@@ -23,8 +23,8 @@
 <script src="<c:url value="/lib/sticky/sticky.min.js" />"></script>
 <!-- tooltips -->
 <script src="<c:url value="/lib/qtip2/jquery.qtip.min.js" />"></script>
-<!-- lightbox -->
-<script src="<c:url value="/lib/colorbox/jquery.colorbox.min.js" />"></script>
+<%-- <!-- lightbox -->
+<script src="<c:url value="/lib/colorbox/jquery.colorbox.min.js" />"></script> --%>
 <!-- hidden elements width/height -->
 <script src="<c:url value="/js/jquery.actual.min.js" />"></script>
 <!-- scroll -->

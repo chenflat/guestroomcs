@@ -18,6 +18,13 @@ import com.managementsystem.util.dao.Page;
 public interface FloorDao extends DaoSupport {
 
 	/**
+	 * 获取指定楼层编号的的楼层数据
+	 * *//*
+	public Floor getFloorByNo(String floorNo) {
+		
+	}*/
+	
+	/**
 	 * 获取指定建筑ID的楼层数据
 	 * 
 	 * @param buildId

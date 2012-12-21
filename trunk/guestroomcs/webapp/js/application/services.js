@@ -2,9 +2,8 @@
 
 $(document).ready(function() {
 	
+	services.requests();  //必须放在第一行
 	services.forward();
-	services.requests();
-	
 	hvac.forward();
 
 	uniform.init();
@@ -14,8 +13,9 @@ $(document).ready(function() {
 	 });
 });
 
-
+//HVAC操作
 hvac = {
+	//页面首次加载时，默认选择列表第一项;刷新重载时，定位在刷新前的选择位置。
 	forward:function() {
 		//当前页面路径
 		var pathname = window.location.pathname;
@@ -31,6 +31,7 @@ hvac = {
 			
 			var cookieReqType = $.cookie('reqtype_selecteditem');
 			var cookieUrlPath = $.cookie('reqtype_urlpath');
+			
 			if(cookieUrlPath!=null && cookieUrlPath==hvacPath) {
 				if(cookieReqType!=null) {
 					$("#"+ cookieReqType).addClass('active');
@@ -51,7 +52,9 @@ hvac = {
 
 };
 
+//Request Services
 services = {
+	//页面首次加载时，默认选择列表第一项;刷新重载时，定位在刷新前的选择位置。
 	forward:function() {
 			//当前页面路径
 			var pathname = window.location.pathname;
@@ -67,19 +70,16 @@ services = {
 				
 				var cookieReqtypeItem = $.cookie('reqtype_selecteditem');
 				var cookieUrlPath = $.cookie('reqtype_urlpath');
-				
-				$("#reqtype li:first").addClass('active');
-				$("#reqtype li:first").click();
-				
+
 				if(cookieUrlPath!=null && cookieUrlPath==urlpath) {
-					/*if(cookieReqtypeItem!=null) {
+					if(cookieReqtypeItem!=null) {
 						var itemid = $("#"+ cookieReqtypeItem);
 						$(itemid).addClass('active');
 						$("#"+ cookieReqtypeItem).click();
-					} else {*/
+					} else {
 						$("#reqtype li:first").addClass('active');
 						$("#reqtype li:first").click();
-					//} 
+					} 
 				}else {
 					$("#reqtype li:first").addClass('active');
 					$("#reqtype li:first").click();
@@ -102,7 +102,6 @@ services = {
 		//颜色名称
 		var m_colorArray = ["green","greenLight","greenDark","red","yellow","orange","orangeDark","pink","pinkDark","purple","darken","grayDark","blue","blueLight","blueDark","green","greenLight","greenDark","","pink","pinkDark","purple","darken","grayDark","yellow","orange","orangeDark","pink"];
 
-		
 		/**
 		 * 客房请求数据
 		 * */
@@ -346,6 +345,25 @@ services = {
 			$("#temp_nav").show();
 			$("#hvac_nav").show();
 			
+			var tiles = $(".thumbnails .tile-large");
+			
+			$.each(m_itemArray,function(key,roomVal){
+				var tile = $(tiles).find("li#"+ roomVal.roomNo);
+				$(tile).find(".tile-text").text(roomVal.hvTemp0+"°/"+roomVal.hvTemp0+"°");
+				
+				if(roomVal.hvFanPower0==0) {
+					$(tile).addClass('bg-color-white').attr('style','border:1px solid #ccc;');
+					$(tile).find(".tile-badge").removeClass('fg-color-white').text("OFF");
+					$(tile).find(".tile-caption").removeClass('fg-color-white');
+					
+					
+				}
+						
+			});
+			
+			m_roomWrap.find(".tile").click(function(){
+				$(this).addClass('selected');
+			});
 			
 		};
 		

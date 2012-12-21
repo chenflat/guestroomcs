@@ -15,7 +15,7 @@
 
 	<!-- system layout  -->
 	<definition name="system-layout" extends="standard-layout">
-		<put-attribute name="sidebar" value="/WEB-INF/jsp/system/system_sidebar.jsp" />
+		<put-attribute name="sidebar" value="" />
 	</definition>
 
 	<!-- user profile layout  -->

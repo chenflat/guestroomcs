@@ -325,3 +325,23 @@ INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,Defin
 INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description) values (uuid(),'Music','beep','beep(Default)',NULL,0,1,-1,NULL);
 
 
+/**-- Contact Phone --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','mobilePhone','手机',NULL,0,1,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','mobile2Phone','手机(2)',NULL,0,2,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','homePhone','住宅电话',NULL,0,3,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','home2Phone','住宅电话(2)',NULL,0,4,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','workPhone','工作电话',NULL,0,5,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','work2Phone','工作电话(2)',NULL,0,6,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','otherPhone','其它',NULL,0,7,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','companyPhone','公司',NULL,0,8,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','workFax','公司传真',NULL,0,9,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Phone','homeFax','住宅传真',NULL,0,10,-1,NULL,'zh_CN');
+/**-- Contact Address --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Address','workAddress','工作地址',NULL,0,1,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Address','homeAddress','住宅地址',NULL,0,2,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'Address','homePhone','其他',NULL,0,3,-1,NULL,'zh_CN');
+/**-- Contact Email Address --*/
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'EmaillAddress','personalEmail','个人',NULL,0,1,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'EmaillAddress','workEmail','工作电子邮件',NULL,0,2,-1,NULL,'zh_CN');
+INSERT INTO listinfo (entryid,ListName,Value,Text,ParentID,Level,SortOrder,DefinitionID,Description,langcode) values (uuid(),'EmaillAddress','otherEmail','其他',NULL,0,3,-1,NULL,'zh_CN');
+

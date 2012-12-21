@@ -135,10 +135,10 @@
 				<form:hidden path="userId" />
 				<form:hidden path="status" />
 				<form:hidden path="isSuperUser" />
-				<button class="btn input-small btn-danger">
+				<button class="btn input-small btn-submit">
 					<spring:message code="button.submit" />
 				</button>
-				<a href="<c:url value="/user/users" />" class="btn input-mini">
+				<a href="<c:url value="/user/users" />" class="btn btn-cancel input-small">
 					<spring:message code="button.cancel" /> </a>
 			</div>
 		</form:form>

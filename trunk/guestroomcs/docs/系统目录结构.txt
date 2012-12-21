@@ -185,5 +185,24 @@ http://ipaddress:port/service/request
 {[room],[]}
 
 
+/* webkit solution */
+::-webkit-input-placeholder { text-align:right; }
+/* mozilla solution */
+input:-moz-placeholder { text-align:right; }
 
+
+ALTER TABLE `guestroomcsdb`.`hotel` ADD COLUMN `hotel_country` VARCHAR(50) NULL  AFTER `hotel_state` ;
+ALTER TABLE `guestroomcsdb`.`hotel` ADD COLUMN `hotel_zip` VARCHAR(50) NULL  AFTER `hotel_country` ;
+
+
+ALTER TABLE `guestroomcsdb`.`room` ADD COLUMN `handicappedroom` bool  AFTER `room_comment` ;
+ALTER TABLE `guestroomcsdb`.`room` ADD COLUMN `koshersabbath` bool  AFTER `handicappedroom` ;
+ALTER TABLE `guestroomcsdb`.`room` ADD COLUMN `koshersabbath` int  AFTER `handicappedroom` ;
+
+
+
+Name	Code	Data Type	Length	Precision	Primary	Foreign Key	Mandatory
+是否残障房	handicappedroom	bool			FALSE	FALSE	FALSE
+犹太/安息日	koshersabbath	bool			FALSE	FALSE	FALSE
+房间状态	status	int			FALSE	FALSE	FALSE
 	

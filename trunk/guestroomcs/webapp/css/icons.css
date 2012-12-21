@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'icomoon';
+	font-family: 'IcoMoon';
 	src: url('fonts/icomoon.eot');
 	src: url('fonts/icomoon.eot?#iefix') format('eot'),
 		url('fonts/icomoon.svg#icomoon') format('svg'),
@@ -6272,3 +6272,19 @@
 .icon-fullscreen {
   background-position: -456px -144px;
 }
+
+
+[class^="color-"],
+[class*=" color-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+

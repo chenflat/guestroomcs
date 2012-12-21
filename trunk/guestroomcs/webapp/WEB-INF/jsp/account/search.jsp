@@ -15,7 +15,7 @@
 <c:set var="requestURL"
 	value="${requestScope['javax.servlet.forward.request_uri']}"
 	scope="request" />
-<div class="row-fluid">
+<div class="row-fluid main_content_sidebar">
 	<div class="span12">
 	${message}
 		<form action="${requestURL}" method="post" id="search">
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<c:forEach items="${user.userprofiles}" var="profile">
-				<input type="hidden" name="hide_${profile[0].profilepropertydefinition.propertyname}" id="hide_${profile[0].profilepropertydefinition.propertyname}" value="${profile[0].propertyvalue}" />
+				<input type="hidden" name="hide_${profile.profilepropertydefinition.propertyname}" id="hide_${profile.profilepropertydefinition.propertyname}" value="${profile.propertyvalue}" />
 			</c:forEach>
 		</form>
 	</div>

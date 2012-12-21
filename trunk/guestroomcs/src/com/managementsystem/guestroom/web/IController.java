@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface IController {
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(ModelMap model);
+	
+	
 }

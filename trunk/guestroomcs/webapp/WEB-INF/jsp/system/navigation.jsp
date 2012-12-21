@@ -31,18 +31,20 @@
 			<section>
 			<ul class="nav nav-list">
 				<li class="nav-header">权限组</li>
-				<li><a href="">新增组</a>
+				<li><a href="<c:url value="/user/groups" />">新增组</a>
 				</li>
-				<li><a href="">修改组授权</a>
+				<li><a href="<c:url value="/user/groups" />">修改组授权</a>
 				</li>
-				<li><a href="">修改组用户</a>
+				<li><a href="<c:url value="/user/groups" />">修改组用户</a>
 				</li>
 			</ul>
 			</section>
 			<section>
 			<ul class="nav nav-list">
 				<li class="nav-header">机构设置</li>
-				<li><a href="">机构基础信息</a>
+				<li><a href="<c:url value="/hotel/hotel" />">机构基础信息</a>
+				</li>
+				<li><a href="<c:url value="/hotel/build" />">机构建筑信息</a>
 				</li>
 				<li><a href="">自动编号设置</a>
 				</li>
@@ -51,9 +53,9 @@
 			<section>
 			<ul class="nav nav-list">
 				<li class="nav-header">管理客房</li>
-				<li><a href="">初始化客房定义</a>
+				<li><a href="<c:url value="/hotel/room/init" />">初始化客房定义</a>
 				</li>
-				<li><a href="">管理客房</a>
+				<li><a href="<c:url value="/hotel/room" />">管理客房</a>
 				</li>
 			</ul>
 			</section>
