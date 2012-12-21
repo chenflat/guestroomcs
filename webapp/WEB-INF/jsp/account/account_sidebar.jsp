@@ -27,8 +27,8 @@
 					
 					<div id="side_quickview" class="quickview">
 						<ul class="nav nav-list">
-							<%-- <li <c:if test="${fn:endsWith(requestURL, '/account/profile')}">class="active"</c:if>><a href="<c:url value="/account/profile" />"><spring:message code="nav.account.profile" /></a>
-							</li> --%>
+							<li <c:if test="${fn:endsWith(requestURL, '/account/profile') or fn:endsWith(requestURL, '/account/picture')}">class="active"</c:if>><a href="<c:url value="/account/profile" />"><spring:message code="nav.account.profile" /></a>
+							</li> 
 							<li <c:if test="${fn:endsWith(requestURL, '/account/personalize')}">class="active"</c:if>><a href="<c:url value="/account/personalize" />"><spring:message code="nav.account.personalize" /></a>
 							</li>
 							<li <c:if test="${fn:endsWith(requestURL, '/account/notification')}">class="active"</c:if>><a href="<c:url value="/account/notification" />"><spring:message code="nav.account.notification" /></a>

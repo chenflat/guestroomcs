@@ -29,56 +29,70 @@
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container-fluid">
-			<a class="brand" href="#" class="dropdown-toggle nav_condensed"
-				data-toggle="dropdown"> <img
-				src="<c:url value="/img/brand.png"/>" alt="" class="user_avatar">
-				<c:choose>
-					<c:when test="${requestURL eq serviceURL}">
-						<spring:message code="nav.service" />
-					</c:when>
-					<c:when test="${requestURL eq hvacURL}">
-						<spring:message code="nav.service.hvac" />
-					</c:when>
-					<c:when test="${requestURL eq prefsURL}">
-						<spring:message code="nav.guest.prefs" />
-					</c:when>
-					<c:when test="${requestURL eq analyseURL}">
-						<spring:message code="nav.analyse" />
-					</c:when>
-					<c:when test="${fn:contains(requestURL,userURL)}">
-						<spring:message code="nav.user.usermanage" />
-					</c:when>
-					<c:when test="${fn:contains(requestURL,accountURL)}">
-						<spring:message code="nav.account.settings" />
-					</c:when>
-					<c:when
-						test="${fn:contains(requestURL,settingURL) or fn:contains(requestURL,hotelURL) or fn:contains(requestURL,userURL)}">
-						<spring:message code="nav.system" />
-					</c:when>
-					<c:otherwise>
-						<spring:message code="nav.home" />
-					</c:otherwise>
-				</c:choose> <i class="caret"></i> </a>
-			<ul class="dropdown-menu">
-				<li><a href="<c:url value="/service/requests" />"><spring:message
-							code="nav.service" /> </a></li>
-				<li><a href="<c:url value="/service/hvac" />"><spring:message
-							code="nav.service.hvac" /> </a></li>
-				<li><a href="<c:url value="/guest/prefs" />"><spring:message
-							code="nav.guest.prefs" /> </a></li>
-				<li><a href="<c:url value="/analyse/summary" />"><spring:message
-							code="nav.analyse" /> </a></li>
-							<li><a href="<c:url value="/user/users" />"><spring:message
+			<ul class="nav user_menu pull-left">
+				<li><a class="brand" href="#"
+					class="dropdown-toggle nav_condensed" data-toggle="dropdown"> <img
+						src="<c:url value="/img/brand.png"/>" alt="" class="user_avatar">
+						<c:choose>
+							<c:when test="${requestURL eq serviceURL}">
+								<spring:message code="nav.service" />
+							</c:when>
+							<c:when test="${requestURL eq hvacURL}">
+								<spring:message code="nav.service.hvac" />
+							</c:when>
+							<c:when test="${requestURL eq prefsURL}">
+								<spring:message code="nav.guest.prefs" />
+							</c:when>
+							<c:when test="${requestURL eq analyseURL}">
+								<spring:message code="nav.analyse" />
+							</c:when>
+							<c:when test="${fn:contains(requestURL,accountURL)}">
+								<spring:message code="nav.account.settings" />
+							</c:when>
+							<c:when
+								test="${fn:contains(requestURL,settingURL) or fn:contains(requestURL,hotelURL) or fn:contains(requestURL,userURL)}">
+								<spring:message code="nav.system" />
+							</c:when>
+							<c:otherwise>
+								<spring:message code="nav.home" />
+							</c:otherwise>
+						</c:choose> <i class="caret"></i> </a>
+					<ul class="dropdown-menu mainmenu">
+						<li><a href="<c:url value="/service/requests" />"> <i
+								class="icon-volume-up icon-white"></i>
+							<spring:message code="nav.service" /> </a>
+						</li>
+						<li><a href="<c:url value="/service/hvac" />"><i
+								class="icon-globe icon-white"></i> <spring:message
+									code="nav.service.hvac" /> </a>
+						</li>
+						<li><a href="<c:url value="/guest/prefs" />"><i
+								class="icon-camera icon-white"></i> <spring:message
+									code="nav.guest.prefs" /> </a>
+						</li>
+						<li><a href="<c:url value="/analyse/summary" />"><i
+								class=" icon-retweet icon-white"></i> <spring:message
+									code="nav.analyse" /> </a>
+						</li>
+						<%-- <li><a href="<c:url value="/user/users" />"><spring:message
 							code="nav.user.usermanage" /> </a>
-				</li> 
-				<li><a href="<c:url value="/account/personalize" />"><spring:message
-							code="nav.account.settings" /> </a></li>
-				<li><a href="<c:url value="/system/navigation" />"><spring:message
-							code="nav.system" /> </a></li>
+				</li>  --%>
+						<li><a href="<c:url value="/account/personalize" />"><i
+								class="icon-cog icon-white"></i> <spring:message
+									code="nav.account.settings" /> </a>
+						</li>
+						<li> <a href="<c:url value="/system/navigation" />">
+					<i class="icon-wrench icon-white"></i> <spring:message
+									code="nav.system" /> </a>
+						</li>
+					</ul></li>
 			</ul>
 
+
 			<ul class="nav user_menu pull-right">
-				<li><a class="ssw_trigger" href="javascript:void(0)"><i class="icon-cog icon-white"></i></a></li>
+				<li><a class="ssw_trigger" href="javascript:void(0)"><i
+						class="icon-cog icon-white"></i> </a>
+				</li>
 				<li class="divider-vertical hidden-phone hidden-tablet"></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle avatar"
 					data-toggle="dropdown"> <i class="icon-adminuser"></i> <span
@@ -87,14 +101,16 @@
 					<ul class="dropdown-menu">
 						<li><a href="<c:url value="/account/personalize" />"><i
 								class="icon-cog"></i> <spring:message code="user.editprofile" />
-						</a></li>
+						</a>
+						</li>
 						<li class="divider"></li>
 						<li><a href="javascrip:void(0)"><i class="icon-envelope"></i>
-								<spring:message code="button.help" /> </a></li>
+								<spring:message code="button.help" /> </a>
+						</li>
 						<li><a href="<c:url value="/j_spring_security_logout" />"><i
-								class="icon-off"></i> <spring:message code="user.logout" /> </a></li>
-					</ul>
-				</li>
+								class="icon-off"></i> <spring:message code="user.logout" /> </a>
+						</li>
+					</ul></li>
 			</ul>
 
 			<c:choose>
@@ -108,7 +124,7 @@
 					<%@ include file="../jsp/user/resources/resources_nav.jsp"%>
 				</c:when>
 				<c:when test="${fn:endsWith(requestURL,'/hotel/room')}">
-					<%@ include file="../jsp/hotel/room_nav.jsp"%>
+					<%@ include file="../jsp/hotel/room/room_nav.jsp"%>
 				</c:when>
 				<c:when test="${fn:contains(requestURL,'/hotel/build')}">
 					<%@ include file="../jsp/hotel/build_nav.jsp"%>
@@ -122,7 +138,9 @@
 				<c:when test="${fn:contains(requestURL,'/service/requests')}">
 					<%@ include file="../jsp/service/service_nav.jsp"%>
 				</c:when>
-
+				<c:when test="${fn:contains(requestURL,'/service/hvac')}">
+					<%@ include file="../jsp/service/service_nav.jsp"%>
+				</c:when>
 
 			</c:choose>
 		</div>

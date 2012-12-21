@@ -88,6 +88,11 @@
 		<put-attribute name="title" value="我的资料" />
 		<put-attribute name="body" value="/WEB-INF/jsp/account/profile.jsp" />
 	</definition>
+		<!-- User Account Pages -->
+	<definition name="account/picture" extends="userprofile-layout">
+		<put-attribute name="title" value="我的图片" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/picture.jsp" />
+	</definition>
 
 	<definition name="account/personalize" extends="userprofile-layout">
 		<put-attribute name="title" value="个性化" />

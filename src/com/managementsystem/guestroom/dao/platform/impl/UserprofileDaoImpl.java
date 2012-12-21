@@ -36,13 +36,18 @@ public class UserprofileDaoImpl extends AbstractDaoSupport implements
 		return new LinkedHashSet<Userprofile>(query.list());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Userprofile> getUserprofileByUsername(String username,
 			String propertycategory) throws DataAccessException {
 		final String querySql = "from Userprofile profile inner join profile.profilepropertydefinition where profile.user.username=? and profile.profilepropertydefinition.propertycategory=? order by profile.profilepropertydefinition.vieworder";
+
 		Query query = createQuery(querySql, username,propertycategory);
-		return new LinkedHashSet<Userprofile>(query.list());
+		Set<Userprofile> result = new LinkedHashSet<Userprofile>();
+		for(int i=0;i<query.list().size();i++) {
+			Object[] obj = (Object[])query.list().get(0);
+			result.add((Userprofile)obj[0]);
+		}
+		return result;
 	}
 
 

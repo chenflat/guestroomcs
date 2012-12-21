@@ -106,3 +106,50 @@
 .btn-submit.active {
   background-color: #8C0095 \9;
 }
+.brand {margin-left:5px;}
+.navbar .nav > li > .mainmenu {
+	background: #5C008B !important;
+	-webkit-border-radius: 0;
+	   -moz-border-radius: 0;
+	        border-radius: 0;
+	margin:0px;
+}
+.navbar .nav > li > .mainmenu::after {
+	position: absolute;
+	top: -6px;
+	left: 10px;
+	display: inline-block;
+	border-right: 0px solid transparent;
+	border-bottom: 0px solid white;
+	border-left: 0px solid transparent;
+	content: '';
+}
+
+.navbar .nav > li > .mainmenu::before {
+	position: absolute;
+	top: -7px;
+	left: 9px;
+	display: inline-block;
+	border-right: 0px solid transparent;
+	border-bottom: 0px solid #CCC;
+	border-left: 0px solid transparent;
+	border-bottom-color: rgba(0, 0, 0, 0.2);
+	content: '';
+}
+
+.navbar .nav > li > .mainmenu a {
+	color:#ffffff;	
+	padding:15px 10px;
+	font-size:14px;
+}
+.mainmenu a .thumbnail {
+	float: left;
+	padding: 2px;
+	width: 32px;
+	background:#D674DE;
+	
+}
+.mainmenu a .details {
+	display: block;
+	margin-left: 46px;
+}

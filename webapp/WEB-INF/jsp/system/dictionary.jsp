@@ -12,7 +12,7 @@
  -->
 <div class="row-fluid">
 	<div class="span12">
-		<legend>管理选项  <small>> 数据字典</small></legend>
+		<legend><a href="<c:url value="/system/navigation" />">管理选项</a>  <small>> 数据字典</small></legend>
 		<p>系统数据字典相关设置</p>
 		<hr class="separator" />
 

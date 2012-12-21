@@ -34,7 +34,7 @@
 <link rel="stylesheet" href="<c:url value="/img/splashy/splashy.css"/>" />
 <!-- flags -->
 <link href="<c:url value="/css/flags.css"/>" rel="stylesheet">
-<%-- <link href="<c:url value="/css/icons.css"/>" rel="stylesheet"> --%>
+<link href="<c:url value="/css/icons.css"/>" rel="stylesheet">
 <!-- calendar -->
 <link rel="stylesheet"
 	href="<c:url value="/lib/fullcalendar/fullcalendar.css" />" />
@@ -56,9 +56,9 @@
 <link rel="stylesheet"
 	href="<c:url value="/lib/stepy/css/jquery.stepy.css" />" />
 <!-- upload -->
-<link rel="stylesheet"
-	href="<c:url value="/lib/plupload/js/jquery.plupload.queue/css/plupload.css" />" />
-<!-- CLEditor -->
+<%-- <link rel="stylesheet"
+	href="<c:url value="/lib/plupload/js/jquery.plupload.queue/css/plupload.css" />" /> --%>
+<%-- <!-- CLEditor -->
 <link rel="stylesheet"
 	href="<c:url value="/lib/CLEditor/jquery.cleditor.css" />" />
 <!-- colorpicker -->
@@ -66,7 +66,7 @@
 	href="<c:url value="/lib/colorpicker/css/colorpicker.css" />" />
 <!-- smoke_js -->
 <link rel="stylesheet"
-	href="<c:url value="/lib/smoke/themes/smoke.css" />" />
+	href="<c:url value="/lib/smoke/themes/smoke.css" />" /> --%>
 <!-- main styles -->
 <link href="<c:url value="/css/style.css"/>" rel="stylesheet">
 <!-- favicon -->

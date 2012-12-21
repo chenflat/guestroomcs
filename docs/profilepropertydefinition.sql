@@ -1,8 +1,15 @@
 /* user profile property definition */
+/* datatype:  1=text  2=switch 3=language  4=timezone 5=dictionary 6=uploadfile  7=requestlist 8=music 9=KeywordNumber 10=SwitchDevice */
 
+/* account picture */
 insert into profilepropertydefinition(propertydefinitionid,deleted,datatype,defaultvalue,propertycategory,propertyname,length,required,validationexpression,vieworder,visible,defaultvisibility)
-	values(uuid(),0,6,'','personalize','userPhoto',100,false,'',1,true,0);
-	
+	values(uuid(),0,6,'','picture','userPhoto',100,false,'',1,true,0);
+insert into profilepropertydefinition(propertydefinitionid,deleted,datatype,defaultvalue,propertycategory,propertyname,length,required,validationexpression,vieworder,visible,defaultvisibility)
+	values(uuid(),0,6,'','picture','userPhoto2',100,false,'',1,true,0);
+insert into profilepropertydefinition(propertydefinitionid,deleted,datatype,defaultvalue,propertycategory,propertyname,length,required,validationexpression,vieworder,visible,defaultvisibility)
+	values(uuid(),0,6,'','picture','userPhoto3',100,false,'',1,true,0);
+
+	/* account personalize */
 insert into profilepropertydefinition(propertydefinitionid,deleted,datatype,defaultvalue,propertycategory,propertyname,length,required,validationexpression,vieworder,visible,defaultvisibility)
 	values(uuid(),0,7,'','personalize','defRequest',50,false,'',2,true,0);
 		

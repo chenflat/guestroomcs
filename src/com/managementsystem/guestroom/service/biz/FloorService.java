@@ -14,6 +14,15 @@ import com.managementsystem.util.service.ServiceSupport;
  * @version 07/11/2012
  * */
 public interface FloorService extends ServiceSupport<Floor, String> {
+	
+	/**
+	 * 获取指定的楼层编号的对象
+	 * @param floorNo 楼层编号
+	 * @return 楼层对象
+	 * */
+	public Floor getFloorByNo(String floorNo);
+	
+	
 	/**
 	 * 获取指定建筑ID的楼层数据
 	 * 

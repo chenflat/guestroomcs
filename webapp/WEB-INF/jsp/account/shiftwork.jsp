@@ -15,7 +15,7 @@
 <c:set var="requestURL"
 	value="${requestScope['javax.servlet.forward.request_uri']}"
 	scope="request" />
-<div class="row-fluid">
+<div class="row-fluid main_content_sidebar">
 	<div class="span12">
 		${message}
 
@@ -62,6 +62,7 @@
 
 	</div>
 </div>
+<!-- shiftwork form -->
 <form:form modelAttribute="shiftwork" method="post"
 	class=" form_validation_ttip">
 	<div id="shiftworkModal" class="modal hide fade" tabindex="-1"
@@ -123,10 +124,10 @@
 		</div>
 		<div class="modal-footer">
 			<span class="pull-left">交接班时间：<form:hidden path="workEndtime"/> ${shiftwork.workEndtime} </span>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">
+			<button class="btn btn-cancel" data-dismiss="modal" aria-hidden="true">
 				<spring:message code="button.cancel" />
 			</button>
-			<button class="btn btn-primary">
+			<button class="btn btn-submit">
 				<spring:message code="button.submit" />
 			</button>
 		</div>

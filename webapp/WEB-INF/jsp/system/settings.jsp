@@ -19,7 +19,7 @@
 				<c:out value="${message}" escapeXml="false" />
 			</c:if>
 			<legend>
-				管理选项 <small>> 基本信息</small>
+				<a href="<c:url value="/system/navigation" />">管理选项</a> <small>> 基本信息</small>
 			</legend>
 			<p>设置当前WEB平台基础信息</p>
 			<hr class="separator" />
@@ -57,7 +57,7 @@
 				</div>
 			</div>
 
-			<legend>用户设置</legend>
+			<%-- <legend>用户设置</legend>
 			<div class="control-group">
 				<form:label path="administratorid" class="control-label">系统管理员</form:label>
 				<div class="controls">
@@ -141,13 +141,13 @@
 						<form:option value="us_EN">United States,English,us-en</form:option>
 					</form:select>
 				</div>
-			</div>
+			</div> --%>
 			<div class="form-actions">
 				<form:hidden path="portalId" />
-				<button class="btn btn-primary" type="submit">
+				<button class="btn input-small btn-submit" type="submit">
 					<spring:message code="button.submit" />
 				</button>
-				<button class="btn">
+				<button class="btn input-small btn-cancelbtn-cancel" onclick="history.go(-1);">
 					<spring:message code="button.cancel" />
 				</button>
 			</div>

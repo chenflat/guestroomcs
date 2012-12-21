@@ -27,14 +27,14 @@ userlist_opt = {
 			$("#loaduserinfo").empty();
 			//异步加载查看页
 			$("#loaduserinfo").load(contextPath+'user/users/view/'+userId,function(response, status, xhr) {
-				  if (status == "error") {
-					  alert();
-				  } else if (status="success") {
-					  $("#user_edit").show();
-					  $("#user_copy").show();
-						$("#user_delete").show();
-						$("#user_setstatus").show();
-				  }
+				if (status == "error") {
+					alert();
+				 } else if (status="success") {
+					$("#user_edit").show();
+					$("#user_copy").show();
+					$("#user_delete").show();
+					$("#user_setstatus").show();
+				 }
 			});
 		}
 	}, 
@@ -294,7 +294,7 @@ userlist_opt = {
 			var initstatus = $("#status").val();
 			var isSuperUser = $("#isSuperUser").val();
 			console.log("is supper user："+ isSuperUser);
-			if(isSuperUser) {
+			if(isSuperUser=='true') {
 				$.sticky("超级用户不能设置状态!",{
 					autoclose : 5000,
 					position : "top-right",

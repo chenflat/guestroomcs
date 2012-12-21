@@ -3,6 +3,7 @@ package com.managementsystem.guestroom.dao.platform.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,7 +41,7 @@ public class RoleDaoImpl extends AbstractDaoSupport implements RoleDao {
 	@Override
 	public Set<Role> getRolesByStatus(int status) throws DataAccessException {
 		Query query = createQuery(GETROLESBYSTATUS, 0, -1, status);
-		return new HashSet<Role>(query.list());
+		return new LinkedHashSet<Role>(query.list());
 	}
 
 	@Override

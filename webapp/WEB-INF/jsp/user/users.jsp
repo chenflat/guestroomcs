@@ -11,10 +11,11 @@
 	Description:
  -->
 <!-- <h4 class="heading"></h4> -->
-<div class="row-fluid">
-	<div class="span12">
-		<div id="loaduserinfo">请选择要查看的用户</div>
+<div class="main_content_sidebar">
+	<div class="row-fluid">
+		<div class="span12">
+			<div id="loaduserinfo">请选择要查看的用户</div>
+		</div>
 	</div>
 </div>
-
-<%@ include file="users/delete.jsp" %>
+<%@ include file="users/delete.jsp"%>
