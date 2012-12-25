@@ -20,7 +20,7 @@
         <property name="floorComment" type="string">
             <column name="floor_comment" />
         </property>
-        <set name="rooms" table="room" inverse="true" lazy="false" order-by="roomNo" fetch="select">
+        <set name="rooms" table="room" inverse="true" lazy="true" order-by="roomNo" fetch="select">
             <key>
                 <column name="floor_id" length="75" />
             </key>
