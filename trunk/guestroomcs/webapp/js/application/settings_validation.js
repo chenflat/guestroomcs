@@ -5,7 +5,7 @@
 	});
 	
 	//* validation
-	setting_validation = {
+	var setting_validation = {
 		ttip: function() {
 			var ttip_validator = $('.form_validation_ttip').validate({
 				onkeyup: false,

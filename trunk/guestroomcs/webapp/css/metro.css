@@ -546,7 +546,9 @@
 	border-style:none solid solid none;
 	line-height:29px;
 }
-
+.tile .tile-smaill-list li:last-child {
+	
+}
 .tile .tile-smaill-list li:hover {
 	background:#2D89EF;
 }
@@ -930,7 +932,7 @@ AppBar control.
 @media (max-width: 1023px) {
    a.win-command .win-label,
    button.win-command .win-label {
-      display: none;
+      display: ;
    }
    a.win-command .win-commandicon,
    button.win-command .win-commandicon {
@@ -951,7 +953,6 @@ AppBar control.
       margin-right: 9px;
    }
    
-   
    .tile-large-list li,.tile-large-list span {
 	float:left;
 	width:90px;height:90px;
@@ -965,7 +966,7 @@ AppBar control.
 	margin-top: 8px;
 	margin-bottom: 8px;
 	font-style: italic;
-}
+	}
 }
 
 
@@ -1140,6 +1141,12 @@ Settings Pane
 
 .winicon-new {
 	  background-position: -1px -1px;
+}
+
+.winicon-new-small {
+	width: 21px;
+	height: 21px;
+	background-position: -158px 0px;
 }
 
 /*

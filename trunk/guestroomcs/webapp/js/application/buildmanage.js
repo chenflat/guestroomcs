@@ -10,7 +10,7 @@
 	
 	//btn_delete
 	
-	build = {
+	var build = {
 		opt:function(){
 			
 			//当前页面路径
@@ -60,7 +60,7 @@
 	
 	
 	//* validation
-	validation = {
+	var validation = {
 		ttip: function() {
 			var ttip_validator = $('.form_validation_ttip').validate({
 				onkeyup: false,

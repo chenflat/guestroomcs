@@ -138,9 +138,9 @@
 				<button class="btn input-small btn-submit" type="submit">
 					<spring:message code="button.submit" />
 				</button>
-				<button class="btn input-small btn-cancel">
+				<a class="btn input-mini btn-cancel" href="<c:url value="/system/navigation"/>">
 					<spring:message code="button.cancel" />
-				</button>
+				</a>
 			</div>
 		</form:form>
 	</div>

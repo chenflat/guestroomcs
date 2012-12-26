@@ -58,6 +58,15 @@ public class RoleDaoImpl extends AbstractDaoSupport implements RoleDao {
 		return (roles != null && roles.size() > 0) ? true : false;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Set<Role> getRolesByUserName(String username)
+			throws DataAccessException {
+		final String querySql = "select r from Role r inner join r.users u where r.status=1 and u.username=?";
+		Query query = createQuery(querySql, 0, -1, username);
+		return new LinkedHashSet<Role>(query.list());
+	}
+
 	@Override
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();

@@ -3,6 +3,8 @@ package com.managementsystem.guestroom.service.platform.impl;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,5 +71,17 @@ public class UserServiceImpl extends AbstractServiceSupport<User, String>
 	public User getUserByName(String username) {
 		return userDao.getUserByName(username);
 	}
+
+	@Transactional
+	@Override
+	public User updatePassword(User user, String newpassword) {
+		PasswordEncoder encoder = new Md5PasswordEncoder();
+		String password = encoder.encodePassword(newpassword, null);
+		user.setPassword(password);
+		userDao.update(user);
+		return user;
+	}
+	
+	
 
 }

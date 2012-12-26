@@ -60,7 +60,13 @@ public class User implements java.io.Serializable, Cloneable {
 	private Set emailaddresses = new HashSet(0);
 	private Set addresses = new HashSet(0);
 	private Set phones = new HashSet(0);
-
+	
+	
+	private List<Emailaddress> emailaddressList = new ArrayList<Emailaddress>();
+	private List<Address> addressList = new ArrayList<Address>();
+	private List<Phone> phoneList = new ArrayList<Phone>();
+	
+	
 	public User() {
 	}
 
@@ -415,4 +421,29 @@ public class User implements java.io.Serializable, Cloneable {
 		this.phones = phones;
 	}
 
+	public List<Emailaddress> getEmailaddressList() {
+		return emailaddressList;
+	}
+
+	public void setEmailaddressList(List<Emailaddress> emailaddressList) {
+		this.emailaddressList = emailaddressList;
+	}
+
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+
+	public void setAddressList(List<Address> addressList) {
+		this.addressList = addressList;
+	}
+
+	public List<Phone> getPhoneList() {
+		return phoneList;
+	}
+
+	public void setPhoneList(List<Phone> phoneList) {
+		this.phoneList = phoneList;
+	}
+
+	
 }

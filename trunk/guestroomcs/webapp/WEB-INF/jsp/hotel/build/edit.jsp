@@ -50,7 +50,7 @@
 					<spring:message code="button.submit" />
 				</button>
 
-				<a href="<c:url value="/hotel/build" />" class="btn btn-cancel"><spring:message
+				<a href="<c:url value="/hotel/build" />" class="btn input-mini btn-cancel"><spring:message
 						code="button.cancel" />
 				</a>
 

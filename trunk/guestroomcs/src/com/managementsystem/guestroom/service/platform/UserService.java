@@ -46,4 +46,11 @@ public interface UserService extends ServiceSupport<User, String> {
 	 * @return 用户信息
 	 * */
 	public User getUserByName(String username);
+	
+	/**
+	 * 更新用户密码
+	 * @param user 用户对象
+	 * @param newpassword 新密码
+	 * */
+	public User updatePassword(User user,String newpassword);
 }

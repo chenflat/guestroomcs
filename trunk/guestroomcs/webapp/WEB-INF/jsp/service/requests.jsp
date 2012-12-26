@@ -29,7 +29,7 @@
 			<div class="row" id="roomcontainer">
 				<c:forEach items="${floors}" var="floor" varStatus="rowindex">
 					<div>
-					<div class="span2">
+					<div class="span2" style="margin-right:0px;">
 						<div class="pull-left">
 							<label><h4 class="title">F${floor.floorNo}</h4></label>
 							<div

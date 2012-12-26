@@ -31,7 +31,7 @@
 		<div class="container-fluid">
 			<ul class="nav user_menu pull-left">
 				<li><a class="brand" href="#"
-					class="dropdown-toggle nav_condensed" data-toggle="dropdown"> <img
+					class="dropdown-toggle nav_condensed" data-target="" data-toggle="dropdown"> <img
 						src="<c:url value="/img/brand.png"/>" alt="" class="user_avatar">
 						<c:choose>
 							<c:when test="${requestURL eq serviceURL}">
@@ -56,8 +56,9 @@
 							<c:otherwise>
 								<spring:message code="nav.home" />
 							</c:otherwise>
-						</c:choose> <i class="caret"></i> </a>
-					<ul class="dropdown-menu mainmenu">
+						</c:choose> <i class="caret" id="mainmenu_caret"></i> </a>
+						
+					<ul class="dropdown-menu mainmenu" id="mainmenu">
 						<li><a href="<c:url value="/service/requests" />"> <i
 								class="icon-volume-up icon-white"></i>
 							<spring:message code="nav.service" /> </a>
@@ -74,10 +75,7 @@
 								class=" icon-retweet icon-white"></i> <spring:message
 									code="nav.analyse" /> </a>
 						</li>
-						<%-- <li><a href="<c:url value="/user/users" />"><spring:message
-							code="nav.user.usermanage" /> </a>
-				</li>  --%>
-						<li><a href="<c:url value="/account/personalize" />"><i
+						<li><a href="<c:url value="/account/profile" />"><i
 								class="icon-cog icon-white"></i> <spring:message
 									code="nav.account.settings" /> </a>
 						</li>
@@ -85,12 +83,16 @@
 					<i class="icon-wrench icon-white"></i> <spring:message
 									code="nav.system" /> </a>
 						</li>
-					</ul></li>
+					</ul>
+					</li>
 			</ul>
 
 
 			<ul class="nav user_menu pull-right">
-				<li><a class="ssw_trigger" href="javascript:void(0)"><i
+			<li id="nav-toggle" data-toggle="collapse" data-target="#navigation" class="collapsed">
+				<span class="icon-align-justify icon-white"></span>
+			</li>
+				<li class="system-cog"><a class="ssw_trigger" href="javascript:void(0)"><i
 						class="icon-cog icon-white"></i> </a>
 				</li>
 				<li class="divider-vertical hidden-phone hidden-tablet"></li>
@@ -99,7 +101,7 @@
 						class="txt"><security:authentication property="name" /> </span> <b
 						class="caret"></b> </a>
 					<ul class="dropdown-menu">
-						<li><a href="<c:url value="/account/personalize" />"><i
+						<li><a href="<c:url value="/account/profile" />"><i
 								class="icon-cog"></i> <spring:message code="user.editprofile" />
 						</a>
 						</li>
@@ -112,6 +114,34 @@
 						</li>
 					</ul></li>
 			</ul>
+
+			<!-- 设备为手机时，使用此菜单 -->
+			<ul class="nav nav-collapse btn_menu" id="navigation" style="width:100%;">
+						<li><a href="<c:url value="/service/requests" />"> <i
+								class="icon-volume-up icon-white"></i>
+							<spring:message code="nav.service" /> </a>
+						</li>
+						<li><a href="<c:url value="/service/hvac" />"><i
+								class="icon-globe icon-white"></i> <spring:message
+									code="nav.service.hvac" /> </a>
+						</li>
+						<li><a href="<c:url value="/guest/prefs" />"><i
+								class="icon-camera icon-white"></i> <spring:message
+									code="nav.guest.prefs" /> </a>
+						</li>
+						<li><a href="<c:url value="/analyse/summary" />"><i
+								class=" icon-retweet icon-white"></i> <spring:message
+									code="nav.analyse" /> </a>
+						</li>
+						<li><a href="<c:url value="/account/profile" />"><i
+								class="icon-cog icon-white"></i> <spring:message
+									code="nav.account.settings" /> </a>
+						</li>
+						<li> <a href="<c:url value="/system/navigation" />">
+					<i class="icon-wrench icon-white"></i> <spring:message
+									code="nav.system" /> </a>
+						</li>
+					</ul>
 
 			<c:choose>
 				<c:when test="${fn:contains(requestURL,'/user/users')}">

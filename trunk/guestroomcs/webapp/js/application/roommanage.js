@@ -18,7 +18,7 @@ $(document).ready(function() {
 	room.add_batch();
 });
 
-init_wizard = {
+var init_wizard = {
 	validation : function() {
 		$('#initRoom').stepy({
 			nextLabel : 'Next <i class="icon-chevron-right icon-white"></i>',
@@ -79,7 +79,7 @@ init_wizard = {
 	}
 };
 
-	chosen = {
+	var chosen = {
 		init: function(){
 			$(".chzn_a").chosen({
 				allow_single_deselect: true
@@ -98,7 +98,7 @@ init_wizard = {
 		}
 	};
 	/**房间操作*/
-	room = {
+	var room = {
 		//房间组操作
 		group:function(){
 			$("#linkRoomgroup").click(function(){

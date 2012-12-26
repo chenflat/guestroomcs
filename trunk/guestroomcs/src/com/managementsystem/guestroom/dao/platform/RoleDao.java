@@ -37,4 +37,14 @@ public interface RoleDao extends DaoSupport {
 	 *            角色名称
 	 * */
 	public boolean isExistRoleName(String roleName) throws DataAccessException;
+
+	/**
+	 * 获取指定用户名的角色列表
+	 * 
+	 * @param username
+	 *            用户名
+	 * @return 用户角色列表
+	 * */
+	public Set<Role> getRolesByUserName(String username)
+			throws DataAccessException;
 }

@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 //用户列表操作
-grouplist_opt = {
+var grouplist_opt = {
 	//用户操作
 	operate : function() {
 		
@@ -95,7 +95,7 @@ grouplist_opt = {
 /**
  * 角色资源操作
  * */
-resource = {
+var resource = {
 	methods:function(){
 		$("#resource-list li").click(function(){
 			//console.log($(this).attr("id"));
@@ -123,7 +123,7 @@ resource = {
 };
 
 // * validation
-group_validation = {
+var group_validation = {
 	ttip : function() {
 		var ttip_validator = $('.form_validation_ttip')
 				.validate(

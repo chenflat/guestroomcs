@@ -34,6 +34,19 @@
 		  border: 0;
 		}
 
+	.mainmenu {z-index:2000;}
+	#navigation {display:none;}
+	#nav-toggle {
+		display:none;
+		float:left;
+		width:26px;
+		height:26px;
+		font-size:16px;
+		text-align:center;
+		line-height:26px;
+		position:relative;
+		cursor:pointer
+	}
 	
 	
 	
@@ -960,6 +973,11 @@
 			.vcard > .thumbnail {display:none}
 			.vcard > ul {margin:0}
 			.item-list .thumbnail {float:none;display:inline-block;margin:0 10px 10px 0}
+			
+			#nav-toggle {display:block;}
+			#navigation {display:block;}
+			
+			#mainmenu_caret {display:none;}
 		}
 		
 		@media (max-width: 479px) {
@@ -967,6 +985,9 @@
 			.login_page .cnt_b {padding:20px 0;width:68%;margin:0 auto}
             .-list-container {height:300px}
             .room {width:124px;}
+            .system-cog {display:none;}
+            
+            #navigation li {width:98px;}
 		}
 		
 		@media (min-width: 1681px) {

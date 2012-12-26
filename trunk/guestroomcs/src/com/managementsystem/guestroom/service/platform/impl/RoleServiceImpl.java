@@ -47,4 +47,12 @@ public class RoleServiceImpl extends AbstractServiceSupport<Role, String>
 		return roleDao.isExistRoleName(roleName);
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public Set<Role> getRolesByUserName(String username) {
+		return roleDao.getRolesByUserName(username);
+	}
+	
+	
+
 }
