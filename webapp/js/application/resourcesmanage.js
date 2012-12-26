@@ -7,7 +7,7 @@ $(document).ready(function() {
 });
 
 //资源操作
-resource_opt = {
+var resource_opt = {
 	//用户操作
 	operate : function() {
 		
@@ -76,7 +76,7 @@ resource_opt = {
 };
 
 // * validation
-resource_validation = {
+var resource_validation = {
 	ttip : function() {
 		var ttip_validator = $('.form_validation_ttip')
 				.validate(

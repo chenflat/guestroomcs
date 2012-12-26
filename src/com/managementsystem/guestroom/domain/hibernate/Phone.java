@@ -1,6 +1,5 @@
 package com.managementsystem.guestroom.domain.hibernate;
 
-
 import java.util.Date;
 
 /**
@@ -16,6 +15,8 @@ public class Phone implements java.io.Serializable {
 	private String extension;
 	private Boolean primary;
 	private String entryid;
+	private String comment;
+	private String keyname;
 
 	public Phone() {
 	}
@@ -101,4 +102,19 @@ public class Phone implements java.io.Serializable {
 		this.entryid = entryid;
 	}
 
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public String getKeyname() {
+		return keyname;
+	}
+
+	public void setKeyname(String keyname) {
+		this.keyname = keyname;
+	}
+	
 }

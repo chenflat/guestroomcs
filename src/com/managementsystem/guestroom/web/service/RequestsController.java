@@ -58,6 +58,10 @@ public class RequestsController  extends AbstractController implements IControll
 		for(Build build : builds) {
 			floors.addAll(floorService.getFloorByBuild(build.getBuildId()));
 		}
+		for(Floor floor : floors) {
+			Set<Room> rooms = roomService.getRoomsByFloorId(floor.getFloorId());
+			floor.setRooms(rooms);
+		}	
 		return floors;
 	}
 	

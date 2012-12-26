@@ -40,6 +40,7 @@
 <script src="<c:url value="/lib/validation/jquery.validate.min.js" />"></script>
 <!-- wizard -->
 <script src="<c:url value="/lib/stepy/js/jquery.stepy.min.js" />"></script>
+
 <!-- common functions -->
 <script src="<c:url value="/js/application.js"/>"></script>
 <c:set var="requestURL" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request" />
@@ -93,9 +94,15 @@
 		<script src="<c:url value="/js/application/accountsettings.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/account/')}">
-		<script src="<c:url value="/js/application/accountsettings.js"/>"></script>
+		<c:choose>
+			<c:when test="${fn:contains(requestURL,'/account/profile')}">
+			<script src="<c:url value="/js/application/profile.js"/>"></script>
+			</c:when>
+			<c:otherwise>
+			<script src="<c:url value="/js/application/accountsettings.js"/>"></script>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
-	
 </c:choose> 
 
 <script>

@@ -4,11 +4,12 @@ $(document).ready(function() {
 	userlist_opt.init();
 	userlist_opt.select();
 	userlist_opt.operate();
+	userlist_opt.edit();
 	user_validation.ttip();
 });
 
 //用户列表操作
-userlist_opt = {
+var userlist_opt = {
 	//初始化
 	init:function() {
 		//页面跳转后重新选择
@@ -136,6 +137,7 @@ userlist_opt = {
 					  alert('user add form loadd fail');
 				  }
 				  user_validation.ttip();
+				  removeMenuItem();
 			});
 		});
 		//编辑用户
@@ -159,9 +161,40 @@ userlist_opt = {
 					  }
 					  user_validation.ttip();
 					  $("#username").attr("disabled","disabled");
+					  
+					  removeMenuItem();			  
 				});
 			}
 		});
+		
+		/**
+		 * 移除菜单项方法
+		 * */
+		var removeMenuItem = function() {
+			//设置联系信息新增按钮隐藏项
+			var formRows = $("#user > .formRow > div");
+			//所有联系信息新增按钮对应的菜单条目项
+			var menuEntries = $(".menu-entry a");
+			$.each(formRows,function(index,row){
+				var rowtype = $(row).attr("type");
+				if(rowtype!=null && rowtype=='list') {
+					//查找非隐藏项
+					if(!$(row).is(":hidden") ) {
+						console.log($(row).attr("id"));
+						var rowId = $(row).attr("id");
+						$.each(menuEntries,function(i,menuitem){
+							var menuEntryId = $(menuitem).attr("id");
+							//移除已经显示的菜单条目
+							if(rowId==menuEntryId) {
+								$(menuitem).parent().remove();
+							}
+						});
+					}
+				}
+			});
+		}
+		
+		
 		//删除用户确认提示
 		$("#user_delete").click(function(){
 			var userId = $("#userId").val();
@@ -282,7 +315,7 @@ userlist_opt = {
 						
 						$("#userlist li").find(':checkbox').attr('checked', false);
 						$("#userlist li").removeClass('active');
-						$("#"+userId).addClass('active');
+						$("#"+userId).addClass('active');					
 				  }
 				  console.log(status);
 			});
@@ -327,10 +360,36 @@ userlist_opt = {
 				});
 		});
 	}
+
+	//编辑信息
+	,edit : function() {
+		
+		//点击工具条目时事件
+		$(".menu-entry").live("click",function(e){
+			//工具条对应的ID
+			var divId = $(this).find("a").attr("id");	
+			//在Form中查询与ID相配置的DIV,并设置为显示
+			var divObj = $("#user").find("div#"+ divId);
+			$(divObj).show();
+			
+			//移除当前项	
+			var parent = $(this).parent().children();
+			var wincommand = $(this).parent().prev();  //新增按钮
+			//console.log(parent.length);
+			//当所有项都显示时，隐藏新增按钮
+			if(parent.length-1>0) {
+				$(this).remove();
+			} else {
+				$(wincommand).hide();
+			}
+			
+		});
+		
+	}
 };
 
 // * validation
-user_validation = {
+var user_validation = {
 	ttip : function() {
 		var ttip_validator = $('.form_validation_ttip').validate({
 			onkeyup : false,

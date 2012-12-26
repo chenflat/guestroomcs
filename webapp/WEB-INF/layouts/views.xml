@@ -83,10 +83,14 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/hotel/roomtype/edit.jsp" />
 	</definition>
 
-	<!-- User Account Pages -->
+	<!-- User Account Profile Pages -->
 	<definition name="account/profile" extends="userprofile-layout">
 		<put-attribute name="title" value="我的资料" />
 		<put-attribute name="body" value="/WEB-INF/jsp/account/profile.jsp" />
+	</definition>
+	<definition name="account/profile/password" extends="userprofile-layout">
+		<put-attribute name="title" value="修改密码" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/profile/password.jsp" />
 	</definition>
 		<!-- User Account Pages -->
 	<definition name="account/picture" extends="userprofile-layout">

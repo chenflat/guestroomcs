@@ -1,6 +1,5 @@
 package com.managementsystem.guestroom.domain.hibernate;
 
-
 import java.util.Date;
 
 /**
@@ -15,6 +14,8 @@ public class Emailaddress implements java.io.Serializable {
 	private String address;
 	private Boolean primary;
 	private String entryid;
+	private String comment;
+	private String keyname;
 
 	public Emailaddress() {
 	}
@@ -90,5 +91,29 @@ public class Emailaddress implements java.io.Serializable {
 	public void setEntryid(String entryid) {
 		this.entryid = entryid;
 	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getKeyname() {
+		return keyname;
+	}
+
+	public void setKeyname(String keyname) {
+		this.keyname = keyname;
+	}
+
+	/*@Override
+	public String toString() {
+		return String
+				.format("{emailAddressId:%s,createdOnDate:%1$tY-%1$tm-%1$te %1$tH:%1$tM:%1$tS%n,lastModifiedOnDate:%1$tY-%1$tm-%1$te %1$tH:%1$tM:%1$tS%n,address:%s,primary:%s,entryid:%s,comment:%s,keyname:%s}",
+						emailAddressId, createdOnDate, lastModifiedOnDate,
+						address, primary, entryid, comment, keyname);
+	}*/
 
 }

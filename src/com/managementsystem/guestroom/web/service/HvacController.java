@@ -15,9 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.managementsystem.guestroom.domain.hibernate.Build;
 import com.managementsystem.guestroom.domain.hibernate.Floor;
+import com.managementsystem.guestroom.domain.hibernate.Room;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.service.biz.BuildService;
 import com.managementsystem.guestroom.service.biz.FloorService;
+import com.managementsystem.guestroom.service.biz.RoomService;
 import com.managementsystem.guestroom.web.AbstractController;
 import com.managementsystem.guestroom.web.IController;
 
@@ -39,6 +41,8 @@ public class HvacController extends AbstractController implements IController {
 	@Autowired
 	public FloorService floorService;
 	
+	@Autowired
+	public RoomService roomService;
 	
 	/**
 	 * 获取默认酒店建筑的所有楼层数据
@@ -49,7 +53,11 @@ public class HvacController extends AbstractController implements IController {
 		Set<Floor> floors = new LinkedHashSet<Floor>();
 		for(Build build : builds) {
 			floors.addAll(floorService.getFloorByBuild(build.getBuildId()));
-		}
+		}	
+		for(Floor floor : floors) {
+			Set<Room> rooms = roomService.getRoomsByFloorId(floor.getFloorId());
+			floor.setRooms(rooms);
+		}	
 		return floors;
 	}
 	

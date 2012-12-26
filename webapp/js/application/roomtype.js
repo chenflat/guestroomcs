@@ -4,7 +4,7 @@ $(document).ready(function() {
 	roomtype_validation.ttip();
 	roomtype.remove();
 });
-roomtype_validation = {
+var roomtype_validation = {
 		ttip: function() {
 			var validator = $('.form_validation_ttip').validate({
 				onkeyup: false,
@@ -91,7 +91,7 @@ roomtype_validation = {
 		}		
 		
 };
-roomtype = {
+var roomtype = {
 		remove:function(){
 			$("#linkDelete").click(function(){
 				$("#roomtypeDelModal").modal('show');

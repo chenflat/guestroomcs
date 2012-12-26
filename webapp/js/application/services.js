@@ -14,7 +14,7 @@ $(document).ready(function() {
 });
 
 //HVAC操作
-hvac = {
+var hvac = {
 	//页面首次加载时，默认选择列表第一项;刷新重载时，定位在刷新前的选择位置。
 	forward:function() {
 		//当前页面路径
@@ -53,7 +53,7 @@ hvac = {
 };
 
 //Request Services
-services = {
+var services = {
 	//页面首次加载时，默认选择列表第一项;刷新重载时，定位在刷新前的选择位置。
 	forward:function() {
 			//当前页面路径
@@ -165,6 +165,10 @@ services = {
 					doorAlarm();
 				} else if(m_reqtype==128){ //窗磁
 					windowAlarm();
+				}else if(m_reqtype==120) {
+					floorHeating();
+				}else if(m_reqtype==121) {
+					emtRoom();
 				}else {//
 					all();
 				}
@@ -350,21 +354,24 @@ services = {
 			$.each(m_itemArray,function(key,roomVal){
 				var tile = $(tiles).find("li#"+ roomVal.roomNo);
 				$(tile).find(".tile-text").text(roomVal.hvTemp0+"°/"+roomVal.hvTemp0+"°");
-				
+				//风机开关控制  0=电源关闭1=电源开启
 				if(roomVal.hvFanPower0==0) {
 					$(tile).addClass('bg-color-white').attr('style','border:1px solid #ccc;');
 					$(tile).find(".tile-badge").removeClass('fg-color-white').text("OFF");
 					$(tile).find(".tile-caption").removeClass('fg-color-white');
+				} else {
 					
 					
 				}
 						
 			});
 			
-			m_roomWrap.find(".tile").click(function(){
-				$(this).addClass('selected');
-			});
-			
+			m_roomWrap.find(".tile").toggle(
+				function(){
+					$(this).addClass('selected');
+				},function(){
+					$(this).removeClass('selected');
+				});
 		};
 		
 		//门磁报警
@@ -384,6 +391,58 @@ services = {
 			
 		};
 		
+		//地址加热
+		var floorHeating = function() {
+			$("#lease_nav").hide();
+			$("#reqlist_nav").hide();
+			$("#temp_nav").show();
+			$(m_roomWrap).empty();
+			
+			//转到请求明细页
+			m_roomWrap.load(contextPath+'service/heating',function(response, status, xhr) {
+				if (status == "error") {
+					
+				 } else if (status="success") {
+					/* $.each(floorservs,function(index,obj){
+
+						 $.each(obj.services,function(index,serv){
+							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
+							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
+							 
+						 });
+					 });*/
+
+					 
+				 }
+			});
+			
+		};
+		
+		//EMT参考房间
+		var emtRoom = function() {
+			$("#lease_nav").hide();
+			$("#reqlist_nav").hide();
+			$("#temp_nav").show();
+			
+			
+			//转到请求明细页
+			m_roomWrap.load(contextPath+'service/heating',function(response, status, xhr) {
+				if (status == "error") {
+					
+				 } else if (status="success") {
+					/* $.each(floorservs,function(index,obj){
+
+						 $.each(obj.services,function(index,serv){
+							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
+							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
+							 
+						 });
+					 });*/
+
+					 
+				 }
+			});
+		};
 		
 		
 		

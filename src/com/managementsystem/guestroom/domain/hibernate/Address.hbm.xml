@@ -3,40 +3,48 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012-12-11 9:53:40 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.managementsystem.guestroom.domain.hibernate.Address" table="address" catalog="guestroomcsdb">
-        <id name="addressId" type="string">
-            <column name="addressId" length="75" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="user" class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
-            <column name="user_id" length="75" />
-        </many-to-one>
-        <property name="createdOnDate" type="timestamp">
-            <column name="createdOnDate" length="19" />
-        </property>
-        <property name="lastModifiedOnDate" type="timestamp">
-            <column name="lastModifiedOnDate" length="19" />
-        </property>
-        <property name="state" type="string">
-            <column name="state" length="75" />
-        </property>
-        <property name="city" type="string">
-            <column name="city" length="75" />
-        </property>
-        <property name="street" type="string">
-            <column name="street" length="75" />
-        </property>
-        <property name="zipcode" type="string">
-            <column name="zipcode" length="75" />
-        </property>
-        <property name="country" type="string">
-            <column name="country" length="75" />
-        </property>
-        <property name="primary" type="java.lang.Boolean">
-            <column name="primary_" />
-        </property>
-        <property name="entryid" type="string">
-            <column name="entryid" length="75" />
-        </property>
-    </class>
+	<class name="com.managementsystem.guestroom.domain.hibernate.Address"
+		table="address">
+		<id name="addressId" type="string">
+			<column name="addressId" length="75" />
+			<generator class="uuid" />
+		</id>
+		<many-to-one name="user"
+			class="com.managementsystem.guestroom.domain.hibernate.User" fetch="select">
+			<column name="user_id" length="75" />
+		</many-to-one>
+		<property name="createdOnDate" type="timestamp">
+			<column name="createdOnDate" length="19" />
+		</property>
+		<property name="lastModifiedOnDate" type="timestamp">
+			<column name="lastModifiedOnDate" length="19" />
+		</property>
+		<property name="state" type="string">
+			<column name="state" length="75" />
+		</property>
+		<property name="city" type="string">
+			<column name="city" length="75" />
+		</property>
+		<property name="street" type="string">
+			<column name="street" length="75" />
+		</property>
+		<property name="zipcode" type="string">
+			<column name="zipcode" length="75" />
+		</property>
+		<property name="country" type="string">
+			<column name="country" length="75" />
+		</property>
+		<property name="primary" type="java.lang.Boolean">
+			<column name="primary_" />
+		</property>
+		<property name="entryid" type="string">
+			<column name="entryid" length="75" />
+		</property>
+		<property name="comment" type="string">
+			<column name="comment" length="50" />
+		</property>
+		<property name="keyname" type="string">
+			<column name="keyname" length="50" />
+		</property>
+	</class>
 </hibernate-mapping>

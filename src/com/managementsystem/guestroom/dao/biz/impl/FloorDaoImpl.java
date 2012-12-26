@@ -25,8 +25,8 @@ public class FloorDaoImpl extends AbstractDaoSupport implements FloorDao {
 	private final Set<Class<?>> dataTypes = new HashSet<Class<?>>(
 			Arrays.asList(new Class<?>[] { Floor.class }));
 
-	private final String GETFLOORBYBUILD = "from Floor where build.buildId=? order by floorNo*1 asc";
-	private final String GETFLOORS="from Floor order by floorNo*1";
+	private final String GET_FLOORS_BY_BUILD = "from Floor where build.buildId=? order by floorNo*1 asc";
+	private final String GET_FLOORS="from Floor order by floorNo*1";
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -35,14 +35,14 @@ public class FloorDaoImpl extends AbstractDaoSupport implements FloorDao {
 	@Override
 	public Set<Floor> getFloorByBuild(String buildId)
 			throws DataAccessException {
-		Query query = createQuery(GETFLOORBYBUILD,buildId);
+		Query query = createQuery(GET_FLOORS_BY_BUILD,buildId);
 		return new LinkedHashSet<Floor>(query.list());
 	}
 
 	@Override
 	public Page getFloors(int pageIndex, int pageSize,
 			Map<String, Object> mapParams) throws DataAccessException {
-		return pagedQuery(GETFLOORS, pageIndex, pageSize, mapParams);
+		return pagedQuery(GET_FLOORS, pageIndex, pageSize, mapParams);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import java.util.Set;
  */
 public class Eventlogtype implements java.io.Serializable {
 
+	private static final long serialVersionUID = -13533008745724940L;
 	private String logtypeKey;
 	private String logtypeFriendlyname;
 	private String logtypeDescription;

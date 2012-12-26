@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 
-dictionary = {
+var dictionary = {
 	list:function(){
 		$("#listinfos").hide();
 		$("#category li a").click(function(){

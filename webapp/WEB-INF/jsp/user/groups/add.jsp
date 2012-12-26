@@ -54,7 +54,7 @@
 						type="submit">
 						<spring:message code="button.submit" />
 					</button>
-					<a href="<c:url value="/user/roles" />" class="btn input-mini">
+					<a href="<c:url value="/user/groups" />" class="btn input-mini">
 						<spring:message code="button.cancel" /> </a>
 				</div>
 

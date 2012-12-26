@@ -280,7 +280,50 @@
  * responsive.less
  */
 /* Landscape phones and down */
-@media (max-width: 480px) {
+
+@media (min-width: 768px) and (max-width: 979px) {
+ .tile {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+ .tile {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 380px) {
+ .tile {
+    width: 150px;
+    height: 150px;
+  }
+  .tile .tile-smaill-list li {
+  	width:24px;height:29px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (max-width: 979px) {
+
+}
+
+@media (max-width: 320px) {
+ .tile {
+    width: 125px;
+    height: 125px;
+  }
+  .tile .tile-smaill-list li {
+  	width:24px;height:20px;
+  }
+}
+
+@media (min-width: 380px) and (max-width: 480px) {
   .page.secondary .page-back {
     width: 24px;
     height: 24px;
@@ -366,8 +409,8 @@
     left: 10px;
   }
   .tile {
-    width: 120px;
-    height: 120px;
+    width: 125px;
+    height: 125px;
   }
   .tile.double {
     width: 250px;
@@ -446,6 +489,10 @@
   .tile-group {
     max-width: 400px;
     float: none;
+  }
+  
+  .tile .tile-smaill-list li {
+  	width:24px;height:20px;
   }
 
 }
