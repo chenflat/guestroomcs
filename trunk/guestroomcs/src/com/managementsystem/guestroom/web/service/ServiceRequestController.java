@@ -2,6 +2,8 @@ package com.managementsystem.guestroom.web.service;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,15 +44,29 @@ public class ServiceRequestController {
 	public List<Map<String, String>> getRoomviews(
 			@RequestParam(value = "type", required = true) Integer type) {
 		List<Map<String, String>> list = null;
+		Map<String,String> errMap = null;
+		StringBuilder errors = new StringBuilder();
 		try {
 			list = requestService.getRoomviews(type);
 		} catch (MalformedURLException e) {
 			logger.error(e);
 			e.printStackTrace();
+
+			errors.append(e.getLocalizedMessage());
 		} catch (IOException e) {
 			logger.error(e);
 			e.printStackTrace();
+			errors.append(e.getLocalizedMessage());
 		}
+		
+		//添加异常信息
+		if(errors.length()>0) {
+			errMap = new HashMap<String,String>();
+			errMap.put("error", errors.toString());
+			list = new ArrayList<Map<String, String>>();
+			list.add(errMap);
+		}
+
 		return list;
 	}
 

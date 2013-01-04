@@ -29,37 +29,11 @@ import com.managementsystem.guestroom.web.IController;
  * @author PING.CHEN
  * */
 @Controller
-public class HvacController extends AbstractController implements IController {
+public class HvacController extends AbstractRoomController implements IController {
 	
 	private final Log logger = LogFactory.getLog(HvacController.class);
 	
-	public static final String VIEW_NAME = "service/hvac";
-	
-	@Autowired
-	public BuildService buildService ;
-	
-	@Autowired
-	public FloorService floorService;
-	
-	@Autowired
-	public RoomService roomService;
-	
-	/**
-	 * 获取默认酒店建筑的所有楼层数据
-	 * */
-	@ModelAttribute("floors")
-	public Set<Floor> getFloorsByDefHotel() {
-		Set<Build> builds = buildService.getBuilds();
-		Set<Floor> floors = new LinkedHashSet<Floor>();
-		for(Build build : builds) {
-			floors.addAll(floorService.getFloorByBuild(build.getBuildId()));
-		}	
-		for(Floor floor : floors) {
-			Set<Room> rooms = roomService.getRoomsByFloorId(floor.getFloorId());
-			floor.setRooms(rooms);
-		}	
-		return floors;
-	}
+	private static final String VIEW_NAME = "service/hvac";
 	
 	/**
 	 * 请求HVAC视图
