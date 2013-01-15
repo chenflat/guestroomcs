@@ -2,7 +2,6 @@ package com.managementsystem.guestroom.web.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,11 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.managementsystem.guestroom.domain.hibernate.Build;
 import com.managementsystem.guestroom.domain.hibernate.Floor;
 import com.managementsystem.guestroom.domain.hibernate.Hotel;
+import com.managementsystem.guestroom.domain.hibernate.Room;
 import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 import com.managementsystem.guestroom.service.biz.BuildService;
 import com.managementsystem.guestroom.service.biz.FloorService;
 import com.managementsystem.guestroom.service.biz.HotelService;
-import com.managementsystem.guestroom.web.AbstractController;
+import com.managementsystem.guestroom.service.biz.RoomService;
 
 /**
  * 请求明细处理
@@ -34,7 +34,7 @@ import com.managementsystem.guestroom.web.AbstractController;
  * */
 @Controller
 @RequestMapping("/service/requests/details")
-public class RequestDetailsController extends AbstractController {
+public class RequestDetailsController extends AbstractRoomController {
 
 	private final Log logger = LogFactory
 			.getLog(RequestDetailsController.class);
@@ -42,6 +42,9 @@ public class RequestDetailsController extends AbstractController {
 	public static final String VIEW_NAME = "service/requests/details";
 
 	private static final int maxNum = 12;
+	
+	@Autowired
+	private RoomService roomService;
 	
 	@Autowired
 	private FloorService floorService;
@@ -65,6 +68,9 @@ public class RequestDetailsController extends AbstractController {
 		try {
 			floor = floorService.get(floorId);
 			floorSections = getFloorSections();
+			
+			Set<Room> rooms = roomService.getRoomsByFloorId(floor.getFloorId());
+			floor.setRooms(rooms);
 
 		} catch (Exception e) {
 			e.printStackTrace();

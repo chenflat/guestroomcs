@@ -44,7 +44,7 @@ public class UserprofileDaoImpl extends AbstractDaoSupport implements
 		Query query = createQuery(querySql, username,propertycategory);
 		Set<Userprofile> result = new LinkedHashSet<Userprofile>();
 		for(int i=0;i<query.list().size();i++) {
-			Object[] obj = (Object[])query.list().get(0);
+			Object[] obj = (Object[])query.list().get(i);
 			result.add((Userprofile)obj[0]);
 		}
 		return result;

@@ -126,8 +126,7 @@ public class PersonalizeController extends AbstractController implements
 	 * @model Model
 	 * */
 	@RequestMapping(method = RequestMethod.POST)
-	public void processSubmit(@RequestParam MultipartFile file,
-			HttpServletRequest request, Model model) {
+	public void processSubmit(HttpServletRequest request, Model model) {
 		// 获取个性化设置属性字段
 		Set<Profilepropertydefinition> profilepropertydefinitions = profilepropertydefinitionService
 				.getProfilepropertiesByCategory("personalize");
@@ -135,24 +134,7 @@ public class PersonalizeController extends AbstractController implements
 		// 上传用户头像
 		StringBuilder sb = new StringBuilder();
 		StringBuilder exp = new StringBuilder();
-		String photoPath = "";
 
-		if (file != null && file.getSize() > 0) {
-			String realPath = request.getSession().getServletContext()
-					.getRealPath("/");
-			logger.info(realPath);
-			String filePath = Constants.PATH_UPLOADFILE_USER;
-			try {
-				FileSystemObject.SaveFileFromInputStream(file.getInputStream(),
-						realPath + filePath, file.getOriginalFilename());
-				sb.append("File '" + file.getOriginalFilename()
-						+ "' uploaded successfully!");
-				photoPath = filePath + file.getOriginalFilename();
-			} catch (IOException e) {
-				e.printStackTrace();
-				exp.append(e.getMessage());
-			}
-		}
 		User userinfo = getCurrentUser();
 		for (Profilepropertydefinition property : profilepropertydefinitions) {
 			String propertyname = property.getPropertyname();
@@ -166,10 +148,7 @@ public class PersonalizeController extends AbstractController implements
 				userprofile = new Userprofile();
 				isnew = true;
 			}
-			if ("userPhoto".equals(propertyname)
-					&& !StringUtils.hasLength(photoPath)) {
-				value = photoPath;
-			}
+
 			userprofile.setLastupdateddate(Calendar.getInstance().getTime());
 			userprofile.setProfilepropertydefinition(property);
 			userprofile.setPropertyvalue(value);
