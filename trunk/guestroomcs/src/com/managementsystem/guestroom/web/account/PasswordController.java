@@ -40,6 +40,7 @@ public class PasswordController extends AbstractController implements
 	/**
 	 * 显示更改密码
 	 * */
+	@RequestMapping(method = RequestMethod.GET)
 	@Override
 	public ModelAndView doGet(ModelMap model) {
 		logger.info("Requesting doGet of " + PasswordController.class);
