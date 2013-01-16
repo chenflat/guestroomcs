@@ -1,8 +1,6 @@
 /*
  * Metro UI CSS v 0.1.4
  * Copyright 2012 Sergey Pimenov
- * Licensed under the MIT Lilcense
- *
  * Routines.less
  */
 .place-left {
@@ -731,7 +729,7 @@
 
 .tile .tile-caption {
 	text-align:right;
-	font-size:12px;
+	font-size:14px;
 	padding-right:4px;
 }
 .tile .tile-text {
@@ -947,26 +945,11 @@ AppBar control.
    }
 }
 
-@media (min-width: 321px) and (max-width: 480px) {
+@media (min-width: 239px) and (max-width: 480px) {
    hr.win-command {
       margin-left: 10px;
       margin-right: 9px;
    }
-   
-   .tile-large-list li,.tile-large-list span {
-	float:left;
-	width:90px;height:90px;
-	display: inline;
-	text-align: center;
-	line-height:100px;
-	color:#333333;
-	}
-   .tile .tile-text {
-	text-align: left;
-	margin-top: 8px;
-	margin-bottom: 8px;
-	font-style: italic;
-	}
 }
 
 

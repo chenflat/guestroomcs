@@ -32,8 +32,7 @@
 					<div class="span2" style="margin-right:0px;">
 						<div class="pull-left">
 							<label><h4 class="title">F${floor.floorNo}</h4></label>
-							<div
-								class="tile bg-color-<c:forEach items="${colors}" var="color" varStatus="colorindex"><c:if test="${rowindex.index eq colorindex.index}">${color}</c:if></c:forEach>">
+							<div class="tile bg-color-grayDark">
 								<div class="tile-small" id="${floor.floorId}" floorno="${floor.floorNo}">
 									<ul class="tile-smaill-list">
 										<c:forEach items="${floor.rooms}" var="room">

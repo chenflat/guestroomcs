@@ -73,15 +73,20 @@
 	</div>
 	<div id="maincontainer" class="clearfix">
 		<tiles:insertAttribute name="nav" />
-		<div id="contentwrapper">
-			<div class="main_content">
+		<div id="contentwrapper" class="antiscroll-wrap">
+			<div class="main_content antiscroll-inner">
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
 	</div>
 	<tiles:insertAttribute name="sidebar" />
 	<div class="navbar navbar-fixed-bottom">
-		<div class="footing">&copy;2012 Kempinski Hotel</div>
+		<div class="footing">
+			<div class="pull-left">&copy;2012 Kempinski Hotel</div>
+			<div class="pull-right" id="service-status">
+				<i id="conn-status" class="icomoon-link"></i>
+			</div>
+		</div>
 	</div>
 	<tiles:insertAttribute name="commomjs" />
 </body>

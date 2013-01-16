@@ -19,11 +19,15 @@
 		//* resize elements on window resize
 		var lastWindowHeight = $(window).height();
 		var lastWindowWidth = $(window).width();
+
 		$(window).on("debouncedresize",function() {
 			if($(window).height()!=lastWindowHeight || $(window).width()!=lastWindowWidth){
 				lastWindowHeight = $(window).height();
 				lastWindowWidth = $(window).width();
 				sidebar.update_scroll();
+				
+				
+				
 				if(!is_touch_device()){
                     $('.sidebar_switch').qtip('hide');
                 }
@@ -63,8 +67,29 @@
 		//* to top
 		$().UItoTop({inDelay:200,outDelay:200,scrollSpeed: 500});
 		
+		content.make_scroll();
+		content.update_scroll();
 	});
     
+	content = {
+		 make_scroll: function() {
+				if($('.antiscroll-wrap').length) {
+					antiScroll = $('.antiscroll-wrap').antiscroll().data('antiscroll');
+				}
+	     }, update_scroll: function() {
+				if($('.antiscroll-wrap').length) {
+					if( $(window).width() > 979 ){
+						$('.main_content .antiscroll-inner,.main_content .antiscroll-content').height($(window).height() - 40);
+					} else {
+						$('.main_content').height('400px');
+					}
+					$('.main_content').height($(window).height() - 120);
+					antiScroll.refresh();
+				}
+	        }
+	};
+	
+	
     sidebar = {
         init: function() {
 			// sidebar onload state
@@ -126,16 +151,16 @@
 			}
 		},
         make_scroll: function() {
-			if($('.antiScroll').length) {
+			if($('.antiScroll').length) {				
 				antiScroll = $('.antiScroll').antiscroll().data('antiscroll');
 			}
         },
         update_scroll: function() {
-			if($('.antiScroll').length) {
+			if($('.sidebar > .antiScroll').length) {
 				if( $(window).width() > 979 ){
-					$('.antiscroll-inner,.antiscroll-content').height($(window).height() - 40);
+					$('.sidebar .antiscroll-inner,.sidebar .antiscroll-content').height($(window).height() - 40);
 				} else {
-					$('.antiscroll-inner,.antiscroll-content').height('400px');
+					$('.sidebar .antiscroll-inner,.sidebar .antiscroll-content').height('400px');
 				}
 				antiScroll.refresh();
 			}

@@ -1,5 +1,7 @@
     html {overflow-y: scroll}
-    body {color: #222;padding: 0;}
+    body {color: #222;padding: 0;
+    -webkit-user-select:none;
+    -webkit-text-size-adjust:none;}
     
 	html,body {height:100%}
 	
@@ -83,6 +85,7 @@
     
     /* main footings*/
     .footing {
+    	
     	clear: both;
 		border-top: 1px solid #CCC;
 	  	min-height: 39px;
@@ -139,16 +142,7 @@
 		.btn-mini [class^="icon-"], btn-mini [class*=" icon-"] {margin-top:1px}
 		
 		h1,h2,h3,h4,h5,h6{font-family:inherit;font-weight:700;color:inherit;text-rendering:optimizelegibility;margin:0}
-		/* h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{font-weight:400;color:#999}
-		h1{font-size:30px;line-height:36px}
-		h2{font-size:24px;line-height:36px}
-		h3{font-size:18px;line-height:27px}
-		h4,h5,h6{line-height:18px}
-		h6{font-size:11px;color:#999;text-transform:uppercase}
-		h1 small,h2 small{font-size:18px}
-		h3 small,h4{font-size:14px}
-		h4 small,h5{font-size:12px} */
-		
+			
 		.row-fluid div[class*="span"] {min-height:1px}
 		form .row-fluid + .row-fluid {margin-top:10px !important}
 		
@@ -769,13 +763,13 @@
 		
 		
 	/* sidebar scroll */ 
-		.antiScroll{display:inline-block;position:relative;overflow:hidden}
-		.antiscroll-scrollbar{background:#bbb;background:rgba(0,0,0,0.5);-webkit-border-radius:7px;-moz-border-radius:7px;border-radius:7px;-webkit-box-shadow:0 0 1px #fff;-moz-box-shadow:0 0 1px #fff;box-shadow:0 0 1px #fff;position:absolute;opacity:0;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);-webkit-transition:linear 300ms opacity;-moz-transition:linear 300ms opacity;-o-transition:linear 300ms opacity}
+		.antiScroll {display:inline-block;position:relative;overflow:hidden}
+		.antiscroll-scrollbar {background:#bbb;background:rgba(0,0,0,0.5);-webkit-border-radius:7px;-moz-border-radius:7px;border-radius:7px;-webkit-box-shadow:0 0 1px #fff;-moz-box-shadow:0 0 1px #fff;box-shadow:0 0 1px #fff;position:absolute;opacity:0;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);-webkit-transition:linear 300ms opacity;-moz-transition:linear 300ms opacity;-o-transition:linear 300ms opacity}
 		.antiscroll-scrollbar-shown{opacity:1;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100)}
 		.antiscroll-scrollbar-horizontal{height:7px;margin-left:2px;bottom:2px;left:0}
 		.antiscroll-scrollbar-vertical{width:7px;margin:2px 0;left:2px;top:0}
-		.antiscroll-inner{overflow-y:scroll}
-		.antiScroll,.antiscroll-content,.antiscroll-inner{width:240px}
+		.antiscroll-inner {overflow-y:scroll}
+		.antiScroll,.antiscroll-content,.sidebar .antiscroll-inner{width:240px}
 		.antiscroll-inner::-webkit-scrollbar,.antiscroll-inner::scrollbar{width:0;height:0}
 
     /* document view */
@@ -984,7 +978,7 @@
 			.login_page .login_box {width:100%}
 			.login_page .cnt_b {padding:20px 0;width:68%;margin:0 auto}
             .-list-container {height:300px}
-            .room {width:124px;}
+            .room {width:115px;}
             .system-cog {display:none;}
             
             #navigation li {width:98px;}

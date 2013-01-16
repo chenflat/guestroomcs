@@ -217,10 +217,7 @@
  */
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-  body {
-    padding-right: 10px;
-    padding-left: 10px !important;
-  }
+
   [class*="span"],
   .hero-unit {
     float: none;
@@ -306,7 +303,21 @@
 }
 
 @media (min-width: 1200px) {
-
+   a.win-command .win-label,
+   button.win-command .win-label {
+      display: ;
+   }
+   a.win-command .win-commandicon,
+   button.win-command .win-commandicon {
+      margin: 0 8px; /* 2px margin for focus */
+   }
+   .win-commandlayout {
+      min-height: 68px;
+   }
+   hr.win-command {
+      margin-bottom: 14px;
+      margin-top: 14px;
+   }
 }
 
 @media (max-width: 979px) {
@@ -323,7 +334,7 @@
   }
 }
 
-@media (min-width: 380px) and (max-width: 480px) {
+@media (max-width: 480px) {
   .page.secondary .page-back {
     width: 24px;
     height: 24px;
@@ -494,5 +505,20 @@
   .tile .tile-smaill-list li {
   	width:24px;height:20px;
   }
+  
+  .tile-large-list li,.tile-large-list span {
+		float:left;
+		width:78px;height:78px;
+		display: inline;
+		text-align: center;
+		line-height:100px;
+		color:#333333;
+	}
+   .tile .tile-text {
+		text-align: left;
+		margin-top: 8px;
+		margin-bottom: 8px;
+		font-style: italic;
+	}
 
 }

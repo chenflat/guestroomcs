@@ -10,7 +10,7 @@
 	AUTHOR: CHENPING
 	Created Date: 2012-11-2 下午01:32:55
 	LastModified Date:
-	Description:
+	Description:Notification Setting
  -->
 <c:set var="requestURL"
 	value="${requestScope['javax.servlet.forward.request_uri']}"

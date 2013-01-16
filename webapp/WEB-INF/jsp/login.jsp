@@ -67,7 +67,8 @@
 		<div class="footer">
 			&copy;2012 Kempinski Hotel
 			<div class="pull-right">
-				<i class="icon-phone"></i> <span id="online"></span> <i class="icon-th"></i>55
+				<i class="icomoon-phone"></i> <span id="online"></span> <i class="icon-th"></i>
+				<i id="conn-status" class="icomoon-link"></i>
 			</div>
 		</div>
 	</div>
@@ -112,9 +113,14 @@
 
 		$.get('<c:url value="/service/statistics" />', function(result) {
 			//console.log(result);
+			if(result=="") {
+				$("#conn-status").removeClass("icomoon-link").addClass("icomoon-link-2");
+			}			
 		}).success(function(counter) {
 			$("#online").text(counter.online);
-			console.log(counter);
+			//console.log(counter);
+		}).error(function(msg){
+			//console.log(msg);
 		});
 
 	});

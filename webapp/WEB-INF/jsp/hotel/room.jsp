@@ -8,9 +8,8 @@
 	AUTHOR: CHENPING
 	Created Date: 2012-10-25 下午04:42:05
 	LastModified Date:
-	Description:
+	Description: 房间管理
  -->
-
 <div class="row-fluid">
 	<div class="span12">
 		<c:if test="${totalRooms>0}">

@@ -25,7 +25,6 @@ var hvac = {
 		if(pathname==hvacPath) {
 			var activeli = $("#reqtype .active");		
 
-			console.log(activeli.length);
 			console.log($.cookie('reqtype_selecteditem'));
 			console.log($.cookie('reqtype_urlpath'));
 			
@@ -62,11 +61,9 @@ var services = {
 			var urlpath = contextPath+"service/requests";
 			
 			if(pathname==urlpath) {
-				var activeli = $("#reqtype .active");		
-				
-				console.log(activeli.length);
-				console.log($.cookie('reqtype_selecteditem'));
-				console.log($.cookie('reqtype_urlpath'));
+					
+				//console.log($.cookie('reqtype_selecteditem'));
+				//console.log($.cookie('reqtype_urlpath'));
 				
 				var cookieReqtypeItem = $.cookie('reqtype_selecteditem');
 				var cookieUrlPath = $.cookie('reqtype_urlpath');
@@ -83,7 +80,7 @@ var services = {
 				}else {
 					$("#reqtype li:first").addClass('active');
 					$("#reqtype li:first").click();
-					console.log($("#reqtype li:first"));
+					console.log("last request service type is :" + $("#reqtype li:first"));
 					$.cookie('reqtype_urlpath',urlpath);
 					$.cookie('reqtype_selecteditem',$("#reqtype li:first").attr("id"));
 				}
@@ -93,7 +90,7 @@ var services = {
 		
 		var m_roomWrap = $("#tileWrap");
 		var m_viewMode = $("#viewmode li");
-		var m_tempRoomWrap = m_roomWrap.html();
+		var m_tempRoomWrap = "";//m_roomWrap.html();
 		var m_curFloorNo = "";
 		
 		//服务标题记录
@@ -112,7 +109,7 @@ var services = {
 		var m_floorArray = [];
 		
 		m_viewMode.click(function(e){
-			console.log($(this));
+			//console.log($(this));
 		});
 		
 		
@@ -143,34 +140,65 @@ var services = {
 				m_itemArray.length = 0;
 				m_floorArray.length = 0;
 				
-				$.each(data, function(key, val) {
-				    m_itemArray.push(val);
-				    //取房间编前前两位作为楼层编号
-					var floorNo = val.roomNo.substring(0,2).toString();
-					m_floorArray.push(floorNo);
-				  });
-				$.unique(m_floorArray);
-				$.unique(m_floorArray); //去除重复的楼层
-				m_floorArray.sort(); //楼层排序
-				console.log("Floor list : "+ m_floorArray.join(","));
-				m_headTitle.text("待处理请求服务总数："+ data.length +"");
 				
-				if(m_reqtype==1) { //服务请求
-					services();
-				} else if (m_reqtype==2) {   //SOS紧急事件
-					sos();
-				}else if(m_reqtype==8) {  //HVAC
-					hvac();
-				}  else if(m_reqtype==64) {  //门磁
-					doorAlarm();
-				} else if(m_reqtype==128){ //窗磁
-					windowAlarm();
-				}else if(m_reqtype==120) {
-					floorHeating();
-				}else if(m_reqtype==121) {
-					emtRoom();
-				}else {//
-					all();
+				//未联系服务异常处理
+				var refused = false;
+				if(data!=null && data.length>0 && data.length<3) {
+					$.each(data,function(key,obj){
+						if(typeof obj.error !='undefined') {
+							refused = true;
+							m_headTitle.text(obj.error);
+							console.log("remote request error message:"+ obj.error);
+							$("#conn-status").removeClass("icomoon-link").addClass("icomoon-link-2").attr('title',"未连接到服务器");
+							return;
+						}
+					});
+				}
+				//服务请求
+				if(!refused) {
+					$.each(data, function(key, val) {
+					    m_itemArray.push(val);
+					    //取房间编前前两位作为楼层编号
+						var floorNo = val.roomNo.substring(0,2).toString();
+						m_floorArray.push(floorNo);
+					  });
+					$.unique(m_floorArray);
+					$.unique(m_floorArray); //去除重复的楼层
+					m_floorArray.sort(); //楼层排序
+					console.log("Requesting build floor list : "+ m_floorArray.join(","));
+	
+					switch (m_reqtype) {
+						case '1':   //服务请求
+							services();
+							break;
+						case '4':
+							services();
+							break;
+						case '21':
+							services();
+							break;
+						case '2':  //SOS紧急事件
+							sos();
+							break;
+						case '1024':  //保洁
+							cleaning();
+							break;
+						case '8':  //HVAC
+							hvac();
+							break;
+						case '64':  //门磁
+							doorAlarm();
+							break;
+						case '128':  //窗磁
+							windowAlarm();
+							break;
+						case '65535':
+							floorHeating();
+							break;
+						case '121':
+							emtRoom();
+							break;
+						}
 				}
 			});
 
@@ -179,61 +207,130 @@ var services = {
 		
 		//请求服务
 		var services = function() {
-			console.log("reqtype name services");
-			m_roomWrap.empty();
-			m_roomWrap.html(m_tempRoomWrap);
+			//m_roomWrap.empty();
+			//m_roomWrap.html(m_tempRoomWrap);
 			var serviceTotals = 0;
 			
 			$("#thumbnail").parent().children().removeClass("active");
 			$("#thumbnail").addClass("active");
 			
-
 			//服务请求选择列表
 			$("#lease_nav").show();
 			$("#reqlist_nav").show();
 			
-			
-			//定义显示
+			//定义显示,先楼层，再房间
 			var html = "";
 			$.each(m_floorArray,function(index,floorNo){
 
 				//显示请求客房服务
 				var roomservs = [];
-				//定义楼层服务
+				//定义楼层服务数组
 				var floorservs = [];
 				//设置每个房间属性
-				$.each(m_itemArray,function(key,val){
-					console.log(val);
-					var currFloorNo = val.roomNo.substring(0,2).toString();
+				$.each(m_itemArray,function(key,roomVal){
+					//console.log(roomVal);
+					var currFloorNo = roomVal.roomNo.substring(0,2).toString();
 					if(floorNo==currFloorNo){
+						var roomElement = $("li#"+ roomVal.roomNo);
 						//请求类型数组
-						roomservs = getRoomservs(val.reqServ);  //服务请求类型
-						var roomElement = $("li#"+ val.roomNo);
-						m_roomWrap.find(roomElement).attr('title','request totals '+ roomservs.length).html(roomservs.length);
-						console.log("roomNo:"+ val.roomNo);
+						if(roomVal.reqServ>0) {
+							roomservs = getRoomservs(roomVal.reqServ);  //服务请求类型
+							m_roomWrap.find(roomElement).attr('title','request totals '+ roomservs.length).html(roomservs.length);
+							console.log("房间'"+roomVal.roomNo + "'请求服务对象:"+ roomservs);
+						}
+						var commerr = "";
+						if(typeof roomVal.commerr !='undefined') {
+							if(roomVal.commerr>0) {
+								commerr = "bg-color-grayDark";
+								roomElement.addClass(commerr);
+							}
+						}
+						if(commerr.length==0){
+							if(typeof roomVal.rentState !='undefined') {
+								//租赁状态0=待租状态1=出租状态2=退房状态3=空置状态4=预订状
+								switch(roomVal.rentState) {
+								case '0':
+									roomElement.addClass('bg-color-green');
+									break;
+								case '1':
+									roomElement.addClass('bg-color-blueLight');
+									break;
+								case '2':
+									roomElement.addClass('bg-color-yellow');
+									break;
+								case '3':
+									roomElement.addClass('bg-color-white');
+									break;
+								case '4':
+									roomElement.addClass('bg-color-pinkDark');
+									break;
+								default:
+									break;
+								}
+							}
+						}
 						serviceTotals += roomservs.length;
+						floorservs.push({"roomNo":roomVal.roomNo,"services":roomservs});
 						
-						floorservs.push({"roomNo":val.roomNo,"services":roomservs});
+						
 					}
 				});
 				m_headTitle.text("待处理请求服务总数："+ serviceTotals +"");
 				selectFloor(floorservs);
-				console.log("楼层'"+floorNo + "'请求服务对象:"+ roomservs);
+				
 			});
 		};
 		
+		/**
+		 * 保洁
+		 * */
+		var cleaning = function() {
+
+			//转到请求明细页
+			$(".main_content_sidebar").load(contextPath+'service/cleaning',function(response, status, xhr) {
+				if (status == "error") {
+					
+				 } else if (status="success") {
+					/* $.each(floorservs,function(index,obj){
+
+						 $.each(obj.services,function(index,serv){
+							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
+							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
+							 
+						 });
+					 });*/
+
+					 
+				 }
+			});
+		};
+		
+		
 		//sos紧急事件
 		var sos = function() {
-			console.log("reqtype name sos");
-			
 			$("#lease_nav").show();
 			$("#reqlist_nav").hide();
 			
-			var html = "";
 			$.each(m_floorArray,function(index,floorNo){
 				
 			});
+
+			m_roomWrap.load(contextPath+'service/sos',function(response, status, xhr) {
+				if (status == "error") {
+					
+				 } else if (status="success") {
+					/* $.each(floorservs,function(index,obj){
+
+						 $.each(obj.services,function(index,serv){
+							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
+							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
+							 
+						 });
+					 });*/ 
+				 }
+			});
 			
+/*			
 			m_headTitle.text("SOS总数：2");
 			
 			html += "<div class='span2'>";
@@ -249,7 +346,7 @@ var services = {
 			html += "</div>";
 			html += "</div>";
 			
-			m_roomWrap.html(html);
+			m_roomWrap.html(html);*/
 		};
 		
 		//选择楼层
@@ -344,7 +441,16 @@ var services = {
 			
 		};
 		
-		//HVAC
+		/**
+		 * HVAC说明：
+		 * m_fTempSetting;		//温度设定值
+		 * m_fTemp;				//温度值
+	     * m_nFanSpeed;			//风速0=停1=低2=中3=高
+		 * m_nVal;					//阀门状态0=送风/无阀1=冷2=热3=无效
+		 * m_nFanAutoMode;			//风机模式0=手动1=自动
+		 * m_nWinterSeason;		//季节模式0=夏季模式1=冬季模式
+		 * m_nFanPowerOn;			//风机开关控制0=电源关闭1=电源开启
+		 * */
 		var hvac = function() {
 			$("#temp_nav").show();
 			$("#hvac_nav").show();
@@ -353,13 +459,33 @@ var services = {
 			
 			$.each(m_itemArray,function(key,roomVal){
 				var tile = $(tiles).find("li#"+ roomVal.roomNo);
-				$(tile).find(".tile-text").text(roomVal.hvTemp0+"°/"+roomVal.hvTemp0+"°");
-				//风机开关控制  0=电源关闭1=电源开启
+				$(tile).find(".tile-text").text(roomVal.hvTemp0+"°/"+roomVal.hvTempSet0+"°");
+				//hvFanPower0  风机开关控制  0=电源关闭1=电源开启
 				if(roomVal.hvFanPower0==0) {
 					$(tile).addClass('bg-color-white').attr('style','border:1px solid #ccc;');
 					$(tile).find(".tile-badge").removeClass('fg-color-white').text("OFF");
 					$(tile).find(".tile-caption").removeClass('fg-color-white');
 				} else {
+					$(tile).removeClass('fg-color-white');
+					//手动与自动控制
+					if(roomVal.hvFanAuto0==1) {
+						$(tile).find(".tile-badge").text("AUTO");
+					}
+					//季节
+					if(roomVal.hvSeason0==0) {
+						
+					}
+					//阀门状态
+					if(roomVal.hvVal0==1) {  //冷
+						$(tile).addClass('bg-color-blue');
+					} else if (roomVal.hvVal0==2) { //热
+						$(tile).addClass('bg-color-red');
+						console.log("heat");
+					} else if (roomVal.hvVal0==3) { //无效
+						
+					} else {  //送风/无阀
+						
+					}
 					
 					
 				}
@@ -392,12 +518,15 @@ var services = {
 		};
 		
 		//地址加热
-		var floorHeating = function() {
+		var floorHeating = function() {		
 			$("#lease_nav").hide();
 			$("#reqlist_nav").hide();
 			$("#temp_nav").show();
-			$(m_roomWrap).empty();
-			
+		
+			//$(m_roomWrap).empty();	
+		
+			console.log("current request page is :"+ contextPath+"service/heating");
+
 			//转到请求明细页
 			m_roomWrap.load(contextPath+'service/heating',function(response, status, xhr) {
 				if (status == "error") {
@@ -443,8 +572,6 @@ var services = {
 				 }
 			});
 		};
-		
-		
 		
 		//所有请求
 		var all = function() {

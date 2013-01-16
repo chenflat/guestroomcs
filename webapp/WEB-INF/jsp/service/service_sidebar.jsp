@@ -46,15 +46,15 @@
 						<ul class="nav nav-list" id="reqtype">
 							<c:choose>
 								<c:when test="${fn:contains(requestURL, serviceURL)}">
-									<li type="1" id="requests"><a href="javascript:void(0);">服务请求</a></li>
-									<li type="12" id="clean"><a href="javascript:void(0);">保洁</a></li>
+									<li type="21" id="requests"><a href="<c:url value="/service/requests" />">服务请求</a></li>  <!-- 1+4+16 -->
+									<li type="1024" id="clean"><a href="javascript:void(0);">保洁</a></li>
 									<li type="2" id="sos"><a href="javascript:void(0);">SOS紧急事件</a></li>
 									<li type="64" id="dooralarm"><a href="javascript:void(0);">门磁报警</a></li>
 									<li type="128" id="windowalarm"><a href="javascript:void(0);">窗磁报警</a></li>
 								</c:when>
 								<c:otherwise>
 									<li type="8" id="hvac"><a href="<c:url value="/service/hvac" />">空调</a></li>
-									<li type="120" id="floorheating"><a href="javascript:void(0);">浴室地板加热</a></li>
+									<li type="65535" id="floorheating"><a href="javascript:void(0);">浴室地板加热</a></li>
 									<li type="121" id="etmroom"><a href="javascript:void(0);">ETM参考房间</a></li>
 								</c:otherwise>
 							</c:choose>

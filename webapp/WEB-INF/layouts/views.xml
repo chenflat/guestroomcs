@@ -89,8 +89,16 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/account/profile.jsp" />
 	</definition>
 	<definition name="account/profile/password" extends="userprofile-layout">
-		<put-attribute name="title" value="修改密码" />
+		<put-attribute name="title" value="我的资料-更改密码" />
 		<put-attribute name="body" value="/WEB-INF/jsp/account/profile/password.jsp" />
+	</definition>
+	<definition name="account/profile/name" extends="userprofile-layout">
+		<put-attribute name="title" value="我的资料-编辑名称" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/profile/name.jsp" />
+	</definition>
+	<definition name="account/profile/contact" extends="userprofile-layout">
+		<put-attribute name="title" value="我的资料-编辑联系信息" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/profile/contact.jsp" />
 	</definition>
 		<!-- User Account Pages -->
 	<definition name="account/picture" extends="userprofile-layout">
