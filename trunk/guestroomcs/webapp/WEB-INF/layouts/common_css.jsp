@@ -13,11 +13,10 @@
 <link rel="stylesheet" href="<c:url value="/css/metro.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/metro-responsive.css"/>">
 <!-- jQuery UI theme -->
-<link rel="stylesheet"
-	href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
+<link rel="stylesheet" href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
 <c:choose>
 	<c:when test="${fn:contains(requestURL,'/hotel/')}">
-		<!-- theme color-->
+<!-- theme color-->
 <link href="<c:url value="/css/theme/purple.css"/>" id="link_theme" rel="stylesheet">
 	</c:when>
 	<c:otherwise>
@@ -35,6 +34,7 @@
 <!-- flags -->
 <link href="<c:url value="/css/flags.css"/>" rel="stylesheet">
 <link href="<c:url value="/css/icons.css"/>" rel="stylesheet">
+
 <!-- calendar -->
 <link rel="stylesheet"
 	href="<c:url value="/lib/fullcalendar/fullcalendar.css" />" />
@@ -89,6 +89,7 @@
 	<script src="<c:url value="/js/ie/respond.min.js"/>"></script>
 	<script src="<c:url value="/lib/flot/excanvas.min.js"/>"></script>	
 <![endif]-->
+<!--[if lte IE 7]><script src="<c:url value="/js/lte-ie7.js"/>"></script><![endif]-->
 <script>
 	var contextPath = '<c:url value="/" />';
 </script>

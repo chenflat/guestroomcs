@@ -2,49 +2,53 @@
 
 ;
 (function($, window, document, undefined) {
-	var validate = {
-		change : function() {
-			var username= $("#username").val();
-			$("#password").change(function(){
-				if(username=="") {
-					$.sticky("用户名为空，请联系管理员.",{
-						autoclose : 5000,
-						position : "top-right",
-						type : "st-error"
-					});
-					return false;
-				}
-				console.log("validate account old password!");
-				var url = contextPath + "account/"+ username +"/valid/password";
-				$.post(url,{password:$("#password").val()},function(result){
-					console.log(result.success);
-					$("#password").attr("rel","tooltip").attr("data-placement","top").attr("title","").attr("data-original-title","");
-					var msg = "";
-					if(result.success=='true') {
-						msg = "密码正确!";						
-					} else {
-						msg = "当前密码错误，请重新输入!";
-						$('#password').focus();
+	var contact = {
+		info : function() {
+			
+			//设置联系信息新增按钮隐藏项
+			var formRows = $("#user > .formRow > div");
+			//所有联系信息新增按钮对应的菜单条目项
+			var menuEntries = $(".menu-entry a");
+			$.each(formRows,function(index,row){
+				var rowtype = $(row).attr("type");
+				if(rowtype!=null && rowtype=='list') {
+					//查找非隐藏项
+					if(!$(row).is(":hidden") ) {
+						//console.log($(row).attr("id"));
+						var rowId = $(row).attr("id");
+						$.each(menuEntries,function(i,menuitem){
+							var menuEntryId = $(menuitem).attr("id");
+							//移除已经显示的菜单条目
+							if(rowId==menuEntryId) {
+								$(menuitem).parent().remove();
+							}
+						});
 					}
-					$("#isvalid").val(result.success);
-					$("#password").attr("data-original-title",msg).attr("title",msg);
-					$('#password').tooltip('show');
-					
-				}).success(function(msg){									
-				}).error(function(msg){
-					var msg = "";
-					$.each(msg,function(index,txt){
-						msg += txt;
-					});
-					alert("error:"+ msg);
+				}
+			});
+
+			//点击工具条目时事件
+			$(".menu-entry").live("click",function(e){
+				//工具条对应的ID
+				var divId = $(this).find("a").attr("id");	
+				//在Form中查询与ID相配置的DIV,并设置为显示
+				var divObj = $("#user").find("div#"+ divId);
+				$(divObj).show();
 				
-				});
+				//移除当前项	
+				var parent = $(this).parent().children();
+				var wincommand = $(this).parent().prev();  //新增按钮
+				//console.log(parent.length);
+				//当所有项都显示时，隐藏新增按钮
+				if(parent.length-1>0) {
+					$(this).remove();
+				} else {
+					$(wincommand).hide();
+				}
 				
 			});
-			
-			
-		},			
-		password : function() {
+		},
+		submit : function(){
 			/**
 			 * 提交保存交接班记录
 			 * */
@@ -59,43 +63,32 @@
 					$(element).closest('div').removeClass("f_error");
 				},
 				rules : {
-					password : {
-						required : true,
-						minlength : 5
+					firstName : {
+						required : true
 					},
-					newpassword : {
-						required : true,
-						minlength : 5
-					},
-					confirmnewpwd: {
-						required : true,
-						equalTo: "#newpassword",
-						minlength : 5
+					lastName : {
+						required : true
 					}
 					
 				}, //提交表单
 				submitHandler : function(){
-					var isvalid = $("#isvalid").val();
-					console.log("current validation result is : "+ isvalid);
-					if(isvalid=='false') {
-						$('#password').tooltip('show');
-					} else {
-						var $form = $("#changepwd");
-						console.log("change password,submit to :" + $form.attr('action'));
-						$.post($(this).attr("action"), $form.serialize(), function(html) {		
-						}).success(function(result){	
-							console.log('change password,process result:'+ result);
+					var $form = $("#user");
+					console.log("edit contact,submit to :" + $form.attr('action'));
+					$.post($(this).attr("action"), $form.serialize(), function(html) {		
+					}).success(function(result){	
+							//console.log('edit contact,process result:'+ result);
 							if(result.success=='true') {
 							//当前页面路径
-								$("#changepwd").before("<div class='alert fade in '><button type='button' class='close' data-dismiss='alert'>&times;</button>success!</div");
+								$("form#user").before("<div class='alert fade in '><button type='button' class='close' data-dismiss='alert'>&times;</button>success!</div");
 							} else {
-								$("#changepwd").before("<div class='alert fade in'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+ result.msg +"</div");
+								$("form#user").before("<div class='alert fade in'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+ result.msg +"</div");
 							}
 						}).error(function(msg){
-							console.log("error:"+msg);
+							//console.log("error:"+msg);
+							$("form#user").before("<div class='alert fade in'><button type='button' class='close' data-dismiss='alert'>&times;</button>"+ msg +"</div");
 						});
 						return false;
-					}	
+					
 				},
 				invalidHandler : function(form, validator) {
 					$.sticky("There are some errors. Please corect them and submit again.",{
@@ -187,7 +180,7 @@
 	$(window).load(function() {
 	});
 	$(document).ready(function() {
-		validate.change();
-		validate.password();
+		contact.info();
+		contact.submit();
 	});
 })(jQuery, window, document);

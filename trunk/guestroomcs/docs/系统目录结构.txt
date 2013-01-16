@@ -205,4 +205,77 @@ Name	Code	Data Type	Length	Precision	Primary	Foreign Key	Mandatory
 是否残障房	handicappedroom	bool			FALSE	FALSE	FALSE
 犹太/安息日	koshersabbath	bool			FALSE	FALSE	FALSE
 房间状态	status	int			FALSE	FALSE	FALSE
+
+
+测试工具:http://www.responsinator.com
+http://dfcb.github.com/Responsivator/
+
+
+
+空调所有数据：HVAC温度 HVAC设定温度 风速 阀门 地板加热温度 地板加热设定温度
+房间状态：有人 无人 出租 待租、门磁 窗磁等。
+
+
+温控器参数
+	double m_fTempSetting;		//温度设定值
+	double m_fTemp;				//温度值
+	int m_nFanSpeed;			//风速0=停1=低2=中3=高
+	int m_nVal;					//阀门状态0=送风/无阀1=冷2=热3=无效
+	int m_nFanAutoMode;			//风机模式0=手动1=自动
+	int m_nWinterSeason;		//季节模式0=夏季模式1=冬季模式
+	int m_nFanPowerOn;			//风机开关控制0=电源关闭1=电源开启
+地热参数
+	double m_fTempSetting;		//温度设定值
+	double m_fTemp;				//温度值
+房间参数
+	int m_CommError;			//离线
+	
+	int m_RentState;			//租赁状态0=待租状态1=出租状态2=退房状态3=空置状态4=预订状态
+	int m_nRoomFlag;			//房间标志0=正常房间1=残疾人房间2=穆斯林客人房间
+	int m_nLanguate;			//客人使用的语言0=汉语1=英语2=法语3=德语4=西班牙语5=日语
+	//房间状态
+	int m_bOccupancy;			//0=无人1=有人
+	int m_bSOS;					//0=无SOS 1=有SOS
+	int m_bDoorAlarm;			//0=无门磁报警1=有门磁报警
+	int m_bCheckoutRequest;		//0=无退房需求1=有退房需求
+	int m_bRoomFault;			//0=房间无故障1=房间有故障
+	int m_nCardType;			//0x04=总裁卡0x06=管理卡0x08=服务员0x09=客人卡0x00=无效
+	int m_nCleanState;			//0=OK房1=脏房 
+	int m_nCleanStage;			//0=无标志，清空标志1=请勿打扰2=请即清理3=正在清理4=等待检查5=正在检查
+	DWORD m_nServiceReq;		//0x00=订餐0x01=收餐盘0x02=管家服务0x03=叫服务员0x04=叫经理0x05=擦鞋0x06=毛巾0x07=浴巾0x08=纸巾0x09=遥控器0x10=插线板0xFF=None
+	BYTE m_nWindowOpen;			//窗磁状态
+	
+	
+	
+	
+	
+	
+	
+	
+	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(
+			Arrays.asList(new Class<?>[] {  }));
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	isPrimary  是否主要的
+	displaySequence  显示顺序  
+	rowStamp 行标记
+	
+	
+	$(function(){
+		if($("#tab-container").length>0) {
+			$('#tab-container').tabs({width: $("#tab-container").parent().width(),height: "auto"}); 
+		}
+	});
+
 	

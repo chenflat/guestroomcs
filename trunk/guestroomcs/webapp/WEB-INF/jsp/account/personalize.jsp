@@ -94,10 +94,7 @@
 					</div>
 				</div>
 				<c:forEach items="${user.userprofiles}" var="profile">
-					<input type="hidden"
-						name="hide_${profile.profilepropertydefinition.propertyname}"
-						id="hide_${profile.profilepropertydefinition.propertyname}"
-						value="${profile.propertyvalue}" />
+					<input type="hidden" name="hide_${profile.profilepropertydefinition.propertyname}" id="hide_${profile.profilepropertydefinition.propertyname}" value="${profile.propertyvalue}" />
 				</c:forEach>
 			</form>
 

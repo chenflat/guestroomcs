@@ -91,7 +91,7 @@
 			<ul class="nav user_menu pull-right">
 			<li id="nav-toggle" data-toggle="collapse" data-target="#navigation" class="collapsed">
 				<span class="icon-align-justify icon-white"></span>
-			</li>
+			</li> 
 				<li class="system-cog"><a class="ssw_trigger" href="javascript:void(0)"><i
 						class="icon-cog icon-white"></i> </a>
 				</li>
@@ -116,7 +116,7 @@
 			</ul>
 
 			<!-- 设备为手机时，使用此菜单 -->
-			<ul class="nav nav-collapse btn_menu" id="navigation" style="width:100%;">
+			<ul class="nav nav-collapse " id="navigation" style="width:100%;">
 						<li><a href="<c:url value="/service/requests" />"> <i
 								class="icon-volume-up icon-white"></i>
 							<spring:message code="nav.service" /> </a>

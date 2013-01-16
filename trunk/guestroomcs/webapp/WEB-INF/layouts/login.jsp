@@ -14,7 +14,7 @@
 <meta name="author" content="">
 <META HTTP-EQUIV="pragma" CONTENT="no-cache" />
 <!-- Bootstrap framework -->
-<link rel="stylesheet" href="<c:url value="/css/icomoon.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/icons.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-responsive.css"/>">
 <link href="<c:url value="/css/metro-ui-light.css"/>" rel="stylesheet">

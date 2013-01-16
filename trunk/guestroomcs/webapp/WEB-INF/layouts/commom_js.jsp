@@ -41,6 +41,7 @@
 <!-- wizard -->
 <script src="<c:url value="/lib/stepy/js/jquery.stepy.min.js" />"></script>
 
+
 <!-- common functions -->
 <script src="<c:url value="/js/application.js"/>"></script>
 <c:set var="requestURL" value="${requestScope['javax.servlet.forward.request_uri']}" scope="request" />
@@ -95,8 +96,14 @@
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/account/')}">
 		<c:choose>
-			<c:when test="${fn:contains(requestURL,'/account/profile')}">
-			<script src="<c:url value="/js/application/profile.js"/>"></script>
+			<c:when test="${fn:contains(requestURL,'/account/profile/password')}">
+			<script src="<c:url value="/js/application/profile_password.js"/>"></script>
+			</c:when>
+			<c:when test="${fn:contains(requestURL,'/account/profile/name')}">
+			<script src="<c:url value="/js/application/profile_name.js"/>"></script>
+			</c:when>
+			<c:when test="${fn:contains(requestURL,'/account/profile/contact')}">
+			<script src="<c:url value="/js/application/profile_contact.js"/>"></script>
 			</c:when>
 			<c:otherwise>
 			<script src="<c:url value="/js/application/accountsettings.js"/>"></script>
