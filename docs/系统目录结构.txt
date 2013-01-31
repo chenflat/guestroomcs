@@ -245,7 +245,7 @@ http://dfcb.github.com/Responsivator/
 	DWORD m_nServiceReq;		//0x00=订餐0x01=收餐盘0x02=管家服务0x03=叫服务员0x04=叫经理0x05=擦鞋0x06=毛巾0x07=浴巾0x08=纸巾0x09=遥控器0x10=插线板0xFF=None
 	BYTE m_nWindowOpen;			//窗磁状态
 	
-	
+	var console=console||{"log":function(){}};
 	
 	
 	
@@ -277,5 +277,31 @@ http://dfcb.github.com/Responsivator/
 			$('#tab-container').tabs({width: $("#tab-container").parent().width(),height: "auto"}); 
 		}
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+发送数据
+/smarthome/send?tag=52,53&status=1&tagType=TT_DISC   开关灯/开闭移动窗帘
+
+/smarthome/send?tag=54&status=200&tagType=TT_LONG   调光灯
+
+/smarthome/send?tag=51&status=23&tagType=TT_ANALOG  调节温度
+
+获取数据
+/smarthome/get?tag=52
+{
+	"tag":"52",
+	"value":"1",
+	"type":"TT_DISC"
+}
+
 
 	
