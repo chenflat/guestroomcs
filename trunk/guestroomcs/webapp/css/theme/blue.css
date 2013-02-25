@@ -151,7 +151,9 @@
 
 .mainmenu a .thumbnail {
 	float: left;
+	padding: 2px;
 	width: 32px;
+	background: #D674DE;
 }
 
 .mainmenu a .details {

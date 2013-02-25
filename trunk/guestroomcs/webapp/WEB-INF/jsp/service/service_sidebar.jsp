@@ -83,7 +83,7 @@
 						</c:when>
 						<c:otherwise>
 							<ul class="dropdown-menu">
-								<li><a href="#">温度背景色<br />31°/29° - 环境温度/设定温度</a> </li>
+								<li>温度背景色<br />31°/29° - 环境温度/设定温度</li>
 								<li><a href="#"><i class="icon- bg-color-black"></i> 舒适温度</a></li>
 								<li><a href="#"><i class="icon- bg-color-red"></i> 红色越重越暖</a></li>
 								<li><a href="#"><i class="icon- bg-color-blue"></i> 蓝色越重越冷</a></li>

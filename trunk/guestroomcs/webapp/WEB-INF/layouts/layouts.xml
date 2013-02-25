@@ -48,10 +48,16 @@
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/groups/groups_sidebar.jsp" />
 	</definition>
 	
-		<!-- roles layout  -->
+	<!-- resources layout  -->
 	<definition name="resource-layout" extends="standard-layout">
 		<put-attribute name="sidebar" value="/WEB-INF/jsp/user/resources/resources_sidebar.jsp" />
 	</definition>
+	
+	<!-- devices layout  -->
+	<definition name="device-layout" extends="standard-layout">
+		<put-attribute name="sidebar" value="/WEB-INF/jsp/device/sidebar.jsp" />
+	</definition>
+	
 	
 	
 </tiles-definitions>
