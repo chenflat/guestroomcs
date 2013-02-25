@@ -25,6 +25,7 @@
 <c:set var="settingURL"
 	value="${pageContext.request.contextPath}/system/navigation" />
 <c:set var="hotelURL" value="${pageContext.request.contextPath}/hotel/" />
+<c:set var="deviceURL" value="${pageContext.request.contextPath}/device/" />
 <header>
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
@@ -48,6 +49,9 @@
 							</c:when>
 							<c:when test="${fn:contains(requestURL,accountURL)}">
 								<spring:message code="nav.account.settings" />
+							</c:when>
+							<c:when test="${fn:contains(requestURL,deviceURL)}">
+								<spring:message code="nav.device" />
 							</c:when>
 							<c:when
 								test="${fn:contains(requestURL,settingURL) or fn:contains(requestURL,hotelURL) or fn:contains(requestURL,userURL)}">
@@ -78,6 +82,9 @@
 						<li><a href="<c:url value="/account/profile" />"><i
 								class="icon-cog icon-white"></i> <spring:message
 									code="nav.account.settings" /> </a>
+						</li>
+						<li> <a href="<c:url value="/device/module" />">
+					<i class="icon-tags icon-white"></i> <spring:message code="nav.device" />  </a>
 						</li>
 						<li> <a href="<c:url value="/system/navigation" />">
 					<i class="icon-wrench icon-white"></i> <spring:message
@@ -171,7 +178,9 @@
 				<c:when test="${fn:contains(requestURL,'/service/hvac')}">
 					<%@ include file="../jsp/service/service_nav.jsp"%>
 				</c:when>
-
+				<c:when test="${fn:contains(requestURL,'/device/')}">
+					<%@ include file="../jsp/device/nav.jsp"%>
+				</c:when>
 			</c:choose>
 		</div>
 	</div>

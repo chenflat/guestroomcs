@@ -280,7 +280,7 @@
 		.sidebar_hidden #maincontainer {background: #fff}
 		.sidebar_info {width:220px;position:relative;left:10px;bottom:100px}
 		.sidebar_info .header {padding-bottom: 9px;margin: 20px 0 10px;border-bottom: 1px solid #ccc;}
-        .sidebar_info ul {padding:5px 10px;margin:0;font-size:11px;background:#fafafa;border:1px solid #e5e5e5;-webkit-border-radius: 6px;-moz-border-radius: 6px;-ms-border-radius: 6px;border-radius: 6px}
+        .sidebar_info ul {padding:5px 10px;margin:0;font-size:13px;background:#fafafa;border:2px solid #000;}
         .sidebar_info ul li {line-height:26px;overflow:hidden;}
         .sidebar_info ul li:last-child {border:none}
         .sidebar_info .act {float:right}

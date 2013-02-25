@@ -201,6 +201,21 @@
 	</definition>
 
 
+	<!-- Device Pages -->
+	<definition name="device/module" extends="device-layout">
+		<put-attribute name="title" value="设备类型" />
+		<put-attribute name="body" value="/WEB-INF/jsp/device/module.jsp" />
+	</definition>
+
+	<definition name="device/room" extends="device-layout">
+		<put-attribute name="title" value="客房当前设备 " />
+		<put-attribute name="body" value="/WEB-INF/jsp/device/room.jsp" />
+	</definition>
+	
+	<definition name="device/group" extends="device-layout">
+		<put-attribute name="title" value="设备组模板" />
+		<put-attribute name="body" value="/WEB-INF/jsp/device/group.jsp" />
+	</definition>
 
 
 </tiles-definitions>
