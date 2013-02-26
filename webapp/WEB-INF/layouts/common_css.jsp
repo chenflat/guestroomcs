@@ -17,13 +17,10 @@
 <!-- theme color-->
 <c:choose>
 	<c:when test="${fn:contains(requestURL,'/hotel/')}">
-		<link href="<c:url value="/css/theme/purple.css"/>" id="link_theme" rel="stylesheet">
-	</c:when>
-	<c:when test="${fn:contains(requestURL,'/device/')}">
-		<link href="<c:url value="/css/theme/green.css"/>" id="link_theme" rel="stylesheet">
+	<link href="<c:url value="/css/theme/purple.css"/>" id="link_theme" rel="stylesheet">
 	</c:when>
 	<c:otherwise>
-		<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet">
+	<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet">
 	</c:otherwise>
 </c:choose>
 <!-- tooltips-->
