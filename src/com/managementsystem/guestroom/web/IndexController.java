@@ -15,19 +15,17 @@ import com.managementsystem.guestroom.domain.platform.Breadcrumb;
 
 @Controller
 @RequestMapping("/index")
-public class IndexController extends AbstractController implements IController {
+public class IndexController extends AbstractController {
 
 	private final Log logger = LogFactory.getLog(IndexController.class);
 
 	public static final String VIEW_NAME = "index";
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView doGet(ModelMap model) {
+	public String doGet(ModelMap model) {
 		logger.debug("setupindex");
-		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName(VIEW_NAME);
-		return mav;
+		return "redirect:/service/requests";
 	}
 
 	@Override

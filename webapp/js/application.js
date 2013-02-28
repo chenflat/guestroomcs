@@ -5,6 +5,8 @@
 	  return !!('ontouchstart' in window);
 	}
 
+    var console=console||{"log":function(){}};
+
 	$(document).ready(function() {
 		//* search typeahead
 		$('.search_query').typeahead({
@@ -69,6 +71,9 @@
 		
 		content.make_scroll();
 		content.update_scroll();
+		
+		//$("input[type='checkbox']").uniform();
+		
 	});
     
 	content = {

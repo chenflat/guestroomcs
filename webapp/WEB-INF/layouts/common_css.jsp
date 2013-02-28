@@ -7,20 +7,20 @@
 	value="${requestScope['javax.servlet.forward.request_uri']}"
 	scope="request" />
 <!-- Bootstrap framework -->
-<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
+<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>" />
 <link rel="stylesheet"
-	href="<c:url value="/css/bootstrap-responsive.min.css"/>">
-<link rel="stylesheet" href="<c:url value="/css/metro.css"/>">
-<link rel="stylesheet" href="<c:url value="/css/metro-responsive.css"/>">
+	href="<c:url value="/css/bootstrap-responsive.min.css"/>" />
+<link rel="stylesheet" href="<c:url value="/css/metro.css"/>" />
+<link rel="stylesheet" href="<c:url value="/css/metro-responsive.css"/>" />
 <!-- jQuery UI theme -->
 <link rel="stylesheet" href="<c:url value="/lib/jquery-ui/css/Aristo/Aristo.css"/>" />
 <!-- theme color-->
 <c:choose>
 	<c:when test="${fn:contains(requestURL,'/hotel/')}">
-	<link href="<c:url value="/css/theme/purple.css"/>" id="link_theme" rel="stylesheet">
+	<link href="<c:url value="/css/theme/purple.css"/>" id="link_theme" rel="stylesheet" />
 	</c:when>
 	<c:otherwise>
-	<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet">
+	<link href="<c:url value="/css/theme/blue.css"/>" id="link_theme" rel="stylesheet" />
 	</c:otherwise>
 </c:choose>
 <!-- tooltips-->
@@ -32,8 +32,8 @@
 <!-- aditional icons -->
 <link rel="stylesheet" href="<c:url value="/img/splashy/splashy.css"/>" />
 <!-- flags -->
-<link href="<c:url value="/css/flags.css"/>" rel="stylesheet">
-<link href="<c:url value="/css/icons.css"/>" rel="stylesheet">
+<link href="<c:url value="/css/flags.css"/>" rel="stylesheet" />
+<link href="<c:url value="/css/icons.css"/>" rel="stylesheet" />
 
 <!-- calendar -->
 <link rel="stylesheet"

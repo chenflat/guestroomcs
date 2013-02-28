@@ -1,5 +1,7 @@
 /* [ ---- service manage javascript ---- ] */
 
+var console=console||{"log":function(){}};
+
 $(document).ready(function() {
 	
 	services.requests();  //必须放在第一行
