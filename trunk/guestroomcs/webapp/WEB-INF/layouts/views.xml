@@ -202,6 +202,11 @@
 
 
 	<!-- Device Pages -->
+	<definition name="device/initialize" extends="device-layout">
+		<put-attribute name="title" value="客房设备初始化" />
+		<put-attribute name="body" value="/WEB-INF/jsp/device/initialize.jsp" />
+	</definition>
+	
 	<definition name="device/module" extends="device-layout">
 		<put-attribute name="title" value="设备类型" />
 		<put-attribute name="body" value="/WEB-INF/jsp/device/module.jsp" />

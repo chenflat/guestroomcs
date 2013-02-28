@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-12-11 09:46:17                          */
+/* Created on:     2013-02-27 13:31:10                          */
 /*==============================================================*/
 
 
@@ -11,6 +11,10 @@ drop table if exists build;
 drop table if exists counter;
 
 drop table if exists department;
+
+drop table if exists device_module;
+
+drop table if exists device_module_properties;
 
 drop table if exists district;
 
@@ -54,6 +58,10 @@ drop table if exists role_resource;
 
 drop table if exists room;
 
+drop table if exists room_device_properties;
+
+drop table if exists room_devices;
+
 drop table if exists roomassignedgrouies;
 
 drop table if exists roomconfig;
@@ -88,6 +96,8 @@ create table address
    country              varchar(75),
    primary_             bool,
    entryid              varchar(75),
+   comment              varchar(50),
+   keyname              varchar(50),
    primary key (addressId)
 );
 
@@ -132,6 +142,34 @@ create table department
 );
 
 /*==============================================================*/
+/* Table: device_module                                         */
+/*==============================================================*/
+create table device_module
+(
+   module_id            varchar(75) not null,
+   module_name          varchar(75),
+   description          varchar(100),
+   comment              varchar(100),
+   internal             bool,
+   primary key (module_id)
+);
+
+/*==============================================================*/
+/* Table: device_module_properties                              */
+/*==============================================================*/
+create table device_module_properties
+(
+   property_id          varchar(75) not null,
+   module_id            varchar(75),
+   property_name        varchar(75),
+   property_description varchar(75),
+   property_value       varchar(75),
+   property_unit        varchar(75),
+   property_type        varchar(75) comment 'information,dynamicValue,defaultValue',
+   primary key (property_id)
+);
+
+/*==============================================================*/
 /* Table: district                                              */
 /*==============================================================*/
 create table district
@@ -159,6 +197,8 @@ create table emailAddress
    address              varchar(75),
    primary_             bool,
    entryid              varchar(75),
+   comment              varchar(50),
+   keyname              varchar(50),
    primary key (emailAddressId)
 );
 
@@ -341,6 +381,8 @@ create table phone
    extension            varchar(75),
    primary_             bool,
    entryid              varchar(75),
+   comment              varchar(50),
+   keyname              varchar(50),
    primary key (phoneId)
 );
 
@@ -506,6 +548,32 @@ create table room
 );
 
 /*==============================================================*/
+/* Table: room_device_properties                                */
+/*==============================================================*/
+create table room_device_properties
+(
+   device_id            varchar(75) not null,
+   property_id          varchar(75) not null,
+   property_value       varchar(75),
+   primary key (device_id, property_id)
+);
+
+/*==============================================================*/
+/* Table: room_devices                                          */
+/*==============================================================*/
+create table room_devices
+(
+   device_id            varchar(75) not null,
+   room_id              int not null,
+   module_id            varchar(75) not null,
+   device_no            varchar(75),
+   device_name          varchar(75) not null,
+   description          varchar(255),
+   actived              bool,
+   primary key (device_id)
+);
+
+/*==============================================================*/
 /* Table: roomassignedgrouies                                   */
 /*==============================================================*/
 create table roomassignedgrouies
@@ -665,6 +733,9 @@ alter table department add constraint FK_department_department foreign key (pare
 alter table department add constraint FK_hotel_department foreign key (hotel_id)
       references hotel (hotel_id) on delete restrict on update restrict;
 
+alter table device_module_properties add constraint FK_device_type_properties foreign key (module_id)
+      references device_module (module_id) on delete cascade;
+
 alter table district add constraint FK_district_district foreign key (parent_id)
       references district (district_id) on delete cascade;
 
@@ -712,6 +783,15 @@ alter table room add constraint FK_floor_room foreign key (floor_id)
 
 alter table room add constraint FK_roomtype_room foreign key (roomtype_id)
       references roomtype (roomtype_id) on delete set null;
+
+alter table room_device_properties add constraint FK_room_device_module_properties foreign key (property_id)
+      references device_module_properties (property_id) on delete cascade;
+
+alter table room_device_properties add constraint FK_room_devices_properties foreign key (device_id)
+      references room_devices (device_id) on delete cascade;
+
+alter table room_devices add constraint FK_room_devices foreign key (room_id)
+      references room (room_id) on delete cascade;
 
 alter table roomassignedgrouies add constraint FK_room_roomassignedgrouies foreign key (room_id)
       references room (room_id) on delete cascade;

@@ -110,6 +110,15 @@
 			</c:otherwise>
 		</c:choose>
 	</c:when>
+	<c:when test="${fn:contains(requestURL,'/device/')}">
+	<c:choose>
+		<c:when test="${fn:contains(requestURL,'/device/module')}">
+			<script src="<c:url value="/js/application/device_module.js"/>"></script>
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
+	</c:when>
 </c:choose> 
 
 <script>

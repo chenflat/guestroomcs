@@ -73,8 +73,8 @@
 	</div>
 	<div id="maincontainer" class="clearfix">
 		<tiles:insertAttribute name="nav" />
-		<div id="contentwrapper" class="antiscroll-wrap">
-			<div class="main_content antiscroll-inner">
+		<div id="contentwrapper">
+			<div class="main_content">
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>

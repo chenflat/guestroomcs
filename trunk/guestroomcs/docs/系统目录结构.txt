@@ -58,8 +58,8 @@ guestroomcs/
 │   ├── 
 
 
-├── device 能源模式 	
-│   ├── /module  设备类型 
+├── device 能源模式 	  nav.device.initialize
+│   ├── /module  设备类型   
 │   	├── /select 设备类型信息
 │   	├── /init 初始化客房定义
 │   ├── /room  客房设备 

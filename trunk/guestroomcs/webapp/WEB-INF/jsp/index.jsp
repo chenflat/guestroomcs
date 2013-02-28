@@ -10,7 +10,7 @@
 	LastModified Date:
 	Description:
  -->
-
+<c:redirect url="/service/requests" /> 
 <div class="tile  bg-color-blue">
 	<div class="tile-content icon">
 		<a href="<c:url value="/service/requests" />"><img src="<c:url value="/img/icons/8.png" />"></a>
@@ -72,3 +72,5 @@
 		</span>
 	</div>
 </div>
+
+
