@@ -47,7 +47,7 @@
 							<c:choose>
 								<c:when test="${fn:contains(requestURL, serviceURL)}">
 									<li type="21" id="requests"><a href="<c:url value="/service/requests" />">服务请求</a></li>  <!-- 1+4+16 -->
-									<li type="1024" id="clean"><a href="javascript:void(0);">保洁</a></li>
+									<li type="3584" id="clean"><a href="javascript:void(0);">保洁</a></li>
 									<li type="2" id="sos"><a href="javascript:void(0);">SOS紧急事件</a></li>
 									<li type="64" id="dooralarm"><a href="javascript:void(0);">门磁报警</a></li>
 									<li type="128" id="windowalarm"><a href="javascript:void(0);">窗磁报警</a></li>

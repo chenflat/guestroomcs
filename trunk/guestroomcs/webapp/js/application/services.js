@@ -133,17 +133,21 @@ var services = {
 				$.sticky("service type attribute not undefined!", {autoclose : 5000, position: "top-right", type: "st-error" });
 				return;
 			}
-			
+			//console.log("m_reqtype:"+ m_reqtype);
+			var m_tempReqtype = m_reqtype;
+			if(m_reqtype=='3584') {
+				m_tempReqtype = '65535';
+			}
 			/*
 			 * 通过REST服务获取指定类型的客房请求数据
 			 * @param type 请求数据类型
 			 */
-			$.getJSON(contextPath+"service/roomviews",{type:m_reqtype},function(data){
+			$.getJSON(contextPath+"service/roomviews",{type:m_tempReqtype},function(data){
 				m_itemArray.length = 0;
 				m_floorArray.length = 0;
 				
 				
-				//未联系服务异常处理
+				//未联接服务异常处理
 				var refused = false;
 				if(data!=null && data.length>0 && data.length<3) {
 					$.each(data,function(key,obj){
@@ -182,7 +186,7 @@ var services = {
 						case '2':  //SOS紧急事件
 							sos();
 							break;
-						case '1024':  //保洁
+						case '3584':  //保洁
 							cleaning();
 							break;
 						case '8':  //HVAC
@@ -287,21 +291,50 @@ var services = {
 		 * 保洁
 		 * */
 		var cleaning = function() {
-
+			console.log('cleaning');
 			//转到请求明细页
 			$(".main_content_sidebar").load(contextPath+'service/cleaning',function(response, status, xhr) {
 				if (status == "error") {
 					
 				 } else if (status="success") {
-					/* $.each(floorservs,function(index,obj){
+					 
+					 var tiles = $(".thumbnails .tile-large");
+					 
+					 $.each(m_itemArray,function(key,roomVal){
+						 	//console.log(roomVal);
+						 	if(roomVal.roomNo == '0910' ) {
+						 		console.log(roomVal);
+						 	}
+						 	
+							var tile = $(tiles).find("li#"+ roomVal.roomNo);
+							var statusText = $(tile).find(".tile-badge");
+							
+							if(roomVal.dnd==1) {
+								$(statusText).text("DND");
+								$(tile).removeClass('bg-color-green').addClass("bg-color-blueLight");
+							}
+							if(roomVal.cleaning==1) {
+								$(statusText).text("正在清理");
+							}
+							if(roomVal.mur==1) {
+								$(statusText).text("MUR");
+								$(tile).removeClass('bg-color-green').addClass("bg-color-blueLight");
+							}
+							
+									
+						});
+				
+
+					 
+					/* $.each(m_floorArray,function(index,obj){
 
 						 $.each(obj.services,function(index,serv){
 							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
 							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
 							 
 						 });
-					 });*/
-
+					 });
+*/
 					 
 				 }
 			});
@@ -462,7 +495,7 @@ var services = {
 			$.each(m_itemArray,function(key,roomVal){
 				var tile = $(tiles).find("li#"+ roomVal.roomNo);
 				$(tile).find(".tile-text").text(roomVal.hvTemp0+"°/"+roomVal.hvTempSet0+"°");
-				//hvFanPower0  风机开关控制  0=电源关闭1=电源开启
+				//hvFanPower0  风机开关控制  0=电源关闭 1=电源开启
 				if(roomVal.hvFanPower0==0) {
 					$(tile).addClass('bg-color-white').attr('style','border:1px solid #ccc;');
 					$(tile).find(".tile-badge").removeClass('fg-color-white').text("OFF");
@@ -488,19 +521,113 @@ var services = {
 					} else {  //送风/无阀
 						
 					}
-					
-					
 				}
 						
 			});
 			
 			m_roomWrap.find(".tile").toggle(
 				function(){
+					//设置选中样式
 					$(this).addClass('selected');
+					
+					//当前选中的房间温度值
+					var currRoomTempText = $(this).find('.tile-text').text();
+					
+					//在havc bar中设置当前温度
+					var currTempSetText = currRoomTempText.split('/')[1].replace('°','');
+					var currTempText = currRoomTempText.split('/')[0].replace('°','');
+					
+					$("#txtCurrTempValue").text(currTempText+'℃');
+					$("#txtCurrSetTempValue").text(currTempSetText+'℃');
+					$("#inputSetTempValue").val(currTempSetText);
+					
+					//当前房间号
+					var currRoomNumText = $(this).find('.tile-caption').text();
+					$("#inputCurrRoomNum").val(currRoomNumText);
+					
+					
+					
 				},function(){
 					$(this).removeClass('selected');
+					$("#inputCurrRoomNum").val("");
 				});
+			
+			//调低当前温度
+			$("#subtractTempVal").click(function(){
+				setRoomTempValue('subtract');
+			});
+			//调高当前温度
+			$("#additionTempVal").click(function(){
+				setRoomTempValue('addition');
+			});
+			
+			
+			$("#checkin").click(function(){
+				checkin();
+			});
 		};
+		
+		/**
+		 * 设置当前房间温度值
+		 * @param op 操作方式  调高：addition  调低：subtract
+		**/
+		var setRoomTempValue = function(op) {
+			//当前房间号。如果未选择房间，禁止用户设置温控器值
+			var currRoomNum = $("#inputCurrRoomNum").val();
+			if(currRoomNum=='') {
+				alert('请选择您要设置的房间');
+				return false;
+			}
+			//当前要设置的温控器
+			var tempControllerVal = $("#tempController").val();
+			//获取当前房间温度
+			var currTempVal = $("#inputSetTempValue").val();
+			//当前房间温度操作
+			var opValue = null;
+			if(op=='addition') {
+				opValue = Math.abs(currTempVal)+1;
+			}else {
+				opValue = Math.abs(currTempVal)-1;
+			}
+			//重设温度值
+			$("#inputSetTempValue").val(opValue);
+			$("#txtCurrSetTempValue").text(opValue+'℃');
+			
+			//发送设置命令，如：setvalue?roomNo=0101&p=0&value=22
+			$.getJSON(contextPath+"service/setvalue",
+					{roomNo:currRoomNum,p:tempControllerVal,value:opValue},function(data){
+				
+			}).done(function() { console.log( "second success" ); })
+			.fail(function(err) { console.log(err); })
+			.always(function(msg) { console.log(msg); });
+			
+		};
+		
+		/**
+		 * checkin房间
+		 * api service inteface: /test/checkin?roomNo=0101&guestName=Mr.zhang&Language=1&tempSet=21
+		 * */
+		var checkin = function() {
+			var currRoomNum = $("#inputCurrRoomNum").val();
+			if(currRoomNum=='') {
+				alert('请选择您要设置的房间');
+				return false;
+			}
+			var setTempValue = $("#inputSetTempValue").val();
+			var guestName = $("#sex").val() + "." + $("#guestname").val();
+
+			$.getJSON(contextPath+"service/checkin",
+					{roomNo:currRoomNum,guestName:guestName,language:"1",tempSet:setTempValue},function(data){
+				
+			}).done(function() { console.log( "second success" ); })
+			.fail(function(err) { console.log(err); })
+			.always(function() { console.log( "complete" ); });
+			
+			
+		};
+		
+		
+		
 		
 		//门磁报警
 		var doorAlarm = function() {

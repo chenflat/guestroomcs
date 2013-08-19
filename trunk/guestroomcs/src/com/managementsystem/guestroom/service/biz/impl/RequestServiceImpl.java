@@ -33,6 +33,7 @@ public class RequestServiceImpl implements RequestService {
 	private String queryprocessUrl;
 	private String queryrecordsetUrl;
 	private String synctimeUrl;
+	private String checkinUrl;
 
 	public RequestServiceImpl() {
 		try {
@@ -55,6 +56,8 @@ public class RequestServiceImpl implements RequestService {
 			queryrecordsetUrl = hostUrl
 					+ props.getProperty(RequestService.QUERYRECORDSET);
 			synctimeUrl = hostUrl + props.getProperty(RequestService.SYNCTIME);
+			
+			checkinUrl = hostUrl + props.getProperty(RequestService.CHECKIN);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +97,7 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public List<Map<String, String>> clearService(String roomNo, int type)
 			throws MalformedURLException, IOException {
-		Assert.notNull(type, "'roomNo' must not be null");
+		Assert.notNull(roomNo, "'roomNo' must not be null");
 		Assert.notNull(type, "'type' must not be null");
 
 		Map<String, String> map = new HashMap<String, String>();
@@ -109,9 +112,20 @@ public class RequestServiceImpl implements RequestService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public void setValue(String roomNo, String value)
+	public List<Map<String, String>> setValue(String roomNo,String tempControllerIndex, String value)
 			throws MalformedURLException, IOException {
-
+		Assert.notNull(roomNo, "'roomNo' must not be null");
+		Assert.notNull(tempControllerIndex, "'p' must not be null");
+		Assert.notNull(value, "'value' must not be null");
+		Map<String, String> map = new HashMap<String, String>();
+		RequestServiceProcess<Map<String, String>> process = new RequestServiceProcess<Map<String, String>>(
+				map);
+		List<Map<String, String>> list = null;
+		String serviceUrl = String.format(setvalueUrl
+				+ "?roomNo=%s&p=%s&value=%s", roomNo, tempControllerIndex,value);
+		list = process.getRequestResult(serviceUrl);
+	
+		return list;
 	}
 
 	@Transactional(readOnly = true)
@@ -187,4 +201,24 @@ public class RequestServiceImpl implements RequestService {
 		return list;
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<Map<String, String>> checkIn(String roomNo, String guestName,
+			String language, String tempSet) throws MalformedURLException,
+			IOException {
+		Assert.notNull(roomNo, "'roomNo' must not be null");
+		Assert.notNull(tempSet, "'tempSet' must not be null");
+		Map<String, String> map = new HashMap<String, String>();
+		RequestServiceProcess<Map<String, String>> process = new RequestServiceProcess<Map<String, String>>(
+				map);
+		List<Map<String, String>> list = null;
+		String serviceUrl = String.format(checkinUrl
+				+ "?roomNo=%s&guestName=%s&Language=%s&tempSet=%s", roomNo, guestName,language,tempSet);
+		list = process.getRequestResult(serviceUrl);
+	
+		return list;
+	}
+
+	
+	
 }

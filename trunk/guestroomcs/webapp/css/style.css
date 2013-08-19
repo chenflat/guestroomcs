@@ -98,14 +98,24 @@
     .hvac_bar {
     	clear: both;
 		border-top: 1px solid #CCC;
-	  	min-height: 80px;
+	  	height: 40px;
+	  	line-height:40px;
 		background-color: white;
+		vertical-align:middle;
 		
-		position: fixed;
+		/* position: fixed; */
 		right: 0;
 		z-index: 1030;
 		margin-bottom: 40px;
+		left:274px;
+		font-size:14px;
     }
+    .hvac_bar .currTempValue {
+    	font-size:14px;
+    	padding:0 15px;
+    }
+    .hvac_bar img {border:2px dotted #ccc;cursor:pointer;}
+    .hvac_bar img.solid {border:2px solid #000;cursor:pointer;}
     
 	/* fix for .label position */
 		h1 + .label {margin:13px 10px 0 0}

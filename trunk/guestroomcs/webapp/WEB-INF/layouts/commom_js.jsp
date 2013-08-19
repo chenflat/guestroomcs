@@ -85,6 +85,7 @@
 		<script src="<c:url value="/js/application/guestmanage.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/service/')}">
+		<script src="<c:url value="/js/holder/holder.js"/>"></script>
 		<script src="<c:url value="/js/application/services.js"/>"></script>
 	</c:when>
 	<c:when test="${fn:contains(requestURL,'/account/shiftwork')}">

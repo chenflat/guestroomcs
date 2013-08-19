@@ -25,6 +25,7 @@ public interface RequestService {
 	public static final String QUERYPROCESS = "queryprocess";
 	public static final String QUERYRECORDSET = "queryrecordset";
 	public static final String SYNCTIME = "synctime";
+	public static final String CHECKIN = "checkin";
 
 	/**
 	 * 获取服务请求总数
@@ -66,11 +67,12 @@ public interface RequestService {
 	 * 
 	 * @param roomNo
 	 *            房间号
+	 * @param tempControllerIndex 温控器索引           
 	 * @param value
 	 *            设置值
 	 * 
 	 * */
-	public void setValue(String roomNo, String value) throws MalformedURLException,IOException;
+	public List<Map<String, String>>  setValue(String roomNo,String tempControllerIndex, String value) throws MalformedURLException,IOException;
 
 	/**
 	 * 查询过程曲线数据
@@ -103,5 +105,11 @@ public interface RequestService {
 	 * 同步服务器时间
 	 * */
 	public  List<Map<String, String>> synctime() throws MalformedURLException,IOException;
+	
+	/**
+	 * CheckIn
+	 * /test/checkin?roomNo=0101&guestName=Mr.zhang&Language=1&tempSet=21
+	 * */
+	public List<Map<String, String>>  checkIn(String roomNo,String guestName, String language,String tempSet) throws MalformedURLException,IOException;
 	
 }

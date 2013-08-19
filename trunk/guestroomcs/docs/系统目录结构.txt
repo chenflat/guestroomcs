@@ -313,4 +313,12 @@ http://dfcb.github.com/Responsivator/
 }
 
 
+
+@CacheEvict(value="builds",key="#buildsettinginfo.buildId + 'setting'")
+
+@Cacheable(value="builds",key="#buildId + 'info'")  
+
+
+i3bms685768
+
 	
