@@ -69,5 +69,90 @@ public class ServiceRequestController {
 
 		return list;
 	}
+	
+	/**
+	 * 设置值
+	 * @param roomNo 当前房间号
+	 * @param p 当前温控器编号
+	 * @param value 设置温度值
+	 * */
+	@RequestMapping(value = "/setvalue", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Map<String, String>> processSetVal(@RequestParam(value = "roomNo", required = true) String roomNo,
+			@RequestParam(value = "p", required = true,defaultValue="0") String p,
+			@RequestParam(value = "value", required = true) String value) {
+		List<Map<String, String>> list = null;
+		Map<String,String> errMap = null;
+		StringBuilder errors = new StringBuilder();
+		
+		try {
+			list = requestService.setValue(roomNo, p, value);
+		} catch (MalformedURLException e) {
+			logger.error(e);
+			e.printStackTrace();
+
+			errors.append(e.getLocalizedMessage());
+		} catch (IOException e) {
+			logger.error(e);
+			e.printStackTrace();
+			errors.append(e.getLocalizedMessage());
+		}
+		
+		//添加异常信息
+		if(errors.length()>0) {
+			errMap = new HashMap<String,String>();
+			errMap.put("error", errors.toString());
+			list = new ArrayList<Map<String, String>>();
+			list.add(errMap);
+		}
+		
+		return list;
+	}
+	
+	
+	/**
+	 * CheckIn客人信息
+	 * @param roomNo 当前房间号
+	 * @param guestName 客人姓名
+	 * @param language 语言
+	 * @param tempSet 设置温度值
+	 * */
+	@RequestMapping(value = "/checkin", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Map<String, String>> processCheckin(
+			@RequestParam(value = "roomNo", required = true) String roomNo,
+			@RequestParam(value = "guestName", required = false) String guestName,
+			@RequestParam(value = "language", required = false,defaultValue="1") String language,
+			@RequestParam(value = "tempSet", required = true) String tempSet) {
+		List<Map<String, String>> list = null;
+		Map<String,String> errMap = null;
+		StringBuilder errors = new StringBuilder();
+		
+		try {
+			list = requestService.checkIn(roomNo, guestName, language, tempSet);
+		} catch (MalformedURLException e) {
+			logger.error(e);
+			e.printStackTrace();
+
+			errors.append(e.getLocalizedMessage());
+		} catch (IOException e) {
+			logger.error(e);
+			e.printStackTrace();
+			errors.append(e.getLocalizedMessage());
+		}
+		
+		//添加异常信息
+		if(errors.length()>0) {
+			errMap = new HashMap<String,String>();
+			errMap.put("error", errors.toString());
+			list = new ArrayList<Map<String, String>>();
+			list.add(errMap);
+		}
+		
+		
+		return list;
+	}
+	
+	
 
 }
