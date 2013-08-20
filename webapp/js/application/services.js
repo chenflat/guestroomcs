@@ -319,23 +319,9 @@ var services = {
 							if(roomVal.mur==1) {
 								$(statusText).text("MUR");
 								$(tile).removeClass('bg-color-green').addClass("bg-color-blueLight");
-							}
-							
-									
+							}	
 						});
 				
-
-					 
-					/* $.each(m_floorArray,function(index,obj){
-
-						 $.each(obj.services,function(index,serv){
-							 $("<li>").text(serv).appendTo("#room_"+obj.roomNo+" .service-list");
-							 $("#room_"+obj.roomNo).addClass("bg-color-blueLight");
-							 
-						 });
-					 });
-*/
-					 
 				 }
 			});
 		};
@@ -597,9 +583,18 @@ var services = {
 			$.getJSON(contextPath+"service/setvalue",
 					{roomNo:currRoomNum,p:tempControllerVal,value:opValue},function(data){
 				
-			}).done(function() { console.log( "second success" ); })
-			.fail(function(err) { console.log(err); })
-			.always(function(msg) { console.log(msg); });
+			}).done(function() { 
+				var txtCurrTempValue = $("#txtCurrTempValue").text().replace('℃','');
+				var currRoomNum = $("#inputCurrRoomNum").val();
+				var showTempVal = txtCurrTempValue + "°/" + opValue + '°';
+				$("#"+currRoomNum).find(".tile-text").text(showTempVal);
+				
+			//	console.log(showTempVal);
+				
+				console.log( "second success" ); })
+			.fail(function(err) {
+				if(err!=null) console.log(err); })
+			.always(function(msg) { if(msg!=null) console.log(msg); });
 			
 		};
 		
