@@ -609,8 +609,7 @@ var services = {
 				return false;
 			}
 			var setTempValue = $("#inputSetTempValue").val();
-			var guestName = $("#sex").val() + "." + $("#guestname").val();
-
+			var guestName = encodeURIComponent($("#sex").val() + "." + $("#guestname").val());
 			$.getJSON(contextPath+"service/checkin",
 					{roomNo:currRoomNum,guestName:guestName,language:"1",tempSet:setTempValue},function(data){
 				
